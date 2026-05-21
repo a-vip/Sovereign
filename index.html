@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sovereign Intelligence — Global Real-Time Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080810;
+      --bg2: #0a0d18;
+      --cyan: #00f5ff;
+      --orange: #ff6b00;
+      --red: #ff2244;
+      --green: #00ff88;
+      --yellow: #ffd22e;
+      --purple: #b366ff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: #e2e8f0;
+      font-family: 'JetBrains Mono', monospace;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── BACKGROUND ─── */
+    .bg-grid {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(0,245,255,0.13) 0%, transparent 38%),
+        radial-gradient(circle at 85% 15%, rgba(255,107,0,0.10) 0%, transparent 28%),
+        radial-gradient(circle at 12% 75%, rgba(0,255,136,0.07) 0%, transparent 28%),
+        linear-gradient(rgba(0,245,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,245,255,0.03) 1px, transparent 1px);
+      background-size: auto, auto, auto, 64px 64px, 64px 64px;
+    }
+
+    /* ─── TICKER ─── */
+    .ticker-bar {
+      position: relative; z-index: 20;
+      background: rgba(8,8,16,0.95);
+      border-bottom: 1px solid rgba(0,245,255,0.12);
+      height: 36px; display: flex; align-items: center; overflow: hidden;
+    }
+    .ticker-label {
+      flex-shrink: 0; padding: 0 16px;
+      color: var(--green); font-size: 10px; font-weight: 800;
+      letter-spacing: 0.18em; border-right: 1px solid rgba(0,245,255,0.15);
+    }
+    .ticker-track { overflow: hidden; flex: 1; }
+    .ticker-inner {
+      display: inline-block; white-space: nowrap;
+      color: var(--green); font-size: 10px; letter-spacing: 0.12em;
+      animation: ticker 38s linear infinite;
+    }
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 19;
+      background: rgba(8,8,16,0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,245,255,0.10);
+    }
+    .nav-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-icon {
+      width: 42px; height: 42px;
+      border: 1px solid rgba(0,245,255,0.3);
+      border-radius: 12px;
+      background: rgba(0,245,255,0.08);
+      box-shadow: 0 0 22px rgba(0,245,255,0.2);
+      display: grid; place-items: center; font-size: 20px;
+    }
+    .logo-text { line-height: 1.2; }
+    .logo-title { font-size: 15px; font-weight: 800; color: #fff; letter-spacing: 0.16em; text-transform: uppercase; }
+    .logo-sub { font-size: 9px; color: #64748b; letter-spacing: 0.12em; margin-top: 2px; }
+
+    .nav-tabs { display: flex; gap: 8px; }
+    .nav-tab {
+      padding: 8px 20px; border-radius: 10px; font-size: 10px;
+      font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+      cursor: pointer; text-decoration: none; transition: all 0.2s;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+      color: #94a3b8;
+    }
+    .nav-tab:hover { border-color: rgba(0,245,255,0.3); color: var(--cyan); }
+    .nav-tab.active {
+      border-color: rgba(0,245,255,0.5);
+      background: rgba(0,245,255,0.08);
+      color: var(--cyan);
+      box-shadow: 0 0 20px rgba(0,245,255,0.10);
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .live-badge {
+      padding: 6px 14px; border-radius: 10px; font-size: 10px; font-weight: 700;
+      border: 1px solid rgba(0,255,136,0.2);
+      background: rgba(0,255,136,0.08);
+      color: var(--green); letter-spacing: 0.12em;
+    }
+    .btn-cta-small {
+      padding: 8px 18px; border-radius: 10px; font-size: 10px;
+      font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+      cursor: pointer; text-decoration: none; transition: all 0.2s;
+      border: 1px solid rgba(0,245,255,0.4);
+      background: rgba(0,245,255,0.10);
+      color: var(--cyan);
+    }
+    .btn-cta-small:hover { background: rgba(0,245,255,0.16); }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative; z-index: 10;
+      max-width: 1400px; margin: 0 auto;
+      padding: 80px 24px 60px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+    }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: 999px;
+      border: 1px solid rgba(0,245,255,0.25);
+      background: rgba(0,245,255,0.08);
+      color: var(--cyan); font-size: 10px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      margin-bottom: 24px;
+      animation: fadeUp 0.5s ease both;
+    }
+    .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--green);
+      box-shadow: 0 0 8px var(--green); animation: blink 1.4s ease infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    h1 {
+      font-size: clamp(36px, 5.5vw, 76px);
+      font-weight: 800; line-height: 0.96;
+      letter-spacing: -0.05em; text-transform: uppercase; color: #fff;
+      animation: fadeUp 0.5s 0.08s ease both;
+    }
+    h1 span { color: var(--cyan); }
+
+    .hero-desc {
+      margin-top: 24px; font-size: 15px; line-height: 1.8;
+      color: #94a3b8; max-width: 540px;
+      animation: fadeUp 0.5s 0.16s ease both;
+    }
+
+    .hero-actions {
+      margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap;
+      animation: fadeUp 0.5s 0.24s ease both;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 28px; border-radius: 14px; font-size: 12px;
+      font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;
+      cursor: pointer; text-decoration: none; transition: all 0.2s;
+      border: 1px solid rgba(0,245,255,0.5);
+      background: rgba(0,245,255,0.10);
+      color: var(--cyan);
+      box-shadow: 0 0 34px rgba(0,245,255,0.14);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .btn-primary:hover { background: rgba(0,245,255,0.16); transform: translateY(-1px); }
+    .btn-primary .arrow { transition: transform 0.2s; }
+    .btn-primary:hover .arrow { transform: translateX(4px); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 28px; border-radius: 14px; font-size: 12px;
+      font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      cursor: pointer; text-decoration: none; transition: all 0.2s;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+      color: #cbd5e1;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .btn-secondary:hover { border-color: rgba(255,107,0,0.4); color: #fed7aa; }
+
+    .hero-stats {
+      margin-top: 40px; display: grid; grid-template-columns: repeat(3,1fr); gap: 12px;
+      animation: fadeUp 0.5s 0.32s ease both;
+    }
+    .stat-card {
+      padding: 16px; border-radius: 14px;
+      border: 1px solid rgba(0,245,255,0.15);
+      background: rgba(10,13,24,0.7);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 0 32px rgba(0,245,255,0.05);
+    }
+    .stat-num { font-size: 22px; font-weight: 800; color: #fff; }
+    .stat-label { font-size: 9px; color: #475569; letter-spacing: 0.16em; text-transform: uppercase; margin-top: 4px; }
+
+    /* ─── GLOBE PREVIEW ─── */
+    .globe-panel {
+      border-radius: 20px;
+      border: 1px solid rgba(0,245,255,0.15);
+      background: rgba(10,13,24,0.7);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 0 48px rgba(0,245,255,0.07);
+      overflow: hidden; padding: 16px;
+      animation: fadeUp 0.5s 0.18s ease both;
+    }
+    .globe-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .globe-title { font-size: 10px; font-weight: 700; color: var(--cyan); letter-spacing: 0.16em; text-transform: uppercase; }
+    .op-badge { font-size: 9px; color: var(--green); padding: 4px 10px; border-radius: 999px;
+      background: rgba(0,255,136,0.08); border: 1px solid rgba(0,255,136,0.2); }
+
+    .globe-viewport {
+      position: relative; aspect-ratio: 16/10;
+      border-radius: 14px; overflow: hidden;
+      background: #03050b;
+      border: 1px solid rgba(0,245,255,0.08);
+    }
+    .globe-glow {
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 48%, rgba(0,245,255,0.15), transparent 42%);
+    }
+
+    .globe-sphere {
+      position: absolute; left: 50%; top: 50%;
+      width: 300px; height: 300px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 1px solid rgba(0,245,255,0.25);
+      background: radial-gradient(circle at 35% 28%, rgba(255,255,255,0.18), rgba(0,245,255,0.12) 20%, rgba(8,20,35,0.96) 55%, #02050c 100%);
+      box-shadow: 0 0 80px rgba(0,245,255,0.2);
+      animation: spin 90s linear infinite;
+    }
+    @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+    .orbit {
+      position: absolute; left: 50%; top: 50%;
+      border-radius: 50%;
+      border: 1px solid rgba(0,245,255,0.2);
+      transform: translate(-50%,-50%);
+    }
+    .orbit-1 { width: 360px; height: 140px; transform: translate(-50%,-50%) rotate(-14deg); }
+    .orbit-2 { width: 380px; height: 155px; transform: translate(-50%,-50%) rotate(14deg); }
+    .orbit-3 { width: 400px; height: 130px; transform: translate(-50%,-50%) rotate(30deg); }
+
+    .sat-dot {
+      position: absolute; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--cyan); box-shadow: 0 0 14px var(--cyan);
+    }
+
+    .event-tag {
+      position: absolute; padding: 6px 10px; border-radius: 8px;
+      font-size: 9px; font-weight: 700; backdrop-filter: blur(8px);
+    }
+    .event-tag.disaster { top: 22%; left: 16%; border: 1px solid rgba(255,107,0,0.4); background: rgba(255,107,0,0.12); color: #fed7aa; }
+    .event-tag.disaster .tag-label { color: var(--orange); }
+    .event-tag.conflict { top: 32%; right: 14%; border: 1px solid rgba(255,34,68,0.4); background: rgba(255,34,68,0.12); color: #fca5a5; }
+    .event-tag.conflict .tag-label { color: var(--red); }
+    .event-tag.surveillance { bottom: 22%; left: 32%; border: 1px solid rgba(0,245,255,0.4); background: rgba(0,245,255,0.10); color: #a5f3fc; }
+    .event-tag.surveillance .tag-label { color: var(--cyan); }
+    .tag-label { font-weight: 800; display: block; }
+
+    /* ─── SECTION SHARED ─── */
+    section { position: relative; z-index: 10; }
+    .section-inner { max-width: 1400px; margin: 0 auto; padding: 80px 24px; }
+
+    .section-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 999px;
+      border: 1px solid rgba(0,245,255,0.2);
+      background: rgba(0,245,255,0.06);
+      color: var(--cyan); font-size: 9px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    h2 {
+      font-size: clamp(28px, 3.5vw, 48px); font-weight: 800;
+      letter-spacing: -0.04em; text-transform: uppercase; color: #fff;
+      line-height: 1;
+    }
+    .section-desc { font-size: 14px; color: #64748b; line-height: 1.8; margin-top: 12px; max-width: 520px; }
+
+    /* ─── FEATURES ─── */
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px; margin-top: 48px;
+    }
+    .feature-card {
+      padding: 28px; border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(10,13,24,0.6);
+      backdrop-filter: blur(14px);
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    .feature-card:hover { border-color: rgba(0,245,255,0.25); transform: translateY(-2px); }
+    .feature-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: grid; place-items: center; font-size: 18px;
+      margin-bottom: 16px;
+    }
+    .feature-title { font-size: 13px; font-weight: 800; color: #f1f5f9; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+    .feature-desc { font-size: 12px; color: #64748b; line-height: 1.75; }
+    .feature-tag {
+      display: inline-flex; margin-top: 16px;
+      padding: 4px 10px; border-radius: 6px; font-size: 9px; font-weight: 700; letter-spacing: 0.12em;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 0; margin-top: 56px; position: relative; }
+    .steps::before {
+      content: ''; position: absolute; top: 32px; left: 10%; right: 10%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,245,255,0.3), rgba(0,245,255,0.3), transparent);
+    }
+    .step { text-align: center; padding: 0 20px; }
+    .step-num {
+      width: 64px; height: 64px; margin: 0 auto 20px;
+      border-radius: 50%; display: grid; place-items: center;
+      font-size: 20px; font-weight: 800; color: var(--cyan);
+      border: 1px solid rgba(0,245,255,0.3);
+      background: rgba(0,245,255,0.08);
+      box-shadow: 0 0 28px rgba(0,245,255,0.12);
+    }
+    .step-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #f1f5f9; margin-bottom: 10px; }
+    .step-desc { font-size: 11px; color: #64748b; line-height: 1.75; }
+
+    /* ─── SIGNAL FEED PREVIEW ─── */
+    .feed-preview { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    @media (max-width: 860px) { .feed-preview { grid-template-columns: 1fr; } }
+    .signal-card {
+      padding: 18px; border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.05);
+      background: rgba(10,13,24,0.6);
+      backdrop-filter: blur(12px);
+      transition: border-color 0.2s;
+    }
+    .signal-card:hover { border-color: rgba(0,245,255,0.2); }
+    .signal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .signal-tag {
+      padding: 4px 8px; border-radius: 6px; font-size: 9px; font-weight: 800; letter-spacing: 0.14em;
+    }
+    .severity-badge {
+      padding: 3px 8px; border-radius: 6px; font-size: 9px; font-weight: 800;
+      border: 1px solid rgba(255,34,68,0.4); background: rgba(255,34,68,0.10); color: #fca5a5;
+    }
+    .signal-headline { font-size: 12px; font-weight: 600; line-height: 1.6; color: #e2e8f0; }
+    .signal-location { font-size: 10px; color: #475569; margin-top: 8px; }
+
+    /* ─── CTA BLOCK ─── */
+    .cta-block {
+      margin: 0 24px 80px;
+      max-width: 1400px; margin-left: auto; margin-right: auto;
+      border-radius: 24px;
+      border: 1px solid rgba(0,245,255,0.2);
+      background: rgba(10,13,24,0.7);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 80px rgba(0,245,255,0.07);
+      padding: 64px 48px;
+      text-align: center;
+      position: relative; z-index: 10; overflow: hidden;
+    }
+    .cta-block::before {
+      content: ''; position: absolute;
+      top: -80px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,245,255,0.10), transparent 65%);
+      pointer-events: none;
+    }
+    .cta-block h2 { font-size: clamp(28px, 4vw, 54px); }
+    .cta-block p { font-size: 14px; color: #64748b; margin: 16px auto 36px; max-width: 500px; line-height: 1.8; }
+    .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ─── CATEGORIES ─── */
+    .categories { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+    .cat-pill {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: 999px; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      border: 1px solid; cursor: default;
+    }
+    .cat-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative; z-index: 10;
+      border-top: 1px solid rgba(0,245,255,0.08);
+      padding: 28px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1400px; margin: 0 auto;
+      font-size: 11px; color: #334155;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { color: #475569; text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--cyan); }
+    .footer-live { display: flex; align-items: center; gap: 8px; color: var(--green); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(0,245,255,0.2); border-radius: 3px; }
+
+    /* ─── DASHBOARD PREVIEW ─── */
+    .dash-preview-wrap {
+      margin-top: 48px; position: relative;
+      border-radius: 18px; overflow: hidden;
+      border: 1px solid rgba(0,245,255,0.18);
+      box-shadow: 0 0 60px rgba(0,245,255,0.08);
+    }
+    .dash-preview-bar {
+      background: rgba(10,13,24,0.95); padding: 12px 18px;
+      display: flex; align-items: center; gap: 10px;
+      border-bottom: 1px solid rgba(0,245,255,0.10);
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.r { background: #ff2244; } .dot.y { background: #ffd22e; } .dot.g { background: #00ff88; }
+    .dash-url { margin-left: 8px; font-size: 10px; color: #475569; letter-spacing: 0.06em; }
+    .dash-inner {
+      background: #03050b; padding: 24px;
+      display: grid; grid-template-columns: 200px 1fr 180px; gap: 12px; min-height: 260px;
+    }
+    @media (max-width: 700px) { .dash-inner { grid-template-columns: 1fr; } }
+    .dash-panel {
+      border-radius: 12px; border: 1px solid rgba(0,245,255,0.12);
+      background: rgba(10,13,24,0.8); padding: 14px;
+    }
+    .dash-panel-title { font-size: 9px; font-weight: 800; color: var(--cyan); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 12px; }
+    .dash-feed-item {
+      padding: 8px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.02); margin-bottom: 6px; font-size: 9px; color: #94a3b8;
+    }
+    .dash-feed-item strong { display: block; margin-bottom: 2px; font-size: 9px; }
+    .dash-globe-sim {
+      border-radius: 12px; border: 1px solid rgba(0,245,255,0.10);
+      background: radial-gradient(circle at 50% 50%, rgba(0,245,255,0.12), #03050b 55%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: rgba(0,245,255,0.5); letter-spacing: 0.14em;
+      min-height: 220px; flex-direction: column; gap: 8px;
+    }
+    .globe-ring {
+      width: 120px; height: 120px; border-radius: 50%;
+      border: 2px solid rgba(0,245,255,0.25);
+      box-shadow: 0 0 40px rgba(0,245,255,0.15), inset 0 0 30px rgba(0,245,255,0.06);
+      animation: pulse-ring 2s ease infinite;
+      display: grid; place-items: center; font-size: 32px;
+    }
+    @keyframes pulse-ring {
+      0%,100% { box-shadow: 0 0 40px rgba(0,245,255,0.15), inset 0 0 30px rgba(0,245,255,0.06); }
+      50%      { box-shadow: 0 0 60px rgba(0,245,255,0.3),  inset 0 0 40px rgba(0,245,255,0.10); }
+    }
+    .dash-overlay-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.02); margin-bottom: 6px; font-size: 9px; color: #94a3b8;
+    }
+    .overlay-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-label">● LIVE</div>
+  <div class="ticker-track">
+    <span class="ticker-inner">
+      BREAKING: UN SECURITY COUNCIL EMERGENCY SESSION ON CYBER ATTACKS &nbsp;•&nbsp;
+      6.2 MAGNITUDE EARTHQUAKE HITS SOUTHERN JAPAN &nbsp;•&nbsp;
+      OIL PRICES SURGE PAST $93 ON SUPPLY CONCERNS &nbsp;•&nbsp;
+      TENSIONS ESCALATE IN EASTERN EUROPE &nbsp;•&nbsp;
+      MAJOR PORT DISRUPTION REPORTED IN STRAIT OF MALACCA &nbsp;•&nbsp;
+      MILITANT GROUP MOBILISATION DETECTED — SAHEL REGION &nbsp;•&nbsp;
+      CYBER INTRUSION ATTEMPT BLOCKED — EASTERN EUROPE &nbsp;•&nbsp;
+      UN SECURITY COUNCIL EMERGENCY SESSION ON CYBER ATTACKS &nbsp;•&nbsp;
+      6.2 MAGNITUDE EARTHQUAKE HITS SOUTHERN JAPAN &nbsp;•&nbsp;
+      OIL PRICES SURGE PAST $93 ON SUPPLY CONCERNS &nbsp;•&nbsp;
+      TENSIONS ESCALATE IN EASTERN EUROPE &nbsp;•&nbsp;
+      MAJOR PORT DISRUPTION REPORTED IN STRAIT OF MALACCA &nbsp;•&nbsp;
+    </span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">⬡</div>
+      <div class="logo-text">
+        <div class="logo-title">Sovereign Intel</div>
+        <div class="logo-sub">Global Intelligence Platform</div>
+      </div>
+    </a>
+
+    <div class="nav-tabs">
+      <a href="#features" class="nav-tab">Features</a>
+      <a href="#how-it-works" class="nav-tab">How It Works</a>
+      <a href="#signals" class="nav-tab">Live Signals</a>
+      <a href="#dashboard" class="nav-tab active">Sovereign Dash</a>
+    </div>
+
+    <div class="nav-right">
+      <div class="live-badge">● SYSTEM LIVE</div>
+      <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="btn-cta-small">Enter Dash →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- BOOT OVERLAY -->
+<div id="boot-ol" style="position:fixed;inset:0;z-index:1000;background:#080810;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.9s;">
+  <div style="max-width:580px;width:100%;padding:0 32px;">
+    <div style="color:#00f5ff;font-size:13px;font-weight:800;letter-spacing:0.22em;margin-bottom:28px;text-transform:uppercase;">Sovereign Intel Terminal v4.2.1</div>
+    <div id="boot-lines" style="font-size:11px;line-height:2.1;color:#334155;font-family:'JetBrains Mono',monospace;"></div>
+    <div id="boot-bar-wrap" style="margin-top:22px;display:none;">
+      <div style="height:2px;background:rgba(0,245,255,0.12);border-radius:1px;overflow:hidden;">
+        <div id="boot-bar" style="height:100%;width:0%;background:#00f5ff;box-shadow:0 0 10px #00f5ff;border-radius:1px;transition:width 0.08s linear;"></div>
+      </div>
+      <div style="margin-top:8px;font-size:8px;color:#1e293b;letter-spacing:0.16em;">LOADING INTELLIGENCE LAYERS...</div>
+    </div>
+    <button onclick="dismissBoot()" style="margin-top:28px;padding:7px 18px;border-radius:8px;border:1px solid rgba(0,245,255,0.2);background:transparent;color:#334155;font-size:8px;font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:0.16em;cursor:pointer;transition:color 0.2s,border-color 0.2s;" onmouseover="this.style.color='#00f5ff';this.style.borderColor='rgba(0,245,255,0.5)'" onmouseout="this.style.color='#334155';this.style.borderColor='rgba(0,245,255,0.2)'">SKIP INTRO →</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero" id="hero-section">
+
+  <!-- LEFT -->
+  <div>
+    <div class="hero-badge" id="hbadge" style="opacity:0;transition:opacity 0.5s;">
+      <span class="pulse"></span>
+      Real-time intelligence layer — active now
+    </div>
+
+    <h1 id="hero-h1" style="min-height:3em;">
+      <span id="hero-txt"></span><span id="hero-cur" style="color:var(--cyan);font-weight:300;animation:heroCursor 0.75s step-end infinite;">|</span>
+    </h1>
+
+    <p class="hero-desc" id="hero-p" style="opacity:0;transform:translateY(10px);transition:opacity 0.6s,transform 0.6s;">
+      A live map of state violations, corporate complicity, conflict signals, satellite-linked alerts, and open-source intelligence streams — built for people who need the picture fast.
+    </p>
+
+    <div class="hero-actions" id="hero-act" style="opacity:0;transform:translateY(10px);transition:opacity 0.6s 0.14s,transform 0.6s 0.14s;">
+      <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="btn-primary">
+        Enter Sovereign Dash <span class="arrow">→</span>
+      </a>
+      <a href="#signals" class="btn-secondary">View Live Signals</a>
+    </div>
+
+    <div class="hero-stats" id="hero-sts" style="opacity:0;transform:translateY(10px);transition:opacity 0.6s 0.28s,transform 0.6s 0.28s;">
+      <div class="stat-card">
+        <div class="stat-num" id="sn0" data-target="482" data-dec="0" data-sfx="">0</div>
+        <div class="stat-label">new signals today</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="sn1" data-target="99.2" data-dec="1" data-sfx="%">0%</div>
+        <div class="stat-label">feed quality</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="sn2" data-target="27" data-dec="0" data-sfx="">0</div>
+        <div class="stat-label">active alerts</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Interactive live panel -->
+  <div style="perspective:1200px;" id="hero-panel-wrap">
+    <div id="hero-panel" class="globe-panel" style="transform-style:preserve-3d;transition:transform 0.08s ease-out;cursor:crosshair;">
+
+      <!-- Panel header -->
+      <div class="globe-header">
+        <span class="globe-title">⬡ Live Globe Preview</span>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span id="hp-sigcount" style="font-size:9px;color:#334155;letter-spacing:0.1em;">482 SIGNALS</span>
+          <span class="op-badge">● Operational</span>
+        </div>
+      </div>
+
+      <!-- Globe stage -->
+      <div class="hp-stage">
+        <!-- Halos -->
+        <div class="hp-halo" style="animation-delay:0s;"></div>
+        <div class="hp-halo" style="animation-delay:1.5s;"></div>
+        <!-- Sphere -->
+        <div class="hp-sphere"></div>
+        <!-- Radar sweep -->
+        <div class="hp-radar"></div>
+        <!-- Lat/lng hints -->
+        <div style="position:absolute;width:240px;height:68px;border-radius:50%;border:1px solid rgba(0,245,255,0.07);pointer-events:none;"></div>
+        <div style="position:absolute;width:68px;height:240px;border-radius:50%;border:1px solid rgba(0,245,255,0.07);pointer-events:none;"></div>
+        <!-- Orbit 1 cyan -->
+        <div class="hp-orbit hp-o1"><div class="hp-sat" style="background:#00f5ff;box-shadow:0 0 10px #00f5ff;top:-4px;left:50%;transform:translate(-50%,-50%);"></div></div>
+        <!-- Orbit 2 orange -->
+        <div class="hp-orbit hp-o2"><div class="hp-sat" style="background:#ff6b00;box-shadow:0 0 10px #ff6b00;top:-4px;left:22%;transform:translate(-50%,-50%);"></div></div>
+        <!-- Orbit 3 purple slow -->
+        <div class="hp-orbit hp-o3"><div class="hp-sat" style="background:#b366ff;box-shadow:0 0 8px #b366ff;bottom:-4px;left:68%;transform:translate(-50%,50%);"></div></div>
+        <!-- Dynamic event markers -->
+        <div id="hp-markers" style="position:absolute;inset:0;pointer-events:none;"></div>
+        <!-- Toast notification -->
+        <div id="hp-toast" style="position:absolute;top:12px;right:12px;display:none;z-index:10;max-width:160px;"></div>
+      </div>
+
+      <!-- Status bar -->
+      <div style="padding:10px 16px;border-top:1px solid rgba(0,245,255,0.08);display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,16,0.5);">
+        <span style="font-size:8px;color:#1e293b;letter-spacing:0.12em;">12 SATELLITES CONNECTED</span>
+        <span style="font-size:8px;color:#1e293b;letter-spacing:0.12em;">27 ACTIVE ALERTS</span>
+        <span id="hp-clock" style="font-size:8px;color:#334155;letter-spacing:0.1em;">--:--:-- UTC</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes heroCursor { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  .hp-stage {
+    position:relative;height:320px;background:#03050b;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;border:1px solid rgba(0,245,255,0.07);margin:0 0 0 0;
+  }
+  .hp-sphere {
+    position:absolute;width:240px;height:240px;border-radius:50%;
+    background:radial-gradient(circle at 36% 30%,rgba(255,255,255,0.18),rgba(0,245,255,0.12) 18%,rgba(8,20,35,0.96) 54%,#02050c 100%);
+    border:1px solid rgba(0,245,255,0.28);
+    box-shadow:0 0 70px rgba(0,245,255,0.18),inset 0 0 40px rgba(0,0,0,0.5);
+    animation:hpShimmer 7s ease-in-out infinite alternate;
+    z-index:2;
+  }
+  @keyframes hpShimmer {
+    from{box-shadow:0 0 70px rgba(0,245,255,0.15),inset 0 0 40px rgba(0,0,0,0.5);}
+    to  {box-shadow:0 0 100px rgba(0,245,255,0.26),inset 0 0 40px rgba(0,0,0,0.4);}
+  }
+  .hp-radar {
+    position:absolute;width:240px;height:240px;border-radius:50%;
+    background:conic-gradient(from 0deg,rgba(0,245,255,0.2),transparent 50deg,transparent 360deg);
+    animation:hpRadarSpin 3.5s linear infinite;
+    z-index:3;mix-blend-mode:screen;pointer-events:none;
+  }
+  @keyframes hpRadarSpin{to{transform:rotate(360deg);}}
+
+  .hp-halo {
+    position:absolute;width:240px;height:240px;border-radius:50%;
+    border:1px solid rgba(0,245,255,0.4);
+    animation:hpHalo 3.5s ease-out infinite;pointer-events:none;
+  }
+  @keyframes hpHalo{0%{transform:scale(1);opacity:0.5;}100%{transform:scale(1.9);opacity:0;}}
+
+  .hp-orbit{position:absolute;border-radius:50%;border:1px solid rgba(0,245,255,0.2);pointer-events:none;}
+  .hp-o1{width:360px;height:100px;animation:hpOrb1 11s linear infinite;}
+  .hp-o2{width:320px;height:80px;border-color:rgba(255,107,0,0.25);animation:hpOrb2 7s linear infinite;}
+  .hp-o3{width:400px;height:60px;border-color:rgba(179,102,255,0.2);animation:hpOrb3 16s linear infinite reverse;}
+  @keyframes hpOrb1{from{transform:rotate(-18deg);}to{transform:rotate(342deg);}}
+  @keyframes hpOrb2{from{transform:rotate(25deg);}to{transform:rotate(385deg);}}
+  @keyframes hpOrb3{from{transform:rotate(45deg);}to{transform:rotate(-315deg);}}
+
+  .hp-sat{position:absolute;width:8px;height:8px;border-radius:50%;}
+
+  /* Dynamic marker */
+  .hp-marker {
+    position:absolute;
+    animation:hpMarkerIn 0.35s ease both;
+    pointer-events:none;
+  }
+  @keyframes hpMarkerIn{from{opacity:0;transform:scale(0.3);}to{opacity:1;transform:scale(1);}}
+  .hp-marker-dot {
+    width:10px;height:10px;border-radius:50%;
+    animation:hpDotPulse 1s ease-in-out infinite;
+  }
+  @keyframes hpDotPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.5);}}
+  .hp-marker-label {
+    position:absolute;left:14px;top:50%;transform:translateY(-50%);
+    font-size:7px;font-weight:800;letter-spacing:0.1em;
+    padding:3px 7px;border-radius:4px;white-space:nowrap;
+    backdrop-filter:blur(6px);
+  }
+
+  /* Toast notification */
+  .hp-toast-inner {
+    padding:8px 12px;border-radius:8px;border:1px solid rgba(255,34,68,0.4);
+    background:rgba(8,8,16,0.92);backdrop-filter:blur(12px);
+    animation:hpToastIn 0.3s ease both;
+  }
+  @keyframes hpToastIn{from{opacity:0;transform:translateX(12px);}to{opacity:1;transform:translateX(0);}}
+</style>
+
+<script>
+/* ── BOOT SEQUENCE ── */
+const bootLines = [
+  { text: '> Establishing secure connection...', delay: 0,    result: '[OK]',  color: '#00ff88' },
+  { text: '> Loading satellite feed (12 active)...', delay: 500, result: '[OK]', color: '#00ff88' },
+  { text: '> Calibrating signal processors...', delay: 1000, result: '[OK]',  color: '#00ff88' },
+  { text: '> Syncing intelligence layers...', delay: 1500,   result: '[OK]',  color: '#00ff88' },
+  { text: '> 27 CRITICAL ALERTS DETECTED',    delay: 2000,   result: '[!!]',  color: '#ff2244' },
+  { text: '> SYSTEM STATUS: OPERATIONAL',     delay: 2500,   result: '',      color: '#00f5ff' },
+];
+let bootDone = false;
+function dismissBoot(){
+  if(bootDone) return;
+  bootDone = true;
+  const ol = document.getElementById('boot-ol');
+  ol.style.opacity = '0';
+  setTimeout(() => { ol.style.display='none'; startHero(); }, 900);
+}
+window.dismissBoot = dismissBoot;
+
+(function runBoot(){
+  const linesEl = document.getElementById('boot-lines');
+  const barWrap = document.getElementById('boot-bar-wrap');
+  const bar     = document.getElementById('boot-bar');
+  let completed = 0;
+
+  bootLines.forEach(({ text, delay, result, color }) => {
+    setTimeout(() => {
+      const row = document.createElement('div');
+      row.style.cssText = 'display:flex;justify-content:space-between;gap:16px;';
+      row.innerHTML = `<span style="color:#475569;">${text}</span><span style="color:${color};font-weight:800;">${result}</span>`;
+      linesEl.appendChild(row);
+      completed++;
+      if(completed === 1){ barWrap.style.display='block'; }
+      bar.style.width = ((completed/bootLines.length)*100) + '%';
+      if(completed === bootLines.length){
+        setTimeout(() => dismissBoot(), 700);
+      }
+    }, delay);
+  });
+})();
+
+/* ── HERO SEQUENCE (fires after boot) ── */
+function startHero(){
+  // 1. Show badge
+  const badge = document.getElementById('hbadge');
+  badge.style.opacity = '1';
+
+  // 2. Typewriter on h1
+  const lines = [
+    { text: 'Track global', cls: '' },
+    { text: 'power',        cls: 'glitch-word', color: 'var(--cyan)' },
+    { text: 'in real time.', cls: '' },
+  ];
+  const txtEl = document.getElementById('hero-txt');
+  const curEl = document.getElementById('hero-cur');
+  let lineI = 0, charI = 0;
+  let currentSpan = null;
+
+  function typeNext(){
+    if(lineI >= lines.length){
+      // done typing — reveal rest
+      curEl.style.animation = 'none'; curEl.style.opacity = '0';
+      revealRest();
+      return;
+    }
+    if(charI === 0){
+      // New line element
+      if(lineI > 0){ const br = document.createElement('br'); txtEl.appendChild(br); }
+      currentSpan = document.createElement('span');
+      if(lines[lineI].color){ currentSpan.style.color = lines[lineI].color; }
+      txtEl.appendChild(currentSpan);
+    }
+    const line = lines[lineI].text;
+    currentSpan.textContent = line.slice(0, charI + 1);
+    charI++;
+    if(charI >= line.length){ lineI++; charI = 0; setTimeout(typeNext, lineI < lines.length ? 180 : 60); }
+    else { setTimeout(typeNext, charI===1 && lineI>0 ? 160 : 42); }
+  }
+  setTimeout(typeNext, 300);
+
+  function revealRest(){
+    ['hero-p','hero-act','hero-sts'].forEach((id,i) => {
+      const el = document.getElementById(id);
+      if(el){ el.style.opacity='1'; el.style.transform='translateY(0)'; }
+    });
+    countUpStats();
+  }
+
+  // 3. Start globe interactivity
+  startGlobe();
+}
+
+/* ── STATS COUNT-UP ── */
+function countUpStats(){
+  ['sn0','sn1','sn2'].forEach(id => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    const target = parseFloat(el.dataset.target);
+    const dec = parseInt(el.dataset.dec);
+    const sfx = el.dataset.sfx;
+    const dur = 1400;
+    const start = performance.now();
+    function tick(now){
+      const t = Math.min((now-start)/dur,1);
+      const ease = 1-Math.pow(1-t,3);
+      const val = (target * ease).toFixed(dec);
+      el.textContent = val + sfx;
+      if(t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}
+
+/* ── GLOBE INTERACTIVITY ── */
+function startGlobe(){
+  const panel = document.getElementById('hero-panel');
+  const wrap  = document.getElementById('hero-panel-wrap');
+  const clockEl = document.getElementById('hp-clock');
+  const countEl = document.getElementById('hp-sigcount');
+  const markersEl = document.getElementById('hp-markers');
+  const toastEl  = document.getElementById('hp-toast');
+  let sigCount = 482;
+
+  // Clock
+  function padZ(n){ return String(n).padStart(2,'0'); }
+  function tickClock(){
+    const d = new Date();
+    clockEl.textContent = `${padZ(d.getUTCHours())}:${padZ(d.getUTCMinutes())}:${padZ(d.getUTCSeconds())} UTC`;
+  }
+  setInterval(tickClock, 1000); tickClock();
+
+  // Signal counter
+  setInterval(() => {
+    sigCount++;
+    countEl.textContent = sigCount + ' SIGNALS';
+  }, 3200);
+
+  // Mouse parallax
+  wrap.addEventListener('mousemove', e => {
+    const r = wrap.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width  - 0.5) * 14;
+    const y = ((e.clientY - r.top ) / r.height - 0.5) * -10;
+    panel.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+  });
+  wrap.addEventListener('mouseleave', () => {
+    panel.style.transform = 'rotateY(0deg) rotateX(0deg)';
+  });
+
+  // Event markers on globe
+  const events = [
+    { x:'33%', y:'28%', type:'CONFLICT',     loc:'Donetsk, UA',        color:'#ff2244' },
+    { x:'58%', y:'34%', type:'SURVEILLANCE', loc:'E. Mediterranean',   color:'#00f5ff' },
+    { x:'24%', y:'55%', type:'DISASTER',     loc:'São Paulo, BR',      color:'#ff6b00' },
+    { x:'72%', y:'42%', type:'ECONOMIC',     loc:'Malacca Strait',     color:'#ffd22e' },
+    { x:'50%', y:'20%', type:'POLITICAL',    loc:'Brussels, EU',       color:'#b366ff' },
+    { x:'44%', y:'62%', type:'HUMANITARIAN', loc:'Horn of Africa',     color:'#00ff88' },
+    { x:'78%', y:'55%', type:'SURVEILLANCE', loc:'South China Sea',    color:'#00f5ff' },
+    { x:'18%', y:'38%', type:'CONFLICT',     loc:'Sahel Region',       color:'#ff2244' },
+  ];
+  let evtI = 0;
+  function addMarker(){
+    const ev = events[evtI % events.length]; evtI++;
+    const m = document.createElement('div');
+    m.className = 'hp-marker';
+    m.style.cssText = `left:${ev.x};top:${ev.y};`;
+    m.innerHTML = `
+      <div class="hp-marker-dot" style="background:${ev.color};box-shadow:0 0 10px ${ev.color};"></div>
+      <div class="hp-marker-label" style="background:${ev.color}18;border:1px solid ${ev.color}44;color:${ev.color};">
+        ${ev.type}<br/><span style="color:#475569;font-weight:400;">${ev.loc}</span>
+      </div>`;
+    markersEl.appendChild(m);
+    // Fade out after 3.5s
+    setTimeout(() => {
+      m.style.transition = 'opacity 0.5s';
+      m.style.opacity = '0';
+      setTimeout(() => m.remove(), 500);
+    }, 3500);
+  }
+  addMarker();
+  setInterval(addMarker, 2000);
+
+  // Toast notifications
+  const toastSignals = [
+    { tag:'CONFLICT',    sev:'S5', color:'#ff2244', txt:'New airstrike reported' },
+    { tag:'SURVEILLANCE',sev:'S4', color:'#00f5ff', txt:'SIGINT intercept flagged' },
+    { tag:'ECONOMIC',    sev:'S3', color:'#ffd22e', txt:'Supply chain disruption' },
+    { tag:'DISASTER',    sev:'S3', color:'#ff6b00', txt:'Seismic event detected' },
+    { tag:'CONFLICT',    sev:'S4', color:'#ff2244', txt:'Militant mobilisation' },
+  ];
+  let toastI = 0;
+  function showToast(){
+    const t = toastSignals[toastI % toastSignals.length]; toastI++;
+    toastEl.innerHTML = `<div class="hp-toast-inner">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px;">
+        <span style="font-size:7px;font-weight:800;color:${t.color};letter-spacing:0.12em;">${t.tag}</span>
+        <span style="font-size:7px;font-weight:800;color:${t.color};border:1px solid ${t.color}44;padding:1px 5px;border-radius:3px;">${t.sev}</span>
+      </div>
+      <div style="font-size:9px;color:#94a3b8;">${t.txt}</div>
+    </div>`;
+    toastEl.style.display = 'block';
+    setTimeout(() => {
+      const inner = toastEl.querySelector('.hp-toast-inner');
+      if(inner){ inner.style.transition='opacity 0.4s'; inner.style.opacity='0'; }
+      setTimeout(() => { toastEl.style.display='none'; }, 400);
+    }, 2800);
+  }
+  setTimeout(showToast, 1500);
+  setInterval(showToast, 5000);
+}
+</script>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <div class="section-badge">⬡ Platform Capabilities</div>
+    <h2>Everything in<br/><span style="color:var(--cyan)">one view.</span></h2>
+    <p class="section-desc">Six intelligence layers. One terminal. Sovereign Dash surfaces what matters — before it reaches the wire.</p>
+
+    <div class="features-grid">
+      <div class="feature-card" data-cat="conflict">
+        <div class="feature-icon" style="background:rgba(255,34,68,0.10); border:1px solid rgba(255,34,68,0.2);">⚔</div>
+        <div class="feature-title">Conflict Detection</div>
+        <p class="feature-desc">Real-time escalation signals from disputed zones, border incidents, and military mobilisation events — graded S1 through S5.</p>
+        <div class="feature-tag" style="background:rgba(255,34,68,0.10); border:1px solid rgba(255,34,68,0.2); color:#ff2244; letter-spacing:0.12em;">CONFLICT LAYER</div>
+      </div>
+
+      <div class="feature-card" data-cat="surveillance">
+        <div class="feature-icon" style="background:rgba(0,245,255,0.10); border:1px solid rgba(0,245,255,0.2);">📡</div>
+        <div class="feature-title">Surveillance Tracking</div>
+        <p class="feature-desc">Monitor biometric deployment, digital surveillance expansions, and SIGINT intercepts across state and corporate actors.</p>
+        <div class="feature-tag" style="background:rgba(0,245,255,0.10); border:1px solid rgba(0,245,255,0.2); color:#00f5ff; letter-spacing:0.12em;">SURVEILLANCE LAYER</div>
+      </div>
+
+      <div class="feature-card" data-cat="disaster">
+        <div class="feature-icon" style="background:rgba(255,107,0,0.10); border:1px solid rgba(255,107,0,0.2);">⚠</div>
+        <div class="feature-title">Disaster Intelligence</div>
+        <p class="feature-desc">Seismic events, climate disasters, and humanitarian crises pinpointed with satellite verification and live severity scoring.</p>
+        <div class="feature-tag" style="background:rgba(255,107,0,0.10); border:1px solid rgba(255,107,0,0.2); color:#ff6b00; letter-spacing:0.12em;">DISASTER LAYER</div>
+      </div>
+
+      <div class="feature-card" data-cat="economic">
+        <div class="feature-icon" style="background:rgba(255,210,46,0.10); border:1px solid rgba(255,210,46,0.2);">◈</div>
+        <div class="feature-title">Economic Signals</div>
+        <p class="feature-desc">Supply chain flags, sanctions intelligence, forced-labour risk markers, and critical minerals disruption — globally indexed.</p>
+        <div class="feature-tag" style="background:rgba(255,210,46,0.10); border:1px solid rgba(255,210,46,0.2); color:#ffd22e; letter-spacing:0.12em;">ECONOMIC LAYER</div>
+      </div>
+
+      <div class="feature-card" data-cat="humanitarian">
+        <div class="feature-icon" style="background:rgba(0,255,136,0.10); border:1px solid rgba(0,255,136,0.2);">🛰</div>
+        <div class="feature-title">Space Radar</div>
+        <p class="feature-desc">Active satellite tracking across LEO and MEO orbits. Live telemetry from ORION, HELIX, and SENTINEL constellations.</p>
+        <div class="feature-tag" style="background:rgba(0,255,136,0.10); border:1px solid rgba(0,255,136,0.2); color:#00ff88; letter-spacing:0.12em;">SPACE RADAR</div>
+      </div>
+
+      <div class="feature-card" data-cat="political">
+        <div class="feature-icon" style="background:rgba(179,102,255,0.10); border:1px solid rgba(179,102,255,0.2);">⬡</div>
+        <div class="feature-title">Intel Reports</div>
+        <p class="feature-desc">Deep-dive structured reports on corporate complicity, state actor behaviour, and geopolitical risk — exportable and shareable.</p>
+        <div class="feature-tag" style="background:rgba(179,102,255,0.10); border:1px solid rgba(179,102,255,0.2); color:#b366ff; letter-spacing:0.12em;">INTEL REPORTS</div>
+      </div>
+    </div>
+
+    <!-- Category pills -->
+    <div class="categories">
+      <button class="cat-pill" data-cat="conflict" data-color="#ff2244" style="border-color:rgba(255,34,68,0.3); background:rgba(255,34,68,0.07); color:#ff2244;">
+        <div class="cat-dot" style="background:#ff2244; box-shadow:0 0 8px #ff2244;"></div> Conflict (6)
+      </button>
+      <button class="cat-pill" data-cat="surveillance" data-color="#00f5ff" style="border-color:rgba(0,245,255,0.3); background:rgba(0,245,255,0.07); color:#00f5ff;">
+        <div class="cat-dot" style="background:#00f5ff; box-shadow:0 0 8px #00f5ff;"></div> Surveillance (43)
+      </button>
+      <button class="cat-pill" data-cat="disaster" data-color="#ff6b00" style="border-color:rgba(255,107,0,0.3); background:rgba(255,107,0,0.07); color:#ff6b00;">
+        <div class="cat-dot" style="background:#ff6b00; box-shadow:0 0 8px #ff6b00;"></div> Disaster (7)
+      </button>
+      <button class="cat-pill" data-cat="economic" data-color="#ffd22e" style="border-color:rgba(255,210,46,0.3); background:rgba(255,210,46,0.07); color:#ffd22e;">
+        <div class="cat-dot" style="background:#ffd22e; box-shadow:0 0 8px #ffd22e;"></div> Economic (18)
+      </button>
+      <button class="cat-pill" data-cat="humanitarian" data-color="#00ff88" style="border-color:rgba(0,255,136,0.3); background:rgba(0,255,136,0.07); color:#00ff88;">
+        <div class="cat-dot" style="background:#00ff88; box-shadow:0 0 8px #00ff88;"></div> Humanitarian (41)
+      </button>
+      <button class="cat-pill" data-cat="political" data-color="#b366ff" style="border-color:rgba(179,102,255,0.3); background:rgba(179,102,255,0.07); color:#b366ff;">
+        <div class="cat-dot" style="background:#b366ff; box-shadow:0 0 8px #b366ff;"></div> Political (5)
+      </button>
+    </div>
+
+    <style>
+      .cat-pill { cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: opacity 0.2s, transform 0.15s; }
+      .cat-pill:hover { opacity: 0.85; transform: translateY(-1px); }
+      .cat-pill.pill-active { box-shadow: 0 0 18px color-mix(in srgb, var(--pill-color) 30%, transparent) !important; }
+      .feature-card { transition: border-color 0.3s, box-shadow 0.3s, transform 0.25s, background 0.3s; }
+      .feature-card.fc-highlight {
+        border-color: var(--fc-color) !important;
+        box-shadow: 0 0 32px color-mix(in srgb, var(--fc-color) 22%, transparent);
+        background: rgba(18,24,40,0.9) !important;
+        transform: translateY(-3px);
+      }
+    </style>
+
+    <script>
+    (function() {
+      const pills = document.querySelectorAll('.cat-pill[data-cat]');
+      const cards = document.querySelectorAll('.feature-card[data-cat]');
+
+      const catColors = {
+        conflict:     '#ff2244',
+        surveillance: '#00f5ff',
+        disaster:     '#ff6b00',
+        economic:     '#ffd22e',
+        humanitarian: '#00ff88',
+        political:    '#b366ff',
+      };
+
+      let activePill = null;
+
+      pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          const cat = pill.dataset.cat;
+
+          if (activePill === pill) {
+            // Deselect — clear everything
+            pills.forEach(p => { p.classList.remove('pill-active'); p.style.removeProperty('--pill-color'); });
+            cards.forEach(c => { c.classList.remove('fc-highlight'); c.style.removeProperty('--fc-color'); });
+            activePill = null;
+            return;
+          }
+
+          // Clear previous
+          pills.forEach(p => { p.classList.remove('pill-active'); p.style.removeProperty('--pill-color'); });
+          cards.forEach(c => { c.classList.remove('fc-highlight'); c.style.removeProperty('--fc-color'); });
+
+          // Activate
+          pill.classList.add('pill-active');
+          pill.style.setProperty('--pill-color', catColors[cat]);
+
+          const match = document.querySelector(`.feature-card[data-cat="${cat}"]`);
+          if (match) {
+            match.classList.add('fc-highlight');
+            match.style.setProperty('--fc-color', catColors[cat]);
+            match.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+
+          activePill = pill;
+        });
+      });
+    })();
+    </script>
+  </div>
+</section>
+
+<!-- MAP OPTIONS -->
+<section id="how-it-works" style="border-top: 1px solid rgba(0,245,255,0.07);">
+  <div class="section-inner">
+    <div class="section-badge">⬡ Map Options</div>
+    <h2>Every layer.<br/><span style="color:var(--cyan)">One globe.</span></h2>
+    <p class="section-desc">Toggle any intelligence layer directly on the live map. Click a layer to explore what it reveals.</p>
+
+    <div style="display:grid; grid-template-columns: 1fr 380px; gap: 28px; margin-top: 36px; align-items: start;">
+
+      <!-- LEFT: info bar + cards -->
+      <div>
+        <!-- Info bar -->
+        <div id="layer-info-bar" style="
+          padding: 16px 20px;
+          border-radius: 12px;
+          border: 1px solid rgba(0,245,255,0.2);
+          background: rgba(10,13,24,0.8);
+          backdrop-filter: blur(14px);
+          display: flex; align-items: center; gap: 14px;
+          margin-bottom: 16px;
+          transition: border-color 0.4s;
+        ">
+          <div style="flex:1; min-width:0;">
+            <div id="layer-info-name" style="font-size:10px; font-weight:800; color:var(--cyan); letter-spacing:0.16em; text-transform:uppercase; margin-bottom:5px; transition:color 0.3s;">Satellite Tracking</div>
+            <div id="layer-info-desc" style="font-size:11px; color:#64748b; line-height:1.65;">Live orbital positions of reconnaissance, communications, and weather satellites — updated every 30 seconds from TLE data feeds.</div>
+          </div>
+          <div id="layer-info-status" style="
+            flex-shrink:0;
+            padding: 5px 12px; border-radius: 999px; font-size:8px; font-weight:800;
+            letter-spacing:0.14em; background:rgba(0,255,136,0.10);
+            border:1px solid rgba(0,255,136,0.25); color:var(--green);
+            white-space:nowrap; transition: all 0.3s;
+          ">● ACTIVE</div>
+        </div>
+
+        <!-- Cards grid -->
+        <div class="map-options-grid" id="map-options-grid">
+
+          <div class="map-card" data-index="0" data-name="Satellite Tracking" data-color="#00f5ff" data-img="satalite.png"
+            data-desc="Live orbital positions of reconnaissance, communications, and weather satellites — updated every 30 seconds from TLE data feeds.">
+            <div class="map-card-accent"></div>
+            <div class="map-card-name">Satellite Tracking</div>
+            <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
+          </div>
+
+          <div class="map-card" data-index="1" data-name="Internet & Cables" data-color="#ff69b4" data-img="internet.png"
+            data-desc="Visualise the undersea fibre-optic cable network carrying 95% of global internet traffic — including chokepoints, repair zones, and state-actor ownership.">
+            <div class="map-card-accent"></div>
+            <div class="map-card-name">Internet & Cables</div>
+            <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
+          </div>
+
+          <div class="map-card" data-index="2" data-name="Oil & Gas" data-color="#ffa500" data-img="oil.png"
+            data-desc="Global energy infrastructure — pipelines, refineries, offshore platforms, and strategic reserves — with real-time disruption flags and geopolitical risk scoring.">
+            <div class="map-card-accent"></div>
+            <div class="map-card-name">Oil & Gas</div>
+            <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
+          </div>
+
+          <div class="map-card" data-index="3" data-name="Weather" data-color="#38bdf8" data-img="weather.png"
+            data-desc="Real-time atmospheric overlays — storm systems, pressure fronts, and severe weather warnings cross-referenced with active conflict and disaster zones.">
+            <div class="map-card-accent"></div>
+            <div class="map-card-name">Weather</div>
+            <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
+          </div>
+
+          <div class="map-card" data-index="4" data-name="Data Centers" data-color="#00f5ff" data-img="datacenter.png"
+            data-desc="Map the physical backbone of the digital world — hyperscale data centres, cloud regions, and critical server clusters tracked by jurisdiction and uptime.">
+            <div class="map-card-accent"></div>
+            <div class="map-card-name">Data Centers</div>
+            <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
+          </div>
+
+          <div class="map-card" data-index="5" data-name="AI Regulation" data-color="#ff6b00" data-img="ai.png"
+            data-desc="Track AI governance legislation, regulatory frameworks, and enforcement actions across jurisdictions — mapping which nations are leading, lagging, or weaponising AI policy.">
+            <div class="map-card-accent"></div>
+            <div class="map-card-name">AI Regulation</div>
+            <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
+          </div>
+
+          <div class="map-card" data-index="6" data-name="Day / Night" data-color="#b366ff" data-img="earth at night.png"
+            data-desc="Live terminator line showing the real-time boundary between day and night — useful for timing operations, communications windows, and satellite passes.">
+            <div class="map-card-accent"></div>
+            <div class="map-card-name">Day / Night</div>
+            <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
+          </div>
+
+          <div class="map-card" data-index="7" data-name="GPS Jamming" data-color="#ff2244" data-img="jamming.png"
+            data-desc="Real-time GPS denial and spoofing detected via aviation NOTAM feeds and crowdsourced reports — pinpointing state-level electronic warfare zones.">
+            <div class="map-card-accent"></div>
+            <div class="map-card-name">GPS Jamming</div>
+            <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT: floating image preview -->
+      <div id="map-preview-panel" style="
+        position: sticky; top: 90px;
+        border-radius: 16px;
+        border: 1px solid rgba(0,245,255,0.18);
+        background: rgba(10,13,24,0.85);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 0 48px rgba(0,245,255,0.07);
+        overflow: hidden;
+        transition: border-color 0.4s, box-shadow 0.4s;
+      ">
+        <div id="map-preview-header" style="
+          display: flex; align-items: center; justify-content: space-between;
+          padding: 12px 16px;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          background: rgba(8,8,16,0.6);
+        ">
+          <div id="map-preview-label" style="font-size:9px; font-weight:800; color:var(--cyan); letter-spacing:0.16em; text-transform:uppercase; transition:color 0.3s;">Satellite Tracking</div>
+          <div id="map-preview-badge" style="font-size:8px; font-weight:800; padding:3px 10px; border-radius:999px; background:rgba(0,255,136,0.10); border:1px solid rgba(0,255,136,0.25); color:#00ff88; letter-spacing:0.12em;">● LIVE</div>
+        </div>
+        <div style="position:relative; aspect-ratio:16/11; background:#03050b; overflow:hidden;">
+          <img id="map-preview-img"
+            src="Satellite Tracking.png"
+            alt="Layer preview"
+            style="width:100%; height:100%; object-fit:cover; display:block; transition:opacity 0.35s ease;"
+            onerror="this.style.display='none'; document.getElementById('map-preview-placeholder').style.display='flex';"
+          />
+          <div id="map-preview-placeholder" style="
+            display:none; position:absolute; inset:0;
+            align-items:center; justify-content:center; flex-direction:column; gap:10px;
+            color:rgba(0,245,255,0.25); font-size:10px; letter-spacing:0.14em;
+          ">
+            <div style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(0,245,255,0.2);display:grid;place-items:center;font-size:18px;">◈</div>
+            PREVIEW UNAVAILABLE
+          </div>
+        </div>
+        <div style="padding:12px 16px; border-top:1px solid rgba(255,255,255,0.05);">
+          <div id="map-preview-desc" style="font-size:10px; color:#475569; line-height:1.65;">Live orbital positions of reconnaissance, communications, and weather satellites.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .map-options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .map-card {
+    position: relative;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(10,13,24,0.55);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    display: flex; align-items: center; gap: 12px;
+    transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+    user-select: none; overflow: hidden;
+  }
+  .map-card:hover {
+    border-color: rgba(255,255,255,0.12);
+    background: rgba(16,20,34,0.7);
+  }
+  .map-card.lit {
+    border-color: rgba(255,255,255,0.10) !important;
+    background: rgba(18,24,40,0.8) !important;
+    box-shadow: inset 3px 0 0 var(--card-color, #00f5ff);
+  }
+  .map-card.selected {
+    border-color: rgba(255,255,255,0.14) !important;
+    background: rgba(22,28,46,0.9) !important;
+    box-shadow: inset 3px 0 0 var(--card-color, #00f5ff), 0 0 20px rgba(0,0,0,0.3);
+  }
+
+  .map-card-accent {
+    display: none;
+  }
+
+  .map-card-name {
+    flex: 1;
+    font-size: 10px; font-weight: 700;
+    color: #64748b; letter-spacing: 0.10em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    line-height: 1.3;
+  }
+  .map-card.lit .map-card-name,
+  .map-card.selected .map-card-name { color: #e2e8f0; }
+
+  .map-card-toggle {
+    display: flex; align-items: center; gap: 6px; flex-shrink: 0;
+  }
+  .toggle-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #1a2030;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  .map-card.lit .toggle-dot,
+  .map-card.selected .toggle-dot {
+    background: var(--card-color, #00f5ff);
+    box-shadow: 0 0 8px var(--card-color, #00f5ff);
+    border-color: transparent;
+  }
+  .toggle-label {
+    font-size: 8px; font-weight: 800; letter-spacing: 0.14em;
+    color: #1e293b;
+    transition: color 0.3s;
+  }
+  .map-card.lit .toggle-label,
+  .map-card.selected .toggle-label { color: var(--card-color, #00f5ff); }
+
+  @media (max-width: 900px) {
+    #map-preview-panel { position: static !important; }
+    .section-inner > div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+  }
+</style>
+
+<script>
+(function() {
+  const cards = document.querySelectorAll('.map-card');
+  const infoBar  = document.getElementById('layer-info-bar');
+  const infoName = document.getElementById('layer-info-name');
+  const infoDesc = document.getElementById('layer-info-desc');
+  const infoStatus = document.getElementById('layer-info-status');
+  const previewPanel = document.getElementById('map-preview-panel');
+  const previewImg   = document.getElementById('map-preview-img');
+  const previewLabel = document.getElementById('map-preview-label');
+  const previewBadge = document.getElementById('map-preview-badge');
+  const previewDesc  = document.getElementById('map-preview-desc');
+  const previewPH    = document.getElementById('map-preview-placeholder');
+
+  let currentLit = 0;
+  let selectedCard = null;
+
+  cards.forEach(c => c.style.setProperty('--card-color', c.dataset.color));
+
+  function swapImage(src) {
+    previewImg.style.opacity = '0';
+    previewPH.style.display = 'none';
+    previewImg.style.display = 'block';
+    setTimeout(() => {
+      previewImg.src = src;
+      previewImg.onload  = () => previewImg.style.opacity = '1';
+      previewImg.onerror = () => { previewImg.style.display='none'; previewPH.style.display='flex'; };
+    }, 180);
+  }
+
+  function activate(card, isAuto) {
+    const color = card.dataset.color;
+    const name  = card.dataset.name;
+    const desc  = card.dataset.desc;
+
+    // Info bar
+    infoBar.style.borderColor = color + '44';
+    infoName.textContent = name;
+    infoName.style.color = color;
+    infoDesc.textContent = desc;
+    infoStatus.textContent = isAuto ? '● ACTIVE' : '● SELECTED';
+    infoStatus.style.color = isAuto ? '#00ff88' : color;
+    infoStatus.style.borderColor = isAuto ? 'rgba(0,255,136,0.25)' : color + '44';
+    infoStatus.style.background  = isAuto ? 'rgba(0,255,136,0.10)' : color + '18';
+
+    // Preview panel
+    previewPanel.style.borderColor = color + '44';
+    previewPanel.style.boxShadow   = `0 0 48px ${color}12`;
+    previewLabel.textContent = name;
+    previewLabel.style.color = color;
+    previewBadge.textContent = isAuto ? '● LIVE' : '● SELECTED';
+    previewBadge.style.color = isAuto ? '#00ff88' : color;
+    previewBadge.style.borderColor = isAuto ? 'rgba(0,255,136,0.25)' : color + '44';
+    previewBadge.style.background  = isAuto ? 'rgba(0,255,136,0.10)' : color + '18';
+    previewDesc.textContent = desc;
+
+    swapImage(card.dataset.img);
+  }
+
+  function lightCard(index) {
+    cards.forEach(c => { if (!c.classList.contains('selected')) c.classList.remove('lit'); });
+    const card = cards[index];
+    if (!card.classList.contains('selected')) {
+      card.classList.add('lit');
+      activate(card, true);
+    }
+  }
+
+  // Init
+  lightCard(0);
+
+  setInterval(() => {
+    if (!selectedCard) {
+      currentLit = (currentLit + 1) % cards.length;
+      lightCard(currentLit);
+    }
+  }, 2200);
+
+  cards.forEach((card, i) => {
+    card.addEventListener('click', () => {
+      if (selectedCard === card) {
+        card.classList.remove('selected');
+        selectedCard = null;
+        lightCard(currentLit);
+      } else {
+        if (selectedCard) selectedCard.classList.remove('selected');
+        cards.forEach(c => c.classList.remove('lit'));
+        card.classList.add('selected');
+        selectedCard = card;
+        currentLit = i;
+        activate(card, false);
+      }
+    });
+  });
+})();
+</script>
+
+<!-- LIVE SIGNALS FEED -->
+<section id="signals" style="border-top: 1px solid rgba(0,245,255,0.07);">
+  <div class="section-inner">
+
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:32px;">
+      <div>
+        <div class="section-badge">⬡ Live Feed</div>
+        <h2>What's in the<br/><span style="color:var(--cyan)">feed right now.</span></h2>
+        <p class="section-desc">Signals streaming through Sovereign Dash in real time.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 20px;border-radius:12px;border:1px solid rgba(255,34,68,0.3);background:rgba(255,34,68,0.07);">
+        <span class="rdot"></span>
+        <span style="font-size:10px;font-weight:800;color:#ff2244;letter-spacing:0.16em;">LIVE SIGNAL STREAM</span>
+      </div>
+    </div>
+
+    <!-- Terminal wrap -->
+    <div style="border-radius:16px;border:1px solid rgba(0,245,255,0.15);overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,0.4);">
+
+      <!-- Terminal bar -->
+      <div style="background:rgba(8,8,16,0.97);padding:11px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(0,245,255,0.08);">
+        <div style="display:flex;gap:6px;align-items:center;">
+          <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        </div>
+        <span style="font-size:9px;font-weight:700;color:#334155;letter-spacing:0.16em;">SOVEREIGN INTEL · SIGNAL TERMINAL</span>
+        <span style="font-size:9px;font-weight:700;color:#334155;letter-spacing:0.1em;"><span id="sig-count">482</span> SIGNALS · <span id="sig-clock">--:--:--</span> UTC</span>
+      </div>
+
+      <!-- Feed stream -->
+      <div id="live-feed" style="background:#03050b;max-height:480px;overflow:hidden;position:relative;">
+        <!-- fade overlay at bottom -->
+        <div style="position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,#03050b);pointer-events:none;z-index:5;"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .rdot {
+    width:8px;height:8px;border-radius:50%;background:#ff2244;
+    box-shadow:0 0 8px #ff2244;
+    animation:rdotBlink 1s ease infinite;
+    flex-shrink:0;
+  }
+  @keyframes rdotBlink { 0%,100%{opacity:1;box-shadow:0 0 8px #ff2244} 50%{opacity:0.25;box-shadow:none} }
+
+  .sig-row {
+    display:grid;
+    grid-template-columns: 68px 110px 1fr auto;
+    align-items:center;
+    gap:14px;
+    padding:13px 20px;
+    border-bottom:1px solid rgba(255,255,255,0.04);
+    animation:sigSlideIn 0.35s cubic-bezier(0.22,1,0.36,1) both;
+    position:relative;
+    transition:opacity 0.6s;
+  }
+  @keyframes sigSlideIn {
+    from { opacity:0; transform:translateY(-20px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .sig-row.fading { opacity:0; transform:translateY(8px); transition:opacity 0.5s, transform 0.5s; }
+
+  /* left accent bar */
+  .sig-row::before {
+    content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:var(--sig-color,#334155);
+    opacity:0.7;
+  }
+
+  /* High severity glow */
+  .sig-row.sev-s4 { background:rgba(255,107,0,0.04); }
+  .sig-row.sev-s4::before { opacity:1; box-shadow:0 0 12px var(--sig-color); }
+  .sig-row.sev-s5 { background:rgba(255,34,68,0.07); }
+  .sig-row.sev-s5::before { opacity:1; box-shadow:0 0 16px #ff2244; }
+
+  .sig-time { font-size:9px;color:#334155;letter-spacing:0.08em;font-weight:600; }
+
+  .sig-tag {
+    font-size:8px;font-weight:800;letter-spacing:0.14em;
+    padding:4px 8px;border-radius:5px;border:1px solid;
+    text-align:center;
+  }
+  .sig-headline { font-size:11px;font-weight:600;color:#94a3b8;line-height:1.45; }
+  .sig-row.sev-s4 .sig-headline,
+  .sig-row.sev-s5 .sig-headline { color:#e2e8f0; }
+
+  .sig-right { display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0; }
+
+  .sig-sev {
+    font-size:9px;font-weight:800;padding:3px 8px;border-radius:5px;
+    background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+    color:#64748b;letter-spacing:0.1em;
+  }
+  .sig-row.sev-s4 .sig-sev { background:rgba(255,107,0,0.15);border-color:rgba(255,107,0,0.4);color:#ff6b00; }
+  .sig-row.sev-s5 .sig-sev { background:rgba(255,34,68,0.15);border-color:rgba(255,34,68,0.5);color:#ff2244; }
+
+  .sig-alert {
+    display:flex;align-items:center;gap:4px;
+    font-size:8px;font-weight:800;letter-spacing:0.14em;
+    color:#ff2244;
+  }
+  .sig-alert-dot {
+    width:6px;height:6px;border-radius:50%;background:#ff2244;
+    animation:rdotBlink 0.8s ease infinite;
+  }
+  .sig-loc { font-size:9px;color:#334155;margin-top:3px; }
+</style>
+
+<script>
+(function(){
+  const pool = [
+    { tag:'CONFLICT',    sev:'S5', color:'#ff2244', headline:'Artillery exchange reported near border — multiple casualties confirmed', loc:'Donetsk Region, Ukraine' },
+    { tag:'SURVEILLANCE',sev:'S4', color:'#00f5ff', headline:'Biometric monitoring contracts expand across all border checkpoints', loc:'United States' },
+    { tag:'CONFLICT',    sev:'S5', color:'#ff2244', headline:'Airstrike reported in urban area — civilian impact unconfirmed', loc:'Northern Syria' },
+    { tag:'ECONOMIC',    sev:'S3', color:'#ffd22e', headline:'Critical minerals supply chain flagged for forced-labour risk', loc:'Global' },
+    { tag:'SURVEILLANCE',sev:'S1', color:'#00f5ff', headline:'Suspicious vessel tracking anomaly detected in gulf corridor', loc:'Gulf of Aden' },
+    { tag:'CONFLICT',    sev:'S4', color:'#ff2244', headline:'Militant group mobilisation detected across three provinces', loc:'Sahel Region' },
+    { tag:'DISASTER',    sev:'S2', color:'#ff6b00', headline:'Severe flooding displaces 40,000 residents in coastal region', loc:'Rio Grande do Sul, Brazil' },
+    { tag:'ECONOMIC',    sev:'S2', color:'#ffd22e', headline:'Oil prices surge past $93 per barrel on supply disruption', loc:'Global Markets' },
+    { tag:'SURVEILLANCE',sev:'S3', color:'#00f5ff', headline:'SIGINT intercept: encrypted comms detected over Mediterranean', loc:'Eastern Mediterranean' },
+    { tag:'DISASTER',    sev:'S3', color:'#ff6b00', headline:'6.2 magnitude earthquake detected — tsunami advisory issued', loc:'Kyushu, Japan' },
+    { tag:'POLITICAL',   sev:'S2', color:'#b366ff', headline:'Emergency UN Security Council session called on cyber attacks', loc:'New York, USA' },
+    { tag:'SURVEILLANCE',sev:'S4', color:'#00f5ff', headline:'Cyber intrusion attempt blocked — critical infrastructure targeted', loc:'Eastern Europe' },
+    { tag:'ECONOMIC',    sev:'S3', color:'#ffd22e', headline:'Major port disruption — container traffic halted indefinitely', loc:'Strait of Malacca' },
+    { tag:'CONFLICT',    sev:'S5', color:'#ff2244', headline:'Military escalation detected near disputed transport route', loc:'Eastern Europe' },
+    { tag:'HUMANITARIAN',sev:'S3', color:'#00ff88', headline:'Refugee displacement exceeds 2M — aid corridors under threat', loc:'Horn of Africa' },
+    { tag:'SURVEILLANCE',sev:'S2', color:'#00f5ff', headline:'Drone incursion detected near restricted airspace boundary', loc:'Taiwan Strait' },
+    { tag:'ECONOMIC',    sev:'S4', color:'#ffd22e', headline:'Sanctions package announced targeting energy sector exports', loc:'Moscow, Russia' },
+    { tag:'DISASTER',    sev:'S1', color:'#ff6b00', headline:'Wildfire perimeter expands — evacuation orders in three zones', loc:'California, USA' },
+    { tag:'CONFLICT',    sev:'S4', color:'#ff2244', headline:'Naval vessels repositioned to contested waters — standoff ongoing', loc:'South China Sea' },
+    { tag:'POLITICAL',   sev:'S3', color:'#b366ff', headline:'Emergency summit called following intelligence leak disclosure', loc:'Brussels, Belgium' },
+  ];
+
+  const feed = document.getElementById('live-feed');
+  const clock = document.getElementById('sig-clock');
+  const counter = document.getElementById('sig-count');
+  let count = 482;
+  let poolIdx = 0;
+  const MAX_ROWS = 8;
+
+  // shuffle pool once
+  pool.sort(() => Math.random() - 0.5);
+
+  function padZ(n){ return String(n).padStart(2,'0'); }
+  function nowUTC(){
+    const d = new Date();
+    return `${padZ(d.getUTCHours())}:${padZ(d.getUTCMinutes())}:${padZ(d.getUTCSeconds())}`;
+  }
+
+  function makeRow(sig, timeStr){
+    const sev = sig.sev.toLowerCase();
+    const isHigh = sev === 's5' || sev === 's4';
+    const row = document.createElement('div');
+    row.className = `sig-row sev-${sev}`;
+    row.style.setProperty('--sig-color', sig.color);
+
+    const alertHTML = isHigh
+      ? `<div class="sig-alert"><div class="sig-alert-dot"></div>${sev==='s5'?'CRITICAL':'ALERT'}</div>`
+      : '';
+
+    row.innerHTML = `
+      <span class="sig-time">${timeStr}</span>
+      <span class="sig-tag" style="color:${sig.color};border-color:${sig.color}44;background:${sig.color}14;">${sig.tag}</span>
+      <div>
+        <div class="sig-headline">${sig.headline}</div>
+        <div class="sig-loc">📍 ${sig.loc}</div>
+      </div>
+      <div class="sig-right">
+        <span class="sig-sev">${sig.sev}</span>
+        ${alertHTML}
+      </div>
+    `;
+    return row;
+  }
+
+  function addSignal(){
+    const sig = pool[poolIdx % pool.length];
+    poolIdx++;
+    count++;
+    counter.textContent = count;
+
+    const row = makeRow(sig, nowUTC());
+    feed.insertBefore(row, feed.firstChild);
+
+    // Remove oldest if too many
+    const rows = feed.querySelectorAll('.sig-row');
+    if(rows.length > MAX_ROWS){
+      const last = rows[rows.length - 1];
+      last.classList.add('fading');
+      setTimeout(() => last.remove(), 550);
+    }
+  }
+
+  // Clock tick
+  setInterval(() => { clock.textContent = nowUTC(); }, 1000);
+
+  // Pre-fill with 6 rows immediately
+  for(let i = 5; i >= 0; i--){
+    const sig = pool[poolIdx % pool.length];
+    poolIdx++;
+    const d = new Date();
+    d.setSeconds(d.getUTCSeconds() - i * 8);
+    const t = `${padZ(d.getUTCHours())}:${padZ(d.getUTCMinutes())}:${padZ(d.getUTCSeconds())}`;
+    feed.appendChild(makeRow(sig, t));
+  }
+
+  // New signal every 2.8s
+  setInterval(addSignal, 2800);
+})();
+</script>
+
+<!-- DASHBOARD PREVIEW -->
+<section id="dashboard" style="border-top: 1px solid rgba(0,245,255,0.07);">
+  <div class="section-inner">
+    <div class="section-badge">⬡ Sovereign Dash</div>
+    <h2>The intelligence<br/><span style="color:var(--cyan)">terminal.</span></h2>
+    <p class="section-desc">Everything you need — feed, globe, overlays, satellite radar — in a single ultra-wide command interface.</p>
+
+    <div class="dash-preview-wrap">
+      <div class="dash-preview-bar">
+        <div class="dot r"></div>
+        <div class="dot y"></div>
+        <div class="dot g"></div>
+        <div class="dash-url">sovereign-intel.io/dash &nbsp;·&nbsp; LIVE &nbsp;·&nbsp; 12 SATELLITES CONNECTED</div>
+      </div>
+      <img src="example.png" alt="Sovereign Dash — Intelligence Terminal"
+        style="width:100%; display:block; object-fit:cover;" />
+    </div>
+  </div>
+</section>
+
+<!-- CTA BLOCK -->
+<section style="position:relative;z-index:10;overflow:hidden;border-top:1px solid rgba(0,245,255,0.07);">
+
+  <div style="position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 72% 50%, rgba(0,245,255,0.10) 0%, transparent 42%),
+      radial-gradient(circle at 25% 55%, rgba(179,102,255,0.06) 0%, transparent 38%),
+      radial-gradient(circle at 50% 100%, rgba(0,245,255,0.04) 0%, transparent 35%);"></div>
+  <div style="position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(rgba(0,245,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,245,255,0.025) 1px,transparent 1px);
+    background-size:64px 64px;opacity:0.5;"></div>
+
+  <div class="section-inner" style="padding:100px 24px 110px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+
+      <!-- LEFT: text -->
+      <div>
+        <div class="section-badge" style="margin-bottom:22px;">⬡ Get Started</div>
+        <h2 style="font-size:clamp(38px,4.8vw,68px);line-height:0.93;letter-spacing:-0.05em;">
+          Ready to<br/>enter<br/><span style="color:var(--cyan);">the dash?</span>
+        </h2>
+        <p style="font-size:14px;color:#64748b;line-height:1.85;margin-top:22px;max-width:420px;">
+          Join analysts, researchers, and journalists using Sovereign Dash to track global power in real time. No noise. No delay. Just the signal.
+        </p>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:36px;">
+          <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="btn-primary" style="font-size:13px;padding:18px 32px;">
+            Launch Sovereign Dash <span class="arrow">→</span>
+          </a>
+          <a href="#features" class="btn-secondary" style="font-size:13px;padding:18px 32px;">
+            Explore Features
+          </a>
+        </div>
+
+        <div style="display:flex;gap:32px;margin-top:44px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.06);">
+          <div>
+            <div style="font-size:24px;font-weight:800;color:#fff;">200+</div>
+            <div style="font-size:9px;color:#334155;letter-spacing:0.14em;text-transform:uppercase;margin-top:3px;">Intel Sources</div>
+          </div>
+          <div>
+            <div style="font-size:24px;font-weight:800;color:#fff;">12</div>
+            <div style="font-size:9px;color:#334155;letter-spacing:0.14em;text-transform:uppercase;margin-top:3px;">Live Satellites</div>
+          </div>
+          <div>
+            <div style="font-size:24px;font-weight:800;color:#fff;">190+</div>
+            <div style="font-size:9px;color:#334155;letter-spacing:0.14em;text-transform:uppercase;margin-top:3px;">Countries Tracked</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: globe graphic -->
+      <div style="position:relative;height:520px;">
+
+        <!-- Centered stage for all globe elements -->
+        <div id="cta-stage" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+
+          <!-- Pulse halos -->
+          <div class="cta-halo" style="animation-delay:0s;"></div>
+          <div class="cta-halo" style="animation-delay:1.3s;"></div>
+          <div class="cta-halo" style="animation-delay:2.6s;"></div>
+
+          <!-- Globe -->
+          <div class="cta-globe"></div>
+
+          <!-- Radar sweep -->
+          <div class="cta-radar"></div>
+
+          <!-- Lat/lng grid hints -->
+          <div style="position:absolute;width:300px;height:90px;border-radius:50%;border:1px solid rgba(0,245,255,0.07);pointer-events:none;"></div>
+          <div style="position:absolute;width:90px;height:300px;border-radius:50%;border:1px solid rgba(0,245,255,0.07);pointer-events:none;"></div>
+
+          <!-- Orbit 1 — cyan -->
+          <div class="cta-orbit" style="width:490px;height:150px;animation:ctaSpin1 13s linear infinite;">
+            <div class="cta-sat" style="background:#00f5ff;box-shadow:0 0 14px #00f5ff;top:-5px;left:50%;"></div>
+          </div>
+          <!-- Orbit 2 — purple -->
+          <div class="cta-orbit" style="width:450px;height:110px;border-color:rgba(179,102,255,0.35);animation:ctaSpin2 8s linear infinite;">
+            <div class="cta-sat" style="background:#b366ff;box-shadow:0 0 12px #b366ff;top:-5px;left:20%;"></div>
+          </div>
+          <!-- Orbit 3 — orange, reverse -->
+          <div class="cta-orbit" style="width:530px;height:95px;border-color:rgba(255,107,0,0.28);animation:ctaSpin3 19s linear infinite reverse;">
+            <div class="cta-sat" style="background:#ff6b00;box-shadow:0 0 12px #ff6b00;top:-5px;left:75%;"></div>
+          </div>
+
+        </div><!-- /stage -->
+
+        <!-- Signal tags (outside stage so they sit in the column space) -->
+        <div class="cta-tag" style="top:10%;left:0;animation-delay:0s;">
+          <div class="cta-tag-dot" style="background:#ff2244;box-shadow:0 0 8px #ff2244;"></div>
+          <div><div style="color:#ff2244;font-size:7px;font-weight:800;letter-spacing:0.12em;">CONFLICT</div><div style="color:#475569;font-size:7px;margin-top:1px;">Donetsk, UA</div></div>
+        </div>
+
+        <div class="cta-tag" style="top:28%;right:0;animation-delay:0.7s;">
+          <div class="cta-tag-dot" style="background:#00f5ff;box-shadow:0 0 8px #00f5ff;"></div>
+          <div><div style="color:#00f5ff;font-size:7px;font-weight:800;letter-spacing:0.12em;">SURVEILLANCE</div><div style="color:#475569;font-size:7px;margin-top:1px;">Gulf of Aden</div></div>
+        </div>
+
+        <div class="cta-tag" style="bottom:30%;left:0;animation-delay:1.5s;">
+          <div class="cta-tag-dot" style="background:#ffd22e;box-shadow:0 0 8px #ffd22e;"></div>
+          <div><div style="color:#ffd22e;font-size:7px;font-weight:800;letter-spacing:0.12em;">ECONOMIC</div><div style="color:#475569;font-size:7px;margin-top:1px;">Strait of Malacca</div></div>
+        </div>
+
+        <div class="cta-tag" style="bottom:14%;right:0;animation-delay:2.2s;">
+          <div class="cta-tag-dot" style="background:#ff6b00;box-shadow:0 0 8px #ff6b00;"></div>
+          <div><div style="color:#ff6b00;font-size:7px;font-weight:800;letter-spacing:0.12em;">DISASTER</div><div style="color:#475569;font-size:7px;margin-top:1px;">Kyushu, Japan</div></div>
+        </div>
+
+        <!-- Sat label top -->
+        <div style="position:absolute;top:3%;left:50%;transform:translateX(-50%);white-space:nowrap;
+          border:1px solid rgba(0,245,255,0.3);background:rgba(0,245,255,0.07);
+          padding:5px 14px;border-radius:6px;font-size:8px;font-weight:800;
+          color:#00f5ff;letter-spacing:0.14em;backdrop-filter:blur(8px);">
+          SAT-7 ORION · LEO · 550KM · ACTIVE
+        </div>
+
+        <!-- Status bottom -->
+        <div style="position:absolute;bottom:2%;left:50%;transform:translateX(-50%);white-space:nowrap;
+          font-size:9px;color:#334155;letter-spacing:0.12em;text-align:center;">
+          12 SATELLITES CONNECTED · GLOBAL VIEW · REAL-TIME
+        </div>
+
+      </div><!-- /right -->
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-globe {
+    position:absolute;
+    width:300px;height:300px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,
+      rgba(255,255,255,0.18),
+      rgba(0,245,255,0.13) 18%,
+      rgba(8,20,35,0.96) 54%,
+      #02050c 100%);
+    border:1px solid rgba(0,245,255,0.28);
+    box-shadow:0 0 90px rgba(0,245,255,0.20), inset 0 0 60px rgba(0,0,0,0.6);
+    z-index:2;animation:ctaGlobeShimmer 8s ease-in-out infinite alternate;
+  }
+  @keyframes ctaGlobeShimmer {
+    from { box-shadow:0 0 90px rgba(0,245,255,0.18), inset 0 0 60px rgba(0,0,0,0.6); }
+    to   { box-shadow:0 0 120px rgba(0,245,255,0.28), inset 0 0 60px rgba(0,0,0,0.5); }
+  }
+
+  .cta-radar {
+    position:absolute;width:300px;height:300px;border-radius:50%;
+    background:conic-gradient(from 0deg,rgba(0,245,255,0.18),transparent 55deg,transparent 360deg);
+    animation:ctaRadarSpin 4s linear infinite;
+    z-index:3;mix-blend-mode:screen;pointer-events:none;
+  }
+  @keyframes ctaRadarSpin { to { transform:rotate(360deg); } }
+
+  .cta-halo {
+    position:absolute;width:300px;height:300px;border-radius:50%;
+    border:1px solid rgba(0,245,255,0.35);
+    animation:ctaHaloPulse 3.9s ease-out infinite;
+    pointer-events:none;
+  }
+  @keyframes ctaHaloPulse {
+    0%   { transform:scale(1);   opacity:0.5; }
+    100% { transform:scale(2.1); opacity:0; }
+  }
+
+  .cta-orbit {
+    position:absolute;border-radius:50%;
+    border:1px solid rgba(0,245,255,0.25);
+    pointer-events:none;
+  }
+  @keyframes ctaSpin1 {
+    from { transform:translate(-50%,-50%) rotate(-15deg); }
+    to   { transform:translate(-50%,-50%) rotate(345deg); }
+  }
+  @keyframes ctaSpin2 {
+    from { transform:translate(-50%,-50%) rotate(28deg); }
+    to   { transform:translate(-50%,-50%) rotate(388deg); }
+  }
+  @keyframes ctaSpin3 {
+    from { transform:translate(-50%,-50%) rotate(55deg); }
+    to   { transform:translate(-50%,-50%) rotate(-305deg); }
+  }
+  /* Override default absolute center for orbits inside flex stage */
+  #cta-stage .cta-orbit {
+    position:absolute;left:50%;top:50%;
+  }
+
+  .cta-sat {
+    position:absolute;width:9px;height:9px;border-radius:50%;
+    transform:translate(-50%,-50%);
+  }
+
+  .cta-tag {
+    position:absolute;display:flex;align-items:center;gap:8px;
+    padding:7px 11px;border-radius:8px;
+    border:1px solid rgba(255,255,255,0.07);
+    background:rgba(8,8,16,0.75);backdrop-filter:blur(10px);
+    animation:ctaTagFloat 4s ease-in-out infinite;
+  }
+  @keyframes ctaTagFloat {
+    0%,100% { transform:translateY(0px); }
+    50%      { transform:translateY(-6px); }
+  }
+  .cta-tag-dot {
+    width:7px;height:7px;border-radius:50%;flex-shrink:0;
+    animation:rdotBlink 1.1s ease infinite;
+  }
+</style>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 SOVEREIGN INTEL &nbsp;·&nbsp; GLOBAL INTELLIGENCE PLATFORM</span>
+  <div class="footer-links">
+    <a href="#">About</a>
+    <a href="#">Intel Reports</a>
+    <a href="#">RSS Feeds</a>
+    <a href="#">Space Radar</a>
+    <a href="#">Support</a>
+  </div>
+  <div class="footer-live">
+    <span>◈</span> SECURE VAULT CHANNEL ONLINE
+  </div>
+</footer>
+
+<script>
+  // Smooth active nav state on scroll
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navTabs = document.querySelectorAll('.nav-tab');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navTabs.forEach(t => t.classList.remove('active'));
+        const match = document.querySelector(`.nav-tab[href="#${e.target.id}"]`);
+        if (match) match.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => observer.observe(s));
+
+  // Animate stats on scroll
+  const statNums = document.querySelectorAll('.stat-num');
+  const statsObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.animation = 'fadeUp 0.5s ease both';
+        statsObs.unobserve(e.target);
+      }
+    });
+  });
+  statNums.forEach(n => statsObs.observe(n));
+</script>
+
+</body>
+</html>
