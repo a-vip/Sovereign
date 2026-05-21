@@ -1,0 +1,584 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+  
+  .deck {
+    font-family: 'Space Grotesk', var(--font-sans);
+    color: var(--color-text-primary);
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 0 2rem;
+  }
+
+  .hero {
+    background: #080810;
+    border-radius: var(--border-radius-lg);
+    padding: 3rem 2.5rem 2.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,245,255,0.12) 0%, transparent 70%);
+  }
+
+  .hero-tag {
+    font-family: 'JetBrains Mono', var(--font-mono);
+    font-size: 11px;
+    color: #00f5ff;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #00f5ff;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 0.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .hero h1 span {
+    color: #00f5ff;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.55);
+    margin: 0 0 2rem;
+    font-weight: 400;
+    font-family: 'JetBrains Mono', var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .hero-stat {
+    background: rgba(255,255,255,0.04);
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .hero-stat-num {
+    font-size: 22px;
+    font-weight: 700;
+    color: #00f5ff;
+    display: block;
+    font-family: 'JetBrains Mono', var(--font-mono);
+  }
+
+  .hero-stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+  }
+
+  .section {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-text-tertiary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label i {
+    font-size: 14px;
+    color: #00f5ff;
+  }
+
+  .section h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 1rem;
+    color: var(--color-text-primary);
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .problem-card {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 1rem;
+    border-left: 3px solid #ff2244;
+  }
+
+  .problem-card p {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .problem-card strong {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .feature-card {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 1rem;
+    border-left: 3px solid #00f5ff;
+  }
+
+  .feature-card strong {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .feature-card p {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .vs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .vs-card {
+    border-radius: var(--border-radius-md);
+    padding: 1rem;
+  }
+
+  .vs-card.them {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+  }
+
+  .vs-card.us {
+    background: #080810;
+    border: 0.5px solid rgba(0,245,255,0.3);
+  }
+
+  .vs-card-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .vs-card.them .vs-card-title { color: var(--color-text-tertiary); }
+  .vs-card.us .vs-card-title { color: #00f5ff; }
+
+  .vs-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 12px;
+  }
+
+  .vs-row i { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+  .vs-card.them .vs-row i { color: #ff2244; }
+  .vs-card.us .vs-row i { color: #00f5ff; }
+  .vs-card.them .vs-row span { color: var(--color-text-secondary); }
+  .vs-card.us .vs-row span { color: rgba(255,255,255,0.7); }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .price-card {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .price-card.featured {
+    background: #080810;
+    border: 1.5px solid rgba(0,245,255,0.4);
+  }
+
+  .price-tier {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-tertiary);
+    margin-bottom: 6px;
+  }
+
+  .price-card.featured .price-tier { color: #00f5ff; }
+
+  .price-amount {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    font-family: 'JetBrains Mono', var(--font-mono);
+  }
+
+  .price-card.featured .price-amount { color: #ffffff; }
+
+  .price-period {
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    margin-bottom: 10px;
+  }
+
+  .price-features {
+    list-style: none;
+    padding: 0; margin: 0;
+    text-align: left;
+  }
+
+  .price-features li {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    padding: 3px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .price-card.featured .price-features li { color: rgba(255,255,255,0.6); }
+
+  .price-features li i { font-size: 13px; color: #00f5ff; flex-shrink: 0; }
+
+  .forecast-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .forecast-table th {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-tertiary);
+    padding: 6px 10px;
+    text-align: left;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    font-weight: 500;
+  }
+
+  .forecast-table td {
+    padding: 8px 10px;
+    color: var(--color-text-secondary);
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+
+  .forecast-table tr:last-child td { border-bottom: none; }
+  .forecast-table .highlight { color: #00f5ff; font-weight: 600; font-family: 'JetBrains Mono', var(--font-mono); }
+
+  .outreach-list { list-style: none; padding: 0; margin: 0; }
+  .outreach-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    font-size: 13px;
+    color: var(--color-text-secondary);
+  }
+  .outreach-list li:last-child { border-bottom: none; }
+  .outreach-num {
+    font-family: 'JetBrains Mono', var(--font-mono);
+    font-size: 11px;
+    color: #00f5ff;
+    font-weight: 700;
+    min-width: 24px;
+    margin-top: 1px;
+  }
+  .outreach-list strong { color: var(--color-text-primary); display: block; font-size: 13px; margin-bottom: 2px; }
+
+  .cta-bar {
+    background: #080810;
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .cta-bar h3 { color: #ffffff; font-size: 20px; margin: 0 0 0.5rem; }
+  .cta-bar p { color: rgba(255,255,255,0.5); font-size: 13px; margin: 0 0 1.25rem; font-family: 'JetBrains Mono', var(--font-mono); }
+  .cta-btn {
+    background: #00f5ff;
+    color: #080810;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0 6px;
+  }
+  .cta-btn.outline {
+    background: transparent;
+    color: #00f5ff;
+    border: 1px solid rgba(0,245,255,0.4);
+  }
+</style>
+
+<div class="deck">
+
+  <div class="hero">
+    <div class="hero-tag">Live intelligence platform — 2026</div>
+    <h1>SIGON<span>.AI</span></h1>
+    <div class="hero-sub">REAL-TIME GLOBAL INTELLIGENCE // OSINT // SIGINT // GEOSPATIAL COMMAND</div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">6,131</span>
+        <div class="hero-stat-label">Data centres mapped</div>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">450+</span>
+        <div class="hero-stat-label">Subsea cable routes</div>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">30s</span>
+        <div class="hero-stat-label">Data refresh rate</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><i class="ti ti-alert-triangle" aria-hidden="true"></i> The problem</div>
+    <h2>The world is moving faster than your intel</h2>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <strong>Scattered sources</strong>
+        <p>Analysts waste hours piecing together RSS feeds, news sites, and government reports manually.</p>
+      </div>
+      <div class="problem-card">
+        <strong>No visual context</strong>
+        <p>Text-based feeds give no sense of geography, scale, or proximity to your assets.</p>
+      </div>
+      <div class="problem-card">
+        <strong>Enterprise tools are gated</strong>
+        <p>Platforms like Aurora cost $50k+ per year. Inaccessible for most teams and individuals.</p>
+      </div>
+      <div class="problem-card">
+        <strong>No personalisation</strong>
+        <p>Existing dashboards show everything to everyone. No way to filter for what matters to you.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><i class="ti ti-globe" aria-hidden="true"></i> The product</div>
+    <h2>A 3D intelligence command centre — built for the real world</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <strong>3D Cesium Globe</strong>
+        <p>Live SIGINT events, satellites, GPS jamming heatmaps, subsea cables, oil pipelines — all on one interactive 3D globe.</p>
+      </div>
+      <div class="feature-card">
+        <strong>Automated OSINT ingestion</strong>
+        <p>Multi-source RSS crawler, real-time geocoding, deduplication — feeds update every 30 seconds automatically.</p>
+      </div>
+      <div class="feature-card">
+        <strong>Live Law Tracker</strong>
+        <p>New legislation from EU, US, UK and beyond surfaces in real time via EUR-Lex, Federal Register, and legislation.gov.uk feeds.</p>
+      </div>
+      <div class="feature-card">
+        <strong>AI Event Briefs</strong>
+        <p>Click any event — get an instant AI-generated brief on what happened, why it matters, and what likely happens next.</p>
+      </div>
+      <div class="feature-card">
+        <strong>Multi-screen mode</strong>
+        <p>Pop out any panel — globe, RSS feed, live TV, law tracker — across multiple monitors. Built for the analyst war room.</p>
+      </div>
+      <div class="feature-card">
+        <strong>Personal exposure profile</strong>
+        <p>Pin your countries, supply chains, and assets. Get a personalised "your exposure this week" dashboard and digest.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><i class="ti ti-arrows-diff" aria-hidden="true"></i> Competitive edge</div>
+    <h2>vs. the competition</h2>
+    <div class="vs-grid">
+      <div class="vs-card them">
+        <div class="vs-card-title">Monitor the Situation / Others</div>
+        <div class="vs-row"><i class="ti ti-x" aria-hidden="true"></i><span>Flat 2D map only</span></div>
+        <div class="vs-row"><i class="ti ti-x" aria-hidden="true"></i><span>No personalisation layer</span></div>
+        <div class="vs-row"><i class="ti ti-x" aria-hidden="true"></i><span>No AI interpretation</span></div>
+        <div class="vs-row"><i class="ti ti-x" aria-hidden="true"></i><span>No legislation tracking</span></div>
+        <div class="vs-row"><i class="ti ti-x" aria-hidden="true"></i><span>No multi-screen support</span></div>
+        <div class="vs-row"><i class="ti ti-x" aria-hidden="true"></i><span>No sanctions/entity feed</span></div>
+      </div>
+      <div class="vs-card us">
+        <div class="vs-card-title">Sigon.ai</div>
+        <div class="vs-row"><i class="ti ti-check" aria-hidden="true"></i><span>Full 3D Cesium globe</span></div>
+        <div class="vs-row"><i class="ti ti-check" aria-hidden="true"></i><span>Watchlist + exposure profile</span></div>
+        <div class="vs-row"><i class="ti ti-check" aria-hidden="true"></i><span>AI event briefs built in</span></div>
+        <div class="vs-row"><i class="ti ti-check" aria-hidden="true"></i><span>Live global law tracker</span></div>
+        <div class="vs-row"><i class="ti ti-check" aria-hidden="true"></i><span>Detachable panel system</span></div>
+        <div class="vs-row"><i class="ti ti-check" aria-hidden="true"></i><span>Sanctions + entity overlay</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><i class="ti ti-cash" aria-hidden="true"></i> Pricing</div>
+    <h2>Three tiers, one platform</h2>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-tier">Free</div>
+        <div class="price-amount">$0</div>
+        <div class="price-period">forever</div>
+        <ul class="price-features">
+          <li><i class="ti ti-check" aria-hidden="true"></i>3D globe + live events</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Basic RSS feed</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>3 watchlist pins</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>S1-S3 severity filter</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <div class="price-tier">Pro</div>
+        <div class="price-amount" style="color:#00f5ff;">$29</div>
+        <div class="price-period" style="color:rgba(255,255,255,0.4);">per month</div>
+        <ul class="price-features">
+          <li><i class="ti ti-check" aria-hidden="true"></i>AI event briefs</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Multi-screen mode</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Unlimited watchlist</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Law tracker access</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Weekly digest email</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Enterprise</div>
+        <div class="price-amount">$500+</div>
+        <div class="price-period">per month</div>
+        <ul class="price-features">
+          <li><i class="ti ti-check" aria-hidden="true"></i>API data feed access</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>White-label option</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Team seats (RBAC)</li>
+          <li><i class="ti ti-check" aria-hidden="true"></i>Custom onboarding</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><i class="ti ti-chart-line" aria-hidden="true"></i> Revenue forecast</div>
+    <h2>12-month projection</h2>
+    <table class="forecast-table">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Pro users</th>
+          <th>SMB / Enterprise</th>
+          <th>MRR</th>
+          <th>ARR run rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1–2</td><td>0</td><td>0</td><td class="highlight">$0</td><td>—</td></tr>
+        <tr><td>3</td><td>10</td><td>0</td><td class="highlight">$290</td><td>$3.5k</td></tr>
+        <tr><td>6</td><td>60</td><td>3 SMB</td><td class="highlight">$2,340</td><td>$28k</td></tr>
+        <tr><td>9</td><td>150</td><td>8 SMB + 1 ent.</td><td class="highlight">$6,150</td><td>$74k</td></tr>
+        <tr><td>12</td><td>300</td><td>15 SMB + 3 ent.</td><td class="highlight">$13,200</td><td style="color:#00f5ff;font-weight:700;">$158k</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-label"><i class="ti ti-speakerphone" aria-hidden="true"></i> Go-to-market</div>
+    <h2>How we get customers</h2>
+    <ul class="outreach-list">
+      <li>
+        <span class="outreach-num">01</span>
+        <div><strong>Viral demo video</strong>The 3D globe is the hook. 60-second screen recording posted to X/Twitter tagging OSINT community. One right retweet = 10,000 eyes overnight.</div>
+      </li>
+      <li>
+        <span class="outreach-num">02</span>
+        <div><strong>Reddit + OSINT communities</strong>Post genuinely in r/OSINT, r/geopolitics, r/netsec. These communities share aggressively. Free distribution.</div>
+      </li>
+      <li>
+        <span class="outreach-num">03</span>
+        <div><strong>LinkedIn cold outreach</strong>200 targeted messages/week to corporate risk managers, supply chain directors, compliance officers. Personalised hook, free trial offer.</div>
+      </li>
+      <li>
+        <span class="outreach-num">04</span>
+        <div><strong>Substack / newsletter partnerships</strong>Geopolitical newsletters already have our audience. Offer affiliate revenue for referrals or a white-label embed deal.</div>
+      </li>
+      <li>
+        <span class="outreach-num">05</span>
+        <div><strong>Product Hunt launch</strong>Intelligence and OSINT tools perform well. One strong launch day = thousands of free sign-ups and press coverage.</div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="cta-bar">
+    <h3>Ready to see it live?</h3>
+    <p>SOVEREIGN-INTELLIGENCE-DASHBOARD.VERCEL.APP // SIGON.AI COMING SOON</p>
+    <button class="cta-btn" onclick="sendPrompt('Tell me more about sigon.ai and how to get started')">Request demo ↗</button>
+    <button class="cta-btn outline" onclick="sendPrompt('What should we build next for sigon.ai?')">See roadmap ↗</button>
+  </div>
+
+</div>
