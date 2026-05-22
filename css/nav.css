@@ -1,0 +1,156 @@
+/* ─── NAV ─── */
+nav {
+  position: sticky; top: 0; z-index: 19;
+  background: rgba(8,8,16,0.88);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,245,255,0.10);
+}
+.nav-inner {
+  max-width: 1400px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 24px;
+}
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-icon {
+  width: 42px; height: 42px;
+  border: 1px solid rgba(0,245,255,0.3);
+  border-radius: 12px;
+  background: rgba(0,245,255,0.08);
+  box-shadow: 0 0 22px rgba(0,245,255,0.2);
+  display: grid; place-items: center; font-size: 20px;
+}
+.logo-text { line-height: 1.2; }
+.logo-title { font-size: 15px; font-weight: 800; color: #fff; letter-spacing: 0.16em; text-transform: uppercase; }
+.logo-sub { font-size: 9px; color: #64748b; letter-spacing: 0.12em; margin-top: 2px; }
+
+.nav-tabs { display: flex; gap: 8px; }
+.nav-tab {
+  padding: 8px 20px; border-radius: 10px; font-size: 10px;
+  font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  cursor: pointer; text-decoration: none; transition: all 0.2s;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
+  color: #94a3b8;
+}
+.nav-tab:hover { border-color: rgba(0,245,255,0.3); color: var(--cyan); }
+.nav-tab.active {
+  border-color: rgba(0,245,255,0.5);
+  background: rgba(0,245,255,0.08);
+  color: var(--cyan);
+  box-shadow: 0 0 20px rgba(0,245,255,0.10);
+}
+
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.live-badge {
+  padding: 6px 14px; border-radius: 10px; font-size: 10px; font-weight: 700;
+  border: 1px solid rgba(0,255,136,0.2);
+  background: rgba(0,255,136,0.08);
+  color: var(--green); letter-spacing: 0.12em;
+}
+.btn-cta-small {
+  padding: 8px 18px; border-radius: 10px; font-size: 10px;
+  font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+  cursor: pointer; text-decoration: none; transition: all 0.2s;
+  border: 1px solid rgba(0,245,255,0.4);
+  background: rgba(0,245,255,0.10);
+  color: var(--cyan);
+}
+.btn-cta-small:hover { background: rgba(0,245,255,0.16); }
+
+/* Hamburger Menu (Mobile) */
+.nav-hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 100;
+  flex-direction: column;
+  gap: 6px;
+  width: 36px;
+  height: 36px;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--cyan);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  box-shadow: 0 0 8px rgba(0,245,255,0.4);
+}
+
+.nav-hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.nav-hamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-hamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Nav Drawer (Mobile Menu) */
+.nav-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  background: rgba(8,8,16,0.98);
+  backdrop-filter: blur(20px);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-left: 1px solid rgba(0,245,255,0.15);
+  box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+}
+
+.nav-drawer.open {
+  right: 0;
+}
+
+.nav-drawer-tab {
+  padding: 12px 36px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  color: #94a3b8;
+  width: 240px;
+  text-align: center;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+}
+
+.nav-drawer-tab:hover, .nav-drawer-tab.active {
+  border-color: rgba(0,245,255,0.4);
+  background: rgba(0,245,255,0.08);
+  color: var(--cyan);
+  box-shadow: 0 0 20px rgba(0,245,255,0.12);
+}
+
+@media (max-width: 768px) {
+  .nav-tabs {
+    display: none;
+  }
+  .nav-hamburger {
+    display: flex;
+  }
+  .nav-right .live-badge {
+    display: none;
+  }
+}

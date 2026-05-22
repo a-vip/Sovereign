@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIGNAL LOST — 404 | Sovereign Intel</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%23ff2244%22>⬡</text></svg>" />
+
+  <!-- Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+
+  <style>
+    .error-container {
+      max-width: 680px;
+      margin: 80px auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 10;
+    }
+    .error-panel {
+      border: 1px solid rgba(255, 34, 68, 0.25);
+      border-radius: 20px;
+      background: rgba(10, 13, 24, 0.8);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 48px rgba(255, 34, 68, 0.08);
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .error-panel::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: var(--red);
+      box-shadow: 0 0 12px var(--red);
+    }
+    .error-title {
+      font-size: clamp(24px, 5vw, 42px);
+      font-weight: 800;
+      color: var(--red);
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .error-subtitle {
+      font-size: 11px;
+      color: #64748b;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 12px;
+    }
+    .error-log {
+      font-size: 11px;
+      line-height: 2.2;
+      color: #cbd5e1;
+      background: #03050b;
+      border: 1px solid rgba(255, 34, 68, 0.12);
+      border-radius: 12px;
+      padding: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 32px;
+      min-height: 240px;
+    }
+    .btn-red {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 28px;
+      border-radius: 14px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 1px solid rgba(255, 34, 68, 0.5);
+      background: rgba(255, 34, 68, 0.10);
+      color: #fca5a5;
+      box-shadow: 0 0 34px rgba(255, 34, 68, 0.14);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .btn-red:hover {
+      background: rgba(255, 34, 68, 0.18);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+    .btn-red .arrow {
+      transition: transform 0.2s;
+    }
+    .btn-red:hover .arrow {
+      transform: translateX(4px);
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-label" style="color: var(--red); border-right-color: rgba(255,34,68,0.15);">● ALARM</div>
+  <div class="ticker-track">
+    <span class="ticker-inner" style="color: var(--red); animation-duration: 25s;">
+      ALERT: RELAY CONNECTION TERMINATED &nbsp;•&nbsp;
+      SECURE CHANNEL OFFLINE &nbsp;•&nbsp;
+      ATTEMPTING AUTO-RECOVERY PROTOCOL &nbsp;•&nbsp;
+      ERROR DECRYPTING ROUTE PACKET &nbsp;•&nbsp;
+      ALERT: RELAY CONNECTION TERMINATED &nbsp;•&nbsp;
+      SECURE CHANNEL OFFLINE &nbsp;•&nbsp;
+    </span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon" style="border-color: rgba(255,34,68,0.4); background: rgba(255,34,68,0.08); box-shadow: 0 0 22px rgba(255,34,68,0.2);">⬡</div>
+      <div class="logo-text">
+        <div class="logo-title">Sovereign Intel</div>
+        <div class="logo-sub">Global Intelligence Platform</div>
+      </div>
+    </a>
+
+    <!-- Hamburger (shows on mobile) -->
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-tabs">
+      <a href="index.html#features" class="nav-tab">Features</a>
+      <a href="index.html#how-it-works" class="nav-tab">How It Works</a>
+      <a href="signals.html" class="nav-tab">Live Signals</a>
+      <a href="index.html#dashboard" class="nav-tab">Sovereign Dash</a>
+      <a href="about.html" class="nav-tab">About</a>
+      <a href="pricing.html" class="nav-tab">Pricing</a>
+    </div>
+
+    <div class="nav-right">
+      <div class="live-badge" style="border-color: rgba(255,34,68,0.25); background: rgba(255,34,68,0.08); color: var(--red);">● SIGNAL LOST</div>
+      <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="btn-cta-small" style="border-color: rgba(255,34,68,0.4); background: rgba(255,34,68,0.1); color: #fca5a5;">Enter Dash →</a>
+    </div>
+  </div>
+
+  <!-- Full-screen mobile nav drawer -->
+  <div class="nav-drawer" aria-hidden="true">
+    <a href="index.html#features" class="nav-drawer-tab">Features</a>
+    <a href="index.html#how-it-works" class="nav-drawer-tab">How It Works</a>
+    <a href="signals.html" class="nav-drawer-tab">Live Signals</a>
+    <a href="index.html#dashboard" class="nav-drawer-tab">Sovereign Dash</a>
+    <a href="about.html" class="nav-drawer-tab">About</a>
+    <a href="pricing.html" class="nav-drawer-tab">Pricing</a>
+    <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="nav-drawer-tab" style="color: var(--red); border-color: rgba(255,34,68,0.3);">Enter Dash →</a>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="error-container">
+  <div class="error-panel">
+    <div class="error-title">Signal Lost</div>
+    <div class="error-subtitle">Diagnostic Status — CONNECTION_ERROR_404</div>
+
+    <div class="error-log" id="diag-log"></div>
+
+    <div style="text-align: center;">
+      <a href="index.html" class="btn-red">
+        Re-establish Connection <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 SOVEREIGN INTEL &nbsp;·&nbsp; GLOBAL INTELLIGENCE PLATFORM</span>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="signals.html">Live Signals</a>
+    <a href="index.html#dashboard">Space Radar</a>
+    <a href="mailto:secure@sovereign-intel.io">Support</a>
+  </div>
+  <div class="footer-live" style="color: var(--red);">
+    <span>◈</span> SECURE CHANNEL OFFLINE
+  </div>
+</footer>
+
+<script src="js/nav.js" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const logEl = document.getElementById('diag-log');
+    const path = window.location.pathname;
+
+    const diagLines = [
+      { text: '> Initiating encrypted diagnostic routing...', delay: 100, status: '[OK]', color: '#00ff88' },
+      { text: `> Querying secure node path: sovereign.intel${path}...`, delay: 600, status: '[FAILED]', color: '#ff2244' },
+      { text: '> ERROR: 404 PACKET_NOT_FOUND (relay target missing)', delay: 1200, status: '[!!]', color: '#ff2244' },
+      { text: '> Scanning biometric and SIGINT network integrity...', delay: 1800, status: '[OK]', color: '#00ff88' },
+      { text: '> Attempting trace bypass via satellite heliotrope...', delay: 2400, status: '[REJECTED]', color: '#ff6b00' },
+      { text: '> CAUTION: STATE ACTOR FIREWALL ENFORCING PORT LOCK', delay: 3000, status: '[ALERT]', color: '#ff2244' },
+      { text: '> RECOMMENDED PORTAL: Return to primary command base.', delay: 3600, status: '[WAIT]', color: '#ffd22e' }
+    ];
+
+    if (logEl) {
+      diagLines.forEach(({ text, delay, status, color }) => {
+        setTimeout(() => {
+          const row = document.createElement('div');
+          row.style.cssText = 'display:flex;justify-content:space-between;gap:16px;margin-bottom:4px;';
+          row.innerHTML = `<span style="color:#64748b;">${text}</span><span style="color:${color};font-weight:800;">${status}</span>`;
+          logEl.appendChild(row);
+        }, delay);
+      });
+    }
+  });
+</script>
+</body>
+</html>

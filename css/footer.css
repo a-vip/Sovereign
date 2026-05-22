@@ -1,0 +1,14 @@
+/* ─── FOOTER ─── */
+footer {
+  position: relative; z-index: 10;
+  border-top: 1px solid rgba(0,245,255,0.08);
+  padding: 28px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 1400px; margin: 0 auto;
+  font-size: 11px; color: #334155;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { color: #475569; text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--cyan); }
+.footer-live { display: flex; align-items: center; gap: 8px; color: var(--green); }

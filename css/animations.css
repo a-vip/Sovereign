@@ -1,0 +1,131 @@
+/* ─── ANIMATIONS ─── */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes blink { 
+  0%, 100% { opacity: 1; } 
+  50% { opacity: 0.3; } 
+}
+
+@keyframes spin { 
+  to { transform: translate(-50%,-50%) rotate(360deg); } 
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 40px rgba(0,245,255,0.15), inset 0 0 30px rgba(0,245,255,0.06); }
+  50%      { box-shadow: 0 0 60px rgba(0,245,255,0.3),  inset 0 0 40px rgba(0,245,255,0.10); }
+}
+
+@keyframes heroCursor { 
+  0%, 100% { opacity: 1; } 
+  50% { opacity: 0; } 
+}
+
+/* Globe panel animations */
+@keyframes hpShimmer {
+  from { box-shadow: 0 0 70px rgba(0,245,255,0.15), inset 0 0 40px rgba(0,0,0,0.5); }
+  to   { box-shadow: 0 0 100px rgba(0,245,255,0.26), inset 0 0 40px rgba(0,0,0,0.4); }
+}
+
+@keyframes hpRadarSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes hpHalo {
+  0%   { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+
+@keyframes hpOrb1 {
+  from { transform: rotate(-18deg); }
+  to   { transform: rotate(342deg); }
+}
+
+@keyframes hpOrb2 {
+  from { transform: rotate(25deg); }
+  to   { transform: rotate(385deg); }
+}
+
+@keyframes hpOrb3 {
+  from { transform: rotate(45deg); }
+  to   { transform: rotate(-315deg); }
+}
+
+@keyframes hpMarkerIn {
+  from { opacity: 0; transform: scale(0.3); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes hpDotPulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.5); }
+}
+
+@keyframes hpToastIn {
+  from { opacity: 0; transform: translateX(12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Signal row animations */
+@keyframes rdotBlink { 
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px #ff2244; } 
+  50%      { opacity: 0.25; box-shadow: none; } 
+}
+
+@keyframes sigSlideIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* CTA animations */
+@keyframes ctaGlobeShimmer {
+  from { box-shadow: 0 0 90px rgba(0,245,255,0.18), inset 0 0 60px rgba(0,0,0,0.6); }
+  to   { box-shadow: 0 0 120px rgba(0,245,255,0.28), inset 0 0 60px rgba(0,0,0,0.5); }
+}
+
+@keyframes ctaRadarSpin { 
+  to { transform: rotate(360deg); } 
+}
+
+@keyframes ctaHaloPulse {
+  0%   { transform: scale(1);   opacity: 0.5; }
+  100% { transform: scale(2.1); opacity: 0; }
+}
+
+@keyframes ctaSpin1 {
+  from { transform: translate(-50%,-50%) rotate(-15deg); }
+  to   { transform: translate(-50%,-50%) rotate(345deg); }
+}
+
+@keyframes ctaSpin2 {
+  from { transform: translate(-50%,-50%) rotate(28deg); }
+  to   { transform: translate(-50%,-50%) rotate(388deg); }
+}
+
+@keyframes ctaSpin3 {
+  from { transform: translate(-50%,-50%) rotate(55deg); }
+  to   { transform: translate(-50%,-50%) rotate(-305deg); }
+}
+
+@keyframes ctaTagFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-6px); }
+}
+
+/* Accessibility Support (Reduced Motion) */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-delay: 0s !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}

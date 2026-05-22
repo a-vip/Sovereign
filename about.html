@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mission & Methodology | Sovereign Intel</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300f5ff%22>⬡</text></svg>" />
+
+  <!-- Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+
+  <style>
+    .about-header {
+      max-width: 1400px;
+      margin: 60px auto 40px;
+      padding: 0 24px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .about-grid {
+      max-width: 1400px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    @media (max-width: 900px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    .about-card {
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 18px;
+      background: rgba(10, 13, 24, 0.6);
+      backdrop-filter: blur(12px);
+      padding: 32px;
+      height: fit-content;
+      box-shadow: 0 0 32px rgba(0, 0, 0, 0.2);
+    }
+    .about-card-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--cyan);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 10px;
+    }
+    
+    .about-card p {
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .about-card p:last-child {
+      margin-bottom: 0;
+    }
+    .about-card strong {
+      color: #fff;
+    }
+
+    /* Methodology block */
+    .method-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .method-item:last-child {
+      margin-bottom: 0;
+    }
+    .method-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 245, 255, 0.2);
+      background: rgba(0, 245, 255, 0.06);
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      color: var(--cyan);
+      flex-shrink: 0;
+    }
+    .method-text {
+      flex: 1;
+    }
+    .method-name {
+      font-size: 11px;
+      font-weight: 800;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+    .method-desc {
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    /* Form control */
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-label {
+      display: block;
+      font-size: 9px;
+      font-weight: 800;
+      color: #64748b;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .form-input, .form-textarea {
+      width: 100%;
+      background: #03050b;
+      border: 1px solid rgba(0, 245, 255, 0.2);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: #fff;
+      font-size: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .form-textarea {
+      height: 120px;
+      resize: none;
+    }
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 14px rgba(0, 245, 255, 0.15);
+    }
+
+    /* Team section */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .team-member {
+      padding: 16px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.04);
+      text-align: center;
+    }
+    .team-role {
+      font-size: 8px;
+      font-weight: 800;
+      color: var(--cyan);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+    .team-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 4px;
+    }
+
+    /* Terminal secure transmission logs */
+    .secure-transmission-overlay {
+      position: absolute;
+      inset: 0;
+      background: #03050b;
+      border-radius: 18px;
+      z-index: 100;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      padding: 32px;
+    }
+    .sec-log-box {
+      font-size: 11px;
+      line-height: 2;
+      color: var(--cyan);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-label">● LIVE</div>
+  <div class="ticker-track">
+    <span class="ticker-inner">
+      SECURE PROTOCOLS ACTIVATED &nbsp;•&nbsp;
+      NODE SECURE CORRIDORS ONLINE &nbsp;•&nbsp;
+      VALIDATING GEOPOLITICAL LOG ENTRIES &nbsp;•&nbsp;
+      ORBIT CONSTELLATIONS SECURE &nbsp;•&nbsp;
+    </span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">⬡</div>
+      <div class="logo-text">
+        <div class="logo-title">Sovereign Intel</div>
+        <div class="logo-sub">Global Intelligence Platform</div>
+      </div>
+    </a>
+
+    <!-- Hamburger (shows on mobile) -->
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-tabs">
+      <a href="index.html#features" class="nav-tab">Features</a>
+      <a href="index.html#how-it-works" class="nav-tab">How It Works</a>
+      <a href="signals.html" class="nav-tab">Live Signals</a>
+      <a href="index.html#dashboard" class="nav-tab">Sovereign Dash</a>
+      <a href="about.html" class="nav-tab active">About</a>
+      <a href="pricing.html" class="nav-tab">Pricing</a>
+    </div>
+
+    <div class="nav-right">
+      <div class="live-badge">● SYSTEM LIVE</div>
+      <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="btn-cta-small">Enter Dash →</a>
+    </div>
+  </div>
+
+  <!-- Full-screen mobile nav drawer -->
+  <div class="nav-drawer" aria-hidden="true">
+    <a href="index.html#features" class="nav-drawer-tab">Features</a>
+    <a href="index.html#how-it-works" class="nav-drawer-tab">How It Works</a>
+    <a href="signals.html" class="nav-drawer-tab">Live Signals</a>
+    <a href="index.html#dashboard" class="nav-drawer-tab">Sovereign Dash</a>
+    <a href="about.html" class="nav-drawer-tab active">About</a>
+    <a href="pricing.html" class="nav-drawer-tab">Pricing</a>
+    <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="nav-drawer-tab" style="color: var(--cyan); border-color: rgba(0,245,255,0.3);">Enter Dash →</a>
+  </div>
+</nav>
+
+<!-- ABOUT HEADER -->
+<header class="about-header">
+  <div class="section-badge">⬡ Operation Profile</div>
+  <h2 style="font-size: clamp(32px, 5vw, 54px);">About the<br/><span style="color:var(--cyan);">platform.</span></h2>
+  <p class="section-desc" style="max-width:600px;">Sovereign Intel is an independent intelligence platform built to monitor state violations, geopolitical changes, climate disasters, and economic anomalies in real time.</p>
+</header>
+
+<!-- MAIN CONTAINER -->
+<div class="about-grid">
+  
+  <!-- LEFT: Mission and Methodology -->
+  <div style="display:flex; flex-direction:column; gap:28px;">
+    <!-- Mission -->
+    <section class="about-card">
+      <div class="about-card-title">01 / Operational Mission</div>
+      <p>Sovereign Intel was founded in response to a growing void: traditional media coverage of conflict, state aggression, and resource crises is increasingly delayed, filtered, or outright censored.</p>
+      <p>We trace global infrastructure, state policies, satellite orbital paths, and physical supply lines to generate an objective, real-time map of global changes. We seek to give analysts, journalists, humanitarians, and private citizens immediate, actionable signal data directly at their fingertips.</p>
+      <p>Our philosophy is simple: <strong>No noise. No bias. Just the signal.</strong></p>
+    </section>
+
+    <!-- Methodology -->
+    <section class="about-card">
+      <div class="about-card-title">02 / Signal Ingestion Methodology</div>
+      <p style="margin-bottom: 24px;">Signals displayed inside the terminal are verified through three primary channels before ingestion:</p>
+      
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div class="method-item">
+          <div class="method-icon">📡</div>
+          <div class="method-text">
+            <div class="method-name">OSINT Core Streams</div>
+            <div class="method-desc">Automated aggregators index official announcements, aviation notifications, regional radio frequencies, maritime logs, and localized community feeds.</div>
+          </div>
+        </div>
+
+        <div class="method-item">
+          <div class="method-icon">🛰</div>
+          <div class="method-text">
+            <div class="method-name">Satellite Constellations</div>
+            <div class="method-desc">Real-time telemetry and imagery verification from our tracked radar systems confirm physical changes such as wildfire perimeters, forest cover loss, border builds, or orbital anomalies.</div>
+          </div>
+        </div>
+
+        <div class="method-item">
+          <div class="method-icon">◈</div>
+          <div class="method-text">
+            <div class="method-name">Vetted Decentralized Nodes</div>
+            <div class="method-desc">Cryptographically authenticated field reporters, local researchers, and active citizens upload media updates directly inside high-risk environments.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section class="about-card">
+      <div class="about-card-title">03 / Intelligence Architecture Team</div>
+      <p>We are a distributed team of developers, satellite telemetry specialists, OSINT researchers, and investigative journalists dedicated to preserving open-access global analysis.</p>
+      
+      <div class="team-grid">
+        <div class="team-member">
+          <div style="font-size:18px;">⬢</div>
+          <div class="team-role">Lead Architect</div>
+          <div class="team-name">Alex V.</div>
+        </div>
+        <div class="team-member">
+          <div style="font-size:18px;">⬡</div>
+          <div class="team-role">SIGINT Analyst</div>
+          <div class="team-name">Elena R.</div>
+        </div>
+        <div class="team-member">
+          <div style="font-size:18px;">⬡</div>
+          <div class="team-role">LEO Telemetry</div>
+          <div class="team-name">Marcus T.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- RIGHT: Secure Communication Vault -->
+  <aside class="about-card" style="position:relative;">
+    <div class="about-card-title">Secure Portal Ingestion</div>
+    <p style="margin-bottom: 24px;">Submit anonymous signal reports, encrypted tip leaks, or application inquiries directly into our ingestion queue.</p>
+
+    <!-- Ingestion form -->
+    <form id="secure-form">
+      <div class="form-group">
+        <label class="form-label">Transmission Origin (Optional)</label>
+        <input type="text" class="form-input" id="form-origin" placeholder="e.g. Anonymous Node, Secure Email, Alias" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Classification Tag</label>
+        <select class="form-input" id="form-tag" style="background:#03050b;">
+          <option value="SURVEILLANCE">Surveillance Leak</option>
+          <option value="CONFLICT">Geopolitical Conflict</option>
+          <option value="DISASTER">Humanitarian Disaster</option>
+          <option value="ECONOMIC">Infrastructure Disruption</option>
+          <option value="GENERAL">General Inquiries</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Encrypted Message Payload</label>
+        <textarea class="form-textarea" id="form-msg" placeholder="Paste report text or leak coordinates here..." required></textarea>
+      </div>
+
+      <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:14px; font-size:10px; border-radius:10px;">
+        TRANSMIT VIA SECURE RELAY <span class="arrow">→</span>
+      </button>
+    </form>
+
+    <!-- Simulated Log Overlay -->
+    <div class="secure-transmission-overlay" id="trans-overlay">
+      <div class="sec-log-box" id="trans-log"></div>
+      <div style="text-align:center;">
+        <button class="btn-secondary" id="trans-reset-btn" style="font-size:10px; padding:10px 20px; border-color:rgba(0, 245, 255, 0.3);">NEW TRANSMISSION</button>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 SOVEREIGN INTEL &nbsp;·&nbsp; GLOBAL INTELLIGENCE PLATFORM</span>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="signals.html">Live Signals</a>
+    <a href="index.html#dashboard">Space Radar</a>
+    <a href="mailto:secure@sovereign-intel.io">Support</a>
+  </div>
+  <div class="footer-live">
+    <span>◈</span> SECURE VAULT CHANNEL ONLINE
+  </div>
+</footer>
+
+<script src="js/nav.js" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('secure-form');
+    const overlay = document.getElementById('trans-overlay');
+    const logBox = document.getElementById('trans-log');
+    const resetBtn = document.getElementById('trans-reset-btn');
+
+    if (form && overlay && logBox) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const origin = document.getElementById('form-origin').value || 'SECURE_NODE_ANONYMOUS';
+        const tag = document.getElementById('form-tag').value;
+        const msg = document.getElementById('form-msg').value;
+
+        // Reset and show overlay
+        logBox.innerHTML = '';
+        overlay.style.display = 'flex';
+
+        const lines = [
+          { text: '> Opening socket connection to secure vault relay...', delay: 100, res: '[OK]' },
+          { text: `> Ingress node established: origin: ${origin}...`, delay: 600, res: '[OK]' },
+          { text: `> Classifying signal layer: ${tag}...`, delay: 1100, res: '[OK]' },
+          { text: '> Shuffling routing tables to mask coordinates...', delay: 1600, res: '[DONE]' },
+          { text: '> Initializing end-to-end asymmetric cipher...', delay: 2100, res: '[OK]' },
+          { text: '> Transmitting encrypted tip payload block...', delay: 2600, res: '[100%]' },
+          { text: '> Ingestion ticket generated: SOV-' + Math.floor(100000 + Math.random() * 900000), delay: 3100, res: '[SECURE]' }
+        ];
+
+        lines.forEach(({ text, delay, res }) => {
+          setTimeout(() => {
+            const r = document.createElement('div');
+            r.style.cssText = 'display:flex;justify-content:space-between;gap:16px;margin-bottom:4px;';
+            r.innerHTML = `<span style="color:#64748b;">${text}</span><span style="color:var(--cyan);font-weight:800;">${res}</span>`;
+            logBox.appendChild(r);
+          }, delay);
+        });
+      });
+
+      resetBtn.addEventListener('click', () => {
+        overlay.style.display = 'none';
+        form.reset();
+      });
+    }
+  });
+</script>
+</body>
+</html>

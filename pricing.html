@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analyst Tiers & Access Plans | Sovereign Intel</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300f5ff%22>⬡</text></svg>" />
+
+  <!-- Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+
+  <style>
+    .pricing-header {
+      max-width: 1400px;
+      margin: 60px auto 30px;
+      padding: 0 24px;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Billing Toggle */
+    .toggle-billing-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 245, 255, 0.2);
+      background: rgba(10, 13, 24, 0.6);
+      margin: 20px auto 40px;
+      position: relative;
+      z-index: 10;
+    }
+    .toggle-billing-btn {
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: #64748b;
+      border: none;
+      background: transparent;
+      transition: all 0.25s;
+      outline: none;
+    }
+    .toggle-billing-btn.active {
+      background: rgba(0, 245, 255, 0.1);
+      color: var(--cyan);
+      box-shadow: 0 0 14px rgba(0, 245, 255, 0.15);
+    }
+    .annually-discount {
+      font-size: 8px;
+      color: var(--green);
+      border: 1px solid rgba(0, 255, 136, 0.25);
+      background: rgba(0, 255, 136, 0.08);
+      padding: 2px 8px;
+      border-radius: 999px;
+      letter-spacing: 0.08em;
+    }
+
+    /* Tiers grid */
+    .pricing-grid {
+      max-width: 1400px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      position: relative;
+      z-index: 10;
+      align-items: stretch;
+    }
+    
+    @media (max-width: 960px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    .pricing-card {
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      background: rgba(10, 13, 24, 0.6);
+      backdrop-filter: blur(12px);
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.25s;
+      box-shadow: 0 0 32px rgba(0, 0, 0, 0.2);
+    }
+    .pricing-card:hover {
+      border-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    .pricing-card.premium {
+      border-color: rgba(0, 245, 255, 0.3);
+      box-shadow: 0 0 48px rgba(0, 245, 255, 0.08);
+      background: rgba(10, 15, 28, 0.7);
+    }
+    .pricing-card.premium:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 0 48px rgba(0, 245, 255, 0.16);
+    }
+    .premium-tag {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 8px;
+      font-weight: 800;
+      color: #03050b;
+      background: var(--cyan);
+      box-shadow: 0 0 14px var(--cyan);
+      padding: 4px 14px;
+      border-radius: 999px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .card-plan-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+    }
+    .plan-badge {
+      display: inline-block;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: #94a3b8;
+      margin-bottom: 16px;
+    }
+    .premium .plan-badge {
+      background: rgba(0, 245, 255, 0.08);
+      border-color: rgba(0, 245, 255, 0.25);
+      color: var(--cyan);
+    }
+    
+    .plan-price-wrap {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+    }
+    .plan-price {
+      font-size: 42px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+    .plan-period {
+      font-size: 10px;
+      color: #475569;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .plan-desc {
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.6;
+      margin-top: 14px;
+    }
+
+    /* Benefits list */
+    .benefits-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+      flex-grow: 1;
+    }
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+    .benefit-check {
+      font-size: 11px;
+      color: var(--cyan);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .premium .benefit-check {
+      color: var(--cyan);
+      text-shadow: 0 0 6px var(--cyan);
+    }
+    
+    .benefit-disabled {
+      color: #475569;
+    }
+    .benefit-disabled .benefit-check {
+      color: #334155;
+    }
+
+    /* Simulated Access Dialog overlay */
+    .access-dialog-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 5, 11, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .access-dialog-content {
+      max-width: 540px;
+      width: 100%;
+      background: rgba(10, 13, 24, 0.95);
+      border: 1px solid rgba(0, 245, 255, 0.3);
+      border-radius: 20px;
+      box-shadow: 0 0 60px rgba(0, 245, 255, 0.15);
+      padding: 32px;
+      position: relative;
+    }
+    .access-dialog-log {
+      font-size: 11px;
+      line-height: 2;
+      color: var(--cyan);
+      background: #03050b;
+      border: 1px solid rgba(0, 245, 255, 0.12);
+      border-radius: 12px;
+      padding: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 24px;
+      min-height: 200px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-label">● LIVE</div>
+  <div class="ticker-track">
+    <span class="ticker-inner">
+      PRICING PORTAL ACTIVE &nbsp;•&nbsp;
+      SELECT ANALYST PROTOCOL &nbsp;•&nbsp;
+      TACTICAL SUBSCRIPTIONS SECURE &nbsp;•&nbsp;
+      UPGRADES PROCESSED INSTANTLY &nbsp;•&nbsp;
+    </span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">⬡</div>
+      <div class="logo-text">
+        <div class="logo-title">Sovereign Intel</div>
+        <div class="logo-sub">Global Intelligence Platform</div>
+      </div>
+    </a>
+
+    <!-- Hamburger (shows on mobile) -->
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-tabs">
+      <a href="index.html#features" class="nav-tab">Features</a>
+      <a href="index.html#how-it-works" class="nav-tab">How It Works</a>
+      <a href="signals.html" class="nav-tab">Live Signals</a>
+      <a href="index.html#dashboard" class="nav-tab">Sovereign Dash</a>
+      <a href="about.html" class="nav-tab">About</a>
+      <a href="pricing.html" class="nav-tab active">Pricing</a>
+    </div>
+
+    <div class="nav-right">
+      <div class="live-badge">● SYSTEM LIVE</div>
+      <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="btn-cta-small">Enter Dash →</a>
+    </div>
+  </div>
+
+  <!-- Full-screen mobile nav drawer -->
+  <div class="nav-drawer" aria-hidden="true">
+    <a href="index.html#features" class="nav-drawer-tab">Features</a>
+    <a href="index.html#how-it-works" class="nav-drawer-tab">How It Works</a>
+    <a href="signals.html" class="nav-drawer-tab">Live Signals</a>
+    <a href="index.html#dashboard" class="nav-drawer-tab">Sovereign Dash</a>
+    <a href="about.html" class="nav-drawer-tab">About</a>
+    <a href="pricing.html" class="nav-drawer-tab active">Pricing</a>
+    <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="nav-drawer-tab" style="color: var(--cyan); border-color: rgba(0,245,255,0.3);">Enter Dash →</a>
+  </div>
+</nav>
+
+<!-- PRICING HEADER -->
+<header class="pricing-header">
+  <div class="section-badge">⬡ SECURE LICENSING</div>
+  <h2 style="font-size: clamp(32px, 5vw, 54px);">Analyst Access Tiers</h2>
+  <p class="section-desc" style="margin: 12px auto 0;">Deploy Sovereign Intel dashboard queries inside your security team.</p>
+
+  <!-- Billing selector toggle -->
+  <div class="toggle-billing-wrap">
+    <button class="toggle-billing-btn active" id="btn-monthly">Monthly</button>
+    <button class="toggle-billing-btn" id="btn-yearly">Yearly</button>
+    <span class="annually-discount">Save 20%</span>
+  </div>
+</header>
+
+<!-- MAIN CONTAINER -->
+<div class="pricing-grid">
+  
+  <!-- Tier 1: Free -->
+  <div class="pricing-card">
+    <div class="card-plan-header">
+      <div class="plan-badge">Sovereign Node</div>
+      <div class="plan-price-wrap">
+        <span class="plan-price">$0</span>
+        <span class="plan-period">/ forever</span>
+      </div>
+      <div class="plan-desc">Standard access protocol for open intelligence nodes and local observers.</div>
+    </div>
+
+    <ul class="benefits-list">
+      <li class="benefit-item">
+        <span class="benefit-check">✔</span>
+        <span>Basic real-time feed preview (landing page)</span>
+      </li>
+      <li class="benefit-item">
+        <span class="benefit-check">✔</span>
+        <span>S1 - S3 severity signal logs</span>
+      </li>
+      <li class="benefit-item">
+        <span class="benefit-check">✔</span>
+        <span>Global maps infrastructure preview</span>
+      </li>
+      <li class="benefit-item benefit-disabled">
+        <span class="benefit-check">✕</span>
+        <span>Live full Console filtering features</span>
+      </li>
+      <li class="benefit-item benefit-disabled">
+        <span class="benefit-check">✕</span>
+        <span>LEO satellite orbit telemetry tracking</span>
+      </li>
+      <li class="benefit-item benefit-disabled">
+        <span class="benefit-check">✕</span>
+        <span>Secure offline database exporting (JSON)</span>
+      </li>
+    </ul>
+
+    <a href="index.html#signals" class="btn-secondary" style="width:100%; text-align:center; justify-content:center; padding:14px; font-size:10px; border-radius:12px;">
+      ACCESS OPEN NODE
+    </a>
+  </div>
+
+  <!-- Tier 2: Pro (Premium) -->
+  <div class="pricing-card premium">
+    <div class="premium-tag">TACTICAL SYSTEM</div>
+    <div class="card-plan-header">
+      <div class="plan-badge">Pro Analyst</div>
+      <div class="plan-price-wrap">
+        <span class="plan-price" id="pro-price">$29</span>
+        <span class="plan-period" id="pro-period">/ month</span>
+      </div>
+      <div class="plan-desc">High-priority operational tracking for security analysts, journalists, and active investigators.</div>
+    </div>
+
+    <ul class="benefits-list">
+      <li class="benefit-item">
+        <span class="benefit-check">✔</span>
+        <span><strong>Unlimited signals.html console queries</strong></span>
+      </li>
+      <li class="benefit-item">
+        <span class="benefit-check">✔</span>
+        <span>Full S1 - S5 critical severity escalation tracking</span>
+      </li>
+      <li class="benefit-item">
+        <span class="benefit-check">✔</span>
+        <span>LEO Satellite Radar coordinates (TLE tracking)</span>
+      </li>
+      <li class="benefit-item">
+        <span class="benefit-check">✔</span>
+        <span>Desktop signal notifications (SIGINT bypass)</span>
+      </li>
+      <li class="benefit-item">
+        <span class="benefit-check">✔</span>
+        <span>Secure payload export (JSON, link keys)</span>
+      </li>
+      <li class="benefit-item benefit-disabled">
+        <span class="benefit-check">✕</span>
+        <span>Dedicated satellite imaging radars tasking</span>
+      </li>
+    </ul>
+
+    <button id="btn-acquire-pro" class="btn-primary" style="width:100%; text-align:center; justify-content:center; padding:14px; font-size:10px; border-radius:12px;">
+      ACQUIRE KEY PROTOCOL <span class="arrow">→</span>
+    </button>
+  </div>
+
+  <!-- Tier 3: Enterprise -->
+  <div class="pricing-card">
+    <div class="card-plan-header">
+      <div class="plan-badge">Command Network</div>
+      <div class="plan-price-wrap">
+        <span class="plan-price" id="ent-price">$149</span>
+        <span class="plan-period" id="ent-period">/ month</span>
+      </div>
+      <div class="plan-desc">Enterprise networks requiring full infrastructure pipelines and custom tasking nodes.</div>
+    </div>
+
+    <ul class="benefits-list">
+      <li class="benefit-item">
+        <span class="benefit-check">✔</span>
+        <span>Multi-seat tactical terminal licensing</span>
+      </li>
+      <li class="benefit-item">
+        <span class="benefit-check">✔</span>
+        <span><strong>LEO orbital imagery radar tasking passes</strong></span>
+      </li>
+      <li class="benefit-item">
+        <span class="benefit-check">✔</span>
+        <span>Unlimited system API requests pipeline</span>
+      </li>
+      <li class="benefit-item">
+        <span class="benefit-check">✔</span>
+        <span>Custom OSINT keywords monitoring crawlers</span>
+      </li>
+      <li class="benefit-item">
+        <span class="benefit-check">✔</span>
+        <span>Cryptographically secure bulk data exports</span>
+      </li>
+      <li class="benefit-item">
+        <span class="benefit-check">✔</span>
+        <span>24/7 priority secure relay support channels</span>
+      </li>
+    </ul>
+
+    <a href="about.html" class="btn-secondary" style="width:100%; text-align:center; justify-content:center; padding:14px; font-size:10px; border-radius:12px; border-color:rgba(0,245,255,0.18);">
+      INITIATE SECURE CONSULT
+    </a>
+  </div>
+
+</div>
+
+<!-- SIMULATED PROTOCOL MODAL -->
+<div class="access-dialog-overlay" id="access-modal">
+  <div class="access-dialog-content">
+    <button class="modal-close" id="modal-close">×</button>
+    <div style="font-size:11px; font-weight:800; color:var(--cyan); letter-spacing:0.16em; text-transform:uppercase; margin-bottom:20px; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:10px;">
+      TACTICAL SUBSCRIPTION SEQUENCE
+    </div>
+    <div class="access-dialog-log" id="modal-log"></div>
+    <div style="text-align:right;">
+      <button class="btn-primary" id="modal-submit-btn" style="font-size:10px; padding:10px 20px; border-radius:8px;">CONTINUE TRANSMISSION</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 SOVEREIGN INTEL &nbsp;·&nbsp; GLOBAL INTELLIGENCE PLATFORM</span>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="signals.html">Live Signals</a>
+    <a href="index.html#dashboard">Space Radar</a>
+    <a href="mailto:secure@sovereign-intel.io">Support</a>
+  </div>
+  <div class="footer-live">
+    <span>◈</span> SECURE VAULT CHANNEL ONLINE
+  </div>
+</footer>
+
+<script src="js/nav.js" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btnMonthly = document.getElementById('btn-monthly');
+    const btnYearly = document.getElementById('btn-yearly');
+    
+    const proPrice = document.getElementById('pro-price');
+    const proPeriod = document.getElementById('pro-period');
+    const entPrice = document.getElementById('ent-price');
+    const entPeriod = document.getElementById('ent-period');
+
+    const proBtn = document.getElementById('btn-acquire-pro');
+    const modal = document.getElementById('access-modal');
+    const modalClose = document.getElementById('modal-close');
+    const modalLog = document.getElementById('modal-log');
+    const modalSubmit = document.getElementById('modal-submit-btn');
+
+    let currentPeriod = 'monthly';
+
+    function setBilling(period) {
+      currentPeriod = period;
+      if (period === 'monthly') {
+        btnMonthly.classList.add('active');
+        btnYearly.classList.remove('active');
+        
+        proPrice.textContent = '$29';
+        proPeriod.textContent = '/ month';
+        entPrice.textContent = '$149';
+        entPeriod.textContent = '/ month';
+      } else {
+        btnMonthly.classList.remove('active');
+        btnYearly.classList.add('active');
+        
+        proPrice.textContent = '$23';
+        proPeriod.textContent = '/ mo billed annually';
+        entPrice.textContent = '$119';
+        entPeriod.textContent = '/ mo billed annually';
+      }
+    }
+
+    btnMonthly.addEventListener('click', () => setBilling('monthly'));
+    btnYearly.addEventListener('click', () => setBilling('yearly'));
+
+    // Simulated Checkout Log Sequence
+    if (proBtn && modal && modalLog) {
+      proBtn.addEventListener('click', () => {
+        modalLog.innerHTML = '';
+        modal.style.display = 'flex';
+        modalSubmit.textContent = 'CONTINUE TRANSMISSION';
+        modalSubmit.style.display = 'inline-block';
+
+        const lines = [
+          { text: '> Initiating Analyst Access checkout sequence...', res: '[INIT]' },
+          { text: `> Configuring tactical key: Pro Analyst (${currentPeriod})...`, res: '[OK]' },
+          { text: '> Opening secure transaction port via Stripe API...', res: '[OK]' },
+          { text: '> WARNING: Running simulated deployment gateway...', res: '[SECURE]' },
+          { text: '> SYSTEM NOTICE: Click below to access simulated portal mockup.', res: '[WAIT]' }
+        ];
+
+        lines.forEach(({ text, res }, i) => {
+          setTimeout(() => {
+            const r = document.createElement('div');
+            r.style.cssText = 'display:flex;justify-content:space-between;gap:16px;margin-bottom:4px;';
+            r.innerHTML = `<span style="color:#64748b;">${text}</span><span style="color:var(--cyan);font-weight:800;">${res}</span>`;
+            modalLog.appendChild(r);
+          }, i * 500);
+        });
+      });
+
+      modalClose.addEventListener('click', () => modal.style.display = 'none');
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.style.display = 'none';
+      });
+
+      modalSubmit.addEventListener('click', () => {
+        modalLog.innerHTML = '';
+        const r = document.createElement('div');
+        r.style.cssText = 'color: var(--green); font-size: 12px; font-weight:800; text-align:center; padding: 40px 0;';
+        r.textContent = 'PROTOCOL KEY DEPLOYED — SIMULATED TRANSACTION COMPLETION';
+        modalLog.appendChild(r);
+        modalSubmit.style.display = 'none';
+        
+        setTimeout(() => {
+          modal.style.display = 'none';
+        }, 2200);
+      });
+    }
+  });
+</script>
+</body>
+</html>

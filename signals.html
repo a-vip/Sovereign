@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Signals Console | Sovereign Intel</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300f5ff%22>⬡</text></svg>" />
+
+  <!-- Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+
+  <style>
+    .console-container {
+      max-width: 1400px;
+      margin: 40px auto 80px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 32px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    @media (max-width: 900px) {
+      .console-container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin: 20px auto 40px;
+      }
+    }
+
+    /* ─── SIDEBAR FILTERS ─── */
+    .filter-sidebar {
+      border: 1px solid rgba(0, 245, 255, 0.15);
+      border-radius: 18px;
+      background: rgba(10, 13, 24, 0.85);
+      backdrop-filter: blur(16px);
+      padding: 24px;
+      position: sticky;
+      top: 90px;
+      height: fit-content;
+      box-shadow: 0 0 32px rgba(0, 245, 255, 0.05);
+    }
+    
+    @media (max-width: 900px) {
+      .filter-sidebar {
+        position: static;
+      }
+    }
+
+    .filter-section {
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 20px;
+    }
+    .filter-section:last-child {
+      margin-bottom: 0;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .filter-title {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--cyan);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    /* Inputs */
+    .search-input-wrap {
+      position: relative;
+      width: 100%;
+    }
+    .search-input {
+      width: 100%;
+      background: #03050b;
+      border: 1px solid rgba(0, 245, 255, 0.2);
+      border-radius: 10px;
+      padding: 10px 14px 10px 36px;
+      color: #fff;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .search-input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 14px rgba(0, 245, 255, 0.15);
+    }
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      color: rgba(0, 245, 255, 0.4);
+    }
+
+    /* Checkbox Styles */
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      color: #94a3b8;
+      cursor: pointer;
+      margin-bottom: 8px;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .checkbox-label:hover {
+      color: #cbd5e1;
+    }
+    .checkbox-label input {
+      display: none;
+    }
+    .custom-checkbox {
+      width: 14px;
+      height: 14px;
+      border: 1px solid rgba(0, 245, 255, 0.3);
+      border-radius: 4px;
+      background: rgba(0, 245, 255, 0.04);
+      display: inline-grid;
+      place-items: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .checkbox-label input:checked + .custom-checkbox {
+      background: var(--cyan);
+      border-color: var(--cyan);
+      box-shadow: 0 0 8px rgba(0, 245, 255, 0.4);
+    }
+    .checkbox-label input:checked + .custom-checkbox::after {
+      content: '✔';
+      font-size: 8px;
+      color: #03050b;
+      font-weight: 800;
+    }
+    .checkbox-label input:checked ~ span {
+      color: #fff;
+    }
+
+    /* Severity badges */
+    .sev-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 24px;
+      border-radius: 6px;
+      font-size: 9px;
+      font-weight: 800;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.02);
+      color: #64748b;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .sev-pill:hover {
+      border-color: rgba(0, 245, 255, 0.3);
+      color: var(--cyan);
+    }
+    .sev-pill.active {
+      border-color: var(--cyan);
+      background: rgba(0, 245, 255, 0.1);
+      color: var(--cyan);
+      box-shadow: 0 0 10px rgba(0, 245, 255, 0.15);
+    }
+
+    /* ─── SIGNAL LIST ─── */
+    .signals-list-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid rgba(0, 245, 255, 0.12);
+      border-radius: 14px;
+      background: rgba(8, 8, 16, 0.9);
+      padding: 14px 20px;
+      margin-bottom: 20px;
+    }
+    .signals-count {
+      font-size: 10px;
+      font-weight: 700;
+      color: #64748b;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .signals-count span {
+      color: var(--cyan);
+      font-weight: 800;
+    }
+
+    .signals-feed-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .signal-full-card {
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      background: rgba(10, 13, 24, 0.6);
+      backdrop-filter: blur(12px);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      position: relative;
+    }
+    .signal-full-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0; width: 4px;
+      border-radius: 16px 0 0 16px;
+      background: var(--sig-color, #334155);
+      opacity: 0.7;
+    }
+    .signal-full-card:hover {
+      border-color: rgba(0, 245, 255, 0.2);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+    .signal-full-card.sev-s4 { background: rgba(255, 107, 0, 0.03); }
+    .signal-full-card.sev-s4::before { opacity: 1; box-shadow: 0 0 10px var(--sig-color); }
+    .signal-full-card.sev-s5 { background: rgba(255, 34, 68, 0.04); }
+    .signal-full-card.sev-s5::before { opacity: 1; box-shadow: 0 0 14px var(--sig-color); }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .card-meta-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card-time {
+      font-size: 10px;
+      font-weight: 700;
+      color: #475569;
+      letter-spacing: 0.05em;
+    }
+    .card-tag {
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid;
+    }
+    .card-severity {
+      font-size: 8px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #64748b;
+      letter-spacing: 0.08em;
+    }
+    .sev-s4 .card-severity { background: rgba(255, 107, 0, 0.12); border-color: rgba(255, 107, 0, 0.3); color: #ff6b00; }
+    .sev-s5 .card-severity { background: rgba(255, 34, 68, 0.12); border-color: rgba(255, 34, 68, 0.4); color: #ff2244; }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.5;
+    }
+    .card-details {
+      font-size: 11px;
+      color: #94a3b8;
+      line-height: 1.7;
+    }
+    
+    .card-coords {
+      font-size: 9px;
+      color: #475569;
+      font-family: 'JetBrains Mono', monospace;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 14px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .btn-action-glow {
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+      color: #94a3b8;
+      transition: all 0.2s;
+    }
+    .btn-action-glow:hover {
+      border-color: rgba(0, 245, 255, 0.3);
+      color: var(--cyan);
+      background: rgba(0, 245, 255, 0.06);
+    }
+
+    /* Modal Styling */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 5, 11, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-content {
+      max-width: 500px;
+      width: 100%;
+      background: rgba(10, 13, 24, 0.95);
+      border: 1px solid rgba(0, 245, 255, 0.3);
+      border-radius: 20px;
+      box-shadow: 0 0 60px rgba(0, 245, 255, 0.15);
+      padding: 24px;
+      position: relative;
+    }
+    .modal-header {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--cyan);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 10px;
+    }
+    .modal-body {
+      font-size: 11px;
+      line-height: 1.8;
+      color: #94a3b8;
+      background: #03050b;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 10px;
+      padding: 14px;
+      max-height: 220px;
+      overflow-y: auto;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 20px;
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      font-size: 16px;
+      color: #64748b;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .modal-close:hover {
+      color: var(--cyan);
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-label">● LIVE</div>
+  <div class="ticker-track">
+    <span class="ticker-inner">
+      BREAKING: UN SECURITY COUNCIL EMERGENCY SESSION ON CYBER ATTACKS &nbsp;•&nbsp;
+      6.2 MAGNITUDE EARTHQUAKE HITS SOUTHERN JAPAN &nbsp;•&nbsp;
+      OIL PRICES SURGE PAST $93 ON SUPPLY CONCERNS &nbsp;•&nbsp;
+      TENSIONS ESCALATE IN EASTERN EUROPE &nbsp;•&nbsp;
+      MAJOR PORT DISRUPTION REPORTED IN STRAIT OF MALACCA &nbsp;•&nbsp;
+      MILITANT GROUP MOBILISATION DETECTED — SAHEL REGION &nbsp;•&nbsp;
+      CYBER INTRUSION ATTEMPT BLOCKED — EASTERN EUROPE &nbsp;•&nbsp;
+    </span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">⬡</div>
+      <div class="logo-text">
+        <div class="logo-title">Sovereign Intel</div>
+        <div class="logo-sub">Global Intelligence Platform</div>
+      </div>
+    </a>
+
+    <!-- Hamburger (shows on mobile) -->
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-tabs">
+      <a href="index.html#features" class="nav-tab">Features</a>
+      <a href="index.html#how-it-works" class="nav-tab">How It Works</a>
+      <a href="signals.html" class="nav-tab active">Live Signals</a>
+      <a href="index.html#dashboard" class="nav-tab">Sovereign Dash</a>
+      <a href="about.html" class="nav-tab">About</a>
+      <a href="pricing.html" class="nav-tab">Pricing</a>
+    </div>
+
+    <div class="nav-right">
+      <div class="live-badge">● SYSTEM LIVE</div>
+      <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="btn-cta-small">Enter Dash →</a>
+    </div>
+  </div>
+
+  <!-- Full-screen mobile nav drawer -->
+  <div class="nav-drawer" aria-hidden="true">
+    <a href="index.html#features" class="nav-drawer-tab">Features</a>
+    <a href="index.html#how-it-works" class="nav-drawer-tab">How It Works</a>
+    <a href="signals.html" class="nav-drawer-tab active">Live Signals</a>
+    <a href="index.html#dashboard" class="nav-drawer-tab">Sovereign Dash</a>
+    <a href="about.html" class="nav-drawer-tab">About</a>
+    <a href="pricing.html" class="nav-drawer-tab">Pricing</a>
+    <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="nav-drawer-tab" style="color: var(--cyan); border-color: rgba(0,245,255,0.3);">Enter Dash →</a>
+  </div>
+</nav>
+
+<!-- MAIN CONTAINER -->
+<div class="console-container">
+  
+  <!-- LEFT: Filter Sidebar -->
+  <aside class="filter-sidebar">
+    <!-- Search -->
+    <div class="filter-section">
+      <div class="filter-title">Signal Search</div>
+      <div class="search-input-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" class="search-input" placeholder="Search keywords..." />
+      </div>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="filter-section">
+      <div class="filter-title">Category Layer</div>
+      <div id="category-filters">
+        <label class="checkbox-label">
+          <input type="checkbox" value="CONFLICT" checked />
+          <span class="custom-checkbox"></span>
+          <span>Conflict Detection</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" value="SURVEILLANCE" checked />
+          <span class="custom-checkbox"></span>
+          <span>Surveillance Tracking</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" value="DISASTER" checked />
+          <span class="custom-checkbox"></span>
+          <span>Disaster Intelligence</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" value="ECONOMIC" checked />
+          <span class="custom-checkbox"></span>
+          <span>Economic Signals</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" value="HUMANITARIAN" checked />
+          <span class="custom-checkbox"></span>
+          <span>Space Radar</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" value="POLITICAL" checked />
+          <span class="custom-checkbox"></span>
+          <span>Intel Reports</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Severity Filter -->
+    <div class="filter-section">
+      <div class="filter-title">Severity Level</div>
+      <div style="display:flex; justify-content:space-between; gap:6px;">
+        <button class="sev-pill active" data-sev="S1">S1</button>
+        <button class="sev-pill active" data-sev="S2">S2</button>
+        <button class="sev-pill active" data-sev="S3">S3</button>
+        <button class="sev-pill active" data-sev="S4">S4</button>
+        <button class="sev-pill active" data-sev="S5">S5</button>
+      </div>
+    </div>
+
+    <!-- System Control -->
+    <div class="filter-section" style="padding-top:10px;">
+      <div style="font-size:8px; color:#475569; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:8px;">Stream State</div>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:9px; color:#64748b;">Live Feed Ingestion</span>
+        <button id="stream-toggle" class="btn-cta-small" style="font-size:8px; padding:4px 10px; border-color:rgba(0,255,136,0.3); background:rgba(0,255,136,0.06); color:var(--green);">PAUSE</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- RIGHT: Feed list -->
+  <main>
+    <!-- Header bar -->
+    <div class="signals-list-header">
+      <div class="signals-count">Active Signals: <span id="console-count">0</span> matching</div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <div class="pulse" style="width:6px; height:6px;"></div>
+        <span style="font-size:8px; color:var(--green); letter-spacing:0.1em; text-transform:uppercase; font-weight:800;">AUTO-SYNC ACTIVE</span>
+      </div>
+    </div>
+
+    <!-- Cards container -->
+    <div class="signals-feed-cards" id="console-feed">
+      <!-- Signal cards will be injected here -->
+    </div>
+
+    <!-- Load more button -->
+    <div style="text-align:center; margin-top:36px;">
+      <button id="load-more-btn" class="btn-secondary" style="font-size:10px; padding:14px 28px; width:100%; border-color:rgba(0,245,255,0.18);">LOAD NEXT INTELLIGENCE SEGMENT</button>
+    </div>
+  </main>
+
+</div>
+
+<!-- MODAL BOX -->
+<div class="modal-overlay" id="export-modal">
+  <div class="modal-content">
+    <button class="modal-close" id="modal-close">×</button>
+    <div class="modal-header" id="modal-title">EXPORT SIGNAL DATA</div>
+    <div class="modal-body" id="modal-body"></div>
+    <div style="text-align:right;">
+      <button class="btn-cta-small" id="modal-btn">COPY TO CLIPBOARD</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 SOVEREIGN INTEL &nbsp;·&nbsp; GLOBAL INTELLIGENCE PLATFORM</span>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="signals.html">Live Signals</a>
+    <a href="index.html#dashboard">Space Radar</a>
+    <a href="mailto:secure@sovereign-intel.io">Support</a>
+  </div>
+  <div class="footer-live">
+    <span>◈</span> SECURE VAULT CHANNEL ONLINE
+  </div>
+</footer>
+
+<script src="js/signals.js"></script>
+<script src="js/nav.js" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const consoleFeed = document.getElementById('console-feed');
+    const searchInput = document.getElementById('search-input');
+    const categoryCheckboxes = document.querySelectorAll('#category-filters input');
+    const sevPills = document.querySelectorAll('.sev-pill');
+    const consoleCount = document.getElementById('console-count');
+    const streamToggle = document.getElementById('stream-toggle');
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    
+    // Modal elements
+    const exportModal = document.getElementById('export-modal');
+    const modalClose = document.getElementById('modal-close');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+    const modalBtn = document.getElementById('modal-btn');
+
+    let isStreaming = true;
+    let visibleCount = 10;
+    
+    // Fallback array if SOVEREIGN_SIGNALS_POOL is not loaded
+    const signalData = typeof SOVEREIGN_SIGNALS_POOL !== 'undefined' ? SOVEREIGN_SIGNALS_POOL : [
+      { tag:'CONFLICT',    sev:'S5', color:'#ff2244', headline:'Artillery exchange reported near border — multiple casualties confirmed', loc:'Donetsk Region, Ukraine' },
+      { tag:'SURVEILLANCE',sev:'S4', color:'#00f5ff', headline:'Biometric monitoring contracts expand across all border checkpoints', loc:'United States' }
+    ];
+
+    // Generate detail descriptions for mock realism
+    const extendedData = signalData.map((sig, idx) => {
+      let desc = '';
+      let coords = '';
+      if (sig.tag === 'CONFLICT') {
+        desc = `Local intelligence operatives confirm a sudden escalation in local combat activity. Hostile troops deployed advanced tactical support weapons. Regional border security is compromised. Casualty figures are rising rapidly; UN monitors recommend evacuation alert measures for non-combatant organizations immediately.`;
+        coords = `${(30 + Math.random() * 20).toFixed(4)}° N, ${(20 + Math.random() * 20).toFixed(4)}° E`;
+      } else if (sig.tag === 'SURVEILLANCE') {
+        desc = `Contract records show extensive deployment of centralized monitoring infrastructure. Hardware platforms integrate artificial intelligence processing systems to catalog and track identity signatures dynamically. Critics warn of structural human rights violations and total lack of civilian oversight channels.`;
+        coords = `${(35 + Math.random() * 15).toFixed(4)}° N, ${(-120 + Math.random() * 40).toFixed(4)}° W`;
+      } else if (sig.tag === 'DISASTER') {
+        desc = `Seismological sensors register high-magnitude tectonic adjustments. Regional satellite scans indicate major coastal landscape displacements. Emergency teams dispatch relief packages, but heavy logistics routes are severely obstructed. Coastal advisories are strictly enforced.`;
+        coords = `${(-10 - Math.random() * 20).toFixed(4)}° S, ${(-50 - Math.random() * 20).toFixed(4)}° W`;
+      } else if (sig.tag === 'ECONOMIC') {
+        desc = `Cargo shipments and trading conduits are experiencing prolonged wait indices due to regulatory interventions or security complications. Sanctions enforcement lists target high-level industrial exports. Raw minerals suppliers warn of global chain dependencies failing before replacements activate.`;
+        coords = `${(1 + Math.random() * 10).toFixed(4)}° N, ${(100 + Math.random() * 10).toFixed(4)}° E`;
+      } else if (sig.tag === 'HUMANITARIAN') {
+        desc = `Radar telemetry tracks deep orbit payload anomalies. Strategic tracking sensors verify alignment changes inside contested aerospace. Non-governmental assets report coordinate changes in migration pathways to dodge tactical surveillance satellites.`;
+        coords = `${(5 + Math.random() * 15).toFixed(4)}° N, ${(30 + Math.random() * 15).toFixed(4)}° E`;
+      } else {
+        desc = `Structured briefings identify high-priority leaks referencing behind-closed-doors geopolitical operations. Analysts flag severe risks for institutional investments across four neighboring regions. Detailed reports are available for authorized dashboard users.`;
+        coords = `${(50 + Math.random() * 5).toFixed(4)}° N, ${(4 + Math.random() * 6).toFixed(4)}° E`;
+      }
+      return {
+        ...sig,
+        id: `SIG-${10000 + idx}`,
+        desc,
+        coords,
+        timestamp: getUTCNowString()
+      };
+    });
+
+    let activeSignals = [...extendedData];
+
+    function padZ(n){ return String(n).padStart(2,'0'); }
+    function getUTCNowString() {
+      const d = new Date();
+      return `${padZ(d.getUTCHours())}:${padZ(d.getUTCMinutes())}:${padZ(d.getUTCSeconds())}`;
+    }
+
+    // Toggle stream state
+    streamToggle.addEventListener('click', () => {
+      isStreaming = !isStreaming;
+      if (isStreaming) {
+        streamToggle.textContent = 'PAUSE';
+        streamToggle.style.color = 'var(--green)';
+        streamToggle.style.backgroundColor = 'rgba(0, 255, 136, 0.06)';
+        streamToggle.style.borderColor = 'rgba(0, 255, 136, 0.3)';
+      } else {
+        streamToggle.textContent = 'RESUME';
+        streamToggle.style.color = 'var(--orange)';
+        streamToggle.style.backgroundColor = 'rgba(255, 107, 0, 0.06)';
+        streamToggle.style.borderColor = 'rgba(255, 107, 0, 0.3)';
+      }
+    });
+
+    // Toggle Severity pills
+    sevPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        pill.classList.toggle('active');
+        applyFilters();
+      });
+    });
+
+    // Inputs filter
+    searchInput.addEventListener('input', applyFilters);
+    categoryCheckboxes.forEach(cb => cb.addEventListener('change', applyFilters));
+
+    function applyFilters() {
+      const search = searchInput.value.toLowerCase();
+      
+      const categories = Array.from(categoryCheckboxes)
+        .filter(cb => cb.checked)
+        .map(cb => cb.value);
+        
+      const severities = Array.from(sevPills)
+        .filter(p => p.classList.contains('active'))
+        .map(p => p.dataset.sev);
+
+      activeSignals = extendedData.filter(sig => {
+        const matchesSearch = sig.headline.toLowerCase().includes(search) || sig.loc.toLowerCase().includes(search) || sig.desc.toLowerCase().includes(search);
+        const matchesCat = categories.includes(sig.tag);
+        const matchesSev = severities.includes(sig.sev);
+        return matchesSearch && matchesCat && matchesSev;
+      });
+
+      visibleCount = 10;
+      renderFeed();
+    }
+
+    function renderFeed() {
+      consoleFeed.innerHTML = '';
+      
+      const listToRender = activeSignals.slice(0, visibleCount);
+      consoleCount.textContent = activeSignals.length;
+
+      if (listToRender.length === 0) {
+        consoleFeed.innerHTML = `
+          <div style="text-align:center; padding: 48px; border: 1px dashed rgba(0, 245, 255, 0.15); border-radius:16px; background: rgba(8,8,16,0.6); color: #64748b;">
+            <div style="font-size:24px; margin-bottom:14px;">📡</div>
+            <div style="font-size:10px; font-weight:800; letter-spacing: 0.14em; text-transform:uppercase; color: var(--cyan);">NO SIGNALS INGESTED</div>
+            <div style="font-size:11px; margin-top:8px;">No intelligence matching current filter thresholds. Try widening variables.</div>
+          </div>
+        `;
+        loadMoreBtn.style.display = 'none';
+        return;
+      }
+
+      listToRender.forEach(sig => {
+        const card = document.createElement('div');
+        card.className = `signal-full-card sev-${sig.sev.toLowerCase()}`;
+        card.style.setProperty('--sig-color', sig.color);
+        
+        card.innerHTML = `
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="card-time">${sig.timestamp}</span>
+              <span class="card-tag" style="color:${sig.color}; border-color:${sig.color}33; background:${sig.color}10;">${sig.tag}</span>
+            </div>
+            <span class="card-severity">${sig.sev}</span>
+          </div>
+          <div class="card-title">${sig.headline}</div>
+          <div class="card-details">${sig.desc}</div>
+          
+          <div class="card-bottom">
+            <div class="card-coords">
+              <span>📍 ${sig.loc}</span>
+              <span style="color:#334155;">·</span>
+              <span>🛰 Coords: ${sig.coords}</span>
+            </div>
+            <div class="card-actions">
+              <button class="btn-action-glow btn-export" data-id="${sig.id}">EXPORT DATA</button>
+              <button class="btn-action-glow btn-share" data-id="${sig.id}">SECURE SHARE</button>
+            </div>
+          </div>
+        `;
+        consoleFeed.appendChild(card);
+      });
+
+      // Show/hide load more
+      if (activeSignals.length > visibleCount) {
+        loadMoreBtn.style.display = 'block';
+      } else {
+        loadMoreBtn.style.display = 'none';
+      }
+
+      // Add event listeners to actions
+      document.querySelectorAll('.btn-export').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const sigId = e.target.dataset.id;
+          const sig = extendedData.find(s => s.id === sigId);
+          openModal('EXPORT SIGNAL PAYLOAD', JSON.stringify({
+            signal_id: sig.id,
+            timestamp: sig.timestamp,
+            severity_index: sig.sev,
+            classification_layer: sig.tag,
+            location_vector: sig.loc,
+            coordinate_matrix: sig.coords,
+            headline_vector: sig.headline,
+            payload_log: sig.desc
+          }, null, 2));
+        });
+      });
+
+      document.querySelectorAll('.btn-share').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const sigId = e.target.dataset.id;
+          openModal('SECURE SHARE KEY GENERATED', `https://sovereign.pages.dev/signal?id=${sigId}&key=SECURE_VAULT_RELAY_${Math.random().toString(36).substring(2, 10).toUpperCase()}`);
+        });
+      });
+    }
+
+    loadMoreBtn.addEventListener('click', () => {
+      visibleCount += 10;
+      renderFeed();
+    });
+
+    // Simulated Real-Time Injection
+    setInterval(() => {
+      if (!isStreaming) return;
+      
+      // Select random item
+      const sigBase = extendedData[Math.floor(Math.random() * extendedData.length)];
+      const newSig = {
+        ...sigBase,
+        id: `SIG-${10000 + Math.floor(Math.random() * 90000)}`,
+        timestamp: getUTCNowString()
+      };
+      
+      // Inject at top of main data pool
+      extendedData.unshift(newSig);
+      
+      // Re-apply filters to sync feed
+      applyFilters();
+    }, 6000);
+
+    // Modal behavior
+    function openModal(title, text) {
+      modalTitle.textContent = title;
+      modalBody.textContent = text;
+      
+      if (title.includes('SHARE')) {
+        modalBtn.textContent = 'COPY SHARE LINK';
+      } else {
+        modalBtn.textContent = 'COPY TO CLIPBOARD';
+      }
+      
+      exportModal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      exportModal.style.display = 'none';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    exportModal.addEventListener('click', (e) => {
+      if (e.target === exportModal) closeModal();
+    });
+
+    modalBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(modalBody.textContent);
+      const prevText = modalBtn.textContent;
+      modalBtn.textContent = 'COPIED!';
+      setTimeout(() => {
+        modalBtn.textContent = prevText;
+        closeModal();
+      }, 1000);
+    });
+
+    // Init
+    applyFilters();
+  });
+</script>
+</body>
+</html>
