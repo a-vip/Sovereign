@@ -308,6 +308,16 @@ function startIntro() {
       start: 'top top',
       end: 'bottom bottom',
       scrub: 1.2, // Smoother scrub easing for slow majestic pacing
+      pin: '#intro-sticky-stage', // Force GSAP to pin the sticky stage viewport (fixes mobile overflow sticking bugs!)
+      pinSpacing: false, // Prevents GSAP from pushing down contents below
+      onLeave: () => {
+        // Enforce header visibility when scrolling past the intro
+        if (globalHeader) globalHeader.classList.remove('intro-hidden');
+      },
+      onEnterBack: () => {
+        // Enforce header hides when scrolling back up into the intro
+        if (globalHeader) globalHeader.classList.add('intro-hidden');
+      },
       onUpdate: (self) => {
         // Toggle the global header when scroll reaches 85% depth (previous hero page entry)
         if (globalHeader) {
