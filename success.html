@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Decryption Active | Sovereign Intel</title>
+  <title>Subscription Confirmed | Sovereign Intel</title>
   
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300f5ff%22>⬡</text></svg>" />
@@ -89,10 +89,10 @@
     <div class="ticker-label">● LIVE</div>
     <div class="ticker-track">
       <span class="ticker-inner">
-        TRANSACTION CONFIRMED &nbsp;•&nbsp;
-        NODE LICENSING SYNCED &nbsp;•&nbsp;
-        DECRYPTION KEYS DISPATCHED &nbsp;•&nbsp;
-        SECURE VAULT GATEWAY ACTIVE &nbsp;•&nbsp;
+        TRANSACTION VERIFIED &nbsp;•&nbsp;
+        LICENSE ACTIVATED &nbsp;•&nbsp;
+        CONSOLES INTEGRATED &nbsp;•&nbsp;
+        DASHBOARD LINK SECURED &nbsp;•&nbsp;
       </span>
     </div>
   </div>
@@ -142,16 +142,16 @@
 <div class="success-container">
   <div class="success-icon-wrap">✔</div>
   
-  <h2 style="font-size: clamp(24px, 4.5vw, 36px); font-weight:800; text-transform:uppercase; margin-bottom:12px;">Decryption Calibrated</h2>
+  <h2 style="font-size: clamp(24px, 4.5vw, 36px); font-weight:800; text-transform:uppercase; margin-bottom:12px;">Subscription Confirmed</h2>
   <p style="color:#64748b; font-size:13px; max-width:440px; margin:0 auto 36px; line-height:1.6;">
-    Your threat intelligence subscription has been successfully processed. Secure transaction signature verified.
+    Your professional threat intelligence subscription has been successfully activated. A confirmation receipt has been sent to your email address.
   </p>
 
   <!-- Animated Cyber Terminal -->
   <div class="success-terminal" id="success-log"></div>
 
   <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="btn-primary" style="padding:16px 36px; font-size:11px; border-radius:12px; box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);">
-    LAUNCH TELEMETRY DASHBOARD <span class="arrow">→</span>
+    ENTER PLATFORM CONSOLE <span class="arrow">→</span>
   </a>
 </div>
 
@@ -176,17 +176,18 @@
     const logBox = document.getElementById('success-log');
     if (!logBox) return;
 
-    // Generate random secure access hash code
-    const secureHash = 'SOV-PRO-' + Math.random().toString(36).substring(2, 7).toUpperCase() + '-' + Math.random().toString(36).substring(2, 7).toUpperCase();
+    // Generate random transaction license key
+    const secureHash = 'SOV-LICENSE-' + Math.random().toString(36).substring(2, 7).toUpperCase() + '-' + Math.random().toString(36).substring(2, 7).toUpperCase();
 
     const logs = [
-      { text: '> Handshake initiated with payment broker...', res: '[OK]', color: 'var(--cyan)' },
-      { text: '> Validating secure transaction token...', res: '[OK]', color: 'var(--cyan)' },
-      { text: '> PAYMENT STATUS DETECTED...', res: 'CONFIRMED', color: 'var(--green)' },
-      { text: `> ASSIGNED ACCESS KEY: ${secureHash}`, res: '[ACTIVE]', color: 'var(--cyan)' },
-      { text: '> Calibrating commercial satellite pass queries...', res: '[OK]', color: 'var(--cyan)' },
-      { text: '> Opening secure OSINT console ports...', res: '[OK]', color: 'var(--cyan)' },
-      { text: '> SYSTEM READY. GATEWAY AUTHORIZED FOR CONSOLE.', res: '[ONLINE]', color: 'var(--green)' }
+      { text: '> Verifying checkout session...', res: '[OK]', color: 'var(--cyan)' },
+      { text: '> Validating transaction signature...', res: '[OK]', color: 'var(--cyan)' },
+      { text: '> PAYMENT STATUS:', res: 'CONFIRMED', color: 'var(--green)' },
+      { text: '> LICENSE CLASS:', res: 'PRO_ANALYST', color: 'var(--cyan)' },
+      { text: `> ACTIVE LICENSE KEY: ${secureHash}`, res: '[VERIFIED]', color: 'var(--cyan)' },
+      { text: '> Preparing platform threat console...', res: '[OK]', color: 'var(--cyan)' },
+      { text: '> Initializing console credentials...', res: '[OK]', color: 'var(--cyan)' },
+      { text: '> STATUS: ACCESS GRANTED. PLATFORM CONSOLE READY.', res: '[ONLINE]', color: 'var(--green)' }
     ];
 
     logs.forEach((item, idx) => {

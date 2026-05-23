@@ -536,12 +536,11 @@
     btnMonthly.addEventListener('click', () => setBilling('monthly'));
     btnYearly.addEventListener('click', () => setBilling('yearly'));
 
-    // ─── STRIPE CHECKOUT PAYMENT SYSTEM ───
-    // NOTE: Replace these placeholder URLs with your actual Stripe Payment Link URLs
-    // generated in your Stripe Dashboard under Payments -> Payment Links.
-    const STRIPE_CHECKOUT_LINKS = {
-      monthly: 'https://checkout.stripe.com/c/pay/sovereign_pro_monthly_placeholder',
-      yearly: 'https://checkout.stripe.com/c/pay/sovereign_pro_yearly_placeholder'
+    // ─── CHECKOUT ROUTING SYSTEM ───
+    // Redirects to a secure form-based checkout page inside the platform.
+    const CHECKOUT_LINKS = {
+      monthly: 'checkout.html?period=monthly',
+      yearly: 'checkout.html?period=yearly'
     };
 
     if (proBtn && modal && modalLog) {
@@ -553,11 +552,11 @@
         modalSubmit.disabled = true;
 
         const lines = [
-          { text: '> Handshake initiated with Stripe secure API...', res: '[OK]' },
-          { text: `> Calibrating billing matrix: Professional Threat Intel (${currentPeriod})...`, res: '[OK]' },
-          { text: '> Generating secure payment gateway session ID...', res: '[OK]' },
-          { text: '> Opening browser payment sheets (Mastercard/Visa/GPay/ApplePay)...', res: '[ONLINE]' },
-          { text: '> Transferring command sequence to Stripe. Please standby...', res: '[REDIRECT]' }
+          { text: '> Contacting secure transaction broker...', res: '[OK]' },
+          { text: `> Configuring plan parameters: Professional Threat Intel (${currentPeriod})...`, res: '[OK]' },
+          { text: '> Securing transaction tunnel...', res: '[OK]' },
+          { text: '> Opening secure transaction port...', res: '[ONLINE]' },
+          { text: '> Redirecting to secure checkout portal...', res: '[REDIRECT]' }
         ];
 
         lines.forEach(({ text, res }, i) => {
@@ -567,17 +566,11 @@
             r.innerHTML = `<span style="color:#64748b;">${text}</span><span style="color:var(--cyan);font-weight:800;">${res}</span>`;
             modalLog.appendChild(r);
             
-            // On the final line, trigger the actual redirect
+            // Trigger redirection upon completing final log step
             if (i === lines.length - 1) {
               setTimeout(() => {
-                const targetUrl = STRIPE_CHECKOUT_LINKS[currentPeriod];
-                // In production, we redirect to Stripe. In test/sandbox mode, we can redirect directly to success.html to demonstrate!
-                if (targetUrl.includes('placeholder')) {
-                  window.location.href = 'success.html'; // Let the developer inspect the beautiful success.html during local review!
-                } else {
-                  window.location.href = targetUrl;
-                }
-              }, 1200);
+                window.location.href = CHECKOUT_LINKS[currentPeriod];
+              }, 1000);
             }
           }, i * 450);
         });
@@ -590,12 +583,7 @@
 
       // Quick-redirect override button
       modalSubmit.addEventListener('click', () => {
-        const targetUrl = STRIPE_CHECKOUT_LINKS[currentPeriod];
-        if (targetUrl.includes('placeholder')) {
-          window.location.href = 'success.html';
-        } else {
-          window.location.href = targetUrl;
-        }
+        window.location.href = CHECKOUT_LINKS[currentPeriod];
       });
     }
   });
