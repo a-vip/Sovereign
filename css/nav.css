@@ -1,3 +1,22 @@
+/* ─── TICKER ─── */
+.ticker-bar {
+  position: relative; z-index: 20;
+  background: rgba(8,8,16,0.95);
+  border-bottom: 1px solid rgba(0,245,255,0.12);
+  height: 36px; display: flex; align-items: center; overflow: hidden;
+}
+.ticker-label {
+  flex-shrink: 0; padding: 0 16px;
+  color: var(--green); font-size: 10px; font-weight: 800;
+  letter-spacing: 0.18em; border-right: 1px solid rgba(0,245,255,0.15);
+}
+.ticker-track { overflow: hidden; flex: 1; display: flex; align-items: center; }
+.ticker-inner {
+  display: inline-block; white-space: nowrap;
+  color: var(--green); font-size: 10px; letter-spacing: 0.12em;
+  animation: ticker 38s linear infinite;
+}
+
 /* ─── NAV ─── */
 nav {
   position: sticky; top: 0; z-index: 19;

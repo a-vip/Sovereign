@@ -241,7 +241,7 @@
       <a href="index.html#how-it-works" class="nav-tab">How It Works</a>
       <a href="signals.html" class="nav-tab">Live Signals</a>
       <a href="index.html#dashboard" class="nav-tab">Sovereign Dash</a>
-      <a href="index.html#enterprise-tier" class="nav-tab">Enterprise</a>
+      <a href="enterprise.html" class="nav-tab">Enterprise</a>
       <a href="about.html" class="nav-tab active">About</a>
       <a href="pricing.html" class="nav-tab">Pricing</a>
     </div>
@@ -258,7 +258,7 @@
     <a href="index.html#how-it-works" class="nav-drawer-tab">How It Works</a>
     <a href="signals.html" class="nav-drawer-tab">Live Signals</a>
     <a href="index.html#dashboard" class="nav-drawer-tab">Sovereign Dash</a>
-    <a href="index.html#enterprise-tier" class="nav-drawer-tab">Enterprise</a>
+    <a href="enterprise.html" class="nav-drawer-tab">Enterprise</a>
     <a href="about.html" class="nav-drawer-tab active">About</a>
     <a href="pricing.html" class="nav-drawer-tab">Pricing</a>
     <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="nav-drawer-tab" style="color: var(--cyan); border-color: rgba(0,245,255,0.3);">Enter Dash →</a>
@@ -319,59 +319,59 @@
 
     <!-- Team -->
     <section class="about-card">
-      <div class="about-card-title">03 / Intelligence Architecture Team</div>
-      <p>We are a distributed team of developers, satellite telemetry specialists, OSINT researchers, and investigative journalists dedicated to preserving open-access global analysis.</p>
+      <div class="about-card-title">03 / Our Core Team</div>
+      <p>We are a distributed team of developers, GIS specialists, OSINT researchers, and investigative journalists dedicated to preserving open-access global threat analysis.</p>
       
       <div class="team-grid">
         <div class="team-member">
           <div style="font-size:18px;">⬢</div>
-          <div class="team-role">Lead Architect</div>
+          <div class="team-role">Founder & Lead Developer</div>
           <div class="team-name">Alex V.</div>
         </div>
         <div class="team-member">
           <div style="font-size:18px;">⬡</div>
-          <div class="team-role">SIGINT Analyst</div>
+          <div class="team-role">OSINT Threat Analyst</div>
           <div class="team-name">Elena R.</div>
         </div>
         <div class="team-member">
           <div style="font-size:18px;">⬡</div>
-          <div class="team-role">LEO Telemetry</div>
+          <div class="team-role">GIS Data Specialist</div>
           <div class="team-name">Marcus T.</div>
         </div>
       </div>
     </section>
   </div>
 
-  <!-- RIGHT: Secure Communication Vault -->
+  <!-- RIGHT: Secure Tips & Contact Box -->
   <aside class="about-card" style="position:relative;">
-    <div class="about-card-title">Secure Portal Ingestion</div>
-    <p style="margin-bottom: 24px;">Submit anonymous signal reports, encrypted tip leaks, or application inquiries directly into our ingestion queue.</p>
+    <div class="about-card-title">Secure Tips & Contacts</div>
+    <p style="margin-bottom: 24px;">Submit signal observations, company inquiries, or research briefings directly to our team.</p>
 
     <!-- Ingestion form -->
     <form id="secure-form">
       <div class="form-group">
-        <label class="form-label">Transmission Origin (Optional)</label>
-        <input type="text" class="form-input" id="form-origin" placeholder="e.g. Anonymous Node, Secure Email, Alias" />
+        <label class="form-label">Your Name / Organization (Optional)</label>
+        <input type="text" class="form-input" id="form-origin" placeholder="e.g. Sarah Jenkins / Vanguard Group" />
       </div>
 
       <div class="form-group">
-        <label class="form-label">Classification Tag</label>
+        <label class="form-label">Subject Category</label>
         <select class="form-input" id="form-tag" style="background:#03050b;">
-          <option value="SURVEILLANCE">Surveillance Leak</option>
           <option value="CONFLICT">Geopolitical Conflict</option>
-          <option value="DISASTER">Humanitarian Disaster</option>
-          <option value="ECONOMIC">Infrastructure Disruption</option>
-          <option value="GENERAL">General Inquiries</option>
+          <option value="SURVEILLANCE">Digital Surveillance</option>
+          <option value="DISASTER">Climate & Disaster</option>
+          <option value="ECONOMIC">Supply Chains / Logistics</option>
+          <option value="GENERAL">General Inquiry</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label class="form-label">Encrypted Message Payload</label>
-        <textarea class="form-textarea" id="form-msg" placeholder="Paste report text or leak coordinates here..." required></textarea>
+        <label class="form-label">Your Message</label>
+        <textarea class="form-textarea" id="form-msg" placeholder="Write your message or paste coordinates/links here..." required></textarea>
       </div>
 
       <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:14px; font-size:10px; border-radius:10px;">
-        TRANSMIT VIA SECURE RELAY <span class="arrow">→</span>
+        SEND MESSAGE <span class="arrow">→</span>
       </button>
     </form>
 
@@ -379,7 +379,7 @@
     <div class="secure-transmission-overlay" id="trans-overlay">
       <div class="sec-log-box" id="trans-log"></div>
       <div style="text-align:center;">
-        <button class="btn-secondary" id="trans-reset-btn" style="font-size:10px; padding:10px 20px; border-color:rgba(0, 245, 255, 0.3);">NEW TRANSMISSION</button>
+        <button class="btn-secondary" id="trans-reset-btn" style="font-size:10px; padding:10px 20px; border-color:rgba(0, 245, 255, 0.3);">SEND ANOTHER MESSAGE</button>
       </div>
     </div>
   </aside>
@@ -413,7 +413,7 @@
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        const origin = document.getElementById('form-origin').value || 'SECURE_NODE_ANONYMOUS';
+        const origin = document.getElementById('form-origin').value || 'ANONYMOUS';
         const tag = document.getElementById('form-tag').value;
         const msg = document.getElementById('form-msg').value;
 
@@ -422,13 +422,12 @@
         overlay.style.display = 'flex';
 
         const lines = [
-          { text: '> Opening socket connection to secure vault relay...', delay: 100, res: '[OK]' },
-          { text: `> Ingress node established: origin: ${origin}...`, delay: 600, res: '[OK]' },
-          { text: `> Classifying signal layer: ${tag}...`, delay: 1100, res: '[OK]' },
-          { text: '> Shuffling routing tables to mask coordinates...', delay: 1600, res: '[DONE]' },
-          { text: '> Initializing end-to-end asymmetric cipher...', delay: 2100, res: '[OK]' },
-          { text: '> Transmitting encrypted tip payload block...', delay: 2600, res: '[100%]' },
-          { text: '> Ingestion ticket generated: SOV-' + Math.floor(100000 + Math.random() * 900000), delay: 3100, res: '[SECURE]' }
+          { text: '> Connecting to tips gateway...', delay: 100, res: '[OK]' },
+          { text: `> Sender established: ${origin}...`, delay: 600, res: '[OK]' },
+          { text: `> Classifying subject category: ${tag}...`, delay: 1100, res: '[OK]' },
+          { text: '> Encrypting submission payload...', delay: 1600, res: '[DONE]' },
+          { text: '> Routing message to secure vault...', delay: 2100, res: '[OK]' },
+          { text: '> Transmission ticket generated: SOV-' + Math.floor(100000 + Math.random() * 900000), delay: 2600, res: '[SECURE]' }
         ];
 
         lines.forEach(({ text, delay, res }) => {

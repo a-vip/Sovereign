@@ -433,7 +433,7 @@
       <a href="index.html#how-it-works" class="nav-tab">How It Works</a>
       <a href="signals.html" class="nav-tab active">Live Signals</a>
       <a href="index.html#dashboard" class="nav-tab">Sovereign Dash</a>
-      <a href="index.html#enterprise-tier" class="nav-tab">Enterprise</a>
+      <a href="enterprise.html" class="nav-tab">Enterprise</a>
       <a href="about.html" class="nav-tab">About</a>
       <a href="pricing.html" class="nav-tab">Pricing</a>
     </div>
@@ -450,7 +450,7 @@
     <a href="index.html#how-it-works" class="nav-drawer-tab">How It Works</a>
     <a href="signals.html" class="nav-drawer-tab active">Live Signals</a>
     <a href="index.html#dashboard" class="nav-drawer-tab">Sovereign Dash</a>
-    <a href="index.html#enterprise-tier" class="nav-drawer-tab">Enterprise</a>
+    <a href="enterprise.html" class="nav-drawer-tab">Enterprise</a>
     <a href="about.html" class="nav-drawer-tab">About</a>
     <a href="pricing.html" class="nav-drawer-tab">Pricing</a>
     <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="nav-drawer-tab" style="color: var(--cyan); border-color: rgba(0,245,255,0.3);">Enter Dash →</a>
@@ -498,7 +498,7 @@
         <label class="checkbox-label">
           <input type="checkbox" value="HUMANITARIAN" checked />
           <span class="custom-checkbox"></span>
-          <span>Space Radar</span>
+          <span>Satellite Telemetry</span>
         </label>
         <label class="checkbox-label">
           <input type="checkbox" value="POLITICAL" checked />
@@ -626,10 +626,10 @@
         desc = `Cargo shipments and trading conduits are experiencing prolonged wait indices due to regulatory interventions or security complications. Sanctions enforcement lists target high-level industrial exports. Raw minerals suppliers warn of global chain dependencies failing before replacements activate.`;
         coords = `${(1 + Math.random() * 10).toFixed(4)}° N, ${(100 + Math.random() * 10).toFixed(4)}° E`;
       } else if (sig.tag === 'HUMANITARIAN') {
-        desc = `Radar telemetry tracks deep orbit payload anomalies. Strategic tracking sensors verify alignment changes inside contested aerospace. Non-governmental assets report coordinate changes in migration pathways to dodge tactical surveillance satellites.`;
+        desc = `Active commercial and scientific satellite transponders tracked. Analysts verified orbit calculations, potential space debris crossings, and atmospheric monitoring signals over high-friction corridors.`;
         coords = `${(5 + Math.random() * 15).toFixed(4)}° N, ${(30 + Math.random() * 15).toFixed(4)}° E`;
       } else {
-        desc = `Structured briefings identify high-priority leaks referencing behind-closed-doors geopolitical operations. Analysts flag severe risks for institutional investments across four neighboring regions. Detailed reports are available for authorized dashboard users.`;
+        desc = `Geopolitical briefings identify high-risk developments across regional trade zones. Risk analysts flag logistics exposure and infrastructure shifts across neighboring regions. Detailed reports are available for registered team accounts.`;
         coords = `${(50 + Math.random() * 5).toFixed(4)}° N, ${(4 + Math.random() * 6).toFixed(4)}° E`;
       }
       return {

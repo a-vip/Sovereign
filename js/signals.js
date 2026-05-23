@@ -2,14 +2,14 @@
 
 const SOVEREIGN_SIGNALS_POOL = [
   { tag:'CONFLICT',    sev:'S5', color:'#ff2244', headline:'Artillery exchange reported near border — multiple casualties confirmed', loc:'Donetsk Region, Ukraine' },
-  { tag:'SURVEILLANCE',sev:'S4', color:'#00f5ff', headline:'Biometric monitoring contracts expand across all border checkpoints', loc:'United States' },
+  { tag:'SURVEILLANCE',sev:'S4', color:'#00f5ff', headline:'Security monitoring systems updated at border checkpoints', loc:'United States' },
   { tag:'CONFLICT',    sev:'S5', color:'#ff2244', headline:'Airstrike reported in urban area — civilian impact unconfirmed', loc:'Northern Syria' },
   { tag:'ECONOMIC',    sev:'S3', color:'#ffd22e', headline:'Critical minerals supply chain flagged for forced-labour risk', loc:'Global' },
   { tag:'SURVEILLANCE',sev:'S1', color:'#00f5ff', headline:'Suspicious vessel tracking anomaly detected in gulf corridor', loc:'Gulf of Aden' },
   { tag:'CONFLICT',    sev:'S4', color:'#ff2244', headline:'Militant group mobilisation detected across three provinces', loc:'Sahel Region' },
   { tag:'DISASTER',    sev:'S2', color:'#ff6b00', headline:'Severe flooding displaces 40,000 residents in coastal region', loc:'Rio Grande do Sul, Brazil' },
   { tag:'ECONOMIC',    sev:'S2', color:'#ffd22e', headline:'Oil prices surge past $93 per barrel on supply disruption', loc:'Global Markets' },
-  { tag:'SURVEILLANCE',sev:'S3', color:'#00f5ff', headline:'SIGINT intercept: encrypted comms detected over Mediterranean', loc:'Eastern Mediterranean' },
+  { tag:'SURVEILLANCE',sev:'S3', color:'#00f5ff', headline:'Radio tracking alert: signal anomaly detected over shipping route', loc:'Eastern Mediterranean' },
   { tag:'DISASTER',    sev:'S3', color:'#ff6b00', headline:'6.2 magnitude earthquake detected — tsunami advisory issued', loc:'Kyushu, Japan' },
   { tag:'POLITICAL',   sev:'S2', color:'#b366ff', headline:'Emergency UN Security Council session called on cyber attacks', loc:'New York, USA' },
   { tag:'SURVEILLANCE',sev:'S4', color:'#00f5ff', headline:'Cyber intrusion attempt blocked — critical infrastructure targeted', loc:'Eastern Europe' },

@@ -88,7 +88,7 @@
       <a href="#how-it-works" class="nav-tab">How It Works</a>
       <a href="signals.html" class="nav-tab">Live Signals</a>
       <a href="#dashboard" class="nav-tab">Sovereign Dash</a>
-      <a href="#enterprise-tier" class="nav-tab">Enterprise</a>
+      <a href="enterprise.html" class="nav-tab">Enterprise</a>
       <a href="about.html" class="nav-tab">About</a>
       <a href="pricing.html" class="nav-tab">Pricing</a>
     </div>
@@ -105,7 +105,7 @@
     <a href="#how-it-works" class="nav-drawer-tab">How It Works</a>
     <a href="signals.html" class="nav-drawer-tab">Live Signals</a>
     <a href="#dashboard" class="nav-drawer-tab">Sovereign Dash</a>
-    <a href="#enterprise-tier" class="nav-drawer-tab">Enterprise</a>
+    <a href="enterprise.html" class="nav-drawer-tab">Enterprise</a>
     <a href="about.html" class="nav-drawer-tab">About</a>
     <a href="pricing.html" class="nav-drawer-tab">Pricing</a>
     <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="nav-drawer-tab" style="color: var(--cyan); border-color: rgba(0,245,255,0.3);">Enter Dash →</a>
@@ -150,7 +150,7 @@
         Enter Sovereign Dash <span class="arrow">→</span>
       </a>
       <a href="signals.html" class="btn-secondary">View Live Signals</a>
-      <a href="#enterprise-tier" class="btn-secondary" style="border-color:rgba(179,102,255,0.2); color:#b366ff;">Enterprise Systems</a>
+      <a href="enterprise.html" class="btn-secondary" style="border-color:rgba(179,102,255,0.2); color:#b366ff;">Enterprise Systems</a>
     </div>
 
     <div class="hero-stats" id="hero-sts" style="opacity:0;transform:translateY(10px);transition:opacity 0.6s 0.28s,transform 0.6s 0.28s;">
@@ -571,21 +571,41 @@
         </ul>
       </div>
 
-      <!-- RIGHT: Interactive Contact Form Pitch -->
-      <div style="border: 1px solid rgba(0,245,255,0.15); border-radius:18px; background:rgba(10,13,24,0.65); backdrop-filter:blur(12px); padding:36px; box-shadow:0 0 32px rgba(0,245,255,0.02);">
-        <div style="font-size:10px; font-weight:800; color:var(--cyan); letter-spacing:0.16em; text-transform:uppercase; margin-bottom:14px; border-bottom:1px solid rgba(255, 255, 255, 0.06); padding-bottom:10px;">Bespoke Brief Submission</div>
-        <p style="font-size:13px; color:#cbd5e1; line-height:1.75; margin-bottom:20px;">To engineer a proprietary telemetry engine, your organization's criteria must be processed by our system architect. Submit a secure operational query below to initiate the consultation sequence.</p>
+      <!-- RIGHT: Embedded Simple Contact Form -->
+      <div style="border: 1px solid rgba(179,102,255,0.25); border-radius:18px; background:rgba(10,13,24,0.7); backdrop-filter:blur(12px); padding:36px; box-shadow:0 0 32px rgba(179,102,255,0.04);">
+        <div style="font-size:11px; font-weight:800; color:#b366ff; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:14px; border-bottom:1px solid rgba(255, 255, 255, 0.06); padding-bottom:10px;">Contact Sales & Custom Dashboard Queries</div>
+        <p style="font-size:13.5px; color:#cbd5e1; line-height:1.7; margin-bottom:24px;">Send a message to our solutions team. Briefly describe your mapping, threat alerts, or visual analytics needs, and we will follow up with a proposal within 24 hours.</p>
         
-        <div style="background:#03050b; border:1px solid rgba(179,102,255,0.15); border-radius:12px; padding:18px; font-size:11px; line-height:1.8; color:#94a3b8; font-family:'JetBrains Mono',monospace; margin-bottom:24px;">
-          <div style="color:var(--cyan); font-weight:800; margin-bottom:6px;">◈ PROTOCOL SPECIFICATIONS</div>
-          <div>Recipient Node: <span style="color:#fff;">workwithavip@gmail.com</span></div>
-          <div>Security Rating: <span style="color:var(--green);">Asymmetric Cryptography</span></div>
-          <div>Bespoke visualizer and analytics deployment.</div>
-        </div>
+        <!-- Interactive Simple Contact Form -->
+        <form id="enterprise-form" style="display:block;">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" id="ent-name" placeholder="e.g. Sarah Jenkins" required />
+          </div>
 
-        <button onclick="openEnterpriseModal()" class="btn-primary" style="width:100%; justify-content:center; padding:18px; font-size:11px; border-color:rgba(179,102,255,0.5); background:rgba(179,102,255,0.10); color:#b366ff; box-shadow:0 0 28px rgba(179,102,255,0.12);">
-          INQUIRE FOR ENTERPRISE SYSTEM <span class="arrow">→</span>
-        </button>
+          <div class="form-group">
+            <label class="form-label">Company / Organization</label>
+            <input type="text" class="form-input" id="ent-org" placeholder="e.g. Vanguard Logistics" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Business Email</label>
+            <input type="email" class="form-input" id="ent-email" placeholder="e.g. s.jenkins@vanguard.com" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Project Requirements</label>
+            <textarea class="form-textarea" id="ent-requirements" placeholder="Tell us about your tracking, geofencing, or data visualization goals..." required style="height: 110px;"></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" id="ent-submit-btn" style="width:100%; justify-content:center; padding:16px; font-size:11px; border-color:rgba(179,102,255,0.5); background:rgba(179,102,255,0.10); color:#b366ff; box-shadow:0 0 20px rgba(179,102,255,0.06);">
+            SEND MESSAGE <span class="arrow">→</span>
+          </button>
+        </form>
+
+        <div id="enterprise-status" style="display:none; font-size:11px; font-family:'JetBrains Mono',monospace; color:var(--green); margin-top:16px; text-align:center; letter-spacing:0.06em;">
+          ● LAUNCHING MAIL RELAY CLIENT...
+        </div>
       </div>
     </div>
   </div>
@@ -734,149 +754,47 @@
 <script src="js/nav.js" defer></script>
 <script src="js/signals.js" defer></script>
 
-<!-- ENTERPRISE INTAKE MODAL -->
-<div class="modal-overlay" id="enterprise-modal">
-  <div class="modal-content" style="border-color: rgba(179,102,255,0.4); box-shadow: 0 0 60px rgba(179,102,255,0.15);">
-    <button class="modal-close" id="ent-modal-close">×</button>
-    <div class="modal-header" style="color:#b366ff; border-bottom-color: rgba(179,102,255,0.15);">
-      TRANSMIT OPERATIONAL REQUIREMENTS
-    </div>
-    
-    <!-- Interactive Ingestion Form -->
-    <form id="enterprise-form" style="display:block;">
-      <div class="form-group">
-        <label class="form-label">Contact Name / Node ID</label>
-        <input type="text" class="form-input" id="ent-name" placeholder="e.g. Commander Smith / Director of Assets" required />
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Corporate Organization / Agency</label>
-        <input type="text" class="form-input" id="ent-org" placeholder="e.g. Orion Global Transport Corp" required />
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Operational Email Address</label>
-        <input type="email" class="form-input" id="ent-email" placeholder="e.g. secure@orionglobal.com" required />
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Primary Operational Theater Focus</label>
-        <select class="form-input" id="ent-theater" style="background:#03050b;">
-          <option value="Maritime logistics chokepoints">Maritime Logistics Chokepoints</option>
-          <option value="Asset tracking & geofencing">Asset Tracking & Geofencing</option>
-          <option value="EM spectrum jamming / spoofing">EM Spectrum Jamming / Spoofing</option>
-          <option value="Bespoke OSINT threat aggregations">Bespoke OSINT Threat Aggregations</option>
-          <option value="Multi-seat command networks">Multi-Seat Command Networks</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Bespoke Requirements Payload</label>
-        <textarea class="form-textarea" id="ent-requirements" placeholder="Detail your geofences, satellite imaging passes, proprietary API relays, and analysis visuals requirements..." required></textarea>
-      </div>
-
-      <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:16px; font-size:11px; border-color:rgba(179,102,255,0.5); background:rgba(179,102,255,0.10); color:#b366ff;">
-        TRANSMIT SECURE INQUIRY <span class="arrow">→</span>
-      </button>
-    </form>
-
-    <!-- Simulated Secure Transmission Terminal Logs -->
-    <div class="secure-transmission-overlay" id="enterprise-trans-overlay" style="display:none; position:static; background:transparent; padding:0;">
-      <div class="sec-log-box" id="enterprise-trans-log" style="border-color: rgba(179,102,255,0.25); color: #b366ff; margin-bottom: 0;"></div>
-    </div>
-  </div>
-</div>
-
 <script>
-  function openEnterpriseModal() {
-    const modal = document.getElementById('enterprise-modal');
-    const form = document.getElementById('enterprise-form');
-    const overlay = document.getElementById('enterprise-trans-overlay');
-    if (modal) {
-      modal.style.display = 'flex';
-    }
-    if (form) form.style.display = 'block';
-    if (overlay) overlay.style.display = 'none';
-  }
-  
-  function closeEnterpriseModal() {
-    const modal = document.getElementById('enterprise-modal');
-    if (modal) {
-      modal.style.display = 'none';
-    }
-  }
-
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('enterprise-form');
-    const overlay = document.getElementById('enterprise-trans-overlay');
-    const logBox = document.getElementById('enterprise-trans-log');
-    const modalClose = document.getElementById('ent-modal-close');
-    const modal = document.getElementById('enterprise-modal');
+    const status = document.getElementById('enterprise-status');
+    const submitBtn = document.getElementById('ent-submit-btn');
 
-    if (modalClose) {
-      modalClose.addEventListener('click', closeEnterpriseModal);
-    }
-    if (modal) {
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeEnterpriseModal();
-      });
-    }
-
-    if (form && overlay && logBox) {
+    if (form && status && submitBtn) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         
         const name = document.getElementById('ent-name').value;
         const org = document.getElementById('ent-org').value;
         const email = document.getElementById('ent-email').value;
-        const theater = document.getElementById('ent-theater').value;
         const requirements = document.getElementById('ent-requirements').value;
 
-        // Hide form, show logs overlay
-        form.style.display = 'none';
-        overlay.style.display = 'block';
-        logBox.innerHTML = '';
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'PREPARING BRIEF...';
+        status.style.display = 'block';
 
-        const lines = [
-          { text: '> Opening secure telemetry bridge connection...', delay: 100, res: '[OK]' },
-          { text: `> Packaging operational payload: Callsign: ${name}...`, delay: 600, res: '[OK]' },
-          { text: `> Compiling custom geofencing profiles: ${theater}...`, delay: 1100, res: '[OK]' },
-          { text: '> Wrapping encrypted dispatch packet...', delay: 1600, res: '[DONE]' },
-          { text: '> Resolving secure mail gateway to workwithavip@gmail.com...', delay: 2100, res: '[OK]' },
-          { text: '> REDIRECTING TO SYSTEM SMTP CLIENT PAYLOAD...', delay: 2600, res: '[LAUNCH]' }
-        ];
-
-        lines.forEach(({ text, delay, res }) => {
-          setTimeout(() => {
-            const r = document.createElement('div');
-            r.style.cssText = 'display:flex;justify-content:space-between;gap:16px;margin-bottom:4px;';
-            r.innerHTML = `<span style="color:#64748b;">${text}</span><span style="color:#b366ff;font-weight:800;">${res}</span>`;
-            logBox.appendChild(r);
-          }, delay);
-        });
-
-        // Redirect after logs sequence completes
         setTimeout(() => {
           const subject = `Sovereign Intel Enterprise Consultation - ${org}`;
           const body = `SOVEREIGN INTEL ENTERPRISE INTAKE BRIEF
 --------------------------------------------------
-OPERATIONAL CALLSIGN: ${name}
-ORGANIZATION / AGENCY: ${org}
-SECURE EMAIL: ${email}
-PRIMARY THEATER FOCUS: ${theater}
+CONTACT NAME: ${name}
+COMPANY / ORGANIZATION: ${org}
+BUSINESS EMAIL: ${email}
 
-ADDITIONAL REQUIREMENT SPECIFICATIONS PAYLOAD:
+PROJECT SPECIFICATION DETAILS:
 ${requirements}
 --------------------------------------------------
-[Secure Ingestion Protocol Active - Cryptographic Socket Online]`;
+[Form submitted via Sovereign Intel Landing System]`;
           
           window.location.href = `mailto:workwithavip@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
           
-          // Re-enable form after client redirect
           setTimeout(() => {
-            closeEnterpriseModal();
-          }, 1500);
-        }, 3200);
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'SEND MESSAGE';
+            status.style.display = 'none';
+            form.reset();
+          }, 2000);
+        }, 1200);
       });
     }
   });
