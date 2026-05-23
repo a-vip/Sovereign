@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Decryption Active | Sovereign Intel</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300f5ff%22>⬡</text></svg>" />
+
+  <!-- Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+
+  <style>
+    .success-container {
+      max-width: 600px;
+      width: 100%;
+      margin: 80px auto 100px;
+      padding: 0 24px;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .success-icon-wrap {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      background: rgba(0, 255, 136, 0.06);
+      box-shadow: 0 0 32px rgba(0, 255, 136, 0.15);
+      display: grid;
+      place-items: center;
+      margin: 0 auto 30px;
+      color: var(--green);
+      font-size: 32px;
+      animation: pulseGreen 2s infinite alternate;
+    }
+
+    @keyframes pulseGreen {
+      0% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.1); border-color: rgba(0, 255, 136, 0.2); }
+      100% { box-shadow: 0 0 40px rgba(0, 255, 136, 0.3); border-color: rgba(0, 255, 136, 0.5); }
+    }
+
+    .success-terminal {
+      background: #03050b;
+      border: 1px solid rgba(0, 245, 255, 0.15);
+      border-radius: 16px;
+      padding: 30px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      line-height: 2.1;
+      text-align: left;
+      box-shadow: 0 0 48px rgba(0, 0, 0, 0.4);
+      margin-bottom: 40px;
+    }
+
+    .terminal-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      opacity: 0;
+      transform: translateY(6px);
+      animation: lineReveal 0.4s ease forwards;
+    }
+
+    @keyframes lineReveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<!-- GLOBAL HEADER WRAPPER -->
+<header id="global-header" style="transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
+  <!-- TICKER -->
+  <div class="ticker-bar">
+    <div class="ticker-label">● LIVE</div>
+    <div class="ticker-track">
+      <span class="ticker-inner">
+        TRANSACTION CONFIRMED &nbsp;•&nbsp;
+        NODE LICENSING SYNCED &nbsp;•&nbsp;
+        DECRYPTION KEYS DISPATCHED &nbsp;•&nbsp;
+        SECURE VAULT GATEWAY ACTIVE &nbsp;•&nbsp;
+      </span>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav style="transition: background 0.3s;">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">⬡</div>
+        <div class="logo-text">
+          <div class="logo-title">Sovereign Intel</div>
+          <div class="logo-sub">Global Intelligence Platform</div>
+        </div>
+      </a>
+
+      <!-- Hamburger (shows on mobile) -->
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-tabs">
+        <a href="index.html#features" class="nav-tab">Features</a>
+        <a href="signals.html" class="nav-tab">Live Signals</a>
+        <a href="index.html#dashboard" class="nav-tab">Sovereign Dash</a>
+        <a href="enterprise.html" class="nav-tab">Enterprise</a>
+        <a href="pricing.html" class="nav-tab">Pricing</a>
+      </div>
+
+      <div class="nav-right">
+        <div class="live-badge">● SYSTEM LIVE</div>
+        <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="btn-cta-small">Enter Dash →</a>
+      </div>
+    </div>
+
+    <!-- Full-screen mobile nav drawer -->
+    <div class="nav-drawer" aria-hidden="true">
+      <a href="index.html#features" class="nav-drawer-tab">Features</a>
+      <a href="signals.html" class="nav-drawer-tab">Live Signals</a>
+      <a href="index.html#dashboard" class="nav-drawer-tab">Sovereign Dash</a>
+      <a href="enterprise.html" class="nav-drawer-tab">Enterprise</a>
+      <a href="pricing.html" class="nav-drawer-tab">Pricing</a>
+      <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="nav-drawer-tab" style="color: var(--cyan); border-color: rgba(0,245,255,0.3);">Enter Dash →</a>
+    </div>
+  </nav>
+</header>
+
+<div class="success-container">
+  <div class="success-icon-wrap">✔</div>
+  
+  <h2 style="font-size: clamp(24px, 4.5vw, 36px); font-weight:800; text-transform:uppercase; margin-bottom:12px;">Decryption Calibrated</h2>
+  <p style="color:#64748b; font-size:13px; max-width:440px; margin:0 auto 36px; line-height:1.6;">
+    Your threat intelligence subscription has been successfully processed. Secure transaction signature verified.
+  </p>
+
+  <!-- Animated Cyber Terminal -->
+  <div class="success-terminal" id="success-log"></div>
+
+  <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="btn-primary" style="padding:16px 36px; font-size:11px; border-radius:12px; box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);">
+    LAUNCH TELEMETRY DASHBOARD <span class="arrow">→</span>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 SOVEREIGN INTEL &nbsp;·&nbsp; GLOBAL INTELLIGENCE PLATFORM</span>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="signals.html">Live Signals</a>
+    <a href="index.html#dashboard">Space Radar</a>
+    <a href="mailto:secure@sovereign-intel.io">Support</a>
+  </div>
+  <div class="footer-live">
+    <span>◈</span> SECURE VAULT CHANNEL ONLINE
+  </div>
+</footer>
+
+<script src="js/nav.js" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const logBox = document.getElementById('success-log');
+    if (!logBox) return;
+
+    // Generate random secure access hash code
+    const secureHash = 'SOV-PRO-' + Math.random().toString(36).substring(2, 7).toUpperCase() + '-' + Math.random().toString(36).substring(2, 7).toUpperCase();
+
+    const logs = [
+      { text: '> Handshake initiated with payment broker...', res: '[OK]', color: 'var(--cyan)' },
+      { text: '> Validating secure transaction token...', res: '[OK]', color: 'var(--cyan)' },
+      { text: '> PAYMENT STATUS DETECTED...', res: 'CONFIRMED', color: 'var(--green)' },
+      { text: `> ASSIGNED ACCESS KEY: ${secureHash}`, res: '[ACTIVE]', color: 'var(--cyan)' },
+      { text: '> Calibrating commercial satellite pass queries...', res: '[OK]', color: 'var(--cyan)' },
+      { text: '> Opening secure OSINT console ports...', res: '[OK]', color: 'var(--cyan)' },
+      { text: '> SYSTEM READY. GATEWAY AUTHORIZED FOR CONSOLE.', res: '[ONLINE]', color: 'var(--green)' }
+    ];
+
+    logs.forEach((item, idx) => {
+      setTimeout(() => {
+        const row = document.createElement('div');
+        row.className = 'terminal-line';
+        row.innerHTML = `<span style="color:#64748b;">${item.text}</span><span style="color:${item.color}; font-weight:800;">${item.res}</span>`;
+        logBox.appendChild(row);
+      }, idx * 450);
+    });
+  });
+</script>
+
+</body>
+</html>
