@@ -68,7 +68,7 @@
 .signal-location { font-size: 10px; color: #475569; margin-top: 8px; }
 
 /* ─── CATEGORIES & PILLS ─── */
-.categories { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.categories { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 32px; }
 .cat-pill {
   display: flex; align-items: center; gap: 8px;
   padding: 8px 16px; border-radius: 999px; font-size: 10px; font-weight: 700;

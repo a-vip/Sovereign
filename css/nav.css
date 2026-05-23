@@ -20,9 +20,16 @@
 /* ─── NAV ─── */
 nav {
   position: sticky; top: 0; z-index: 19;
+  border-bottom: 1px solid rgba(0,245,255,0.10);
+}
+nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: rgba(8,8,16,0.88);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0,245,255,0.10);
+  z-index: -1;
+  pointer-events: none;
 }
 .nav-inner {
   max-width: 1400px; margin: 0 auto;
@@ -128,13 +135,15 @@ nav {
   align-items: center;
   justify-content: center;
   gap: 20px;
-  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  visibility: hidden;
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
   border-left: 1px solid rgba(0,245,255,0.15);
   box-shadow: -10px 0 30px rgba(0,0,0,0.5);
 }
 
 .nav-drawer.open {
   right: 0;
+  visibility: visible;
 }
 
 .nav-drawer-tab {

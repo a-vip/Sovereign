@@ -30,10 +30,13 @@ window.dismissBoot = dismissBoot;
   const barWrap = document.getElementById('boot-bar-wrap');
   const bar     = document.getElementById('boot-bar');
   
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    dismissBoot();
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || sessionStorage.getItem('bootPlayed') === 'true') {
+    const ol = document.getElementById('boot-ol');
+    if (ol) ol.style.display = 'none';
+    if (typeof startHero === 'function') startHero();
     return;
   }
+  sessionStorage.setItem('bootPlayed', 'true');
 
   if (!linesEl || !barWrap || !bar) return;
 
