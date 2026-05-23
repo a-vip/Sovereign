@@ -2,7 +2,8 @@
 #intro-scroll-container {
   position: relative;
   width: 100%;
-  height: 480vh; /* Extends down to create scrolling milestones */
+  height: 680vh; /* Extends down to create scrolling milestones - made longer! */
+  margin-top: -142px; /* Pulls the container up to cover the ticker (36px) + nav (106px) space! */
   background: #03050b;
   z-index: 99; /* Below nav drawer but overlaying standard contents */
 }
@@ -157,8 +158,8 @@
   color: #94a3b8;
 }
 
-/* Class added to hide the main nav */
-nav.intro-hidden {
+/* Class added to hide the main global header */
+#global-header.intro-hidden {
   transform: translateY(-100%);
 }
 

@@ -269,11 +269,11 @@ function startIntro() {
   gsap.registerPlugin(ScrollTrigger);
 
   const slides = document.querySelectorAll('.intro-slide');
-  const navbar = document.querySelector('nav');
+  const globalHeader = document.getElementById('global-header');
 
   // Initial State
   if (slides.length > 0) slides[0].classList.add('active');
-  if (navbar) navbar.classList.add('intro-hidden');
+  if (globalHeader) globalHeader.classList.add('intro-hidden');
 
   // Let's create an animation target object for GSAP to interpolate smoothly
   const globeAnimState = {
@@ -307,17 +307,14 @@ function startIntro() {
       trigger: '#intro-scroll-container',
       start: 'top top',
       end: 'bottom bottom',
-      scrub: 1.1, // Smooth scrub easing
+      scrub: 1.2, // Smoother scrub easing for slow majestic pacing
       onUpdate: (self) => {
-        // Toggle the header nav when scroll reaches 82% depth
-        if (navbar) {
-          if (self.progress >= 0.82) {
-            navbar.classList.remove('intro-hidden');
-            // Give header a solid background once inside main page
-            navbar.style.background = 'rgba(8, 8, 16, 0.88)';
+        // Toggle the global header when scroll reaches 85% depth (previous hero page entry)
+        if (globalHeader) {
+          if (self.progress >= 0.85) {
+            globalHeader.classList.remove('intro-hidden');
           } else {
-            navbar.classList.add('intro-hidden');
-            navbar.style.background = 'transparent';
+            globalHeader.classList.add('intro-hidden');
           }
         }
 
@@ -339,74 +336,74 @@ function startIntro() {
     return { rotX, rotY };
   }
 
-  // 1. Initial slow spin segment (Slide 1 Active)
+  // 1. Initial slow majestical spin segment (Slide 1 Active)
   animTimeline.to(globeAnimState, {
-    rotY: '+=1.0',
+    rotY: '+=1.6',
     camZ: 300,
-    duration: 1.0,
+    duration: 2.0, // Stretched from 1.0
     onUpdate: updateThreeObjects
   });
 
-  // Transition Slide 1 Out -> Slide 2 In (Scroll progress ~25%)
+  // Transition Slide 1 Out -> Slide 2 In (Scroll progress ~22%)
   animTimeline.add(() => {
     toggleSlide(0);
-  }, 0.8);
+  }, 1.8);
 
   // 2. Pivot camera & zoom into Eastern Europe / Ukraine (Slide 2 Active)
   const eeRot = getCameraRotationForCoord(GEO_COORDINATES.kyiv.lat, GEO_COORDINATES.kyiv.lon);
   animTimeline.to(globeAnimState, {
     rotY: eeRot.rotY,
     rotX: eeRot.rotX,
-    camZ: 190, // Zoom in closer
-    duration: 1.2,
+    camZ: 185, // Zoom in closer
+    duration: 2.6, // Stretched from 1.2
     onUpdate: updateThreeObjects
   });
 
-  // Transition Slide 2 Out -> Slide 3 In (Scroll progress ~50%)
+  // Transition Slide 2 Out -> Slide 3 In (Scroll progress ~52%)
   animTimeline.add(() => {
     toggleSlide(1);
-  }, 2.0);
+  }, 4.4);
 
   // 3. Pivot camera & zoom into Southeast Asia / Malacca (Slide 3 Active)
   const seRot = getCameraRotationForCoord(GEO_COORDINATES.malacca.lat, GEO_COORDINATES.malacca.lon);
   animTimeline.to(globeAnimState, {
     rotY: seRot.rotY,
     rotX: seRot.rotX,
-    camZ: 175, // Zoom even closer
-    duration: 1.2,
+    camZ: 170, // Zoom even closer
+    duration: 2.6, // Stretched from 1.2
     onUpdate: updateThreeObjects
   });
 
-  // Transition Slide 3 Out -> Slide 4 In (Scroll progress ~75%)
+  // Transition Slide 3 Out -> Slide 4 In (Scroll progress ~78%)
   animTimeline.add(() => {
     toggleSlide(2);
-  }, 3.2);
+  }, 7.0);
 
   // 4. Slide 4: Translate globe to the right and scale down to match Hero live preview card
-  // On desktop: shifts right (+40). On mobile: stays centered.
+  // On desktop: shifts right (+60). On mobile: stays centered.
   const isDesktop = window.innerWidth > 900;
   const finalPosX = isDesktop ? 60 : 0;
   const finalPosY = isDesktop ? 5 : -10;
   const finalCamZ = isDesktop ? 220 : 190;
   
   animTimeline.to(globeAnimState, {
-    rotY: '+=1.6', // Spin earth to transition smoothly
+    rotY: '+=2.4', // Spin earth to transition smoothly
     rotX: 0.28,    // Restore default tilt axial values
     camZ: finalCamZ,
     posX: finalPosX,
     posY: finalPosY,
-    duration: 1.4,
+    duration: 2.8, // Stretched from 1.4
     onUpdate: updateThreeObjects
   });
 
-  // Transition Slide 4 Out -> Fade Canvas to transparent (Scroll progress ~95%)
+  // Transition Slide 4 Out -> Fade Canvas to transparent (Scroll progress ~94%)
   animTimeline.add(() => {
     toggleSlide(3);
-  }, 4.4);
+  }, 9.8);
 
   animTimeline.to(globeAnimState, {
     canvasOpacity: 0,
-    duration: 0.8,
+    duration: 1.6, // Stretched from 0.8
     onUpdate: updateThreeObjects
   });
 
