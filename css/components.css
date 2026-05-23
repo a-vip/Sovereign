@@ -155,3 +155,94 @@
 }
 .map-card.lit .toggle-label,
 .map-card.selected .toggle-label { color: var(--card-color, #00f5ff); }
+
+/* ─── ENTERPRISE MODAL & FORM FIELDS ─── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 5, 11, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-content {
+  max-width: 560px;
+  width: 100%;
+  background: rgba(10, 13, 24, 0.95);
+  border: 1px solid rgba(0, 245, 255, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 0 60px rgba(0, 245, 255, 0.15);
+  padding: 32px;
+  position: relative;
+}
+.modal-header {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--cyan);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 10px;
+}
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #64748b;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.modal-close:hover {
+  color: var(--cyan);
+}
+.form-group {
+  margin-bottom: 16px;
+}
+.form-label {
+  display: block;
+  font-size: 9px;
+  font-weight: 800;
+  color: #64748b;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.form-input, .form-textarea {
+  width: 100%;
+  background: #03050b;
+  border: 1px solid rgba(0, 245, 255, 0.2);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: #fff;
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  outline: none;
+  transition: all 0.2s;
+}
+.form-textarea {
+  height: 100px;
+  resize: none;
+}
+.form-input:focus, .form-textarea:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 14px rgba(0, 245, 255, 0.15);
+}
+.sec-log-box {
+  font-size: 11px;
+  line-height: 2;
+  color: var(--cyan);
+  background: #03050b;
+  border: 1px solid rgba(0, 245, 255, 0.12);
+  border-radius: 12px;
+  padding: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 20px;
+  min-height: 200px;
+}

@@ -161,3 +161,124 @@ h2 {
   padding: 8px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04);
   background: rgba(255,255,255,0.02); margin-bottom: 6px; font-size: 9px; color: #94a3b8;
 }
+
+/* ─── GEOPOLITICAL BLINDSPOT ─── */
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+.problem-card {
+  border: 1px solid rgba(255, 34, 68, 0.15);
+  border-radius: 18px;
+  background: rgba(10, 13, 24, 0.4);
+  padding: 32px;
+  box-shadow: 0 0 32px rgba(255, 34, 68, 0.02);
+  transition: all 0.3s;
+}
+.problem-card:hover {
+  border-color: rgba(255, 34, 68, 0.3);
+  box-shadow: 0 0 32px rgba(255, 34, 68, 0.06);
+}
+.problem-card .card-badge {
+  display: inline-block;
+  font-size: 8px;
+  font-weight: 800;
+  color: var(--red);
+  background: rgba(255, 34, 68, 0.08);
+  border: 1px solid rgba(255, 34, 68, 0.25);
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.problem-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.problem-card .problem-txt {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.problem-card .solution-txt {
+  font-size: 12px;
+  color: #cbd5e1;
+  line-height: 1.75;
+  background: rgba(0, 245, 255, 0.03);
+  border: 1px dashed rgba(0, 245, 255, 0.15);
+  padding: 16px;
+  border-radius: 10px;
+  position: relative;
+}
+.problem-card .solution-txt strong {
+  color: var(--cyan);
+  display: block;
+  margin-bottom: 4px;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ─── ENTERPRISE TIER ─── */
+.enterprise-section {
+  border-top: 1px solid rgba(0, 245, 255, 0.07);
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+}
+.enterprise-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 48px;
+  margin-top: 48px;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .enterprise-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+.enterprise-card-hero {
+  border: 1px solid rgba(179, 102, 255, 0.3);
+  border-radius: 24px;
+  background: radial-gradient(circle at 100% 0%, rgba(179, 102, 255, 0.08) 0%, rgba(10, 13, 24, 0.8) 70%);
+  padding: 48px 36px;
+  box-shadow: 0 0 64px rgba(179, 102, 255, 0.08);
+  position: relative;
+}
+.enterprise-card-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--cyan), #b366ff);
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 0 12px #b366ff;
+}
+.enterprise-features-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+.enterprise-feature-item {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+.enterprise-feature-icon {
+  font-size: 12px;
+  color: #b366ff;
+  font-weight: 800;
+  text-shadow: 0 0 6px #b366ff;
+}
