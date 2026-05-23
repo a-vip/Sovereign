@@ -11,7 +11,7 @@
   <!-- Fonts Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/base.css" />
@@ -21,174 +21,833 @@
   <link rel="stylesheet" href="css/animations.css" />
 
   <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #05070f;
+    }
+
+    /* Checkout Master Container */
     .checkout-layout {
-      max-width: 1100px;
-      margin: 60px auto 100px;
+      max-width: 1200px;
+      margin: 40px auto 100px;
       padding: 0 24px;
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 48px;
       position: relative;
       z-index: 10;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       .checkout-layout {
         grid-template-columns: 1fr;
         gap: 36px;
-        margin: 40px auto 60px;
+        margin: 20px auto 60px;
       }
     }
 
-    /* Left Side: Summary */
-    .checkout-summary {
-      background: rgba(10, 13, 24, 0.4);
+    /* Left Side: Form Panel */
+    .checkout-form-container {
+      background: rgba(10, 13, 24, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 20px;
-      padding: 40px 32px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      padding: 40px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(16px);
+      transition: border-color 0.3s;
     }
-
-    .order-title {
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      color: #64748b;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .product-info {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 24px;
-      margin-bottom: 24px;
-    }
-
-    .product-price-wrap {
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .product-price {
-      font-size: 38px;
-      font-weight: 800;
-      color: #fff;
-      line-height: 1;
-    }
-
-    .product-period {
-      font-size: 11px;
-      color: #475569;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-
-    .compliance-badges {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-top: 40px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding-top: 24px;
-    }
-
-    .badge-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 11px;
-      color: #64748b;
-    }
-
-    .badge-icon {
-      color: var(--cyan);
-      font-weight: 800;
-    }
-
-    /* Right Side: Form */
-    .checkout-form-container {
-      background: rgba(10, 13, 24, 0.75);
-      border: 1px solid rgba(0, 245, 255, 0.15);
-      box-shadow: 0 0 32px rgba(0, 245, 255, 0.04);
-      border-radius: 20px;
-      padding: 40px 32px;
+    
+    .checkout-form-container:hover {
+      border-color: rgba(0, 245, 255, 0.1);
     }
 
     .form-section-title {
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 700;
       color: var(--cyan);
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      margin-bottom: 20px;
-      border-bottom: 1px solid rgba(0, 245, 255, 0.08);
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       padding-bottom: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
+    /* Express Payment Grid */
+    .express-buttons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 580px) {
+      .express-buttons-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+    }
+
+    .express-btn {
+      height: 48px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.15s, opacity 0.15s, box-shadow 0.2s;
+    }
+
+    .express-btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.95;
+    }
+
+    .express-btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-apple {
+      background: #000000;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .btn-apple svg {
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .btn-google {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .btn-google svg {
+      height: 18px;
+    }
+
+    .btn-paypal {
+      background: #ffc439;
+      box-shadow: 0 4px 12px rgba(255,196,57,0.15);
+    }
+    .btn-paypal svg {
+      height: 20px;
+    }
+
+    /* Trust Dividers */
+    .payment-divider {
+      position: relative;
+      text-align: center;
+      margin: 32px 0;
+    }
+    .payment-divider::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.06);
+      z-index: 1;
+    }
+    .payment-divider span {
+      position: relative;
+      z-index: 2;
+      background: #0a0d18;
+      padding: 0 16px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Custom Form Styling */
     .form-group {
       margin-bottom: 20px;
     }
 
     .form-group label {
       display: block;
-      font-size: 9px;
-      font-weight: 800;
-      color: #64748b;
-      letter-spacing: 0.12em;
+      font-size: 10px;
+      font-weight: 700;
+      color: #8a99ad;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 8px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .input-wrapper {
+      position: relative;
+      width: 100%;
     }
 
     .form-input {
       width: 100%;
       background: rgba(3, 5, 11, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
-      padding: 12px 16px;
+      border-radius: 10px;
+      padding: 14px 18px;
       font-family: 'JetBrains Mono', monospace;
       color: #fff;
       font-size: 13px;
       outline: none;
-      transition: border-color 0.25s, box-shadow 0.25s;
+      box-sizing: border-box;
+      transition: border-color 0.25s, box-shadow 0.25s, background-color 0.25s;
+    }
+
+    .form-input::placeholder {
+      color: #3b4b60;
     }
 
     .form-input:focus {
       border-color: rgba(0, 245, 255, 0.35);
-      box-shadow: 0 0 12px rgba(0, 245, 255, 0.06);
+      box-shadow: 0 0 12px rgba(0, 245, 255, 0.08);
+      background-color: rgba(3, 5, 11, 0.95);
     }
 
-    .form-row-2 {
+    .form-row-3 {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.2fr 1fr 1fr;
       gap: 16px;
+    }
+
+    @media (max-width: 580px) {
+      .form-row-3 {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    /* Floating Card Network Icons */
+    .input-card-brand {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      color: #475569;
+      transition: color 0.2s, opacity 0.2s;
+    }
+
+    /* Terms checkbox */
+    .terms-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin: 28px 0 16px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .terms-wrap input {
+      margin-top: 3px;
+      accent-color: var(--cyan);
+    }
+    .terms-text {
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    /* Submit disclaimer and trust */
+    .submit-trust-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+      font-size: 11px;
+      color: #475569;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .submit-trust-footer svg {
+      fill: currentColor;
+    }
+
+    /* Right Side: Order Summary Panel */
+    .checkout-receipt-side {
+      position: relative;
+    }
+
+    .billing-receipt {
+      background: rgba(10, 13, 24, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 100px;
+    }
+
+    .receipt-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .receipt-item-box {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+    }
+
+    .receipt-price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 12px;
+    }
+
+    .receipt-price-value {
+      font-size: 32px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .receipt-price-period {
+      font-size: 11px;
+      color: #64748b;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 2px;
+    }
+
+    .receipt-table {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 12px;
+      color: #cbd5e1;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+    }
+
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .receipt-row.total-row {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .renewal-badge {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: rgba(0, 245, 255, 0.03);
+      border: 1px solid rgba(0, 245, 255, 0.08);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-top: 8px;
+    }
+
+    .renewal-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .renewal-date {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    /* Trust Badges list */
+    .receipt-trust-badges {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 24px;
+    }
+
+    .trust-badge-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .trust-badge-icon {
+      color: var(--cyan);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    /* ─── WALLET INTERACTIVE AUTHORIZATION OVERLAYS ─── */
+    .wallet-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 5, 11, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    /* iOS Apple Pay Style Sheet */
+    .apple-pay-sheet {
+      width: 100%;
+      max-width: 440px;
+      background: #1c1c1e;
+      border-radius: 20px;
+      overflow: hidden;
+      color: #fff;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      animation: appleSheetUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      transform: translateY(100px);
+      opacity: 0;
+    }
+    
+    @keyframes appleSheetUp {
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .ap-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid #2c2c2e;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ap-header span { font-weight: 600; font-size: 17px; display: flex; align-items: center; gap: 4px; }
+    .ap-close { background: none; border: none; color: #8e8e93; font-size: 22px; cursor: pointer; display: flex; align-items: center; }
+
+    .ap-row {
+      padding: 16px 24px;
+      border-bottom: 1px solid #2c2c2e;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15px;
+    }
+    .ap-label { color: #8e8e93; font-weight: 500; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; width: 90px; }
+    .ap-value { flex: 1; text-align: left; font-weight: 400; color: #fff; }
+    .ap-amount { font-size: 20px; font-weight: 600; color: #fff; }
+
+    .ap-biometric-prompt {
+      padding: 32px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      background: #1c1c1e;
+    }
+
+    /* Biometric animation */
+    .ap-fingerprint-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 2px solid #30d158;
+      display: grid;
+      place-items: center;
+      color: #30d158;
+      font-size: 32px;
+      box-shadow: 0 0 20px rgba(48,209,88,0.25);
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+    }
+    
+    .ap-fingerprint-icon::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid rgba(48, 209, 88, 0.4);
+      animation: apRing 1.8s infinite;
+    }
+
+    @keyframes apRing {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.25); opacity: 0; }
+    }
+
+    .ap-fingerprint-icon.verifying {
+      border-color: #0a84ff;
+      color: #0a84ff;
+      box-shadow: 0 0 20px rgba(10,132,255,0.25);
+    }
+    .ap-fingerprint-icon.verifying::before {
+      border-color: rgba(10, 132, 255, 0.4);
+    }
+
+    .ap-fingerprint-icon.success {
+      border-color: #30d158;
+      color: #fff;
+      background: #30d158;
+      box-shadow: 0 0 24px rgba(48,209,88,0.5);
+    }
+    .ap-fingerprint-icon.success::before {
+      display: none;
+    }
+
+    /* Google Pay Style Sheet */
+    .gpay-sheet {
+      width: 100%;
+      max-width: 460px;
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      color: #202124;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      font-family: "Product Sans", "Google Sans", Roboto, Arial, sans-serif;
+      animation: gpayFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    
+    @keyframes gpayFade {
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .gp-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid #e8eaed;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .gp-header-inner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .gp-close { background: none; border: none; color: #5f6368; font-size: 20px; cursor: pointer; display: flex; align-items: center; }
+
+    .gp-body {
+      padding: 24px;
+    }
+
+    .gp-payment-info {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .gp-merchant-title {
+      font-size: 13px;
+      color: #5f6368;
+      font-weight: 500;
+    }
+
+    .gp-price-val {
+      font-size: 32px;
+      font-weight: 700;
+      color: #202124;
+      margin-top: 4px;
+    }
+
+    .gp-label-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #5f6368;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+
+    .gp-card-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      border: 1px solid #dadce0;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      cursor: pointer;
+      background: #f8f9fa;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+    
+    .gp-card-item:hover {
+      background: #f1f3f4;
+      border-color: #bdc1c6;
+    }
+
+    .gp-card-logo {
+      width: 44px;
+      height: 28px;
+      border: 1px solid #dadce0;
+      border-radius: 6px;
+      background: #ffffff;
+      display: grid;
+      place-items: center;
+    }
+
+    .gp-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      border-top: 1px solid #e8eaed;
+      padding-top: 20px;
+      margin-top: 8px;
+    }
+
+    .gp-btn-cancel {
+      background: none;
+      border: none;
+      color: #1a73e8;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 10px 16px;
+      border-radius: 8px;
+      transition: background-color 0.2s;
+    }
+    .gp-btn-cancel:hover {
+      background: #f8f9fa;
+    }
+
+    .gp-btn-pay {
+      background: #1a73e8;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 24px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(60,64,67,0.3), 0 4px 8px rgba(60,64,67,0.15);
+      transition: background-color 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .gp-btn-pay:hover {
+      background: #1557b0;
+      box-shadow: 0 2px 6px rgba(60,64,67,0.3), 0 6px 12px rgba(60,64,67,0.15);
+    }
+
+    /* Google pay colored spinner */
+    .gp-spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid transparent;
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: gpSpin 0.8s linear infinite;
+      display: none;
+    }
+
+    @keyframes gpSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* PayPal Sheet Style */
+    .paypal-sheet {
+      width: 100%;
+      max-width: 480px;
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      animation: gpayFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      color: #333333;
+    }
+
+    .pp-header {
+      background: #003087;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .pp-close { color: #fff; background: none; border: none; font-size: 20px; cursor: pointer; display: flex; align-items: center; }
+
+    .pp-body {
+      padding: 32px 24px;
+    }
+
+    .pp-logo-title {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .pp-logo-title img {
+      height: 24px;
+    }
+    
+    .pp-payment-desc {
+      font-size: 15px;
+      font-weight: 500;
+      color: #002c8a;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .pp-login-input {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      outline: none;
+      box-sizing: border-box;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    
+    .pp-login-input:focus {
+      border-color: #0079c1;
+      box-shadow: 0 0 8px rgba(0,121,193,0.15);
+    }
+
+    .pp-btn-action {
+      width: 100%;
+      height: 48px;
+      background: #0079c1;
+      border: none;
+      border-radius: 24px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .pp-btn-action:hover {
+      background: #005ea6;
+    }
+
+    /* PayPal wallet page simulation */
+    .pp-wallet-step {
+      display: none;
+    }
+
+    .pp-wallet-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      margin-bottom: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+    }
+    
+    .pp-wallet-row:hover {
+      border-color: #0079c1;
+      background: rgba(0,121,193,0.02);
+    }
+    
+    .pp-wallet-row.active {
+      border-color: #0079c1;
+      background: rgba(0,121,193,0.05);
+      box-shadow: inset 3px 0 0 #0079c1;
+    }
+
+    .pp-wallet-radio {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid #cbd5e1;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    
+    .pp-wallet-row.active .pp-wallet-radio {
+      border-color: #0079c1;
+    }
+    
+    .pp-wallet-row.active .pp-wallet-radio::after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #0079c1;
+    }
+
+    .pp-wallet-text {
+      flex: 1;
+    }
+
+    .pp-wallet-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .pp-wallet-sub {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    .pp-spinner {
+      width: 20px;
+      height: 20px;
+      border: 2.5px solid transparent;
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: gpSpin 0.8s linear infinite;
+      display: none;
     }
 
     /* Processing Overlay */
     .processing-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(3, 5, 11, 0.9);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
+      background: rgba(3, 5, 11, 0.92);
+      backdrop-filter: blur(12px);
+      z-index: 1001;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 24px;
     }
-
     .processing-content {
       max-width: 500px;
       width: 100%;
-      background: #03050b;
-      border: 1px solid rgba(0, 245, 255, 0.25);
-      border-radius: 16px;
-      padding: 32px;
-      box-shadow: 0 0 48px rgba(0, 245, 255, 0.12);
+      background: #060914;
+      border: 1px solid rgba(0, 245, 255, 0.2);
+      border-radius: 20px;
+      padding: 36px;
+      box-shadow: 0 0 50px rgba(0, 245, 255, 0.15);
+      animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes scaleUp {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
@@ -200,11 +859,12 @@
 <header id="global-header" style="transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
   <!-- TICKER -->
   <div class="ticker-bar">
-    <div class="ticker-label">● LIVE</div>
+    <div class="ticker-label">● SECURE</div>
     <div class="ticker-track">
       <span class="ticker-inner">
         SECURE TRANSACTION GATEWAY ACTIVE &nbsp;•&nbsp;
-        PCI-DSS ENCRYPTED NODE &nbsp;•&nbsp;
+        PCI-DSS COMPLIANT LINKED NODE &nbsp;•&nbsp;
+        AES-256 BIT TRANSACTION ENCRYPTION ENABLED &nbsp;•&nbsp;
         DECRYPTED ACCESS ASSURED &nbsp;•&nbsp;
       </span>
     </div>
@@ -244,83 +904,353 @@
 
 <div class="checkout-layout">
   
-  <!-- Left Side: Order Summary -->
-  <div class="checkout-summary">
-    <div>
-      <div class="order-title">Order Summary</div>
-      <div class="product-info">
-        <h3 id="plan-name" style="font-size: 18px; font-weight:800; color:#fff; text-transform:uppercase;">Professional Plan</h3>
-        <p style="color:#64748b; font-size:12px; margin-top:8px; line-height:1.6;">Full access to live threat console, commercial satellite coordinates tracking, email notifications, and bulk JSON exports.</p>
-        <div class="product-price-wrap">
-          <span class="product-price" id="checkout-price">$29.00</span>
-          <span class="product-period" id="checkout-period">/ month</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Security/Compliance badges -->
-    <div class="compliance-badges">
-      <div class="badge-item">
-        <span class="badge-icon">✓</span>
-        <span>Secure PCI-DSS compliant credit card processing</span>
-      </div>
-      <div class="badge-item">
-        <span class="badge-icon">✓</span>
-        <span>AES-256 Bit SSL transaction encryption</span>
-      </div>
-      <div class="badge-item">
-        <span class="badge-icon">✓</span>
-        <span>Includes cards, Apple Pay, and Google Pay routing</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Right Side: Checkout Form -->
+  <!-- Left Side: Checkout Form and Express Pay -->
   <div class="checkout-form-container">
-    <form id="checkout-form" onsubmit="handlePaymentSubmit(event)">
+    
+    <!-- Express Payment Options -->
+    <div class="form-section-title">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <span>Express Checkout</span>
+    </div>
+    
+    <div class="express-buttons-grid">
+      <!-- Apple Pay -->
+      <button class="express-btn btn-apple" onclick="openWalletAuth('apple')" aria-label="Pay with Apple Pay">
+        <svg viewBox="0 0 100 100">
+          <path d="M83.82 46.12c-.15-8.48 6.96-12.56 7.29-12.75-3.95-5.78-10.1-6.56-12.3-6.66-5.26-.53-10.27 3.1-12.94 3.1-2.67 0-6.8-3.08-11.23-2.99-5.83.08-11.21 3.4-14.21 8.62-6.07 10.53-1.55 26.11 4.3 34.58 2.87 4.14 6.27 8.76 10.74 8.59 4.31-.17 5.94-2.78 11.14-2.78 5.18 0 6.66 2.78 11.14 2.69 4.56-.08 7.55-4.22 10.4-8.38 3.3-4.8 4.66-9.45 4.74-9.69-.1-.04-9.08-3.48-9.18-13.82zM73.49 20.4c2.36-2.86 3.96-6.84 3.52-10.82-3.42.14-7.56 2.28-10.02 5.16-2.12 2.45-3.97 6.48-3.47 10.4 3.8.3 7.62-1.88 9.97-4.74z"/>
+        </svg>
+        <span style="font-size: 16px; font-weight: 600; margin-left: 2px;">Pay</span>
+      </button>
       
+      <!-- Google Pay -->
+      <button class="express-btn btn-google" onclick="openWalletAuth('google')" aria-label="Pay with Google Pay">
+        <svg viewBox="0 0 100 40">
+          <path fill="#ea4335" d="M12.9 14.2c2-2.1 4.5-3.2 7.4-3.2 2.6 0 4.8.8 6.6 2.4l-2.6 2.6c-1.1-1-2.5-1.5-4-1.5-1.9 0-3.6.7-4.9 2-1.3 1.3-2 3-2 5.1s.7 3.8 2 5.1c1.3 1.3 3 2 4.9 2 1.6 0 3-.5 4.2-1.6 1.1-1 1.7-2.4 1.8-4.2h-6v-3.5h9.5c.1.5.1 1.1.1 1.6 0 2.8-.9 5.2-2.7 7-1.8 1.9-4.2 2.8-7.1 2.8-2.9 0-5.4-1.1-7.4-3.2S9.8 24.3 9.8 21.2s1.1-4.9 3.1-7z"/>
+          <path fill="#f9bc05" d="M36.1 15.6c1.6-1.6 3.6-2.4 5.9-2.4s4.3.8 5.9 2.4c1.6 1.6 2.4 3.6 2.4 5.9s-.8 4.3-2.4 5.9c-1.6 1.6-3.6 2.4-5.9 2.4s-4.3-.8-5.9-2.4c-1.6-1.6-2.4-3.6-2.4-5.9s.8-4.3 2.4-5.9zm2.6 9.3c.9.9 2.1 1.3 3.3 1.3s2.4-.4 3.3-1.3c.9-.9 1.4-2.1 1.4-3.4s-.5-2.5-1.4-3.4c-.9-.9-2.1-1.3-3.3-1.3s-2.4.4-3.3 1.3c-.9.9-1.4 2.1-1.4 3.4s.5 2.5 1.4 3.4z"/>
+          <path fill="#4285f4" d="M57.6 15.6c1.6-1.6 3.6-2.4 5.9-2.4s4.3.8 5.9 2.4c1.6 1.6 2.4 3.6 2.4 5.9s-.8 4.3-2.4 5.9c-1.6 1.6-3.6 2.4-5.9 2.4s-4.3-.8-5.9-2.4c-1.6-1.6-2.4-3.6-2.4-5.9s.8-4.3 2.4-5.9zm2.6 9.3c.9.9 2.1 1.3 3.3 1.3s2.4-.4 3.3-1.3c.9-.9 1.4-2.1 1.4-3.4s-.5-2.5-1.4-3.4c-.9-.9-2.1-1.3-3.3-1.3s-2.4.4-3.3 1.3c-.9.9-1.4 2.1-1.4 3.4s.5 2.5 1.4 3.4z"/>
+          <path fill="#34a853" d="M79.1 13.6h3.6V29h-3.6V13.6zm10 2c1.2-1.6 2.8-2.4 4.8-2.4 1.7 0 3.1.6 4.1 1.7s1.5 2.8 1.5 4.9V29h-3.6v-8.6c0-2.2-.9-3.3-2.7-3.3-1.6 0-2.7.9-3.2 2.3-.2.5-.3 1-.3 1.6V29h-3.6V13.6h3.3v2z"/>
+          <path fill="#4285f4" d="M74.9 13.6L70.4 24l-4.4-10.4h-3.8l6.4 14.4-3.7 7.7H69l9.7-22.1z"/>
+        </svg>
+      </button>
+
+      <!-- PayPal -->
+      <button class="express-btn btn-paypal" onclick="openWalletAuth('paypal')" aria-label="Pay with PayPal">
+        <svg viewBox="0 0 100 30">
+          <path fill="#003087" d="M14.6 22.8c.2-1.3.9-6.3.9-6.3.3-1.8 1.9-3.1 3.7-3.1h6.6c4.6 0 7.4-2.2 8-6.3.5-3.6-1.8-6-5.8-6H16.6c-1.8 0-3.3 1.3-3.6 3.1l-3 18.6h4.6zm1.3-17.7h6.6c2.4 0 3.6 1.1 3.3 3.3-.3 2.2-2.1 3.3-4.6 3.3h-4.2l1.1-6.6zm22.4 11.2h4.6c4.6 0 7.4-2.2 8-6.3.5-3.6-1.8-6-5.8-6H33.8c-1.8 0-3.3 1.3-3.6 3.1L27.2 25c-.2 1.3.8 2.4 2.1 2.4h3.6c1.8 0 3.3-1.3 3.6-3.1l.9-5.6zm1.3-11.2h6.6c2.4 0 3.6 1.1 3.3 3.3-.3 2.2-2.1 3.3-4.6 3.3h-4.2l1.1-6.6zm26.6 8.3L61 24.1c-.2 1.3.8 2.4 2.1 2.4h3.6c1.5 0 2.8-.9 3.2-2.4l1.1-3.6h4.2c4.6 0 7.4-2.2 8-6.3.5-3.6-1.8-6-5.8-6H64.9l1.3-1.8zm3.3-3.3h6.6c2.4 0 3.6 1.1 3.3 3.3-.3 2.2-2.1 3.3-4.6 3.3h-4.2l1.1-6.6z"/>
+          <path fill="#0079C1" d="M50.6 6.3l-2.6 16.5c-.2 1.3.8 2.4 2.1 2.4h3.6c1.5 0 2.8-.9 3.2-2.4l2.6-16.5H50.6z"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="payment-divider">
+      <span>or pay with credit card</span>
+    </div>
+
+    <form id="checkout-form" onsubmit="handlePaymentSubmit(event)">
       <!-- Contact Info -->
-      <div class="form-section-title">1. Contact Information</div>
+      <div class="form-section-title">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>1. Contact Information</span>
+      </div>
       <div class="form-group">
         <label for="email">Business Email Address</label>
         <input type="email" id="email" class="form-input" placeholder="name@organization.com" required />
       </div>
 
       <!-- Card Details -->
-      <div class="form-section-title">2. Card Information</div>
+      <div class="form-section-title">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        <span>2. Card Information</span>
+      </div>
+      
       <div class="form-group">
         <label for="card-name">Cardholder Name</label>
         <input type="text" id="card-name" class="form-input" placeholder="Jane Doe" required />
       </div>
+      
       <div class="form-group">
         <label for="card-number">Credit Card Number</label>
-        <input type="text" id="card-number" class="form-input" maxlength="19" placeholder="4111 2222 3333 4444" required />
+        <div class="input-wrapper">
+          <input type="text" id="card-number" class="form-input" maxlength="19" placeholder="4111 2222 3333 4444" required />
+          <div class="input-card-brand" id="card-brand-icon">
+            <!-- Generic card icon initially -->
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+        </div>
       </div>
-      <div class="form-row-2">
+      
+      <div class="form-row-3">
         <div class="form-group">
           <label for="card-expiry">Expiry Date</label>
           <input type="text" id="card-expiry" class="form-input" maxlength="5" placeholder="MM/YY" required />
         </div>
+        
         <div class="form-group">
           <label for="card-cvc">CVC Code</label>
-          <input type="text" id="card-cvc" class="form-input" maxlength="4" placeholder="CVC" required />
+          <input type="text" id="card-cvc" class="form-input" maxlength="4" placeholder="123" required />
+        </div>
+
+        <div class="form-group">
+          <label for="card-zip">ZIP / Postal Code</label>
+          <input type="text" id="card-zip" class="form-input" maxlength="10" placeholder="10001" required />
         </div>
       </div>
 
-      <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:16px; font-size:11px; border-radius:10px; margin-top:10px; text-transform:uppercase;">
-        Subscribe Now
+      <!-- Agreement Checks -->
+      <label class="terms-wrap">
+        <input type="checkbox" id="check-terms" required />
+        <span class="terms-text">
+          I authorize Sovereign Intel to establish this recurring subscription. I agree to the standard corporate <span style="color:var(--cyan); text-decoration:underline;">Terms of Service</span> and <span style="color:var(--cyan); text-decoration:underline;">Privacy Policy</span>.
+        </span>
+      </label>
+
+      <button type="submit" class="btn-primary" id="btn-submit-main" style="width:100%; justify-content:center; padding:16px; font-size:11px; border-radius:12px; margin-top:10px; text-transform:uppercase; font-family:'JetBrains Mono', monospace; box-shadow: 0 0 20px rgba(0, 245, 255, 0.15);">
+        Securely Subscribe Now
       </button>
+
+      <div class="submit-trust-footer">
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span>SSL Secured • PCI-DSS Compliant • Bank-Grade Encryption</span>
+      </div>
     </form>
+  </div>
+
+  <!-- Right Side: Order Summary Panel -->
+  <div class="checkout-receipt-side">
+    <div class="billing-receipt">
+      <div class="receipt-title">Order Summary</div>
+      
+      <div class="receipt-item-box">
+        <h3 id="plan-name" style="font-size: 16px; font-weight:800; color:#fff; text-transform:uppercase; font-family:'JetBrains Mono', monospace; letter-spacing: 0.05em;">Professional Plan</h3>
+        <p style="color:#64748b; font-size:12px; margin-top:8px; line-height:1.6;">Full real-time tactical crisis tracking, commercial satellite pass queries, email telemetry notifications, and bulk database exports.</p>
+        
+        <div class="receipt-price-row">
+          <span class="receipt-price-value" id="checkout-price">$29.00</span>
+          <span class="receipt-price-period" id="checkout-period">/ month</span>
+        </div>
+      </div>
+
+      <!-- Price Table -->
+      <div class="receipt-table">
+        <div class="receipt-row">
+          <span style="color:#64748b;">Subtotal</span>
+          <span id="table-subtotal">$29.00</span>
+        </div>
+        <div class="receipt-row">
+          <span style="color:#64748b;">Provisioning & Setup</span>
+          <span style="color:var(--green); font-weight: 600;">$0.00 (Free)</span>
+        </div>
+        <div class="receipt-row">
+          <span style="color:#64748b;">Processing Fees / Taxes</span>
+          <span>$0.00</span>
+        </div>
+        <div style="height: 1px; background: rgba(255,255,255,0.06); margin: 6px 0;"></div>
+        <div class="receipt-row total-row">
+          <span>Total Due Today</span>
+          <span id="table-total" style="color: var(--cyan); font-size: 16px; font-weight: 800; text-shadow: 0 0 10px rgba(0, 245, 255, 0.2);">$29.00</span>
+        </div>
+      </div>
+
+      <!-- Dynamic Renewal badge -->
+      <div class="renewal-badge">
+        <span class="renewal-label">Terms & Renewal Cycle</span>
+        <span class="renewal-date" id="renewal-message">Renews on June 23, 2026</span>
+      </div>
+
+      <!-- Trust Badges List -->
+      <div class="receipt-trust-badges">
+        <div class="trust-badge-item">
+          <div class="trust-badge-icon">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <span>PCI-DSS Level 1 Compliant Gateway</span>
+        </div>
+        <div class="trust-badge-item">
+          <div class="trust-badge-icon">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <span>Secure 256-Bit SSL Encrypted Link</span>
+        </div>
+        <div class="trust-badge-item">
+          <div class="trust-badge-icon">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <span>14-Day Risk-Free Refund Guarantee</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- Simulated payment verification sequence -->
+<!-- ─── WALLET INTERACTIVE AUTHORIZATION OVERLAYS ─── -->
+
+<!-- Apple Pay Sheet Overlay -->
+<div class="wallet-overlay" id="overlay-apple" onclick="closeWalletOverlay(event, 'apple')">
+  <div class="apple-pay-sheet">
+    <div class="ap-header">
+      <span> Pay</span>
+      <button class="ap-close" onclick="closeWalletAuth('apple')">✕</button>
+    </div>
+    
+    <div class="ap-row">
+      <span class="ap-label">Merchant</span>
+      <span class="ap-value" style="font-weight:600;">SOVEREIGN INTEL</span>
+    </div>
+    
+    <div class="ap-row">
+      <span class="ap-label">Card</span>
+      <span class="ap-value" style="display:flex; align-items:center; gap:8px;">
+        <span style="font-weight:600; background:#fff; color:#000; padding:1px 6px; border-radius:4px; font-size:10px;">VISA</span>
+         Corporate Debit (•••• 4920)
+      </span>
+    </div>
+    
+    <div class="ap-row">
+      <span class="ap-label">Contact</span>
+      <span class="ap-value" id="ap-email-field">secure@organization.com</span>
+    </div>
+    
+    <div class="ap-row" style="background:#151517; padding-top: 20px; padding-bottom: 20px;">
+      <span class="ap-label" style="color:#fff; font-weight: 600; font-size:12px;">TOTAL TODAY</span>
+      <span class="ap-value ap-amount" id="ap-total-field" style="color:var(--cyan); font-weight: 700;">$29.00</span>
+    </div>
+    
+    <div class="ap-biometric-prompt">
+      <div class="ap-fingerprint-icon" id="ap-bio-node" onclick="triggerAppleBiometrics()">
+        
+      </div>
+      <div id="ap-bio-status" style="font-size:13px; color:#8e8e93; font-weight: 500;">Touch Fingerprint Node or Click Here to Pay</div>
+    </div>
+  </div>
+</div>
+
+<!-- Google Pay Sheet Overlay -->
+<div class="wallet-overlay" id="overlay-google" onclick="closeWalletOverlay(event, 'google')">
+  <div class="gpay-sheet">
+    <div class="gp-header">
+      <div class="gp-header-inner">
+        <svg viewBox="0 0 100 40" height="20">
+          <path fill="#4285f4" d="M12.9 14.2c2-2.1 4.5-3.2 7.4-3.2 2.6 0 4.8.8 6.6 2.4l-2.6 2.6c-1.1-1-2.5-1.5-4-1.5-1.9 0-3.6.7-4.9 2-1.3 1.3-2 3-2 5.1s.7 3.8 2 5.1c1.3 1.3 3 2 4.9 2 1.6 0 3-.5 4.2-1.6 1.1-1 1.7-2.4 1.8-4.2h-6v-3.5h9.5c.1.5.1 1.1.1 1.6 0 2.8-.9 5.2-2.7 7-1.8 1.9-4.2 2.8-7.1 2.8-2.9 0-5.4-1.1-7.4-3.2S9.8 24.3 9.8 21.2s1.1-4.9 3.1-7z"/>
+          <path fill="#ea4335" d="M36.1 15.6c1.6-1.6 3.6-2.4 5.9-2.4s4.3.8 5.9 2.4c1.6 1.6 2.4 3.6 2.4 5.9s-.8 4.3-2.4 5.9c-1.6 1.6-3.6 2.4-5.9 2.4s-4.3-.8-5.9-2.4c-1.6-1.6-2.4-3.6-2.4-5.9s.8-4.3 2.4-5.9zm2.6 9.3c.9.9 2.1 1.3 3.3 1.3s2.4-.4 3.3-1.3c.9-.9 1.4-2.1 1.4-3.4s-.5-2.5-1.4-3.4c-.9-.9-2.1-1.3-3.3-1.3s-2.4.4-3.3 1.3c-.9.9-1.4 2.1-1.4 3.4s.5 2.5 1.4 3.4z"/>
+          <path fill="#f9bc05" d="M57.6 15.6c1.6-1.6 3.6-2.4 5.9-2.4s4.3.8 5.9 2.4c1.6 1.6 2.4 3.6 2.4 5.9s-.8 4.3-2.4 5.9c-1.6 1.6-3.6 2.4-5.9 2.4s-4.3-.8-5.9-2.4c-1.6-1.6-2.4-3.6-2.4-5.9s.8-4.3 2.4-5.9zm2.6 9.3c.9.9 2.1 1.3 3.3 1.3s2.4-.4 3.3-1.3c.9-.9 1.4-2.1 1.4-3.4s-.5-2.5-1.4-3.4c-.9-.9-2.1-1.3-3.3-1.3s-2.4.4-3.3 1.3c-.9.9-1.4 2.1-1.4 3.4s.5 2.5 1.4 3.4z"/>
+          <path fill="#34a853" d="M79.1 13.6h3.6V29h-3.6V13.6zm10 2c1.2-1.6 2.8-2.4 4.8-2.4 1.7 0 3.1.6 4.1 1.7s1.5 2.8 1.5 4.9V29h-3.6v-8.6c0-2.2-.9-3.3-2.7-3.3-1.6 0-2.7.9-3.2 2.3-.2.5-.3 1-.3 1.6V29h-3.6V13.6h3.3v2z"/>
+          <path fill="#4285f4" d="M74.9 13.6L70.4 24l-4.4-10.4h-3.8l6.4 14.4-3.7 7.7H69l9.7-22.1z"/>
+        </svg>
+        <span style="font-weight: 500; font-size:15px; color:#5f6368;">| Checkout</span>
+      </div>
+      <button class="gp-close" onclick="closeWalletAuth('google')">✕</button>
+    </div>
+    
+    <div class="gp-body">
+      <div class="gp-payment-info">
+        <div class="gp-merchant-title">PAY SOVEREIGN INTEL</div>
+        <div class="gp-price-val" id="gp-total-field">$29.00</div>
+      </div>
+      
+      <div class="gp-label-title">Secure Billing Address</div>
+      <div style="font-size:14px; color:#202124; margin-bottom: 24px; font-weight: 500;" id="gp-email-field">name@organization.com</div>
+
+      <div class="gp-label-title">Pay With Google Account Card</div>
+      <div class="gp-card-item">
+        <div class="gp-card-logo">
+          <svg viewBox="0 0 48 32" width="30" height="18"><circle cx="16" cy="16" r="14" fill="#EB001B" fill-opacity=".9"/><circle cx="32" cy="16" r="14" fill="#F79E1B" fill-opacity=".9"/><path fill="#FF5F00" d="M24 8a13.9 13.9 0 0 1 4 8 13.9 13.9 0 0 1-4 8 13.9 13.9 0 0 1-4-8 13.9 13.9 0 0 1 4-8"/></svg>
+        </div>
+        <div style="flex:1; font-size:14px; color:#202124; text-align:left; font-weight: 500;">Mastercard Corporate •••• 5122</div>
+      </div>
+      
+      <div class="gp-footer">
+        <button onclick="closeWalletAuth('google')" class="gp-btn-cancel">Cancel</button>
+        <button onclick="triggerGooglePayPayment()" class="gp-btn-pay" id="gp-btn-submit">
+          <span class="gp-spinner" id="gp-loader"></span>
+          <span id="gp-btn-text">Pay Now</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PayPal Secure Popup Overlay -->
+<div class="wallet-overlay" id="overlay-paypal" onclick="closeWalletOverlay(event, 'paypal')">
+  <div class="paypal-sheet">
+    <div class="pp-header">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" height="20" style="filter: brightness(0) invert(1);" />
+      <button class="pp-close" onclick="closeWalletAuth('paypal')">✕</button>
+    </div>
+    
+    <div class="pp-body">
+      
+      <!-- STEP 1: Log in -->
+      <div id="pp-login-step">
+        <div class="pp-logo-title">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" />
+        </div>
+        <div class="pp-payment-desc">Log in to complete purchase</div>
+        
+        <div style="font-size:13px; font-weight:600; color:#475569; text-align:left; margin-bottom:8px;">PayPal Email Address</div>
+        <input type="email" id="pp-email" class="pp-login-input" placeholder="name@organization.com" />
+        
+        <div style="font-size:13px; font-weight:600; color:#475569; text-align:left; margin-bottom:8px;">Password</div>
+        <input type="password" id="pp-pass" class="pp-login-input" placeholder="••••••••" value="supersecurepassword" />
+        
+        <button onclick="triggerPayPalLogin()" class="pp-btn-action" id="pp-login-btn">
+          <span class="pp-spinner" id="pp-login-loader"></span>
+          <span id="pp-login-btn-text">Log In</span>
+        </button>
+        
+        <div style="text-align:center; margin-top:20px; font-size:13px;">
+          <span style="color:#0079c1; cursor:pointer; font-weight:500;">Cancel and return to Sovereign Intel</span>
+        </div>
+      </div>
+
+      <!-- STEP 2: Choose source & Pay -->
+      <div id="pp-wallet-step" class="pp-wallet-step">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #e2e8f0; padding-bottom:16px; margin-bottom:20px;">
+          <div style="text-align:left;">
+            <div style="font-size:12px; color:#64748b; font-weight:600; text-transform:uppercase;">Ship To / Email</div>
+            <div style="font-size:14px; font-weight:700; color:#1e293b; margin-top:2px;" id="pp-user-email">secure@organization.com</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:12px; color:#64748b; font-weight:600; text-transform:uppercase;">Total Due</div>
+            <div style="font-size:18px; font-weight:800; color:#002c8a;" id="pp-total-field">$29.00</div>
+          </div>
+        </div>
+
+        <div style="font-size:13px; font-weight:700; color:#475569; text-align:left; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.04em;">Choose Payment Method</div>
+        
+        <div class="pp-wallet-row active" id="pp-source-balance" onclick="setPayPalSource('balance')">
+          <div class="pp-wallet-radio"></div>
+          <div class="pp-wallet-text">
+            <div class="pp-wallet-name">PayPal Balance</div>
+            <div class="pp-wallet-sub">Available: $1,420.00</div>
+          </div>
+        </div>
+
+        <div class="pp-wallet-row" id="pp-source-card" onclick="setPayPalSource('card')">
+          <div class="pp-wallet-radio"></div>
+          <div class="pp-wallet-text">
+            <div class="pp-wallet-name">Visa Corporate •••• 9940</div>
+            <div class="pp-wallet-sub">Primary funding card</div>
+          </div>
+        </div>
+
+        <button onclick="triggerPayPalPaymentComplete()" class="pp-btn-action" id="pp-pay-btn" style="background:#ffc439; color:#002c8a; font-weight:800; border:1px solid #e0ab20;">
+          <span class="pp-spinner" id="pp-pay-loader" style="border-top-color:#002c8a;"></span>
+          <span id="pp-pay-btn-text">Complete Secure Purchase</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Simulated Processing Logs Loader -->
 <div class="processing-overlay" id="processing-modal">
   <div class="processing-content">
-    <div style="font-size:11px; font-weight:800; color:var(--cyan); letter-spacing:0.16em; text-transform:uppercase; margin-bottom:20px; border-bottom:1px solid rgba(0, 245, 255, 0.08); padding-bottom:8px;">
-      Transaction Verification Sequence
+    <div style="font-size:11px; font-weight:800; color:var(--cyan); letter-spacing:0.16em; text-transform:uppercase; margin-bottom:20px; border-bottom:1px solid rgba(0, 245, 255, 0.12); padding-bottom:10px; font-family:'JetBrains Mono', monospace; display:flex; align-items:center; gap:8px;">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <span>Secure Transaction Gateway Active</span>
     </div>
-    <div style="font-family:'JetBrains Mono', monospace; font-size:11px; line-height:2.1; color:#64748b; background:#03050b; border:1px solid rgba(0, 245, 255, 0.12); border-radius:12px; padding:20px; margin-bottom:12px; min-height:180px;" id="processing-log"></div>
+    <div style="font-family:'JetBrains Mono', monospace; font-size:11px; line-height:2.2; color:#64748b; background:#03050b; border:1px solid rgba(0, 245, 255, 0.1); border-radius:12px; padding:24px; margin-bottom:4px; min-height:190px;" id="processing-log"></div>
   </div>
 </div>
 
@@ -341,43 +1271,99 @@
 
 <script src="js/nav.js" defer></script>
 <script>
-  // Billing cycle constants
   let planPrice = 29.00;
   let billingPeriod = 'monthly';
 
-  // Parse billing values from URL parameters
+  // Card brand SVG mappings
+  const CARD_SVGS = {
+    generic: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>`,
+    visa: `<svg viewBox="0 0 48 48" width="36" height="24"><path fill="#1A1F71" d="M18.5 32.4l3.1-19.3h5l-3.1 19.3z"/><path fill="#D2992F" d="M38.8 13.5c-1.1-.4-2.8-.9-4.9-.9-5.4 0-9.2 2.9-9.2 7 0 3 2.7 4.7 4.8 5.7 2.1 1 2.8 1.7 2.8 2.6 0 1.4-1.7 2-3.2 2-2.1 0-3.3-.4-4.8-1.1L24 29.8c1.3.6 3.6 1.1 5.9 1.1 5.7 0 9.4-2.8 9.4-7.2 0-2.4-1.4-4.2-4.7-5.8-2.2-1.1-3.5-1.9-3.5-3 0-1 .8-2 3.1-2 1.9 0 3 .4 4 1.1z"/><path fill="#1A1F71" d="M12.3 13.1L7 28.5l-.6-3c-1-3.4-4.1-7.1-7.6-9l.1-.2h8.3c1.1 0 2 .7 2.2 1.8l2.2 11.2 5.3-16.2z"/><path fill="#D2992F" d="M47.9 13.1l-4.5 19.3h-4.3l4.5-19.3z"/></svg>`,
+    mastercard: `<svg viewBox="0 0 48 32" width="36" height="24"><circle cx="16" cy="16" r="14" fill="#EB001B" fill-opacity=".9"/><circle cx="32" cy="16" r="14" fill="#F79E1B" fill-opacity=".9"/><path fill="#FF5F00" d="M24 8a13.9 13.9 0 0 1 4 8 13.9 13.9 0 0 1-4 8 13.9 13.9 0 0 1-4-8 13.9 13.9 0 0 1 4-8"/></svg>`,
+    amex: `<svg viewBox="0 0 48 32" width="36" height="24"><rect width="48" height="32" rx="4" fill="#0170B2"/><text x="6" y="22" fill="#FFF" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="11" letter-spacing="1">AMEX</text></svg>`,
+    discover: `<svg viewBox="0 0 48 32" width="36" height="24"><rect width="48" height="32" rx="4" fill="#F47216"/><circle cx="32" cy="16" r="7" fill="#FFF"/><path d="M6 10h4c2.2 0 4 1.8 4 4s-1.8 4-4 4H6v4h4c4.4 0 8-3.6 8-8s-3.6-8-8-8H6v8z" fill="#FFF"/></svg>`
+  };
+
+  // On page load, calculate dynamic values
   document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     const period = params.get('period') || 'monthly';
+    billingPeriod = period;
+
     const planNameEl = document.getElementById('plan-name');
     const priceEl = document.getElementById('checkout-price');
     const periodEl = document.getElementById('checkout-period');
+    const subtotalEl = document.getElementById('table-subtotal');
+    const totalEl = document.getElementById('table-total');
+    const renewalEl = document.getElementById('renewal-message');
+    const submitBtn = document.getElementById('btn-submit-main');
 
-    billingPeriod = period;
+    // Dynamic wallet modal fields
+    const apTotal = document.getElementById('ap-total-field');
+    const gpTotal = document.getElementById('gp-total-field');
+    const ppTotal = document.getElementById('pp-total-field');
 
+    // Date renewal calculations
+    const today = new Date();
+    let renewalOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    
     if (period === 'yearly') {
       planPrice = 276.00;
-      if (planNameEl) planNameEl.textContent = 'Professional Plan - Annual Subscription';
+      if (planNameEl) planNameEl.textContent = 'Professional Plan - Annual Access';
       if (priceEl) priceEl.textContent = '$276.00';
       if (periodEl) periodEl.textContent = '/ year';
+      if (subtotalEl) subtotalEl.textContent = '$276.00';
+      if (totalEl) totalEl.textContent = '$276.00';
+      if (apTotal) apTotal.textContent = '$276.00';
+      if (gpTotal) gpTotal.textContent = '$276.00';
+      if (ppTotal) ppTotal.textContent = '$276.00';
+      if (submitBtn) submitBtn.textContent = 'Securely Subscribe Now - $276.00';
+
+      const nextYear = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate());
+      if (renewalEl) renewalEl.textContent = 'Renews on ' + nextYear.toLocaleDateString('en-US', renewalOptions);
     } else {
       planPrice = 29.00;
-      if (planNameEl) planNameEl.textContent = 'Professional Plan - Monthly Subscription';
+      if (planNameEl) planNameEl.textContent = 'Professional Plan - Monthly Access';
       if (priceEl) priceEl.textContent = '$29.00';
       if (periodEl) periodEl.textContent = '/ month';
+      if (subtotalEl) subtotalEl.textContent = '$29.00';
+      if (totalEl) totalEl.textContent = '$29.00';
+      if (apTotal) apTotal.textContent = '$29.00';
+      if (gpTotal) gpTotal.textContent = '$29.00';
+      if (ppTotal) ppTotal.textContent = '$29.00';
+      if (submitBtn) submitBtn.textContent = 'Securely Subscribe Now - $29.00';
+
+      const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+      if (renewalEl) renewalEl.textContent = 'Renews on ' + nextMonth.toLocaleDateString('en-US', renewalOptions);
     }
 
-    // Format credit card input spacing (4-4-4-4)
+    // Dynamic card input grouping (every 4 digits)
     const cardInput = document.getElementById('card-number');
-    if (cardInput) {
+    const brandIcon = document.getElementById('card-brand-icon');
+
+    if (cardInput && brandIcon) {
       cardInput.addEventListener('input', (e) => {
         let v = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+        
+        // Detect brand in real-time
+        let brand = 'generic';
+        if (v.startsWith('4')) {
+          brand = 'visa';
+        } else if (/^5[1-5]/.test(v) || /^2[2-7]/.test(v)) {
+          brand = 'mastercard';
+        } else if (/^3[47]/.test(v)) {
+          brand = 'amex';
+        } else if (/^6/.test(v)) {
+          brand = 'discover';
+        }
+        
+        brandIcon.innerHTML = CARD_SVGS[brand];
+        
         let matches = v.match(/\d{4,16}/g);
         let match = matches && matches[0] || '';
         let parts = [];
 
-        for (let i=0, len=match.length; i<len; i+=4) {
-          parts.push(match.substring(i, i+4));
+        for (let i = 0, len = match.length; i < len; i += 4) {
+          parts.push(match.substring(i, i + 4));
         }
 
         if (parts.length > 0) {
@@ -388,7 +1374,7 @@
       });
     }
 
-    // Format expiry slash (MM/YY)
+    // Expiry auto slash (MM/YY)
     const expiryInput = document.getElementById('card-expiry');
     if (expiryInput) {
       expiryInput.addEventListener('input', (e) => {
@@ -400,37 +1386,172 @@
         }
       });
     }
+
+    // Limit CVC code to digits only
+    const cvcInput = document.getElementById('card-cvc');
+    if (cvcInput) {
+      cvcInput.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/[^0-9]/gi, '');
+      });
+    }
   });
 
-  // Handle Form Submission and simulated credit processing
-  function handlePaymentSubmit(event) {
-    event.preventDefault();
+  // Open Wallet Dialog with Prefills
+  function openWalletAuth(walletType) {
+    const userEmail = document.getElementById('email').value || 'secure@organization.com';
+    const apEmail = document.getElementById('ap-email-field');
+    const gpEmail = document.getElementById('gp-email-field');
+    const ppEmailField = document.getElementById('pp-user-email');
+    const ppEmailInput = document.getElementById('pp-email');
 
-    const email = document.getElementById('email').value;
-    const cardName = document.getElementById('card-name').value;
-    const cardNumber = document.getElementById('card-number').value.replace(/\s+/g, '');
-    const cardExpiry = document.getElementById('card-expiry').value;
-    const cardCvc = document.getElementById('card-cvc').value;
+    if (apEmail) apEmail.textContent = userEmail;
+    if (gpEmail) gpEmail.textContent = userEmail;
+    if (ppEmailField) ppEmailField.textContent = userEmail;
+    if (ppEmailInput) ppEmailInput.value = userEmail;
 
-    // Simple robust form checks
-    if (!email.includes('@')) {
-      alert('Please enter a valid business email.');
-      return;
-    }
-    if (cardNumber.length < 15) {
-      alert('Please enter a valid credit card number.');
-      return;
-    }
-    if (cardExpiry.length < 5 || !cardExpiry.includes('/')) {
-      alert('Please enter a valid expiry date (MM/YY).');
-      return;
-    }
-    if (cardCvc.length < 3) {
-      alert('Please enter a valid security code (CVC).');
-      return;
+    // Reset modals to default
+    if (walletType === 'paypal') {
+      document.getElementById('pp-login-step').style.display = 'block';
+      document.getElementById('pp-wallet-step').style.display = 'none';
+      document.getElementById('pp-login-loader').style.display = 'none';
+      document.getElementById('pp-login-btn-text').textContent = 'Log In';
     }
 
-    // Open terminal logger modal
+    if (walletType === 'google') {
+      document.getElementById('gp-loader').style.display = 'none';
+      document.getElementById('gp-btn-text').textContent = 'Pay Now';
+    }
+
+    if (walletType === 'apple') {
+      const apBioNode = document.getElementById('ap-bio-node');
+      const apBioStatus = document.getElementById('ap-bio-status');
+      if (apBioNode) {
+        apBioNode.className = 'ap-fingerprint-icon';
+        apBioNode.innerHTML = '';
+      }
+      if (apBioStatus) apBioStatus.textContent = 'Touch Fingerprint Node or Click Here to Pay';
+    }
+
+    const overlay = document.getElementById('overlay-' + walletType);
+    if (overlay) {
+      overlay.style.display = 'flex';
+    }
+  }
+
+  function closeWalletAuth(walletType) {
+    const overlay = document.getElementById('overlay-' + walletType);
+    if (overlay) {
+      overlay.style.display = 'none';
+    }
+  }
+
+  function closeWalletOverlay(event, walletType) {
+    const overlay = document.getElementById('overlay-' + walletType);
+    if (event.target === overlay) {
+      overlay.style.display = 'none';
+    }
+  }
+
+  // --- WALLET ACTUATION SEQUENCES ---
+
+  // 1. Apple Pay Biometric Handshake
+  function triggerAppleBiometrics() {
+    const apBioNode = document.getElementById('ap-bio-node');
+    const apBioStatus = document.getElementById('ap-bio-status');
+
+    if (apBioNode && apBioStatus) {
+      // Toggle verifying state
+      apBioNode.className = 'ap-fingerprint-icon verifying';
+      apBioNode.innerHTML = `
+        <svg class="gp-spinner" style="display:block; width:36px; height:36px;" viewBox="0 0 50 50">
+          <circle cx="25" cy="25" r="20" fill="none" stroke="#0a84ff" stroke-width="4"></circle>
+        </svg>
+      `;
+      apBioStatus.textContent = 'Verifying with FaceID / TouchID...';
+
+      setTimeout(() => {
+        // Success biometric state
+        apBioNode.className = 'ap-fingerprint-icon success';
+        apBioNode.innerHTML = `
+          <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        `;
+        apBioStatus.textContent = 'Authentication Verified!';
+
+        setTimeout(() => {
+          closeWalletAuth('apple');
+          processWalletVerification('Apple Pay');
+        }, 800);
+      }, 1500);
+    }
+  }
+
+  // 2. Google Pay Loader Check
+  function triggerGooglePayPayment() {
+    const loader = document.getElementById('gp-loader');
+    const btnText = document.getElementById('gp-btn-text');
+
+    if (loader && btnText) {
+      loader.style.display = 'block';
+      btnText.textContent = 'Processing Transaction...';
+
+      setTimeout(() => {
+        closeWalletAuth('google');
+        processWalletVerification('Google Pay');
+      }, 1500);
+    }
+  }
+
+  // 3. PayPal Portal Authenticator
+  let paypalSource = 'balance';
+  function setPayPalSource(source) {
+    paypalSource = source;
+    const balanceRow = document.getElementById('pp-source-balance');
+    const cardRow = document.getElementById('pp-source-card');
+
+    if (source === 'balance') {
+      balanceRow.classList.add('active');
+      cardRow.classList.remove('active');
+    } else {
+      balanceRow.classList.remove('active');
+      cardRow.classList.add('active');
+    }
+  }
+
+  function triggerPayPalLogin() {
+    const loginLoader = document.getElementById('pp-login-loader');
+    const loginText = document.getElementById('pp-login-btn-text');
+
+    if (loginLoader && loginText) {
+      loginLoader.style.display = 'block';
+      loginText.textContent = 'Authorizing...';
+
+      setTimeout(() => {
+        document.getElementById('pp-login-step').style.display = 'none';
+        document.getElementById('pp-wallet-step').style.display = 'block';
+      }, 1200);
+    }
+  }
+
+  function triggerPayPalPaymentComplete() {
+    const payLoader = document.getElementById('pp-pay-loader');
+    const payText = document.getElementById('pp-pay-btn-text');
+
+    if (payLoader && payText) {
+      payLoader.style.display = 'block';
+      payText.textContent = 'Completing Payment...';
+
+      setTimeout(() => {
+        closeWalletAuth('paypal');
+        processWalletVerification('PayPal');
+      }, 1500);
+    }
+  }
+
+  // --- TERMINAL GATEWAY LOGGER REDIRECTION ---
+
+  function processWalletVerification(walletName) {
     const modal = document.getElementById('processing-modal');
     const logBox = document.getElementById('processing-log');
 
@@ -439,12 +1560,12 @@
       modal.style.display = 'flex';
 
       const steps = [
-        { text: '> Contacting secure transaction broker...', res: '[OK]' },
-        { text: '> Opening AES-256 encrypted billing link...', res: '[OK]' },
-        { text: `> Submitting payment authorization for $${planPrice.toFixed(2)}...`, res: '[PENDING]' },
-        { text: '> Processing credit transaction credentials...', res: '[VERIFIED]' },
-        { text: '> Structuring platform license configuration...', res: '[COMPLETE]' },
-        { text: '> Finalizing subscription status code...', res: '[REDIRECT]' }
+        { text: `> Initializing ${walletName} secure API token...`, res: '[OK]' },
+        { text: `> Requesting transaction clearance for $${planPrice.toFixed(2)}...`, res: '[OK]' },
+        { text: '> Connecting to secure tokenized payment portal...', res: '[OK]' },
+        { text: '> Verifying account token credentials...', res: '[VERIFIED]' },
+        { text: '> Provisioning cloud infrastructure key...', res: '[COMPLETE]' },
+        { text: '> Redirecting to success landing terminal...', res: '[REDIRECT]' }
       ];
 
       steps.forEach((step, idx) => {
@@ -456,10 +1577,76 @@
 
           if (idx === steps.length - 1) {
             setTimeout(() => {
-              window.location.href = `success.html?email=${encodeURIComponent(email)}`;
+              window.location.href = `success.html?method=${encodeURIComponent(walletName)}`;
             }, 1000);
           }
-        }, idx * 450);
+        }, idx * 400);
+      });
+    }
+  }
+
+  // --- STANDARD CREDIT CARD FORM HANDLER ---
+
+  function handlePaymentSubmit(event) {
+    event.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const cardName = document.getElementById('card-name').value;
+    const cardNumber = document.getElementById('card-number').value.replace(/\s+/g, '');
+    const cardExpiry = document.getElementById('card-expiry').value;
+    const cardCvc = document.getElementById('card-cvc').value;
+    const cardZip = document.getElementById('card-zip').value;
+
+    if (!email.includes('@')) {
+      alert('Please enter a valid business email address.');
+      return;
+    }
+    if (cardNumber.length < 15) {
+      alert('Please enter a valid 15 or 16-digit credit card number.');
+      return;
+    }
+    if (cardExpiry.length < 5 || !cardExpiry.includes('/')) {
+      alert('Please enter a valid expiry date (MM/YY).');
+      return;
+    }
+    if (cardCvc.length < 3) {
+      alert('Please enter a valid 3 or 4-digit CVC code.');
+      return;
+    }
+    if (cardZip.trim().length < 3) {
+      alert('Please enter a valid billing ZIP/Postal code.');
+      return;
+    }
+
+    const modal = document.getElementById('processing-modal');
+    const logBox = document.getElementById('processing-log');
+
+    if (modal && logBox) {
+      logBox.innerHTML = '';
+      modal.style.display = 'flex';
+
+      const steps = [
+        { text: '> Connecting to secure PCI transaction node...', res: '[OK]' },
+        { text: '> Establishing secure card gateway handshake...', res: '[OK]' },
+        { text: `> Requesting card pre-authorization for $${planPrice.toFixed(2)}...`, res: '[OK]' },
+        { text: '> Processing credit transaction audit check...', res: '[VERIFIED]' },
+        { text: '> Provisioning platform licensing credentials...', res: '[COMPLETE]' },
+        { text: '> Redirecting to success landing terminal...', res: '[REDIRECT]' }
+      ];
+
+      steps.forEach((step, idx) => {
+        setTimeout(() => {
+          const r = document.createElement('div');
+          r.style.cssText = 'display:flex;justify-content:space-between;gap:16px;margin-bottom:4px;';
+          r.innerHTML = `<span style="color:#64748b;">${step.text}</span><span style="color:var(--cyan);font-weight:800;">${step.res}</span>`;
+          logBox.appendChild(r);
+
+          if (idx === steps.length - 1) {
+            setTimeout(() => {
+              window.location.href = `success.html?email=${encodeURIComponent(email)}&method=Card`;
+            }, 1000);
+          }
+        }, idx * 400);
       });
     }
   }
