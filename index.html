@@ -67,7 +67,7 @@
 <!-- /INCLUDE -->
 
 <!-- NAV -->
-<nav>
+<nav style="transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s;" class="intro-hidden">
   <!-- INCLUDE: _includes/nav.html -->
   <div class="nav-inner">
     <a href="index.html" class="logo">
@@ -108,6 +108,49 @@
   </div>
   <!-- /INCLUDE -->
 </nav>
+
+<!-- 3D INTRO SCROLL CONTAINER -->
+<div id="intro-scroll-container">
+  <div id="intro-sticky-stage">
+    <div id="intro-canvas-container"></div>
+    
+    <!-- Cyber ambient grid -->
+    <div class="intro-grid-overlay"></div>
+    
+    <!-- Telemetry HUD indicators -->
+    <div class="intro-hud-top-left">
+      <span class="hud-item cyan">⬡ SOVEREIGN TERMINAL NODE_SECURE</span>
+      <span class="hud-item gray">CORE GRID STATUS: OK // FPS: 60</span>
+    </div>
+    <div class="intro-hud-bottom-right">
+      <span class="hud-item pulsing">SCROLL DOWN TO CALIBRATE GRID ↓</span>
+    </div>
+    
+    <!-- Text Slides -->
+    <div class="intro-slides">
+      <div class="intro-slide" id="intro-slide-1">
+        <div class="slide-badge">⬡ LAYER 01 // GLOBE TELEMETRY</div>
+        <h2>Global Command Grid<br><span style="color:var(--cyan)">In Your Browser.</span></h2>
+        <p>Scan autonomous satellite feeds, maritime data packets, and localized telemetry streams in real time. We bypass traditional mainstream lags to project direct realities.</p>
+      </div>
+      <div class="intro-slide" id="intro-slide-2">
+        <div class="slide-badge">⬡ LAYER 02 // GEO-SIGNAL TRACKING</div>
+        <h2>Conflict Signals<br><span style="color:var(--red)">MAPPED SECONDS FROM IMPACT.</span></h2>
+        <p>Track tactical military intercepts, kinetic strikes, and border crossings. Our decentralized node structure processes and geolocates telemetry signals instantly.</p>
+      </div>
+      <div class="intro-slide" id="intro-slide-3">
+        <div class="slide-badge">⬡ LAYER 03 // RADAR CHOKEPOINTS</div>
+        <h2>Maritime Anomalies<br><span style="color:var(--orange)">AND RADAR SWEEPS.</span></h2>
+        <p>Expose global shipping bottlenecks, GPS spoofing zones, thermal flares, and energy infrastructure anomalies before they disrupt international operations.</p>
+      </div>
+      <div class="intro-slide" id="intro-slide-4">
+        <div class="slide-badge">⬡ LAYER 04 // ACTIVE INTELLIGENCE</div>
+        <h2>Synchronizing Terminal<br><span style="color:var(--cyan)">READY FOR FEED COMMAND.</span></h2>
+        <p>Calibrating live command panels. Preparing dashboard synchronization sequences...</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- BOOT OVERLAY -->
 <div id="boot-ol" style="position:fixed;inset:0;z-index:1000;background:#080810;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.9s;">
@@ -742,6 +785,10 @@
 <!-- /INCLUDE -->
 
 <!-- JS SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="js/intro.js" defer></script>
 <script src="js/boot.js" defer></script>
 <script src="js/hero.js" defer></script>
 <script src="js/nav.js" defer></script>

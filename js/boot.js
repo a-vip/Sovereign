@@ -17,7 +17,9 @@ function dismissBoot(){
     ol.style.opacity = '0';
     setTimeout(() => { 
       ol.style.display = 'none'; 
-      if (typeof startHero === 'function') {
+      if (typeof startIntro === 'function') {
+        startIntro();
+      } else if (typeof startHero === 'function') {
         startHero(); 
       }
     }, 900);
@@ -33,7 +35,11 @@ window.dismissBoot = dismissBoot;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || sessionStorage.getItem('bootPlayed') === 'true') {
     const ol = document.getElementById('boot-ol');
     if (ol) ol.style.display = 'none';
-    if (typeof startHero === 'function') startHero();
+    if (typeof startIntro === 'function') {
+      startIntro();
+    } else if (typeof startHero === 'function') {
+      startHero();
+    }
     return;
   }
   sessionStorage.setItem('bootPlayed', 'true');
