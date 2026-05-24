@@ -169,6 +169,25 @@
     const email = params.get('email') || 'Associated Business Account';
     const method = params.get('method') || 'Stripe Card';
 
+    // Automatically save purchase transaction to serverless database on success
+    if (email && email !== 'Associated Business Account') {
+      const plan = params.get('plan') || 'monthly';
+      const paymentIntentId = params.get('payment_intent') || secureHash;
+      
+      fetch('/api/save-purchase', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          plan: plan,
+          paymentIntentId: paymentIntentId,
+          method: method
+        })
+      }).then(res => res.json())
+        .then(data => console.log('Purchase recorded securely:', data))
+        .catch(err => console.warn('Database logger bypass:', err));
+    }
+
     logBox.innerHTML = `
       <div style="font-size: 11px; font-weight: 700; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 12px; display: flex; align-items: center; gap: 8px;">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
