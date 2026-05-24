@@ -460,19 +460,7 @@
 
 </div>
 
-<!-- SIMULATED PROTOCOL MODAL -->
-<div class="access-dialog-overlay" id="access-modal">
-  <div class="access-dialog-content">
-    <button class="modal-close" id="modal-close">×</button>
-    <div style="font-size:11px; font-weight:800; color:var(--cyan); letter-spacing:0.16em; text-transform:uppercase; margin-bottom:20px; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:10px;">
-      TACTICAL SUBSCRIPTION SEQUENCE
-    </div>
-    <div class="access-dialog-log" id="modal-log"></div>
-    <div style="text-align:right;">
-      <button class="btn-primary" id="modal-submit-btn" style="font-size:10px; padding:10px 20px; border-radius:8px;">CONTINUE TRANSMISSION</button>
-    </div>
-  </div>
-</div>
+
 
 <!-- FOOTER -->
 <footer>
@@ -539,46 +527,8 @@
       yearly: 'checkout.html?period=yearly'
     };
 
-    if (proBtn && modal && modalLog) {
+    if (proBtn) {
       proBtn.addEventListener('click', () => {
-        modalLog.innerHTML = '';
-        modal.style.display = 'flex';
-        modalSubmit.textContent = 'REDIRECTING...';
-        modalSubmit.style.display = 'inline-block';
-        modalSubmit.disabled = true;
-
-        const lines = [
-          { text: '> Contacting secure transaction broker...', res: '[OK]' },
-          { text: `> Configuring plan parameters: Professional Threat Intel (${currentPeriod})...`, res: '[OK]' },
-          { text: '> Securing transaction tunnel...', res: '[OK]' },
-          { text: '> Opening secure transaction port...', res: '[ONLINE]' },
-          { text: '> Redirecting to secure checkout portal...', res: '[REDIRECT]' }
-        ];
-
-        lines.forEach(({ text, res }, i) => {
-          setTimeout(() => {
-            const r = document.createElement('div');
-            r.style.cssText = 'display:flex;justify-content:space-between;gap:16px;margin-bottom:4px;';
-            r.innerHTML = `<span style="color:#64748b;">${text}</span><span style="color:var(--cyan);font-weight:800;">${res}</span>`;
-            modalLog.appendChild(r);
-            
-            // Trigger redirection upon completing final log step
-            if (i === lines.length - 1) {
-              setTimeout(() => {
-                window.location.href = CHECKOUT_LINKS[currentPeriod];
-              }, 1000);
-            }
-          }, i * 450);
-        });
-      });
-
-      modalClose.addEventListener('click', () => modal.style.display = 'none');
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.style.display = 'none';
-      });
-
-      // Quick-redirect override button
-      modalSubmit.addEventListener('click', () => {
         window.location.href = CHECKOUT_LINKS[currentPeriod];
       });
     }

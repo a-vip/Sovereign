@@ -52,29 +52,21 @@
     }
 
     .success-terminal {
-      background: #03050b;
-      border: 1px solid rgba(0, 245, 255, 0.15);
+      background: rgba(10, 13, 24, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 16px;
-      padding: 30px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      line-height: 2.1;
+      padding: 32px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
       text-align: left;
-      box-shadow: 0 0 48px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
       margin-bottom: 40px;
-    }
-
-    .terminal-line {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      opacity: 0;
-      transform: translateY(6px);
-      animation: lineReveal 0.4s ease forwards;
-    }
-
-    @keyframes lineReveal {
-      to { opacity: 1; transform: translateY(0); }
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      backdrop-filter: blur(16px);
+      color: #cbd5e1;
     }
   </style>
 </head>
@@ -175,25 +167,46 @@
     // Generate random transaction license key
     const secureHash = 'SOV-LICENSE-' + Math.random().toString(36).substring(2, 7).toUpperCase() + '-' + Math.random().toString(36).substring(2, 7).toUpperCase();
 
-    const logs = [
-      { text: '> Verifying checkout session...', res: '[OK]', color: 'var(--cyan)' },
-      { text: '> Validating transaction signature...', res: '[OK]', color: 'var(--cyan)' },
-      { text: '> PAYMENT STATUS:', res: 'CONFIRMED', color: 'var(--green)' },
-      { text: '> LICENSE CLASS:', res: 'PRO_ANALYST', color: 'var(--cyan)' },
-      { text: `> ACTIVE LICENSE KEY: ${secureHash}`, res: '[VERIFIED]', color: 'var(--cyan)' },
-      { text: '> Preparing platform threat console...', res: '[OK]', color: 'var(--cyan)' },
-      { text: '> Initializing console credentials...', res: '[OK]', color: 'var(--cyan)' },
-      { text: '> STATUS: ACCESS GRANTED. PLATFORM CONSOLE READY.', res: '[ONLINE]', color: 'var(--green)' }
-    ];
+    // Extract query parameters if any
+    const params = new URLSearchParams(window.location.search);
+    const email = params.get('email') || 'Associated Business Account';
+    const method = params.get('method') || 'Stripe Card';
 
-    logs.forEach((item, idx) => {
-      setTimeout(() => {
-        const row = document.createElement('div');
-        row.className = 'terminal-line';
-        row.innerHTML = `<span style="color:#64748b;">${item.text}</span><span style="color:${item.color}; font-weight:800;">${item.res}</span>`;
-        logBox.appendChild(row);
-      }, idx * 450);
-    });
+    logBox.innerHTML = `
+      <div style="font-size: 11px; font-weight: 700; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+        </svg>
+        <span>Subscription Details</span>
+      </div>
+      
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: #64748b;">Account Level</span>
+          <span style="color: #fff; font-weight: 600;">Professional Analyst</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: #64748b;">Billing Account</span>
+          <span style="color: #fff; font-weight: 600;">${email}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: #64748b;">Licensing Key</span>
+          <span style="color: var(--cyan); font-family: monospace; font-weight: 600; font-size: 12px;">${secureHash}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: #64748b;">Payment Method</span>
+          <span style="color: #fff; font-weight: 600;">${method}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 12px; margin-top: 4px;">
+          <span style="color: #64748b;">Account Status</span>
+          <span style="color: var(--green); font-weight: 700; display: flex; align-items: center; gap: 6px;">
+            <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: inline-block; box-shadow: 0 0 8px var(--green);"></span>
+            Active & Verified
+          </span>
+        </div>
+      </div>
+    `;
   });
 </script>
 

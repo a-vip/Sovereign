@@ -46,9 +46,9 @@
 /* ─── HUD TELEMETRY OVERLAYS ─── */
 .intro-hud-bottom-center {
   position: absolute;
-  top: 50%;
+  bottom: 40px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   z-index: 15;
   font-family: 'JetBrains Mono', monospace;
   display: flex;

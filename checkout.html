@@ -82,7 +82,7 @@
       color: var(--cyan);
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', sans-serif;
       margin-bottom: 24px;
     }
 
@@ -95,7 +95,7 @@
       margin-bottom: 24px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       padding-bottom: 8px;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', sans-serif;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -147,6 +147,18 @@
       fill: currentColor;
     }
 
+    .btn-google svg {
+      height: 20px;
+      width: auto;
+      display: block;
+    }
+
+    .btn-paypal svg {
+      height: 20px;
+      width: auto;
+      display: block;
+    }
+
     .btn-google {
       background: #ffffff;
       border: 1px solid #e2e8f0;
@@ -195,7 +207,7 @@
       color: #64748b;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', sans-serif;
     }
 
     /* Custom Form Styling */
@@ -211,7 +223,7 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 8px;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', sans-serif;
     }
 
     .input-wrapper {
@@ -225,7 +237,7 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 10px;
       padding: 14px 18px;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', sans-serif;
       color: #fff;
       font-size: 13px;
       outline: none;
@@ -299,7 +311,7 @@
       margin-top: 20px;
       font-size: 11px;
       color: #475569;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', sans-serif;
     }
 
     .submit-trust-footer svg {
@@ -329,7 +341,7 @@
       letter-spacing: 0.16em;
       text-transform: uppercase;
       margin-bottom: 20px;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', sans-serif;
     }
 
     .receipt-item-box {
@@ -355,7 +367,7 @@
     .receipt-price-period {
       font-size: 11px;
       color: #64748b;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', sans-serif;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 2px;
@@ -400,7 +412,7 @@
       color: var(--cyan);
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', sans-serif;
     }
 
     .renewal-date {
@@ -979,9 +991,9 @@
       <div class="ticker-track">
         <span class="ticker-inner">
           SECURE TRANSACTION GATEWAY ACTIVE &nbsp;•&nbsp;
-          PCI-DSS COMPLIANT LINKED NODE &nbsp;•&nbsp;
-          AES-256 BIT TRANSACTION ENCRYPTION ENABLED &nbsp;•&nbsp;
-          DECRYPTED ACCESS ASSURED &nbsp;•&nbsp;
+          PCI-DSS COMPLIANT SECURITY &nbsp;•&nbsp;
+          AES-256 BIT TRANSACTION ENCRYPTION ACTIVE &nbsp;•&nbsp;
+          SSL CERTIFICATE VERIFIED &nbsp;•&nbsp;
         </span>
       </div>
     </div>
@@ -1054,7 +1066,7 @@
         </div>
 
         <button type="submit" class="btn-primary" id="stripe-submit-btn"
-          style="width:100%; justify-content:center; padding:16px; font-size:11px; border-radius:12px; text-transform:uppercase; font-family:'JetBrains Mono', monospace; box-shadow: 0 0 20px rgba(0, 245, 255, 0.15);">
+          style="width:100%; justify-content:center; padding:16px; font-size:14px; font-weight:600; border-radius:12px; font-family:'Inter', sans-serif; box-shadow: 0 0 20px rgba(0, 245, 255, 0.15);">
           Complete Secure Payment
         </button>
 
@@ -1089,14 +1101,25 @@
 
           <!-- Google Pay -->
           <button class="express-btn btn-google" onclick="openWalletAuth('google')" aria-label="Pay with Google Pay">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg" alt="Google Pay" />
+            <svg width="65" height="26" viewBox="0 0 65 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.24 13.06c0-.52-.04-1.01-.13-1.49H12.3v2.81h3.33c-.14.76-.57 1.4-1.22 1.83v1.52h2.37c1.39-1.28 2.19-3.16 2.19-5.41l-.73-.26z" fill="#4285F4"/>
+              <path d="M12.3 19.12c1.84 0 3.38-.61 4.51-1.65l-2.37-1.83c-.66.44-1.5.7-2.14.7-1.65 0-3.05-1.11-3.55-2.61H6.3v1.92c1.13 2.25 3.47 3.47 6 3.47z" fill="#34A853"/>
+              <path d="M8.75 13.73c-.13-.38-.2-.78-.2-1.2 0-.41.07-.82.2-1.2V9.41H6.3c-.45.9-.71 1.91-.71 2.99 0 1.08.26 2.09.71 2.99l2.45-1.66z" fill="#FBBC05"/>
+              <path d="M12.3 7.08c1 0 1.9.34 2.61 1.02l1.95-1.95C15.68 5.09 14.14 4.5 12.3 4.5c-2.53 0-4.87 1.22-6 3.47l2.45 1.92c.5-1.5 1.9-2.81 3.55-2.81z" fill="#EA4335"/>
+              <path d="M21.5 5.5h2.2c1 0 1.8.3 2.4.9.5.5.8 1.2.8 2 0 .8-.3 1.5-.8 2-.6.6-1.4.9-2.4.9H21.5V5.5zm2.2 4.1c.5 0 1-.1 1.2-.4.3-.2.4-.6.4-1 0-.4-.1-.8-.4-1-.2-.3-.7-.4-1.2-.4h-2.2v2.8h2.2z" fill="#3C4043"/>
+              <path d="M29.7 9.2c.6 0 1 .2 1.3.5.3.3.4.7.4 1.2v3.1h-1.6v-1c-.3.4-.8.7-1.3.7-.5 0-.9-.1-1.2-.4-.3-.3-.5-.7-.5-1.2 0-.5.2-.9.5-1.1.4-.3.9-.4 1.5-.4h1v-.4c0-.3-.1-.5-.2-.7-.2-.2-.5-.3-.9-.3-.5 0-.9.2-1.1.5l-1.3-.8c.4-.6 1.2-1 2.3-1zm.1 4c.3 0 .5-.1.7-.3.2-.2.3-.4.3-.7v-.5h-.9c-.4 0-.7.1-.8.2-.1.1-.2.3-.2.5 0 .2.1.4.2.5.2.2.4.3.7.3z" fill="#3C4043"/>
+              <path d="M36.7 9.2l-2.6 6h-1.6l1-2.2-2.5-3.8h1.8l1.4 2.4 1.4-2.4h1.1z" fill="#3C4043"/>
+            </svg>
           </button>
 
           <!-- PayPal -->
           <button class="express-btn btn-paypal" onclick="openWalletAuth('paypal')" aria-label="Pay with PayPal">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" />
+            <svg width="80" height="24" viewBox="0 0 80 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.24 3.01H6.18a.67.67 0 0 0-.66.57L2.64 21.92a.33.33 0 0 0 .33.38h3.36a.67.67 0 0 0 .66-.57l.95-6.03a.67.67 0 0 1 .66-.57h1.96c3.92 0 6.07-1.9 6.64-5.5.47-2.95-.78-4.9-3.79-5.46a15.7 15.7 0 0 0-1.21-.16z" fill="#003087"/>
+              <path d="M15.42 8.57c-.57 3.6-2.72 5.5-6.64 5.5H6.82a.67.67 0 0 0-.66.57l-.95 6.03a.33.33 0 0 0 .33.38h2.95a.67.67 0 0 0 .66-.57l.95-6.03a.67.67 0 0 1 .66-.57h1.96c3.92 0 6.07-1.9 6.64-5.5.42-2.6-.45-4.43-2.61-5.14-.1-.03-.2-.07-.32-.1-.85 3.32-3.15 4.88-5.32 5.43z" fill="#0079C1"/>
+              <path d="M14.64 3.51c2.16.71 3.03 2.54 2.61 5.14-.57 3.6-2.72 5.5-6.64 5.5H8.64a2.22 2.22 0 0 1-2.18-1.89L3.58 24.3a.67.67 0 0 0 .66.77h3.36a.67.67 0 0 0 .66-.57l.95-6.03a.67.67 0 0 1 .66-.57h1.96c3.92 0 6.07-1.9 6.64-5.5.47-2.95-.78-4.9-3.79-5.46-.11-.02-.23-.04-.34-.06z" fill="#00457C"/>
+            </svg>
           </button>
-
         </div>
 
         <div class="payment-divider">
@@ -1172,7 +1195,7 @@
           </label>
 
           <button type="submit" class="btn-primary" id="btn-submit-main"
-            style="width:100%; justify-content:center; padding:16px; font-size:11px; border-radius:12px; margin-top:10px; text-transform:uppercase; font-family:'JetBrains Mono', monospace; box-shadow: 0 0 20px rgba(0, 245, 255, 0.15);">
+            style="width:100%; justify-content:center; padding:16px; font-size:14px; font-weight:600; border-radius:12px; margin-top:10px; font-family:'Inter', sans-serif; box-shadow: 0 0 20px rgba(0, 245, 255, 0.15);">
             Securely Subscribe Now
           </button>
 
@@ -1195,7 +1218,7 @@
 
         <div class="receipt-item-box">
           <h3 id="plan-name"
-            style="font-size: 16px; font-weight:800; color:#fff; text-transform:uppercase; font-family:'JetBrains Mono', monospace; letter-spacing: 0.05em;">
+            style="font-size: 18px; font-weight:700; color:#fff; font-family:'Inter', sans-serif; letter-spacing: -0.01em;">
             Professional Plan</h3>
           <p style="color:#64748b; font-size:12px; margin-top:8px; line-height:1.6;">Full real-time tactical crisis
             tracking, commercial satellite pass queries, email telemetry notifications, and bulk database exports.</p>
@@ -1453,18 +1476,20 @@
 
   <!-- Simulated Processing Logs Loader (For Sandbox Mode) -->
   <div class="processing-overlay" id="processing-modal">
-    <div class="processing-content">
-      <div
-        style="font-size:11px; font-weight:800; color:var(--cyan); letter-spacing:0.16em; text-transform:uppercase; margin-bottom:20px; border-bottom:1px solid rgba(0, 245, 255, 0.12); padding-bottom:10px; font-family:'JetBrains Mono', monospace; display:flex; align-items:center; gap:8px;">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
-          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+    <div class="processing-content" style="text-align: center; max-width: 400px; padding: 48px 36px; border: 1px solid rgba(255,255,255,0.06); background: #0c0f1d; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border-radius: 20px;">
+      <!-- Clean, modern circular spinner -->
+      <div class="processing-spinner-container" style="display: inline-block; margin-bottom: 24px; position: relative;">
+        <svg class="modern-spinner" viewBox="0 0 50 50" style="width: 50px; height: 50px; animation: gpSpin 1.2s linear infinite;">
+          <circle cx="25" cy="25" r="20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="4"></circle>
+          <circle cx="25" cy="25" r="20" fill="none" stroke="var(--cyan)" stroke-width="4" stroke-dasharray="80, 200" stroke-dashoffset="0" stroke-linecap="round"></circle>
         </svg>
-        <span>Secure Transaction Gateway Active</span>
       </div>
-      <div
-        style="font-family:'JetBrains Mono', monospace; font-size:11px; line-height:2.2; color:#64748b; background:#03050b; border:1px solid rgba(0, 245, 255, 0.1); border-radius:12px; padding:24px; margin-bottom:4px; min-height:190px;"
-        id="processing-log"></div>
+      
+      <h3 style="font-size: 18px; font-weight: 700; color: #fff; margin: 0 0 12px; font-family: 'Inter', sans-serif;">Authorizing Secure Payment</h3>
+      <p style="font-size: 13px; color: #64748b; line-height: 1.6; margin: 0 0 24px; font-family: 'Inter', sans-serif;">Connecting to secure payment gateway. Please do not close this window or click back.</p>
+      
+      <!-- Subtle progress indicator for authenticity -->
+      <div id="processing-status-text" style="font-size: 11px; font-weight: 600; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.08em; font-family: 'Inter', sans-serif;">Verifying details...</div>
     </div>
   </div>
 
@@ -1898,27 +1923,23 @@
     // Sandbox Transaction Processing Logger
     function processWalletVerification(walletName) {
       const modal = document.getElementById('processing-modal');
-      const logBox = document.getElementById('processing-log');
+      const statusText = document.getElementById('processing-status-text');
 
-      if (modal && logBox) {
-        logBox.innerHTML = '';
+      if (modal) {
         modal.style.display = 'flex';
 
         const steps = [
-          { text: `> Initializing ${walletName} secure API token...`, res: '[OK]' },
-          { text: `> Requesting transaction clearance for $${planPrice.toFixed(2)}...`, res: '[OK]' },
-          { text: '> Connecting to secure tokenized payment portal...', res: '[OK]' },
-          { text: '> Verifying account token credentials...', res: '[VERIFIED]' },
-          { text: '> Provisioning cloud infrastructure key...', res: '[COMPLETE]' },
-          { text: '> Redirecting to success landing terminal...', res: '[REDIRECT]' }
+          `Initializing ${walletName} secure API token...`,
+          "Connecting to secure payment gateway...",
+          `Authorizing charge for $${planPrice.toFixed(2)}...`,
+          "Verifying bank response...",
+          "Provisioning account access...",
+          "Payment complete! Redirecting..."
         ];
 
         steps.forEach((step, idx) => {
           setTimeout(() => {
-            const r = document.createElement('div');
-            r.style.cssText = 'display:flex;justify-content:space-between;gap:16px;margin-bottom:4px;';
-            r.innerHTML = `<span style="color:#64748b;">${step.text}</span><span style="color:var(--cyan);font-weight:800;">${step.res}</span>`;
-            logBox.appendChild(r);
+            if (statusText) statusText.textContent = step;
 
             if (idx === steps.length - 1) {
               setTimeout(() => {
@@ -1963,27 +1984,23 @@
       }
 
       const modal = document.getElementById('processing-modal');
-      const logBox = document.getElementById('processing-log');
+      const statusText = document.getElementById('processing-status-text');
 
-      if (modal && logBox) {
-        logBox.innerHTML = '';
+      if (modal) {
         modal.style.display = 'flex';
 
         const steps = [
-          { text: '> Connecting to secure PCI transaction node...', res: '[OK]' },
-          { text: '> Establishing secure card gateway handshake...', res: '[OK]' },
-          { text: `> Requesting card pre-authorization for $${planPrice.toFixed(2)}...`, res: '[OK]' },
-          { text: '> Processing credit transaction audit check...', res: '[VERIFIED]' },
-          { text: '> Provisioning platform licensing credentials...', res: '[COMPLETE]' },
-          { text: '> Redirecting to success landing terminal...', res: '[REDIRECT]' }
+          "Establishing secure gateway handshake...",
+          "Contacting secure PCI transaction network...",
+          `Requesting card authorization for $${planPrice.toFixed(2)}...`,
+          "Processing card secure verification check...",
+          "Provisioning account access...",
+          "Payment complete! Redirecting..."
         ];
 
         steps.forEach((step, idx) => {
           setTimeout(() => {
-            const r = document.createElement('div');
-            r.style.cssText = 'display:flex;justify-content:space-between;gap:16px;margin-bottom:4px;';
-            r.innerHTML = `<span style="color:#64748b;">${step.text}</span><span style="color:var(--cyan);font-weight:800;">${step.res}</span>`;
-            logBox.appendChild(r);
+            if (statusText) statusText.textContent = step;
 
             if (idx === steps.length - 1) {
               setTimeout(() => {
