@@ -1,33 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- INCLUDE: _includes/head.html -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sovereign Intel | Real-Time Global Intelligence Platform</title>
-  <meta name="description" content="Sovereign Intel — real-time global intelligence platform tracking conflict, surveillance, disaster, and economic signals across 140+ countries." />
+  <meta name="description"
+    content="Sovereign Intel — real-time global intelligence platform tracking conflict, surveillance, disaster, and economic signals across 140+ countries." />
 
   <!-- OpenGraph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sovereign.pages.dev" />
   <meta property="og:title" content="Sovereign Intel | Real-Time Global Intelligence Platform" />
-  <meta property="og:description" content="Live map of state violations, conflict signals, satellite-linked alerts, and OSINT streams." />
+  <meta property="og:description"
+    content="Live map of state violations, conflict signals, satellite-linked alerts, and OSINT streams." />
   <meta property="og:image" content="https://sovereign.pages.dev/images/og-card.png" />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://sovereign.pages.dev" />
   <meta property="twitter:title" content="Sovereign Intel | Real-Time Global Intelligence Platform" />
-  <meta property="twitter:description" content="Live map of state violations, conflict signals, satellite-linked alerts, and OSINT streams." />
+  <meta property="twitter:description"
+    content="Live map of state violations, conflict signals, satellite-linked alerts, and OSINT streams." />
   <meta property="twitter:image" content="https://sovereign.pages.dev/images/og-card.png" />
 
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300f5ff%22>⬡</text></svg>" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300f5ff%22>⬡</text></svg>" />
 
   <!-- Fonts Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap"
+    rel="stylesheet" />
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/base.css" />
@@ -40,234 +46,277 @@
   <link rel="stylesheet" href="css/intro.css" />
   <!-- /INCLUDE -->
 </head>
+
 <body>
 
-<div class="bg-grid"></div>
+  <div class="bg-grid"></div>
 
-<!-- GLOBAL HEADER WRAPPER -->
-<header id="global-header" class="intro-hidden" style="transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
+  <!-- GLOBAL HEADER WRAPPER -->
+  <header id="global-header" class="intro-hidden" style="transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
 
-<!-- TICKER -->
-<!-- INCLUDE: _includes/ticker.html -->
-<div class="ticker-bar">
-  <div class="ticker-label">● LIVE</div>
-  <div class="ticker-track">
-    <span class="ticker-inner">
-      BREAKING: UN SECURITY COUNCIL EMERGENCY SESSION ON CYBER ATTACKS &nbsp;•&nbsp;
-      6.2 MAGNITUDE EARTHQUAKE HITS SOUTHERN JAPAN &nbsp;•&nbsp;
-      OIL PRICES SURGE PAST $93 ON SUPPLY CONCERNS &nbsp;•&nbsp;
-      TENSIONS ESCALATE IN EASTERN EUROPE &nbsp;•&nbsp;
-      MAJOR PORT DISRUPTION REPORTED IN STRAIT OF MALACCA &nbsp;•&nbsp;
-      MILITANT GROUP MOBILISATION DETECTED — SAHEL REGION &nbsp;•&nbsp;
-      CYBER INTRUSION ATTEMPT BLOCKED — EASTERN EUROPE &nbsp;•&nbsp;
-      UN SECURITY COUNCIL EMERGENCY SESSION ON CYBER ATTACKS &nbsp;•&nbsp;
-      6.2 MAGNITUDE EARTHQUAKE HITS SOUTHERN JAPAN &nbsp;•&nbsp;
-      OIL PRICES SURGE PAST $93 ON SUPPLY CONCERNS &nbsp;•&nbsp;
-      TENSIONS ESCALATE IN EASTERN EUROPE &nbsp;•&nbsp;
-      MAJOR PORT DISRUPTION REPORTED IN STRAIT OF MALACCA &nbsp;•&nbsp;
-    </span>
-  </div>
-</div>
-<!-- /INCLUDE -->
-
-<!-- NAV -->
-<nav style="transition: background 0.3s;">
-  <!-- INCLUDE: _includes/nav.html -->
-  <div class="nav-inner">
-    <a href="index.html" class="logo">
-      <div class="logo-icon">⬡</div>
-      <div class="logo-text">
-        <div class="logo-title">SOVEREIGN</div>
-        <div class="logo-sub">Global Intelligence Software</div>
-      </div>
-    </a>
-
-    <!-- Hamburger (shows on mobile) -->
-    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-
-    <div class="nav-tabs">
-      <a href="#features" class="nav-tab">Features</a>
-      <a href="enterprise.html" class="nav-tab">Enterprise</a>
-      <a href="pricing.html" class="nav-tab">Pricing</a>
-    </div>
-
-    <div class="nav-right">
-      <div class="live-badge">● SYSTEM LIVE</div>
-      <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="btn-cta-small">Enter Dash →</a>
-    </div>
-  </div>
-
-  <!-- Full-screen mobile nav drawer -->
-  <div class="nav-drawer" aria-hidden="true">
-    <a href="#features" class="nav-drawer-tab">Features</a>
-    <a href="enterprise.html" class="nav-drawer-tab">Enterprise</a>
-    <a href="pricing.html" class="nav-drawer-tab">Pricing</a>
-    <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="nav-drawer-tab" style="color: var(--cyan); border-color: rgba(0,245,255,0.3);">Enter Dash →</a>
-  </div>
-
-  <!-- /INCLUDE -->
-</nav>
-
-</header>
-
-<!-- 3D INTRO SCROLL CONTAINER -->
-<div id="intro-scroll-container">
-  <div id="intro-sticky-stage">
-    <div id="intro-canvas-container"></div>
-    
-    <!-- Cyber ambient grid -->
-    <div class="intro-grid-overlay"></div>
-    
-    <!-- Telemetry HUD indicators -->
-    <div class="intro-hud-bottom-center">
-      <span class="hud-item pulsing">SCROLL DOWN TO CALIBRATE GRID ↓</span>
-    </div>
-    
-    <!-- Text Slides -->
-    <div class="intro-slides">
-      <div class="intro-slide" id="intro-slide-1">
-        <div class="slide-badge">⬡ LAYER 01 // GLOBE TELEMETRY</div>
-        <h2>Global Command Grid<br><span style="color:var(--cyan)">In Your Browser.</span></h2>
-        <p>Scan autonomous satellite feeds, maritime data packets, and localized telemetry streams in real time. We bypass traditional mainstream lags to project direct realities.</p>
-      </div>
-      <div class="intro-slide" id="intro-slide-2">
-        <div class="slide-badge">⬡ LAYER 02 // GEO-SIGNAL TRACKING</div>
-        <h2>Conflict Signals<br><span style="color:var(--red)">MAPPED SECONDS FROM IMPACT.</span></h2>
-        <p>Track tactical military intercepts, kinetic strikes, and border crossings. Our decentralized node structure processes and geolocates telemetry signals instantly.</p>
-      </div>
-      <div class="intro-slide" id="intro-slide-3">
-        <div class="slide-badge">⬡ LAYER 03 // RADAR CHOKEPOINTS</div>
-        <h2>Maritime Anomalies<br><span style="color:var(--orange)">AND RADAR SWEEPS.</span></h2>
-        <p>Expose global shipping bottlenecks, GPS spoofing zones, thermal flares, and energy infrastructure anomalies before they disrupt international operations.</p>
-      </div>
-      <div class="intro-slide" id="intro-slide-4">
-        <div class="slide-badge">⬡ LAYER 04 // ACTIVE INTELLIGENCE</div>
-        <h2>Synchronizing Terminal<br><span style="color:var(--cyan)">READY FOR FEED COMMAND.</span></h2>
-        <p>Calibrating live command panels. Preparing dashboard synchronization sequences...</p>
+    <!-- TICKER -->
+    <!-- INCLUDE: _includes/ticker.html -->
+    <div class="ticker-bar">
+      <div class="ticker-label">● LIVE</div>
+      <div class="ticker-track">
+        <span class="ticker-inner">
+          BREAKING: UN SECURITY COUNCIL EMERGENCY SESSION ON CYBER ATTACKS &nbsp;•&nbsp;
+          6.2 MAGNITUDE EARTHQUAKE HITS SOUTHERN JAPAN &nbsp;•&nbsp;
+          OIL PRICES SURGE PAST $93 ON SUPPLY CONCERNS &nbsp;•&nbsp;
+          TENSIONS ESCALATE IN EASTERN EUROPE &nbsp;•&nbsp;
+          MAJOR PORT DISRUPTION REPORTED IN STRAIT OF MALACCA &nbsp;•&nbsp;
+          MILITANT GROUP MOBILISATION DETECTED — SAHEL REGION &nbsp;•&nbsp;
+          CYBER INTRUSION ATTEMPT BLOCKED — EASTERN EUROPE &nbsp;•&nbsp;
+          UN SECURITY COUNCIL EMERGENCY SESSION ON CYBER ATTACKS &nbsp;•&nbsp;
+          6.2 MAGNITUDE EARTHQUAKE HITS SOUTHERN JAPAN &nbsp;•&nbsp;
+          OIL PRICES SURGE PAST $93 ON SUPPLY CONCERNS &nbsp;•&nbsp;
+          TENSIONS ESCALATE IN EASTERN EUROPE &nbsp;•&nbsp;
+          MAJOR PORT DISRUPTION REPORTED IN STRAIT OF MALACCA &nbsp;•&nbsp;
+        </span>
       </div>
     </div>
-  </div>
-</div>
+    <!-- /INCLUDE -->
 
-<!-- BOOT OVERLAY -->
-<div id="boot-ol" style="position:fixed;inset:0;z-index:1000;background:#080810;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.9s;">
-  <div style="max-width:580px;width:100%;padding:0 32px;text-align:center;">
-    <div style="color:#00f5ff;font-size:13px;font-weight:800;letter-spacing:0.22em;margin-bottom:28px;text-transform:uppercase;">Sovereign Intel Terminal v4.2.1</div>
-    <div id="boot-lines" style="font-size:11px;line-height:2.1;color:#334155;font-family:'JetBrains Mono',monospace;"></div>
-    <div id="boot-bar-wrap" style="margin-top:22px;display:none;">
-      <div style="height:2px;background:rgba(0,245,255,0.12);border-radius:1px;overflow:hidden;">
-        <div id="boot-bar" style="height:100%;width:0%;background:#00f5ff;box-shadow:0 0 10px #00f5ff;border-radius:1px;transition:width 0.08s linear;"></div>
-      </div>
-      <div style="margin-top:8px;font-size:8px;color:#1e293b;letter-spacing:0.16em;">LOADING INTELLIGENCE LAYERS...</div>
-    </div>
-    <button onclick="dismissBoot()" style="margin-top:28px;padding:7px 18px;border-radius:8px;border:1px solid rgba(0,245,255,0.4);background:transparent;color:#94a3b8;font-size:8px;font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:0.16em;cursor:pointer;transition:color 0.2s,border-color 0.2s;" onmouseover="this.style.color='#00f5ff';this.style.borderColor='rgba(0,245,255,0.8)'" onmouseout="this.style.color='#94a3b8';this.style.borderColor='rgba(0,245,255,0.4)'">SKIP INTRO →</button>
-  </div>
-</div>
+    <!-- NAV -->
+    <nav style="transition: background 0.3s;">
+      <!-- INCLUDE: _includes/nav.html -->
+      <div class="nav-inner">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">⬡</div>
+          <div class="logo-text">
+            <div class="logo-title">SOVEREIGN</div>
+            <div class="logo-sub">Global Intelligence Software</div>
+          </div>
+        </a>
 
-<!-- HERO -->
-<div class="hero" id="hero-section">
-  <!-- LEFT -->
-  <div>
-    <div class="hero-badge" id="hbadge" style="opacity:0;transition:opacity 0.5s;">
-      <span class="pulse"></span>
-      Real-time intelligence layer — active now
-    </div>
+        <!-- Hamburger (shows on mobile) -->
+        <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
 
-    <h1 id="hero-h1" style="min-height:3em;">
-      <span id="hero-txt"></span><span id="hero-cur" style="color:var(--cyan);font-weight:300;animation:heroCursor 0.75s step-end infinite;">|</span>
-    </h1>
+        <div class="nav-tabs">
+          <a href="#features" class="nav-tab">Features</a>
+          <a href="enterprise.html" class="nav-tab">Enterprise</a>
+          <a href="pricing.html" class="nav-tab">Pricing</a>
+        </div>
 
-    <p class="hero-desc" id="hero-p" style="opacity:0;transform:translateY(10px);transition:opacity 0.6s,transform 0.6s;">
-      Cut through the noise. Sovereign delivers raw, unmanipulated global telemetry directly to your terminal. Track conflicts, supply chain shifts, and emerging threats seconds after they occur—giving you the critical advantage to act decisively.
-    </p>
-
-    <div class="hero-actions" id="hero-act" style="opacity:0;transform:translateY(10px);transition:opacity 0.6s 0.14s,transform 0.6s 0.14s;">
-      <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="btn-secondary" style="justify-content: center; border-color:rgba(0,245,255,0.3); color:var(--cyan);">
-        Enter Dash <span class="arrow">→</span>
-      </a>
-      <a href="signals.html" class="btn-secondary" style="justify-content: center;">Live Signals</a>
-      <a href="enterprise.html" class="btn-secondary" style="grid-column: span 2; justify-content: center; border-color:rgba(179,102,255,0.2); color:#b366ff;">Enterprise Systems</a>
-    </div>
-
-    <div class="hero-stats" id="hero-sts" style="opacity:0;transform:translateY(10px);transition:opacity 0.6s 0.28s,transform 0.6s 0.28s;">
-      <div class="stat-card">
-        <div class="stat-num" id="sn0" data-target="482" data-dec="0" data-sfx="">0</div>
-        <div class="stat-label">new signals today</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num" id="sn1" data-target="99.2" data-dec="1" data-sfx="%">0%</div>
-        <div class="stat-label">feed quality</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num" id="sn2" data-target="200" data-dec="0" data-sfx="+">0</div>
-        <div class="stat-label">intel sources</div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- RIGHT: Interactive live panel -->
-  <div style="perspective:1200px;" id="hero-panel-wrap">
-    <div id="hero-panel" class="globe-panel" style="transform-style:preserve-3d;transition:transform 0.08s ease-out;cursor:crosshair;">
-      <!-- Panel header -->
-      <div class="globe-header">
-        <span class="globe-title">⬡ Live Globe Preview</span>
-        <div style="display:flex;align-items:center;gap:10px;">
-          <span id="hp-sigcount" style="font-size:9px;color:#334155;letter-spacing:0.1em;">482 SIGNALS</span>
-          <span class="op-badge">● Operational</span>
+        <div class="nav-right">
+          <div class="live-badge">● SYSTEM LIVE</div>
+          <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="btn-cta-small">Enter
+            Dash →</a>
         </div>
       </div>
 
-      <!-- Globe stage -->
-      <div class="hp-stage">
-        <!-- Halos -->
-        <div class="hp-halo" style="animation-delay:0s;"></div>
-        <div class="hp-halo" style="animation-delay:1.5s;"></div>
-        <!-- Sphere -->
-        <div class="hp-sphere"></div>
-        <!-- Radar sweep -->
-        <div class="hp-radar"></div>
-        <!-- Lat/lng hints -->
-        <div style="position:absolute;width:240px;height:68px;border-radius:50%;border:1px solid rgba(0,245,255,0.07);pointer-events:none;"></div>
-        <div style="position:absolute;width:68px;height:240px;border-radius:50%;border:1px solid rgba(0,245,255,0.07);pointer-events:none;"></div>
-        <!-- Orbit 1 cyan -->
-        <div class="hp-orbit hp-o1"><div class="hp-sat" style="background:#00f5ff;box-shadow:0 0 10px #00f5ff;top:-4px;left:50%;transform:translate(-50%,-50%);"></div></div>
-        <!-- Orbit 2 orange -->
-        <div class="hp-orbit hp-o2"><div class="hp-sat" style="background:#ff6b00;box-shadow:0 0 10px #ff6b00;top:-4px;left:22%;transform:translate(-50%,-50%);"></div></div>
-        <!-- Orbit 3 purple slow -->
-        <div class="hp-orbit hp-o3"><div class="hp-sat" style="background:#b366ff;box-shadow:0 0 8px #b366ff;bottom:-4px;left:68%;transform:translate(-50%,50%);"></div></div>
-        <!-- Dynamic event markers -->
-        <div id="hp-markers" style="position:absolute;inset:0;pointer-events:none;"></div>
-
+      <!-- Full-screen mobile nav drawer -->
+      <div class="nav-drawer" aria-hidden="true">
+        <a href="#features" class="nav-drawer-tab">Features</a>
+        <a href="enterprise.html" class="nav-drawer-tab">Enterprise</a>
+        <a href="pricing.html" class="nav-drawer-tab">Pricing</a>
+        <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="nav-drawer-tab"
+          style="color: var(--cyan); border-color: rgba(0,245,255,0.3);">Enter Dash →</a>
       </div>
 
-      <!-- Status bar -->
-      <div style="padding:10px 16px;border-top:1px solid rgba(0,245,255,0.08);display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,16,0.5);">
-        <span style="font-size:8px;color:#1e293b;letter-spacing:0.12em;">12 SATELLITES CONNECTED</span>
-        <span style="font-size:8px;color:#1e293b;letter-spacing:0.12em;">200+ INTEL SOURCES</span>
-        <span id="hp-clock" style="font-size:8px;color:#334155;letter-spacing:0.1em;">--:--:-- UTC</span>
+      <!-- /INCLUDE -->
+    </nav>
+
+  </header>
+
+  <!-- 3D INTRO SCROLL CONTAINER -->
+  <div id="intro-scroll-container">
+    <div id="intro-sticky-stage">
+      <div id="intro-canvas-container"></div>
+
+      <!-- Cyber ambient grid -->
+      <div class="intro-grid-overlay"></div>
+
+      <!-- Telemetry HUD indicators -->
+      <div class="intro-hud-bottom-center">
+        <span class="hud-item pulsing">SCROLL DOWN ↓</span>
       </div>
 
+      <!-- Text Slides -->
+      <div class="intro-slides">
+        <div class="intro-slide" id="intro-slide-1">
+          <div class="slide-badge">⬡ LAYER 01 // GLOBAL SIGNALS</div>
+          <h2>One Platform.<br><span style="color:var(--cyan)">Every Signal That Matters.</span></h2>
+          <p>Sovereign aggregates open-source intelligence, regulatory filings, and verified field reports into a single
+            live terminal — giving analysts, researchers, and enterprise teams a clear operational picture, continuously
+            updated.</p>
+        </div>
+        <div class="intro-slide" id="intro-slide-2">
+          <div class="slide-badge">⬡ LAYER 02 // AI IMPACT TRACKING</div>
+          <h2>AI Is Reshaping<br><span style="color:var(--red)">Every Region on Earth.</span></h2>
+          <p>Track where artificial intelligence is being deployed by state and corporate actors — surveillance
+            expansion, autonomous systems, algorithmic border enforcement, and AI-enabled conflict — mapped as it
+            happens.</p>
+        </div>
+        <div class="intro-slide" id="intro-slide-3">
+          <div class="slide-badge">⬡ LAYER 03 // REGULATORY INTELLIGENCE</div>
+          <h2>AI Regulation<br><span style="color:var(--orange)">Moves Fast. So Do We.</span></h2>
+          <p>Monitor live developments in AI governance across 190+ jurisdictions — legislative filings, enforcement actions, treaty negotiations, and regulatory gaps — before they reach mainstream news cycles.</p>
+        </div>
+        <div class="intro-slide" id="intro-slide-4">
+          <div class="slide-badge">⬡ LAYER 04 // TERMINAL READY</div>
+          <h2>Your Feed Is<br><span style="color:var(--cyan)">Initialising Now.</span></h2>
+          <p>Sovereign Dash is ready. All intelligence layers are active and synchronised to your profile. Signal quality is verified. Enter the terminal.</p>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- MAP OPTIONS -->
-<section id="how-it-works" style="border-top: 1px solid rgba(0,245,255,0.07);">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-badge">⬡ Map Options</div>
-      <h2>Every layer.<br/><span style="color:var(--cyan)">One globe.</span></h2>
-      <p class="section-desc">Toggle any intelligence layer directly on the live map. Click a layer to explore what it reveals.</p>
+  <!-- BOOT OVERLAY -->
+  <div id="boot-ol"
+    style="position:fixed;inset:0;z-index:1000;background:#080810;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.9s;">
+    <div style="max-width:580px;width:100%;padding:0 32px;text-align:center;">
+      <div
+        style="color:#00f5ff;font-size:13px;font-weight:800;letter-spacing:0.22em;margin-bottom:28px;text-transform:uppercase;">
+        Sovereign Intel Terminal v4.2.1</div>
+      <div id="boot-lines" style="font-size:11px;line-height:2.1;color:#334155;font-family:'JetBrains Mono',monospace;">
+      </div>
+      <div id="boot-bar-wrap" style="margin-top:22px;display:none;">
+        <div style="height:2px;background:rgba(0,245,255,0.12);border-radius:1px;overflow:hidden;">
+          <div id="boot-bar"
+            style="height:100%;width:0%;background:#00f5ff;box-shadow:0 0 10px #00f5ff;border-radius:1px;transition:width 0.08s linear;">
+          </div>
+        </div>
+        <div style="margin-top:8px;font-size:8px;color:#1e293b;letter-spacing:0.16em;">LOADING INTELLIGENCE LAYERS...
+        </div>
+      </div>
+      <button onclick="dismissBoot()"
+        style="margin-top:28px;padding:7px 18px;border-radius:8px;border:1px solid rgba(0,245,255,0.4);background:transparent;color:#94a3b8;font-size:8px;font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:0.16em;cursor:pointer;transition:color 0.2s,border-color 0.2s;"
+        onmouseover="this.style.color='#00f5ff';this.style.borderColor='rgba(0,245,255,0.8)'"
+        onmouseout="this.style.color='#94a3b8';this.style.borderColor='rgba(0,245,255,0.4)'">SKIP INTRO →</button>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero" id="hero-section">
+    <!-- LEFT -->
+    <div>
+      <div class="hero-badge" id="hbadge" style="opacity:0;transition:opacity 0.5s;">
+        <span class="pulse"></span>
+        Real-time intelligence layer — active now
+      </div>
+
+      <h1 id="hero-h1" style="min-height:3em;">
+        <span id="hero-txt"></span><span id="hero-cur"
+          style="color:var(--cyan);font-weight:300;animation:heroCursor 0.75s step-end infinite;">|</span>
+      </h1>
+
+      <p class="hero-desc" id="hero-p"
+        style="opacity:0;transform:translateY(10px);transition:opacity 0.6s,transform 0.6s;">
+        Sovereign surfaces geopolitical signals, AI deployment events, and regulatory developments — verified, timestamped, and mapped the moment they emerge. Built for analysts, enterprises, and researchers who cannot afford to be last.
+      </p>
+
+      <div class="hero-actions" id="hero-act"
+        style="opacity:0;transform:translateY(10px);transition:opacity 0.6s 0.14s,transform 0.6s 0.14s;">
+        <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="btn-secondary"
+          style="justify-content: center; border-color:rgba(0,245,255,0.3); color:var(--cyan);">
+          Enter Dash <span class="arrow">→</span>
+        </a>
+        <a href="signals.html" class="btn-secondary" style="justify-content: center;">Live Signals</a>
+        <a href="enterprise.html" class="btn-secondary"
+          style="grid-column: span 2; justify-content: center; border-color:rgba(179,102,255,0.2); color:#b366ff;">Enterprise
+          Systems</a>
+      </div>
+
+      <div class="hero-stats" id="hero-sts"
+        style="opacity:0;transform:translateY(10px);transition:opacity 0.6s 0.28s,transform 0.6s 0.28s;">
+        <div class="stat-card">
+          <div class="stat-num" id="sn0" data-target="482" data-dec="0" data-sfx="">0</div>
+          <div class="stat-label">new signals today</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="sn1" data-target="99.2" data-dec="1" data-sfx="%">0%</div>
+          <div class="stat-label">feed quality</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="sn2" data-target="200" data-dec="0" data-sfx="+">0</div>
+          <div class="stat-label">intel sources</div>
+        </div>
+      </div>
     </div>
 
-    <div style="display:grid; grid-template-columns: 1fr 380px; gap: 28px; margin-top: 36px; align-items: start;">
-      <!-- LEFT: info bar + cards -->
-      <div>
-        <!-- Info bar -->
-        <div id="layer-info-bar" style="
+
+    <!-- RIGHT: Interactive live panel -->
+    <div style="perspective:1200px;" id="hero-panel-wrap">
+      <div id="hero-panel" class="globe-panel"
+        style="transform-style:preserve-3d;transition:transform 0.08s ease-out;cursor:crosshair;">
+        <!-- Panel header -->
+        <div class="globe-header">
+          <span class="globe-title">⬡ Live Globe Preview</span>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span id="hp-sigcount" style="font-size:9px;color:#334155;letter-spacing:0.1em;">482 SIGNALS</span>
+            <span class="op-badge">● Operational</span>
+          </div>
+        </div>
+
+        <!-- Globe stage -->
+        <div class="hp-stage">
+          <!-- Halos -->
+          <div class="hp-halo" style="animation-delay:0s;"></div>
+          <div class="hp-halo" style="animation-delay:1.5s;"></div>
+          <!-- Sphere -->
+          <div class="hp-sphere"></div>
+          <!-- Radar sweep -->
+          <div class="hp-radar"></div>
+          <!-- Lat/lng hints -->
+          <div
+            style="position:absolute;width:240px;height:68px;border-radius:50%;border:1px solid rgba(0,245,255,0.07);pointer-events:none;">
+          </div>
+          <div
+            style="position:absolute;width:68px;height:240px;border-radius:50%;border:1px solid rgba(0,245,255,0.07);pointer-events:none;">
+          </div>
+          <!-- Orbit 1 cyan -->
+          <div class="hp-orbit hp-o1">
+            <div class="hp-sat"
+              style="background:#00f5ff;box-shadow:0 0 10px #00f5ff;top:-4px;left:50%;transform:translate(-50%,-50%);">
+            </div>
+          </div>
+          <!-- Orbit 2 orange -->
+          <div class="hp-orbit hp-o2">
+            <div class="hp-sat"
+              style="background:#ff6b00;box-shadow:0 0 10px #ff6b00;top:-4px;left:22%;transform:translate(-50%,-50%);">
+            </div>
+          </div>
+          <!-- Orbit 3 purple slow -->
+          <div class="hp-orbit hp-o3">
+            <div class="hp-sat"
+              style="background:#b366ff;box-shadow:0 0 8px #b366ff;bottom:-4px;left:68%;transform:translate(-50%,50%);">
+            </div>
+          </div>
+          <!-- Dynamic event markers -->
+          <div id="hp-markers" style="position:absolute;inset:0;pointer-events:none;"></div>
+
+        </div>
+
+        <!-- Status bar -->
+        <div
+          style="padding:10px 16px;border-top:1px solid rgba(0,245,255,0.08);display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,16,0.5);">
+          <span style="font-size:8px;color:#1e293b;letter-spacing:0.12em;">12 SATELLITES CONNECTED</span>
+          <span style="font-size:8px;color:#1e293b;letter-spacing:0.12em;">200+ INTEL SOURCES</span>
+          <span id="hp-clock" style="font-size:8px;color:#334155;letter-spacing:0.1em;">--:--:-- UTC</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MAP OPTIONS -->
+  <section id="how-it-works" style="border-top: 1px solid rgba(0,245,255,0.07);">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-badge">⬡ Map Options</div>
+        <h2>Every layer.<br /><span style="color:var(--cyan)">One globe.</span></h2>
+        <p class="section-desc">Toggle any intelligence layer directly on the live map. Click a layer to explore what it
+          reveals.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 380px; gap: 28px; margin-top: 36px; align-items: start;">
+        <!-- LEFT: info bar + cards -->
+        <div>
+          <!-- Info bar -->
+          <div id="layer-info-bar" style="
           padding: 16px 20px;
           border-radius: 12px;
           border: 1px solid rgba(0,245,255,0.2);
@@ -277,81 +326,90 @@
           margin-bottom: 16px;
           transition: border-color 0.4s;
         ">
-          <div style="flex:1; min-width:0;">
-            <div id="layer-info-name" style="font-size:10px; font-weight:800; color:var(--cyan); letter-spacing:0.16em; text-transform:uppercase; margin-bottom:5px; transition:color 0.3s;">Satellite Tracking</div>
-            <div id="layer-info-desc" style="font-size:11px; color:#64748b; line-height:1.65;">Live orbital positions of reconnaissance, communications, and weather satellites — updated every 30 seconds from TLE data feeds.</div>
-          </div>
-          <div id="layer-info-status" style="
+            <div style="flex:1; min-width:0;">
+              <div id="layer-info-name"
+                style="font-size:10px; font-weight:800; color:var(--cyan); letter-spacing:0.16em; text-transform:uppercase; margin-bottom:5px; transition:color 0.3s;">
+                Satellite Tracking</div>
+              <div id="layer-info-desc" style="font-size:11px; color:#64748b; line-height:1.65;">Live orbital positions
+                of reconnaissance, communications, and weather satellites — updated every 30 seconds from TLE data
+                feeds.</div>
+            </div>
+            <div id="layer-info-status" style="
             flex-shrink:0;
             padding: 5px 12px; border-radius: 999px; font-size:8px; font-weight:800;
             letter-spacing:0.14em; background:rgba(0,255,136,0.10);
             border:1px solid rgba(0,255,136,0.25); color:var(--green);
             white-space:nowrap; transition: all 0.3s;
           ">● ACTIVE</div>
+          </div>
+
+          <!-- Cards grid -->
+          <div class="map-options-grid" id="map-options-grid">
+            <div class="map-card" data-index="0" data-name="Satellite Tracking" data-color="#00f5ff"
+              data-img="images/satalite.png"
+              data-desc="Live orbital positions of reconnaissance, communications, and weather satellites — updated every 30 seconds from TLE data feeds.">
+              <div class="map-card-accent"></div>
+              <div class="map-card-name">Satellite Tracking</div>
+              <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
+            </div>
+
+            <div class="map-card" data-index="1" data-name="Internet & Cables" data-color="#ff69b4"
+              data-img="images/internet.png"
+              data-desc="Visualise the undersea fibre-optic cable network carrying 95% of global internet traffic — including chokepoints, repair zones, and state-actor ownership.">
+              <div class="map-card-accent"></div>
+              <div class="map-card-name">Internet & Cables</div>
+              <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
+            </div>
+
+            <div class="map-card" data-index="2" data-name="Oil & Gas" data-color="#ffa500" data-img="images/oil.png"
+              data-desc="Global energy infrastructure — pipelines, refineries, offshore platforms, and strategic reserves — with real-time disruption flags and geopolitical risk scoring.">
+              <div class="map-card-accent"></div>
+              <div class="map-card-name">Oil & Gas</div>
+              <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
+            </div>
+
+            <div class="map-card" data-index="3" data-name="Weather" data-color="#38bdf8" data-img="images/weather.png"
+              data-desc="Real-time atmospheric overlays — storm systems, pressure fronts, and severe weather warnings cross-referenced with active conflict and disaster zones.">
+              <div class="map-card-accent"></div>
+              <div class="map-card-name">Weather</div>
+              <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
+            </div>
+
+            <div class="map-card" data-index="4" data-name="Data Centers" data-color="#00f5ff"
+              data-img="images/datacenter.png"
+              data-desc="Map the physical backbone of the digital world — hyperscale data centres, cloud regions, and critical server clusters tracked by jurisdiction and uptime.">
+              <div class="map-card-accent"></div>
+              <div class="map-card-name">Data Centers</div>
+              <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
+            </div>
+
+            <div class="map-card" data-index="5" data-name="AI Regulation" data-color="#ff6b00" data-img="images/ai.png"
+              data-desc="Track AI governance legislation, regulatory frameworks, and enforcement actions across jurisdictions — mapping which nations are leading, lagging, or weaponising AI policy.">
+              <div class="map-card-accent"></div>
+              <div class="map-card-name">AI Regulation</div>
+              <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
+            </div>
+
+            <div class="map-card" data-index="6" data-name="Day / Night" data-color="#b366ff"
+              data-img="images/earth at night.png"
+              data-desc="Live terminator line showing the real-time boundary between day and night — useful for timing operations, communications windows, and satellite passes.">
+              <div class="map-card-accent"></div>
+              <div class="map-card-name">Day / Night</div>
+              <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
+            </div>
+
+            <div class="map-card" data-index="7" data-name="GPS Jamming" data-color="#ff2244"
+              data-img="images/jamming.png"
+              data-desc="Real-time GPS denial and spoofing detected via aviation NOTAM feeds and crowdsourced reports — pinpointing state-level electronic warfare zones.">
+              <div class="map-card-accent"></div>
+              <div class="map-card-name">GPS Jamming</div>
+              <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
+            </div>
+          </div>
         </div>
 
-        <!-- Cards grid -->
-        <div class="map-options-grid" id="map-options-grid">
-          <div class="map-card" data-index="0" data-name="Satellite Tracking" data-color="#00f5ff" data-img="images/satalite.png"
-            data-desc="Live orbital positions of reconnaissance, communications, and weather satellites — updated every 30 seconds from TLE data feeds.">
-            <div class="map-card-accent"></div>
-            <div class="map-card-name">Satellite Tracking</div>
-            <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
-          </div>
-
-          <div class="map-card" data-index="1" data-name="Internet & Cables" data-color="#ff69b4" data-img="images/internet.png"
-            data-desc="Visualise the undersea fibre-optic cable network carrying 95% of global internet traffic — including chokepoints, repair zones, and state-actor ownership.">
-            <div class="map-card-accent"></div>
-            <div class="map-card-name">Internet & Cables</div>
-            <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
-          </div>
-
-          <div class="map-card" data-index="2" data-name="Oil & Gas" data-color="#ffa500" data-img="images/oil.png"
-            data-desc="Global energy infrastructure — pipelines, refineries, offshore platforms, and strategic reserves — with real-time disruption flags and geopolitical risk scoring.">
-            <div class="map-card-accent"></div>
-            <div class="map-card-name">Oil & Gas</div>
-            <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
-          </div>
-
-          <div class="map-card" data-index="3" data-name="Weather" data-color="#38bdf8" data-img="images/weather.png"
-            data-desc="Real-time atmospheric overlays — storm systems, pressure fronts, and severe weather warnings cross-referenced with active conflict and disaster zones.">
-            <div class="map-card-accent"></div>
-            <div class="map-card-name">Weather</div>
-            <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
-          </div>
-
-          <div class="map-card" data-index="4" data-name="Data Centers" data-color="#00f5ff" data-img="images/datacenter.png"
-            data-desc="Map the physical backbone of the digital world — hyperscale data centres, cloud regions, and critical server clusters tracked by jurisdiction and uptime.">
-            <div class="map-card-accent"></div>
-            <div class="map-card-name">Data Centers</div>
-            <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
-          </div>
-
-          <div class="map-card" data-index="5" data-name="AI Regulation" data-color="#ff6b00" data-img="images/ai.png"
-            data-desc="Track AI governance legislation, regulatory frameworks, and enforcement actions across jurisdictions — mapping which nations are leading, lagging, or weaponising AI policy.">
-            <div class="map-card-accent"></div>
-            <div class="map-card-name">AI Regulation</div>
-            <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
-          </div>
-
-          <div class="map-card" data-index="6" data-name="Day / Night" data-color="#b366ff" data-img="images/earth at night.png"
-            data-desc="Live terminator line showing the real-time boundary between day and night — useful for timing operations, communications windows, and satellite passes.">
-            <div class="map-card-accent"></div>
-            <div class="map-card-name">Day / Night</div>
-            <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
-          </div>
-
-          <div class="map-card" data-index="7" data-name="GPS Jamming" data-color="#ff2244" data-img="images/jamming.png"
-            data-desc="Real-time GPS denial and spoofing detected via aviation NOTAM feeds and crowdsourced reports — pinpointing state-level electronic warfare zones.">
-            <div class="map-card-accent"></div>
-            <div class="map-card-name">GPS Jamming</div>
-            <div class="map-card-toggle"><span class="toggle-dot"></span><span class="toggle-label">ON</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- RIGHT: floating image preview -->
-      <div id="map-preview-panel" style="
+        <!-- RIGHT: floating image preview -->
+        <div id="map-preview-panel" style="
         position: sticky; top: 90px;
         border-radius: 16px;
         border: 1px solid rgba(0,245,255,0.18);
@@ -361,469 +419,545 @@
         overflow: hidden;
         transition: border-color 0.4s, box-shadow 0.4s;
       ">
-        <div id="map-preview-header" style="
+          <div id="map-preview-header" style="
           display: flex; align-items: center; justify-content: space-between;
           padding: 12px 16px;
           border-bottom: 1px solid rgba(255,255,255,0.06);
           background: rgba(8,8,16,0.6);
         ">
-          <div id="map-preview-label" style="font-size:9px; font-weight:800; color:var(--cyan); letter-spacing:0.16em; text-transform:uppercase; transition:color 0.3s;">Satellite Tracking</div>
-          <div id="map-preview-badge" style="font-size:8px; font-weight:800; padding:3px 10px; border-radius:999px; background:rgba(0,255,136,0.10); border:1px solid rgba(0,255,136,0.25); color:#00ff88; letter-spacing:0.12em;">● LIVE</div>
-        </div>
-        <div style="position:relative; aspect-ratio:16/11; background:#03050b; overflow:hidden;">
-          <img id="map-preview-img"
-            src="images/satalite.png"
-            alt="Layer preview"
-            style="width:100%; height:100%; object-fit:cover; display:block; transition:opacity 0.35s ease;"
-            onerror="this.style.display='none'; document.getElementById('map-preview-placeholder').style.display='flex';"
-          />
-          <div id="map-preview-placeholder" style="
+            <div id="map-preview-label"
+              style="font-size:9px; font-weight:800; color:var(--cyan); letter-spacing:0.16em; text-transform:uppercase; transition:color 0.3s;">
+              Satellite Tracking</div>
+            <div id="map-preview-badge"
+              style="font-size:8px; font-weight:800; padding:3px 10px; border-radius:999px; background:rgba(0,255,136,0.10); border:1px solid rgba(0,255,136,0.25); color:#00ff88; letter-spacing:0.12em;">
+              ● LIVE</div>
+          </div>
+          <div style="position:relative; aspect-ratio:16/11; background:#03050b; overflow:hidden;">
+            <img id="map-preview-img" src="images/satalite.png" alt="Layer preview"
+              style="width:100%; height:100%; object-fit:cover; display:block; transition:opacity 0.35s ease;"
+              onerror="this.style.display='none'; document.getElementById('map-preview-placeholder').style.display='flex';" />
+            <div id="map-preview-placeholder" style="
             display:none; position:absolute; inset:0;
             align-items:center; justify-content:center; flex-direction:column; gap:10px;
             color:rgba(0,245,255,0.25); font-size:10px; letter-spacing:0.14em;
           ">
-            <div style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(0,245,255,0.2);display:grid;place-items:center;font-size:18px;">◈</div>
-            PREVIEW UNAVAILABLE
+              <div
+                style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(0,245,255,0.2);display:grid;place-items:center;font-size:18px;">
+                ◈</div>
+              PREVIEW UNAVAILABLE
+            </div>
+          </div>
+          <div style="padding:12px 16px; border-top:1px solid rgba(255,255,255,0.05);">
+            <div id="map-preview-desc" style="font-size:10px; color:#475569; line-height:1.65;">Live orbital positions
+              of reconnaissance, communications, and weather satellites.</div>
           </div>
         </div>
-        <div style="padding:12px 16px; border-top:1px solid rgba(255,255,255,0.05);">
-          <div id="map-preview-desc" style="font-size:10px; color:#475569; line-height:1.65;">Live orbital positions of reconnaissance, communications, and weather satellites.</div>
-        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FEATURES -->
-<section id="features" style="border-top: 1px solid rgba(0,245,255,0.07);">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-badge">⬡ Platform Capabilities</div>
-      <h2>Everything in<br/><span style="color:var(--cyan)">one view.</span></h2>
-      <p class="section-desc">Six intelligence layers. One terminal. Sovereign Dash surfaces what matters — before it reaches the wire.</p>
-    </div>
-
-    <div class="features-grid">
-      <div class="feature-card" data-cat="conflict">
-        <div class="feature-icon" style="background:rgba(255,34,68,0.10); border:1px solid rgba(255,34,68,0.2);">⚔</div>
-        <div class="feature-title">Conflict Detection</div>
-        <p class="feature-desc">Real-time escalation signals from disputed zones, border incidents, and military mobilisation events — graded S1 through S5.</p>
-        <div class="feature-tag" style="background:rgba(255,34,68,0.10); border:1px solid rgba(255,34,68,0.2); color:#ff2244; letter-spacing:0.12em;">CONFLICT LAYER</div>
+  <!-- FEATURES -->
+  <section id="features" style="border-top: 1px solid rgba(0,245,255,0.07);">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-badge">⬡ Platform Capabilities</div>
+        <h2>Six Intelligence Layers.<br /><span style="color:var(--cyan)">One Terminal.</span></h2>
+        <p class="section-desc">Six intelligence layers. One terminal. Sovereign Dash surfaces what matters — before it
+          reaches the wire.</p>
       </div>
 
-      <div class="feature-card" data-cat="surveillance">
-        <div class="feature-icon" style="background:rgba(0,245,255,0.10); border:1px solid rgba(0,245,255,0.2);">📡</div>
-        <div class="feature-title">Surveillance Tracking</div>
-        <p class="feature-desc">Monitor biometric deployment, digital surveillance expansions, and SIGINT intercepts across state and corporate actors.</p>
-        <div class="feature-tag" style="background:rgba(0,245,255,0.10); border:1px solid rgba(0,245,255,0.2); color:#00f5ff; letter-spacing:0.12em;">SURVEILLANCE LAYER</div>
-      </div>
-
-      <div class="feature-card" data-cat="disaster">
-        <div class="feature-icon" style="background:rgba(255,107,0,0.10); border:1px solid rgba(255,107,0,0.2);">⚠</div>
-        <div class="feature-title">Disaster Intelligence</div>
-        <p class="feature-desc">Seismic events, climate disasters, and humanitarian crises pinpointed with satellite verification and live severity scoring.</p>
-        <div class="feature-tag" style="background:rgba(255,107,0,0.10); border:1px solid rgba(255,107,0,0.2); color:#ff6b00; letter-spacing:0.12em;">DISASTER LAYER</div>
-      </div>
-
-      <div class="feature-card" data-cat="economic">
-        <div class="feature-icon" style="background:rgba(255,210,46,0.10); border:1px solid rgba(255,210,46,0.2);">◈</div>
-        <div class="feature-title">Economic Signals</div>
-        <p class="feature-desc">Supply chain flags, sanctions intelligence, forced-labour risk markers, and critical minerals disruption — globally indexed.</p>
-        <div class="feature-tag" style="background:rgba(255,210,46,0.10); border:1px solid rgba(255,210,46,0.2); color:#ffd22e; letter-spacing:0.12em;">ECONOMIC LAYER</div>
-      </div>
-
-      <div class="feature-card" data-cat="humanitarian">
-        <div class="feature-icon" style="background:rgba(0,255,136,0.10); border:1px solid rgba(0,255,136,0.2);">🛰</div>
-        <div class="feature-title">Space Radar</div>
-        <p class="feature-desc">Active satellite tracking across LEO and MEO orbits. Live telemetry from ORION, HELIX, and SENTINEL constellations.</p>
-        <div class="feature-tag" style="background:rgba(0,255,136,0.10); border:1px solid rgba(0,255,136,0.2); color:#00ff88; letter-spacing:0.12em;">SPACE RADAR</div>
-      </div>
-
-      <div class="feature-card" data-cat="political">
-        <div class="feature-icon" style="background:rgba(179,102,255,0.10); border:1px solid rgba(179,102,255,0.2);">⬡</div>
-        <div class="feature-title">Intel Reports</div>
-        <p class="feature-desc">Deep-dive structured reports on corporate complicity, state actor behaviour, and geopolitical risk — exportable and shareable.</p>
-        <div class="feature-tag" style="background:rgba(179,102,255,0.10); border:1px solid rgba(179,102,255,0.2); color:#b366ff; letter-spacing:0.12em;">INTEL REPORTS</div>
-      </div>
-    </div>
-
-    <!-- Category pills -->
-    <div class="categories">
-      <button class="cat-pill" data-cat="conflict" data-color="#ff2244" style="border-color:rgba(255,34,68,0.3); background:rgba(255,34,68,0.07); color:#ff2244;">
-        <div class="cat-dot" style="background:#ff2244; box-shadow:0 0 8px #ff2244;"></div> Conflict (6)
-      </button>
-      <button class="cat-pill" data-cat="surveillance" data-color="#00f5ff" style="border-color:rgba(0,245,255,0.3); background:rgba(0,245,255,0.07); color:#00f5ff;">
-        <div class="cat-dot" style="background:#00f5ff; box-shadow:0 0 8px #00f5ff;"></div> Surveillance (43)
-      </button>
-      <button class="cat-pill" data-cat="disaster" data-color="#ff6b00" style="border-color:rgba(255,107,0,0.3); background:rgba(255,107,0,0.07); color:#ff6b00;">
-        <div class="cat-dot" style="background:#ff6b00; box-shadow:0 0 8px #ff6b00;"></div> Disaster (7)
-      </button>
-      <button class="cat-pill" data-cat="economic" data-color="#ffd22e" style="border-color:rgba(255,210,46,0.3); background:rgba(255,210,46,0.07); color:#ffd22e;">
-        <div class="cat-dot" style="background:#ffd22e; box-shadow:0 0 8px #ffd22e;"></div> Economic (18)
-      </button>
-      <button class="cat-pill" data-cat="humanitarian" data-color="#00ff88" style="border-color:rgba(0,255,136,0.3); background:rgba(0,255,136,0.07); color:#00ff88;">
-        <div class="cat-dot" style="background:#00ff88; box-shadow:0 0 8px #00ff88;"></div> Humanitarian (41)
-      </button>
-      <button class="cat-pill" data-cat="political" data-color="#b366ff" style="border-color:rgba(179,102,255,0.3); background:rgba(179,102,255,0.07); color:#b366ff;">
-        <div class="cat-dot" style="background:#b366ff; box-shadow:0 0 8px #b366ff;"></div> Political (5)
-      </button>
-    </div>
-  </div>
-</section>
-
-<!-- GEOPOLITICAL BLINDSPOT -->
-<section id="intelligence-gap" style="border-top: 1px solid rgba(0,245,255,0.07);">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-badge">⬡ Geopolitical Gaps</div>
-      <h2>Why traditional<br/><span style="color:var(--red)">intelligence fails.</span></h2>
-      <p class="section-desc">Traditional risk indexes and corporate briefings are built on static digests, lagging news networks, and regional political filters. Sovereign Intel exposes critical realities in real time.</p>
-    </div>
-
-    <div class="problem-grid">
-      <!-- Problem 1 -->
-      <div class="problem-card">
-        <div class="card-badge">01 / The Latency Gap</div>
-        <h3>Hours vs. Minutes</h3>
-        <p class="problem-txt">Mainstream news networks and institutional portals can take hours—sometimes days—to vet and publish alerts on border developments, blockades, or maritime disruptions. By then, logistics assets are already stranded.</p>
-        <div class="solution-txt">
-          <strong>Sovereign Pipeline</strong>
-          Direct low-latency telemetry tracking. Signals are broadcast automatically the moment LEO sensors register coordinates or local OSINT radio logs detect activity, bypassing state and corporate media filters.
-        </div>
-      </div>
-
-      <!-- Problem 2 -->
-      <div class="problem-card">
-        <div class="card-badge">02 / Algorithmic Censorship</div>
-        <h3>Corporate Filtering</h3>
-        <p class="problem-txt">Many commercial threat maps editorialize raw reports to protect regional diplomatic alliances or sovereign investments. Critical local signals are diluted, leading to blindspots in supply chains.</p>
-        <div class="solution-txt">
-          <strong>Sovereign Pipeline</strong>
-          Raw, unedited data outputs. Every single alert lists exact coordinates, verified classifications, and timestamps. No political narrative, no filtered channels—just verified signal blocks.
-        </div>
-      </div>
-
-      <!-- Problem 3 -->
-      <div class="problem-card">
-        <div class="card-badge">03 / Spectrum Denial</div>
-        <h3>GPS Jamming & Spoofing</h3>
-        <p class="problem-txt">Electronic warfare is active and growing. State actors jam and spoof GPS signals, rendering standard transponders and tracking maps blind over high-friction air corridors and maritime routes.</p>
-        <div class="solution-txt">
-          <strong>Sovereign Pipeline</strong>
-          Live electromagnetic tracking. We map signal denial and GPS spoofing zones directly from aviation NOTAM bulletins, LEO radar sensors, and spectrum anomalies, charting exact safe corridors.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LIVE SIGNALS FEED -->
-<section id="signals" style="border-top: 1px solid rgba(0,245,255,0.07);">
-  <div class="section-inner">
-    <div class="section-header" style="margin-bottom:32px;">
-      <div class="section-badge">⬡ Live Feed</div>
-      <h2>What's in the<br/><span style="color:var(--cyan)">feed right now.</span></h2>
-      <p class="section-desc">Signals streaming through Sovereign Dash in real time.</p>
-      <div style="display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:12px;border:1px solid rgba(255,34,68,0.3);background:rgba(255,34,68,0.07);margin-top:16px;">
-        <span class="rdot"></span>
-        <span style="font-size:10px;font-weight:800;color:#ff2244;letter-spacing:0.16em;">LIVE SIGNAL STREAM</span>
-      </div>
-    </div>
-
-    <!-- Terminal wrap -->
-    <div style="border-radius:16px;border:1px solid rgba(0,245,255,0.15);overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,0.4);max-width:850px;margin:0 auto;">
-      <!-- Terminal bar -->
-      <div style="background:rgba(8,8,16,0.97);padding:11px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(0,245,255,0.08);">
-        <div style="display:flex;gap:6px;align-items:center;">
-          <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
-        </div>
-        <span style="font-size:9px;font-weight:700;color:#334155;letter-spacing:0.16em;">SOVEREIGN INTEL · SIGNAL TERMINAL</span>
-        <span style="font-size:9px;font-weight:700;color:#334155;letter-spacing:0.1em;"><span id="sig-count">482</span> SIGNALS · <span id="sig-clock">--:--:--</span> UTC</span>
-      </div>
-
-      <!-- Feed stream -->
-      <div id="live-feed" style="background:#03050b;max-height:480px;overflow:hidden;position:relative;">
-        <!-- fade overlay at bottom -->
-        <div style="position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,#03050b);pointer-events:none;z-index:5;"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DASHBOARD PREVIEW -->
-<section id="dashboard" style="border-top: 1px solid rgba(0,245,255,0.07);">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-badge">⬡ Sovereign Dash</div>
-      <h2>The intelligence<br/><span style="color:var(--cyan)">terminal.</span></h2>
-      <p class="section-desc">Everything you need — feed, globe, overlays, satellite radar — in a single ultra-wide command interface.</p>
-    </div>
-
-    <div class="dash-preview-wrap">
-      <div class="dash-preview-bar">
-        <div class="dot r"></div>
-        <div class="dot y"></div>
-        <div class="dot g"></div>
-        <div class="dash-url">sovereign-intel.io/dash &nbsp;·&nbsp; LIVE &nbsp;·&nbsp; 12 SATELLITES CONNECTED</div>
-      </div>
-      <img src="images/example.png" alt="Sovereign Dash — Intelligence Terminal"
-        style="width:100%; display:block; object-fit:cover;" />
-    </div>
-  </div>
-</section>
-
-<!-- ENTERPRISE BESPOKE SYSTEMS -->
-<section id="enterprise-tier" class="enterprise-section">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-badge" style="border-color:rgba(179,102,255,0.3); background:rgba(179,102,255,0.06); color:#b366ff;">⬡ Enterprise Customisation</div>
-      <h2>Bespoke visualizer<br/><span style="color:#b366ff">dashboard systems.</span></h2>
-      <p class="section-desc">For international networks, global logistics conglomerates, and private intelligence command units. We engineer completely specialized, hosted visualizer platforms and proprietary analytics suites built to your strategic criteria.</p>
-    </div>
-
-    <div class="enterprise-grid">
-      <!-- LEFT: Detailed Value Pitch -->
-      <div class="enterprise-card-hero">
-        <span class="plan-badge" style="background:rgba(179,102,255,0.08); border-color:rgba(179,102,255,0.25); color:#b366ff;">Elite Command Network</span>
-        <div style="display:flex; align-items:baseline; gap:8px; margin: 16px 0 6px;">
-          <span style="font-size:38px; font-weight:800; color:#fff; font-family:'JetBrains Mono',monospace;">Bespoke Quote</span>
-        </div>
-        <p style="font-size:13px; color:#94a3b8; line-height:1.7; margin-bottom:24px;">Deploy a custom instance of Sovereign's spatial engine, customized with proprietary data layers, specialized asset geofences, and closed-circuit operational telemetry.</p>
-
-        <ul class="enterprise-features-list">
-          <li class="enterprise-feature-item">
-            <span class="enterprise-feature-icon">✔</span>
-            <span><strong>Custom Dashboard Interfaces</strong>: Branded widgets and tailored analytical layouts.</span>
-          </li>
-          <li class="enterprise-feature-item">
-            <span class="enterprise-feature-icon">✔</span>
-            <span><strong>Private Telemetry Ingress</strong>: Import closed asset transponders and proprietary geofences.</span>
-          </li>
-          <li class="enterprise-feature-item">
-            <span class="enterprise-feature-icon">✔</span>
-            <span><strong>Dedicated OSINT Crawlers</strong>: Focused scraper systems for your specific regional operations.</span>
-          </li>
-          <li class="enterprise-feature-item">
-            <span class="enterprise-feature-icon">✔</span>
-            <span><strong>Isolated Secure Nodes</strong>: Run in a sealed cloud network or on-premise.</span>
-          </li>
-        </ul>
-        <div style="margin-top: 32px;">
-          <a href="enterprise.html" class="btn-primary" style="font-size: 11px; padding: 14px 24px; box-shadow: 0 0 20px rgba(179,102,255,0.15); border-color: rgba(179,102,255,0.4); background: rgba(179,102,255,0.1); color: #b366ff;">
-            Explore Enterprise Solutions <span class="arrow">→</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- RIGHT: Embedded Simple Contact Form -->
-      <div style="border: 1px solid rgba(179,102,255,0.25); border-radius:18px; background:rgba(10,13,24,0.7); backdrop-filter:blur(12px); padding:36px; box-shadow:0 0 32px rgba(179,102,255,0.04);">
-        <div style="font-size:11px; font-weight:800; color:#b366ff; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:14px; border-bottom:1px solid rgba(255, 255, 255, 0.06); padding-bottom:10px;">Contact Sales & Custom Dashboard Queries</div>
-        <p style="font-size:13.5px; color:#cbd5e1; line-height:1.7; margin-bottom:24px;">Send a message to our solutions team. Briefly describe your mapping, threat alerts, or visual analytics needs, and we will follow up with a proposal within 24 hours.</p>
-        
-        <!-- Interactive Simple Contact Form -->
-        <form id="enterprise-form" style="display:block;">
-          <div class="form-group">
-            <label class="form-label">Your Name</label>
-            <input type="text" class="form-input" id="ent-name" placeholder="e.g. Sarah Jenkins" required />
+      <div class="features-grid">
+        <div class="feature-card" data-cat="conflict">
+          <div class="feature-icon" style="background:rgba(255,34,68,0.10); border:1px solid rgba(255,34,68,0.2);">⚔
           </div>
+          <div class="feature-title">Ground Truth, Not Summaries</div>
+          <p class="feature-desc">Verified escalation signals from active conflict zones, border incidents, and military repositioning — graded S1 to S5 with source attribution.</p>
+          <div class="feature-tag"
+            style="background:rgba(255,34,68,0.10); border:1px solid rgba(255,34,68,0.2); color:#ff2244; letter-spacing:0.12em;">
+            CONFLICT LAYER</div>
+        </div>
 
-          <div class="form-group">
-            <label class="form-label">Company / Organization</label>
-            <input type="text" class="form-input" id="ent-org" placeholder="e.g. Vanguard Logistics" required />
+        <div class="feature-card" data-cat="surveillance">
+          <div class="feature-icon" style="background:rgba(0,245,255,0.10); border:1px solid rgba(0,245,255,0.2);">📡
           </div>
+          <div class="feature-title">State Surveillance, Tracked Globally</div>
+          <p class="feature-desc">Biometric deployments, SIGINT expansions, AI-powered border enforcement, and corporate surveillance programmes — mapped by actor and jurisdiction.</p>
+          <div class="feature-tag"
+            style="background:rgba(0,245,255,0.10); border:1px solid rgba(0,245,255,0.2); color:#00f5ff; letter-spacing:0.12em;">
+            SURVEILLANCE LAYER</div>
+        </div>
 
-          <div class="form-group">
-            <label class="form-label">Business Email</label>
-            <input type="email" class="form-input" id="ent-email" placeholder="e.g. s.jenkins@vanguard.com" required />
+        <div class="feature-card" data-cat="disaster">
+          <div class="feature-icon" style="background:rgba(255,107,0,0.10); border:1px solid rgba(255,107,0,0.2);">⚠
           </div>
+          <div class="feature-title">Crisis Before the Wire</div>
+          <p class="feature-desc">Seismic events, climate emergencies, and humanitarian crises verified with satellite telemetry and live severity scoring — typically minutes ahead of agency bulletins.</p>
+          <div class="feature-tag"
+            style="background:rgba(255,107,0,0.10); border:1px solid rgba(255,107,0,0.2); color:#ff6b00; letter-spacing:0.12em;">
+            DISASTER LAYER</div>
+        </div>
 
-          <div class="form-group">
-            <label class="form-label">Project Requirements</label>
-            <textarea class="form-textarea" id="ent-requirements" placeholder="Tell us about your tracking, geofencing, or data visualization goals..." required style="height: 110px;"></textarea>
+        <div class="feature-card" data-cat="economic">
+          <div class="feature-icon" style="background:rgba(255,210,46,0.10); border:1px solid rgba(255,210,46,0.2);">◈
           </div>
+          <div class="feature-title">Economic Signals With Geopolitical Context</div>
+          <p class="feature-desc">Sanctions packages, supply chain disruptions, forced-labour risk flags, and critical minerals intelligence — indexed globally and updated continuously.</p>
+          <div class="feature-tag"
+            style="background:rgba(255,210,46,0.10); border:1px solid rgba(255,210,46,0.2); color:#ffd22e; letter-spacing:0.12em;">
+            ECONOMIC LAYER</div>
+        </div>
 
-          <button type="submit" class="btn-primary" id="ent-submit-btn" style="width:100%; justify-content:center; padding:16px; font-size:11px; border-color:rgba(179,102,255,0.5); background:rgba(179,102,255,0.10); color:#b366ff; box-shadow:0 0 20px rgba(179,102,255,0.06);">
-            SEND MESSAGE <span class="arrow">→</span>
-          </button>
-        </form>
+        <div class="feature-card" data-cat="humanitarian">
+          <div class="feature-icon" style="background:rgba(0,255,136,0.10); border:1px solid rgba(0,255,136,0.2);">🛰
+          </div>
+          <div class="feature-title">Eyes on Low Earth Orbit</div>
+          <p class="feature-desc">Live telemetry from active satellite constellations in LEO and MEO. Track signal coverage, orbital changes, and potential surveillance infrastructure overhead.</p>
+          <div class="feature-tag"
+            style="background:rgba(0,255,136,0.10); border:1px solid rgba(0,255,136,0.2); color:#00ff88; letter-spacing:0.12em;">
+            SPACE RADAR</div>
+        </div>
 
-        <div id="enterprise-status" style="display:none; font-size:11px; font-family:'JetBrains Mono',monospace; color:var(--green); margin-top:16px; text-align:center; letter-spacing:0.06em;">
-          ● LAUNCHING MAIL RELAY CLIENT...
+        <div class="feature-card" data-cat="political">
+          <div class="feature-icon" style="background:rgba(179,102,255,0.10); border:1px solid rgba(179,102,255,0.2);">⬡
+          </div>
+          <div class="feature-title">The Layer Most Platforms Don't Have</div>
+          <p class="feature-desc">Track AI legislation, enforcement actions, and governance developments across 190+ jurisdictions — from national AI acts to emergency data orders.</p>
+          <div class="feature-tag"
+            style="background:rgba(179,102,255,0.10); border:1px solid rgba(179,102,255,0.2); color:#b366ff; letter-spacing:0.12em;">
+            AI REGULATORY LAYER</div>
+        </div>
+      </div>
+
+      <!-- Category pills -->
+      <div class="categories">
+        <button class="cat-pill" data-cat="conflict" data-color="#ff2244"
+          style="border-color:rgba(255,34,68,0.3); background:rgba(255,34,68,0.07); color:#ff2244;">
+          <div class="cat-dot" style="background:#ff2244; box-shadow:0 0 8px #ff2244;"></div> Conflict (6)
+        </button>
+        <button class="cat-pill" data-cat="surveillance" data-color="#00f5ff"
+          style="border-color:rgba(0,245,255,0.3); background:rgba(0,245,255,0.07); color:#00f5ff;">
+          <div class="cat-dot" style="background:#00f5ff; box-shadow:0 0 8px #00f5ff;"></div> Surveillance (43)
+        </button>
+        <button class="cat-pill" data-cat="disaster" data-color="#ff6b00"
+          style="border-color:rgba(255,107,0,0.3); background:rgba(255,107,0,0.07); color:#ff6b00;">
+          <div class="cat-dot" style="background:#ff6b00; box-shadow:0 0 8px #ff6b00;"></div> Disaster (7)
+        </button>
+        <button class="cat-pill" data-cat="economic" data-color="#ffd22e"
+          style="border-color:rgba(255,210,46,0.3); background:rgba(255,210,46,0.07); color:#ffd22e;">
+          <div class="cat-dot" style="background:#ffd22e; box-shadow:0 0 8px #ffd22e;"></div> Economic (18)
+        </button>
+        <button class="cat-pill" data-cat="humanitarian" data-color="#00ff88"
+          style="border-color:rgba(0,255,136,0.3); background:rgba(0,255,136,0.07); color:#00ff88;">
+          <div class="cat-dot" style="background:#00ff88; box-shadow:0 0 8px #00ff88;"></div> Humanitarian (41)
+        </button>
+        <button class="cat-pill" data-cat="political" data-color="#b366ff"
+          style="border-color:rgba(179,102,255,0.3); background:rgba(179,102,255,0.07); color:#b366ff;">
+          <div class="cat-dot" style="background:#b366ff; box-shadow:0 0 8px #b366ff;"></div> Political (5)
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GEOPOLITICAL BLINDSPOT -->
+  <section id="intelligence-gap" style="border-top: 1px solid rgba(0,245,255,0.07);">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-badge">⬡ Geopolitical Gaps</div>
+        <h2>The Information You Need Exists.<br /><span style="color:var(--red)">It's Just Not Reaching You in Time.</span></h2>
+        <p class="section-desc">Traditional risk indexes and corporate briefings are built on static digests, lagging news networks, and regional political filters. Sovereign Intel exposes critical realities in real time.</p>
+      </div>
+
+      <div class="problem-grid">
+        <!-- Problem 1 -->
+        <div class="problem-card">
+          <div class="card-badge">01 / The Latency Problem</div>
+          <h3>The Latency Problem</h3>
+          <p class="problem-txt">Most institutional intelligence products are built on editorial pipelines designed for publication, not decision-making. By the time a regional development reaches a standard briefing, the operational window has already closed.</p>
+          <div class="solution-txt">
+            <strong>Sovereign Pipeline</strong>
+            Sovereign processes and surfaces verified signals continuously — not on a publishing schedule.
+          </div>
+        </div>
+
+        <!-- Problem 2 -->
+        <div class="problem-card">
+          <div class="card-badge">02 / Filtered Outputs</div>
+          <h3>Filtered Outputs</h3>
+          <p class="problem-txt">Commercial risk platforms routinely soften or omit signals that conflict with the interests of their largest clients or regional partners. Critical supply chain flags, state surveillance expansions, and AI enforcement actions disappear from feeds before they reach subscribers.</p>
+          <div class="solution-txt">
+            <strong>Sovereign Pipeline</strong>
+            Sovereign applies no editorial filters. Every signal includes its source classification, coordinates, and confidence rating — unedited.
+          </div>
+        </div>
+
+        <!-- Problem 3 -->
+        <div class="problem-card">
+          <div class="card-badge">03 / AI Governance Blindspots</div>
+          <h3>AI Governance Blindspots</h3>
+          <p class="problem-txt">No mainstream risk platform tracks AI policy and enforcement as a live intelligence layer. Regulatory shifts — national AI acts, emergency enforcement actions, cross-border data agreements — move quickly and carry significant operational consequence.</p>
+          <div class="solution-txt">
+            <strong>Sovereign Pipeline</strong>
+            Sovereign's AI Regulatory Layer monitors legislative activity, enforcement notices, and civil society challenges across 190+ countries in real time.
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CTA BLOCK -->
-<section style="position:relative;z-index:10;overflow:hidden;border-top:1px solid rgba(0,245,255,0.07);">
-  <div style="position:absolute;inset:0;pointer-events:none;
+  <!-- LIVE SIGNALS FEED -->
+  <section id="signals" style="border-top: 1px solid rgba(0,245,255,0.07);">
+    <div class="section-inner">
+      <div class="section-header" style="margin-bottom:32px;">
+        <div class="section-badge">⬡ Live Feed</div>
+        <h2>What's in the<br /><span style="color:var(--cyan)">feed right now.</span></h2>
+        <p class="section-desc">Signals streaming through Sovereign Dash in real time.</p>
+        <div
+          style="display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:12px;border:1px solid rgba(255,34,68,0.3);background:rgba(255,34,68,0.07);margin-top:16px;">
+          <span class="rdot"></span>
+          <span style="font-size:10px;font-weight:800;color:#ff2244;letter-spacing:0.16em;">LIVE SIGNAL STREAM</span>
+        </div>
+      </div>
+
+      <!-- Terminal wrap -->
+      <div
+        style="border-radius:16px;border:1px solid rgba(0,245,255,0.15);overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,0.4);max-width:850px;margin:0 auto;">
+        <!-- Terminal bar -->
+        <div
+          style="background:rgba(8,8,16,0.97);padding:11px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(0,245,255,0.08);">
+          <div style="display:flex;gap:6px;align-items:center;">
+            <div class="dot r"></div>
+            <div class="dot y"></div>
+            <div class="dot g"></div>
+          </div>
+          <span style="font-size:9px;font-weight:700;color:#334155;letter-spacing:0.16em;">SOVEREIGN INTEL · SIGNAL
+            TERMINAL</span>
+          <span style="font-size:9px;font-weight:700;color:#334155;letter-spacing:0.1em;"><span
+              id="sig-count">482</span> SIGNALS · <span id="sig-clock">--:--:--</span> UTC</span>
+        </div>
+
+        <!-- Feed stream -->
+        <div id="live-feed" style="background:#03050b;max-height:480px;overflow:hidden;position:relative;">
+          <!-- fade overlay at bottom -->
+          <div
+            style="position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,#03050b);pointer-events:none;z-index:5;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD PREVIEW -->
+  <section id="dashboard" style="border-top: 1px solid rgba(0,245,255,0.07);">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-badge">⬡ Sovereign Dash</div>
+        <h2>The intelligence<br /><span style="color:var(--cyan)">terminal.</span></h2>
+        <p class="section-desc">Everything you need — feed, globe, overlays, satellite radar — in a single ultra-wide
+          command interface.</p>
+      </div>
+
+      <div class="dash-preview-wrap">
+        <div class="dash-preview-bar">
+          <div class="dot r"></div>
+          <div class="dot y"></div>
+          <div class="dot g"></div>
+          <div class="dash-url">sovereign-intel.io/dash &nbsp;·&nbsp; LIVE &nbsp;·&nbsp; 12 SATELLITES CONNECTED</div>
+        </div>
+        <img src="images/example.png" alt="Sovereign Dash — Intelligence Terminal"
+          style="width:100%; display:block; object-fit:cover;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTERPRISE BESPOKE SYSTEMS -->
+  <section id="enterprise-tier" class="enterprise-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-badge"
+          style="border-color:rgba(179,102,255,0.3); background:rgba(179,102,255,0.06); color:#b366ff;">⬡ Enterprise Customisation</div>
+        <h2>Built for Organisations<br /><span style="color:#b366ff">That Operate at Scale.</span></h2>
+        <p class="section-desc">For global logistics networks, legal and compliance teams, defence contractors, and private intelligence units — Sovereign engineers dedicated intelligence environments built to your operational criteria.</p>
+      </div>
+
+      <div class="enterprise-grid">
+        <!-- LEFT: Detailed Value Pitch -->
+        <div class="enterprise-card-hero">
+          <span class="plan-badge"
+            style="background:rgba(179,102,255,0.08); border-color:rgba(179,102,255,0.25); color:#b366ff;">Dedicated Environments</span>
+          <div style="display:flex; align-items:baseline; gap:8px; margin: 16px 0 6px;">
+            <span style="font-size:38px; font-weight:800; color:#fff; font-family:'JetBrains Mono',monospace;">Bespoke
+              Quote</span>
+          </div>
+          <p style="font-size:13px; color:#94a3b8; line-height:1.7; margin-bottom:24px;">Deploy a custom instance of Sovereign's spatial engine, customized with proprietary data layers, specialized asset geofences, and closed-circuit operational telemetry.</p>
+
+          <ul class="enterprise-features-list">
+            <li class="enterprise-feature-item">
+              <span class="enterprise-feature-icon">✔</span>
+              <span><strong>Proprietary Data Layers</strong>: Integrate closed-circuit asset transponders, custom geofences, and internal data feeds alongside Sovereign's live signals.</span>
+            </li>
+            <li class="enterprise-feature-item">
+              <span class="enterprise-feature-icon">✔</span>
+              <span><strong>AI Governance Monitoring Suite</strong>: Dedicated regulatory tracking scoped to your jurisdictions of operation, with alert thresholds and export tools.</span>
+            </li>
+            <li class="enterprise-feature-item">
+              <span class="enterprise-feature-icon">✔</span>
+              <span><strong>Isolated Deployment Options</strong>: Run within a sealed cloud instance or fully on-premise, meeting the most stringent requirements.</span>
+            </li>
+            <li class="enterprise-feature-item">
+              <span class="enterprise-feature-icon">✔</span>
+              <span><strong>Analyst-Grade Reporting</strong>: Structured, exportable intelligence reports with source citations, severity gradings, and temporal analysis built in.</span>
+            </li>
+          </ul>
+          <div style="margin-top: 32px;">
+            <a href="enterprise.html" class="btn-primary"
+              style="font-size: 11px; padding: 14px 24px; box-shadow: 0 0 20px rgba(179,102,255,0.15); border-color: rgba(179,102,255,0.4); background: rgba(179,102,255,0.1); color: #b366ff;">
+              Explore Enterprise Solutions <span class="arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT: Embedded Simple Contact Form -->
+        <div
+          style="border: 1px solid rgba(179,102,255,0.25); border-radius:18px; background:rgba(10,13,24,0.7); backdrop-filter:blur(12px); padding:36px; box-shadow:0 0 32px rgba(179,102,255,0.04);">
+          <div
+            style="font-size:11px; font-weight:800; color:#b366ff; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:14px; border-bottom:1px solid rgba(255, 255, 255, 0.06); padding-bottom:10px;">
+            Contact Sales & Custom Dashboard Queries</div>
+          <p style="font-size:13.5px; color:#cbd5e1; line-height:1.7; margin-bottom:24px;">Send a message to our
+            solutions team. Briefly describe your mapping, threat alerts, or visual analytics needs, and we will follow
+            up with a proposal within 24 hours.</p>
+
+          <!-- Interactive Simple Contact Form -->
+          <form id="enterprise-form" style="display:block;">
+            <div class="form-group">
+              <label class="form-label">Your Name</label>
+              <input type="text" class="form-input" id="ent-name" placeholder="e.g. Sarah Jenkins" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Company / Organization</label>
+              <input type="text" class="form-input" id="ent-org" placeholder="e.g. Vanguard Logistics" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Business Email</label>
+              <input type="email" class="form-input" id="ent-email" placeholder="e.g. s.jenkins@vanguard.com"
+                required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Project Requirements</label>
+              <textarea class="form-textarea" id="ent-requirements"
+                placeholder="Tell us about your tracking, geofencing, or data visualization goals..." required
+                style="height: 110px;"></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary" id="ent-submit-btn"
+              style="width:100%; justify-content:center; padding:16px; font-size:11px; border-color:rgba(179,102,255,0.5); background:rgba(179,102,255,0.10); color:#b366ff; box-shadow:0 0 20px rgba(179,102,255,0.06);">
+              SEND MESSAGE <span class="arrow">→</span>
+            </button>
+          </form>
+
+          <div id="enterprise-status"
+            style="display:none; font-size:11px; font-family:'JetBrains Mono',monospace; color:var(--green); margin-top:16px; text-align:center; letter-spacing:0.06em;">
+            ● LAUNCHING MAIL RELAY CLIENT...
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BLOCK -->
+  <section style="position:relative;z-index:10;overflow:hidden;border-top:1px solid rgba(0,245,255,0.07);">
+    <div style="position:absolute;inset:0;pointer-events:none;
     background:
       radial-gradient(circle at 72% 50%, rgba(0,245,255,0.10) 0%, transparent 42%),
       radial-gradient(circle at 25% 55%, rgba(179,102,255,0.06) 0%, transparent 38%),
       radial-gradient(circle at 50% 100%, rgba(0,245,255,0.04) 0%, transparent 35%);"></div>
-  <div style="position:absolute;inset:0;pointer-events:none;
+    <div style="position:absolute;inset:0;pointer-events:none;
     background:linear-gradient(rgba(0,245,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,245,255,0.025) 1px,transparent 1px);
     background-size:64px 64px;opacity:0.5;"></div>
 
-  <div class="section-inner" style="padding:100px 24px 110px;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
-      <!-- LEFT: text -->
-      <div>
-        <div class="section-badge" style="margin-bottom:22px;">⬡ Get Started</div>
-        <h2 style="font-size:clamp(38px,4.8vw,68px);line-height:0.93;letter-spacing:-0.05em;">
-          Ready to<br/>enter<br/><span style="color:var(--cyan);">the dash?</span>
-        </h2>
-        <p style="font-size:14px;color:#64748b;line-height:1.85;margin-top:22px;max-width:420px;">
-          Join analysts, researchers, and journalists using Sovereign Dash to track global power in real time. No noise. No delay. Just the signal.
-        </p>
+    <div class="section-inner" style="padding:100px 24px 110px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+        <!-- LEFT: text -->
+        <div>
+          <div class="section-badge" style="margin-bottom:22px;">⬡ Get Started</div>
+          <h2 style="font-size:clamp(32px,3.8vw,56px);line-height:1.05;letter-spacing:-0.03em;font-weight:800;text-transform:uppercase;">
+            The Signal Is Already There.<br /><span style="color:var(--cyan);">The Question Is Whether You're Seeing It.</span>
+          </h2>
+          <p style="font-size:14px;color:#64748b;line-height:1.85;margin-top:22px;max-width:480px;">
+            Sovereign Dash is live now. Join analysts, compliance teams, and researchers tracking geopolitical risk and AI developments across 190+ countries — with no editorial delay and no noise.
+          </p>
 
-        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:36px;">
-          <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="btn-primary" style="font-size:13px;padding:18px 32px;">
-            Launch Sovereign Dash <span class="arrow">→</span>
-          </a>
-          <a href="pricing.html" class="btn-secondary" style="font-size:13px;padding:18px 32px;">
-            Request API Access
-          </a>
-        </div>
-
-        <div style="display:flex;gap:32px;margin-top:44px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.06);">
-          <div>
-            <div style="font-size:24px;font-weight:800;color:#fff;">200+</div>
-            <div style="font-size:9px;color:#334155;letter-spacing:0.14em;text-transform:uppercase;margin-top:3px;">Intel Sources</div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:36px;">
+            <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="btn-primary"
+              style="font-size:13px;padding:18px 32px;">
+              Enter Sovereign Dash →
+            </a>
+            <a href="enterprise.html" class="btn-secondary" style="font-size:13px;padding:18px 32px;">
+              Request Enterprise Access →
+            </a>
           </div>
-          <div>
-            <div style="font-size:24px;font-weight:800;color:#fff;">12</div>
-            <div style="font-size:9px;color:#334155;letter-spacing:0.14em;text-transform:uppercase;margin-top:3px;">Live Satellites</div>
-          </div>
-          <div>
-            <div style="font-size:24px;font-weight:800;color:#fff;">190+</div>
-            <div style="font-size:9px;color:#334155;letter-spacing:0.14em;text-transform:uppercase;margin-top:3px;">Countries Tracked</div>
-          </div>
-        </div>
-      </div>
 
-      <!-- RIGHT: globe graphic -->
-      <div style="position:relative;height:520px;" class="cta-globe-wrap">
-        <!-- Centered stage for all globe elements -->
-        <div id="cta-stage" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-          <!-- Pulse halos -->
-          <div class="cta-halo" style="animation-delay:0s;"></div>
-          <div class="cta-halo" style="animation-delay:1.3s;"></div>
-          <div class="cta-halo" style="animation-delay:2.6s;"></div>
-
-          <!-- Globe -->
-          <div class="cta-globe"></div>
-
-          <!-- Radar sweep -->
-          <div class="cta-radar"></div>
-
-          <!-- Lat/lng grid hints -->
-          <div style="position:absolute;width:300px;height:90px;border-radius:50%;border:1px solid rgba(0,245,255,0.07);pointer-events:none;"></div>
-          <div style="position:absolute;width:90px;height:300px;border-radius:50%;border:1px solid rgba(0,245,255,0.07);pointer-events:none;"></div>
-
-          <!-- Orbit 1 — cyan -->
-          <div class="cta-orbit" style="width:490px;height:150px;animation:ctaSpin1 13s linear infinite;">
-            <div class="cta-sat" style="background:#00f5ff;box-shadow:0 0 14px #00f5ff;top:-5px;left:50%;"></div>
-          </div>
-          <!-- Orbit 2 — purple -->
-          <div class="cta-orbit" style="width:450px;height:110px;border-color:rgba(179,102,255,0.35);animation:ctaSpin2 8s linear infinite;">
-            <div class="cta-sat" style="background:#b366ff;box-shadow:0 0 12px #b366ff;top:-5px;left:20%;"></div>
-          </div>
-          <!-- Orbit 3 — orange, reverse -->
-          <div class="cta-orbit" style="width:530px;height:95px;border-color:rgba(255,107,0,0.28);animation:ctaSpin3 19s linear infinite reverse;">
-            <div class="cta-sat" style="background:#ff6b00;box-shadow:0 0 12px #ff6b00;top:-5px;left:75%;"></div>
+          <div
+            style="display:flex;gap:32px;margin-top:44px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.06);">
+            <div>
+              <div style="font-size:24px;font-weight:800;color:#fff;">200+</div>
+              <div style="font-size:9px;color:#334155;letter-spacing:0.14em;text-transform:uppercase;margin-top:3px;">
+                Intel Sources</div>
+            </div>
+            <div>
+              <div style="font-size:24px;font-weight:800;color:#fff;">12</div>
+              <div style="font-size:9px;color:#334155;letter-spacing:0.14em;text-transform:uppercase;margin-top:3px;">
+                Live Satellites</div>
+            </div>
+            <div>
+              <div style="font-size:24px;font-weight:800;color:#fff;">190+</div>
+              <div style="font-size:9px;color:#334155;letter-spacing:0.14em;text-transform:uppercase;margin-top:3px;">
+                Countries Tracked</div>
+            </div>
           </div>
         </div>
 
-        <!-- Signal tags (outside stage so they sit in the column space) -->
-        <div class="cta-tag" style="top:10%;left:0;animation-delay:0s;">
-          <div class="cta-tag-dot" style="background:#ff2244;box-shadow:0 0 8px #ff2244;"></div>
-          <div><div style="color:#ff2244;font-size:7px;font-weight:800;letter-spacing:0.12em;">CONFLICT</div><div style="color:#475569;font-size:7px;margin-top:1px;">Donetsk, UA</div></div>
-        </div>
+        <!-- RIGHT: globe graphic -->
+        <div style="position:relative;height:520px;" class="cta-globe-wrap">
+          <!-- Centered stage for all globe elements -->
+          <div id="cta-stage" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+            <!-- Pulse halos -->
+            <div class="cta-halo" style="animation-delay:0s;"></div>
+            <div class="cta-halo" style="animation-delay:1.3s;"></div>
+            <div class="cta-halo" style="animation-delay:2.6s;"></div>
 
-        <div class="cta-tag" style="top:28%;right:0;animation-delay:0.7s;">
-          <div class="cta-tag-dot" style="background:#00f5ff;box-shadow:0 0 8px #00f5ff;"></div>
-          <div><div style="color:#00f5ff;font-size:7px;font-weight:800;letter-spacing:0.12em;">SURVEILLANCE</div><div style="color:#475569;font-size:7px;margin-top:1px;">Gulf of Aden</div></div>
-        </div>
+            <!-- Globe -->
+            <div class="cta-globe"></div>
 
-        <div class="cta-tag" style="bottom:30%;left:0;animation-delay:1.5s;">
-          <div class="cta-tag-dot" style="background:#ffd22e;box-shadow:0 0 8px #ffd22e;"></div>
-          <div><div style="color:#ffd22e;font-size:7px;font-weight:800;letter-spacing:0.12em;">ECONOMIC</div><div style="color:#475569;font-size:7px;margin-top:1px;">Strait of Malacca</div></div>
-        </div>
+            <!-- Radar sweep -->
+            <div class="cta-radar"></div>
 
-        <div class="cta-tag" style="bottom:14%;right:0;animation-delay:2.2s;">
-          <div class="cta-tag-dot" style="background:#ff6b00;box-shadow:0 0 8px #ff6b00;"></div>
-          <div><div style="color:#ff6b00;font-size:7px;font-weight:800;letter-spacing:0.12em;">DISASTER</div><div style="color:#475569;font-size:7px;margin-top:1px;">Kyushu, Japan</div></div>
-        </div>
+            <!-- Lat/lng grid hints -->
+            <div
+              style="position:absolute;width:300px;height:90px;border-radius:50%;border:1px solid rgba(0,245,255,0.07);pointer-events:none;">
+            </div>
+            <div
+              style="position:absolute;width:90px;height:300px;border-radius:50%;border:1px solid rgba(0,245,255,0.07);pointer-events:none;">
+            </div>
 
-        <!-- Sat label top -->
-        <div style="position:absolute;top:3%;left:50%;transform:translateX(-50%);white-space:nowrap;
+            <!-- Orbit 1 — cyan -->
+            <div class="cta-orbit" style="width:490px;height:150px;animation:ctaSpin1 13s linear infinite;">
+              <div class="cta-sat" style="background:#00f5ff;box-shadow:0 0 14px #00f5ff;top:-5px;left:50%;"></div>
+            </div>
+            <!-- Orbit 2 — purple -->
+            <div class="cta-orbit"
+              style="width:450px;height:110px;border-color:rgba(179,102,255,0.35);animation:ctaSpin2 8s linear infinite;">
+              <div class="cta-sat" style="background:#b366ff;box-shadow:0 0 12px #b366ff;top:-5px;left:20%;"></div>
+            </div>
+            <!-- Orbit 3 — orange, reverse -->
+            <div class="cta-orbit"
+              style="width:530px;height:95px;border-color:rgba(255,107,0,0.28);animation:ctaSpin3 19s linear infinite reverse;">
+              <div class="cta-sat" style="background:#ff6b00;box-shadow:0 0 12px #ff6b00;top:-5px;left:75%;"></div>
+            </div>
+          </div>
+
+          <!-- Signal tags (outside stage so they sit in the column space) -->
+          <div class="cta-tag" style="top:10%;left:0;animation-delay:0s;">
+            <div class="cta-tag-dot" style="background:#ff2244;box-shadow:0 0 8px #ff2244;"></div>
+            <div>
+              <div style="color:#ff2244;font-size:7px;font-weight:800;letter-spacing:0.12em;">CONFLICT</div>
+              <div style="color:#475569;font-size:7px;margin-top:1px;">Donetsk, UA</div>
+            </div>
+          </div>
+
+          <div class="cta-tag" style="top:28%;right:0;animation-delay:0.7s;">
+            <div class="cta-tag-dot" style="background:#00f5ff;box-shadow:0 0 8px #00f5ff;"></div>
+            <div>
+              <div style="color:#00f5ff;font-size:7px;font-weight:800;letter-spacing:0.12em;">SURVEILLANCE</div>
+              <div style="color:#475569;font-size:7px;margin-top:1px;">Gulf of Aden</div>
+            </div>
+          </div>
+
+          <div class="cta-tag" style="bottom:30%;left:0;animation-delay:1.5s;">
+            <div class="cta-tag-dot" style="background:#ffd22e;box-shadow:0 0 8px #ffd22e;"></div>
+            <div>
+              <div style="color:#ffd22e;font-size:7px;font-weight:800;letter-spacing:0.12em;">ECONOMIC</div>
+              <div style="color:#475569;font-size:7px;margin-top:1px;">Strait of Malacca</div>
+            </div>
+          </div>
+
+          <div class="cta-tag" style="bottom:14%;right:0;animation-delay:2.2s;">
+            <div class="cta-tag-dot" style="background:#ff6b00;box-shadow:0 0 8px #ff6b00;"></div>
+            <div>
+              <div style="color:#ff6b00;font-size:7px;font-weight:800;letter-spacing:0.12em;">DISASTER</div>
+              <div style="color:#475569;font-size:7px;margin-top:1px;">Kyushu, Japan</div>
+            </div>
+          </div>
+
+          <!-- Sat label top -->
+          <div style="position:absolute;top:3%;left:50%;transform:translateX(-50%);white-space:nowrap;
           border:1px solid rgba(0,245,255,0.3);background:rgba(0,245,255,0.07);
           padding:5px 14px;border-radius:6px;font-size:8px;font-weight:800;
           color:#00f5ff;letter-spacing:0.14em;backdrop-filter:blur(8px);" class="cta-sat-label">
-          SAT-7 ORION · LEO · 550KM · ACTIVE
-        </div>
+            SAT-7 ORION · LEO · 550KM · ACTIVE
+          </div>
 
-        <!-- Status bottom -->
-        <div style="position:absolute;bottom:2%;left:50%;transform:translateX(-50%);white-space:nowrap;
+          <!-- Status bottom -->
+          <div style="position:absolute;bottom:2%;left:50%;transform:translateX(-50%);white-space:nowrap;
           font-size:9px;color:#334155;letter-spacing:0.12em;text-align:center;" class="cta-status-label">
-          12 SATELLITES CONNECTED · GLOBAL VIEW · REAL-TIME
+            12 SATELLITES CONNECTED · GLOBAL VIEW · REAL-TIME
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<!-- INCLUDE: _includes/footer.html -->
-<footer>
-  <span>© 2026 SOVEREIGN INTEL &nbsp;·&nbsp; GLOBAL INTELLIGENCE PLATFORM</span>
-  <div class="footer-links">
-    <a href="about.html">About</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="signals.html">Live Signals</a>
-    <a href="index.html#dashboard">Space Radar</a>
-    <a href="mailto:secure@sovereign-intel.io">Support</a>
-  </div>
-  <div class="footer-live">
-    <span>◈</span> SECURE VAULT CHANNEL ONLINE
-  </div>
-</footer>
-<!-- /INCLUDE -->
+  <!-- FOOTER -->
+  <!-- INCLUDE: _includes/footer.html -->
+  <footer>
+    <span>© 2026 SOVEREIGN INTEL &nbsp;·&nbsp; GLOBAL INTELLIGENCE PLATFORM</span>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="signals.html">Live Signals</a>
+      <a href="index.html#dashboard">Space Radar</a>
+      <a href="mailto:secure@sovereign-intel.io">Support</a>
+    </div>
+    <div class="footer-live">
+      <span>◈</span> SECURE VAULT CHANNEL ONLINE
+    </div>
+  </footer>
+  <!-- /INCLUDE -->
 
-<!-- JS SCRIPTS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="js/intro.js" defer></script>
-<script src="js/boot.js" defer></script>
-<script src="js/hero.js" defer></script>
-<script src="js/nav.js" defer></script>
-<script src="js/signals.js" defer></script>
+  <!-- JS SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="js/intro.js" defer></script>
+  <script src="js/boot.js" defer></script>
+  <script src="js/hero.js" defer></script>
+  <script src="js/nav.js" defer></script>
+  <script src="js/signals.js" defer></script>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('enterprise-form');
-    const status = document.getElementById('enterprise-status');
-    const submitBtn = document.getElementById('ent-submit-btn');
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('enterprise-form');
+      const status = document.getElementById('enterprise-status');
+      const submitBtn = document.getElementById('ent-submit-btn');
 
-    if (form && status && submitBtn) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const name = document.getElementById('ent-name').value;
-        const org = document.getElementById('ent-org').value;
-        const email = document.getElementById('ent-email').value;
-        const requirements = document.getElementById('ent-requirements').value;
+      if (form && status && submitBtn) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
 
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'PREPARING BRIEF...';
-        status.style.display = 'block';
+          const name = document.getElementById('ent-name').value;
+          const org = document.getElementById('ent-org').value;
+          const email = document.getElementById('ent-email').value;
+          const requirements = document.getElementById('ent-requirements').value;
 
-        setTimeout(() => {
-          const subject = `Sovereign Intel Enterprise Consultation - ${org}`;
-          const body = `SOVEREIGN INTEL ENTERPRISE INTAKE BRIEF
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'PREPARING BRIEF...';
+          status.style.display = 'block';
+
+          setTimeout(() => {
+            const subject = `Sovereign Intel Enterprise Consultation - ${org}`;
+            const body = `SOVEREIGN INTEL ENTERPRISE INTAKE BRIEF
 --------------------------------------------------
 CONTACT NAME: ${name}
 COMPANY / ORGANIZATION: ${org}
@@ -833,20 +967,21 @@ PROJECT SPECIFICATION DETAILS:
 ${requirements}
 --------------------------------------------------
 [Form submitted via Sovereign Intel Landing System]`;
-          
-          window.location.href = `mailto:workwithavip@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-          
-          setTimeout(() => {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'SEND MESSAGE';
-            status.style.display = 'none';
-            form.reset();
-          }, 2000);
-        }, 1200);
-      });
-    }
-  });
-</script>
+
+            window.location.href = `mailto:workwithavip@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            setTimeout(() => {
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'SEND MESSAGE';
+              status.style.display = 'none';
+              form.reset();
+            }, 2000);
+          }, 1200);
+        });
+      }
+    });
+  </script>
 
 </body>
+
 </html>

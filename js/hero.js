@@ -6,9 +6,9 @@ function startHero(){
 
   // 2. Typewriter on h1
   const lines = [
-    { text: 'TRACK GLOBAL', cls: '', color: '#ffffff' },
-    { text: 'POWER',        cls: '', color: '#ffffff' },
-    { text: 'IN REAL TIME.', cls: 'glitch-word', color: 'var(--cyan)' },
+    { text: "TRACK THE WORLD'S MOST", cls: '', color: '#ffffff' },
+    { text: 'CONSEQUENTIAL SHIFTS.', cls: '', color: '#ffffff' },
+    { text: 'IN REAL TIME.',         cls: 'glitch-word', color: 'var(--cyan)' },
   ];
   const txtEl = document.getElementById('hero-txt');
   const curEl = document.getElementById('hero-cur');
