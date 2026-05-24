@@ -6,9 +6,9 @@ function startHero(){
 
   // 2. Typewriter on h1
   const lines = [
-    { text: 'Track global', cls: '' },
-    { text: 'power',        cls: '' },
-    { text: 'in real time.', cls: 'glitch-word', color: 'var(--cyan)' },
+    { text: 'TRACK GLOBAL', cls: '', color: '#ffffff' },
+    { text: 'POWER',        cls: '', color: '#ffffff' },
+    { text: 'IN REAL TIME.', cls: 'glitch-word', color: 'var(--cyan)' },
   ];
   const txtEl = document.getElementById('hero-txt');
   const curEl = document.getElementById('hero-cur');
@@ -165,34 +165,7 @@ function startGlobe(){
   addMarker();
   setInterval(addMarker, 2000);
 
-  // Toast notifications
-  const toastSignals = [
-    { tag:'CONFLICT',    sev:'S5', color:'#ff2244', txt:'New airstrike reported' },
-    { tag:'SURVEILLANCE',sev:'S4', color:'#00f5ff', txt:'SIGINT intercept flagged' },
-    { tag:'ECONOMIC',    sev:'S3', color:'#ffd22e', txt:'Supply chain disruption' },
-    { tag:'DISASTER',    sev:'S3', color:'#ff6b00', txt:'Seismic event detected' },
-    { tag:'CONFLICT',    sev:'S4', color:'#ff2244', txt:'Militant mobilisation' },
-  ];
-  let toastI = 0;
-  function showToast(){
-    if (!toastEl) return;
-    const t = toastSignals[toastI % toastSignals.length]; toastI++;
-    toastEl.innerHTML = `<div class="hp-toast-inner">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px;">
-        <span style="font-size:7px;font-weight:800;color:${t.color};letter-spacing:0.12em;">${t.tag}</span>
-        <span style="font-size:7px;font-weight:800;color:${t.color};border:1px solid ${t.color}44;padding:1px 5px;border-radius:3px;">${t.sev}</span>
-      </div>
-      <div style="font-size:9px;color:#94a3b8;">${t.txt}</div>
-    </div>`;
-    toastEl.style.display = 'block';
-    setTimeout(() => {
-      const inner = toastEl.querySelector('.hp-toast-inner');
-      if(inner){ inner.style.transition='opacity 0.4s'; inner.style.opacity='0'; }
-      setTimeout(() => { toastEl.style.display='none'; }, 400);
-    }, 2800);
-  }
-  setTimeout(showToast, 1500);
-  setInterval(showToast, 5000);
+
 }
 
 /* ── CATEGORIES SELECTOR FILTER ── */
