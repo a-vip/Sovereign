@@ -34,7 +34,6 @@ h1 {
   letter-spacing: -0.05em; text-transform: uppercase; color: #fff;
   animation: fadeUp 0.5s 0.08s ease both;
 }
-h1 span { color: var(--cyan); }
 
 .hero-desc {
   margin-top: 24px; font-size: 15px; line-height: 1.8;
