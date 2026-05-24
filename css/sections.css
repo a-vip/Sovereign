@@ -2,6 +2,18 @@
 section { position: relative; z-index: 10; }
 .section-inner { max-width: 1400px; margin: 0 auto; padding: 80px 24px; }
 
+.section-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.section-header .section-desc {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .section-badge {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 6px 14px; border-radius: 999px;
