@@ -124,16 +124,73 @@
       }
     }
 
-    /* Bobbing block digits '4' */
+    /* Symmetrical overlapping digit '4' containers */
     .retro-4-container {
-      animation: floatDigit 6s ease-in-out infinite;
+      width: 150px;
+      height: 180px;
       position: relative;
+      animation: floatDigit 6s ease-in-out infinite;
       filter: drop-shadow(0 0 18px rgba(255, 34, 68, 0.3));
+      cursor: pointer;
+    }
+
+    .retro-4-container svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .retro-4-container svg.svg-digit-4 {
+      transition: opacity 0.3s ease;
+      z-index: 2;
+    }
+
+    .retro-4-container svg.svg-cloud {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.8);
+      z-index: 1;
     }
 
     @keyframes floatDigit {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
+    }
+
+    /* Left Digit cloud animation trigger */
+    .retro-4-container.cloud-disappear-left svg.svg-digit-4 {
+      opacity: 0 !important;
+      pointer-events: none;
+    }
+    .retro-4-container.cloud-disappear-left svg.svg-cloud {
+      opacity: 1;
+      animation: floatCloudLeft 2.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    /* Right Digit cloud animation trigger */
+    .retro-4-container.cloud-disappear-right svg.svg-digit-4 {
+      opacity: 0 !important;
+      pointer-events: none;
+    }
+    .retro-4-container.cloud-disappear-right svg.svg-cloud {
+      opacity: 1;
+      animation: floatCloudRight 2.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    @keyframes floatCloudLeft {
+      0% { transform: translate(0, 0) scale(0.8); opacity: 0; }
+      15% { transform: translate(0, 0) scale(1); opacity: 1; }
+      80% { transform: translate(-90px, -70px) scale(0.8); opacity: 0.8; }
+      100% { transform: translate(-140px, -110px) scale(0.5); opacity: 0; }
+    }
+
+    @keyframes floatCloudRight {
+      0% { transform: translate(0, 0) scale(0.8); opacity: 0; }
+      15% { transform: translate(0, 0) scale(1); opacity: 1; }
+      80% { transform: translate(90px, -70px) scale(0.8); opacity: 0.8; }
+      100% { transform: translate(140px, -110px) scale(0.5); opacity: 0; }
     }
 
     /* Double Concentric Orbit System matching reference image */
@@ -148,6 +205,10 @@
       justify-content: center;
       box-shadow: 0 0 35px rgba(255, 34, 68, 0.02);
       animation: rotateOrbit 60s linear infinite;
+    }
+
+    .globe-orbit-outer.orbit-paused {
+      animation-play-state: paused !important;
     }
 
     .globe-orbit-inner {
@@ -167,6 +228,11 @@
       place-items: center;
       width: 180px;
       height: 180px;
+      cursor: pointer;
+    }
+
+    .globe-orbit-content.orbit-paused {
+      animation-play-state: paused !important;
     }
 
     @keyframes rotateOrbit {
@@ -175,6 +241,18 @@
 
     @keyframes rotateOrbitInverse {
       to { transform: rotate(-360deg); }
+    }
+
+    /* Happy bounce spring keyframes for Earth */
+    @keyframes bounceHappy {
+      0%, 100% { transform: translateY(0) scale(1); }
+      30% { transform: translateY(-30px) scale(0.92, 1.08); }
+      50% { transform: translateY(0) scale(1.08, 0.92); }
+      70% { transform: translateY(-10px) scale(0.98, 1.02); }
+      90% { transform: translateY(0) scale(1); }
+    }
+    .bounce-happy {
+      animation: bounceHappy 1.2s ease-in-out !important;
     }
 
     /* High-Resolution Spinning 3D ASCII Globe */
@@ -207,7 +285,7 @@
       }
     }
 
-    /* Revolving Pixel Cat Astronaut on the Inner Orbit */
+    /* Revolving Pixel Cat Astronaut on the Outer Orbit dashed circle (Radius 125px) */
     .cat-astronaut-container {
       position: absolute;
       top: 50%;
@@ -215,13 +293,16 @@
       margin-top: -27px; /* Half of height 54px */
       margin-left: -27px; /* Half of width 54px */
       z-index: 20;
-      /* Revolve around the 190px inner circle (radius 95px) */
       animation: revolveCat 18s linear infinite;
     }
 
+    .cat-astronaut-container.clicked-wiggle {
+      animation-play-state: paused !important;
+    }
+
     @keyframes revolveCat {
-      from { transform: rotate(0deg) translate(95px) rotate(0deg); }
-      to { transform: rotate(360deg) translate(95px) rotate(-360deg); }
+      from { transform: rotate(0deg) translate(125px) rotate(0deg); }
+      to { transform: rotate(360deg) translate(125px) rotate(-360deg); }
     }
 
     @media (max-width: 580px) {
@@ -229,9 +310,19 @@
         animation: revolveCatMobile 18s linear infinite;
       }
       @keyframes revolveCatMobile {
-        from { transform: rotate(0deg) translate(70px) rotate(0deg); }
-        to { transform: rotate(360deg) translate(70px) rotate(-360deg); }
+        from { transform: rotate(0deg) translate(95px) rotate(0deg); }
+        to { transform: rotate(360deg) translate(95px) rotate(-360deg); }
       }
+    }
+
+    /* Wiggle animation for Cat SVG when clicked */
+    .cat-astronaut-container.clicked-wiggle svg {
+      animation: catWiggle 0.4s ease-in-out infinite alternate;
+    }
+
+    @keyframes catWiggle {
+      0% { transform: rotate(-10deg); }
+      100% { transform: rotate(10deg); }
     }
 
     /* Speech Bubble next to Cat */
@@ -249,8 +340,15 @@
       white-space: nowrap;
       box-shadow: 0 0 15px rgba(255, 34, 68, 0.2);
       pointer-events: none;
-      animation: bubbleFloat 4s ease-in-out infinite alternate;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
       z-index: 30;
+    }
+
+    .cat-astronaut-container.clicked-wiggle .speech-bubble {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .speech-bubble::before {
@@ -281,8 +379,24 @@
       z-index: 1;
     }
 
-    @keyframes bubbleFloat {
-      to { transform: translateY(-3px); }
+    /* Hyper-Speed Return to Earth spiral warp suck-in animation */
+    .cat-astronaut-container.suck-in-active {
+      animation: suckInSpiral 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+    }
+
+    @keyframes suckInSpiral {
+      0% {
+        transform: rotate(0deg) translate(125px) scale(1);
+        opacity: 1;
+      }
+      80% {
+        transform: rotate(1080deg) translate(15px) scale(0.3);
+        opacity: 0.8;
+      }
+      100% {
+        transform: rotate(1260deg) translate(0px) scale(0);
+        opacity: 0;
+      }
     }
 
     /* Return Button and Monospace text (Red theme) */
@@ -393,7 +507,7 @@
     
     <!-- LEFT '4' DIGIT (Hollow block-mesh SVG) -->
     <div class="retro-4-container">
-      <svg width="150" height="180" viewBox="0 0 160 180">
+      <svg class="svg-digit-4" viewBox="0 0 160 180">
         <defs>
           <!-- Checkerboard pixel grid fill pattern -->
           <pattern id="grid-pattern-red" width="4" height="4" patternUnits="userSpaceOnUse">
@@ -409,6 +523,13 @@
               stroke-width="3.5" 
               fill-rule="evenodd" />
       </svg>
+      <!-- Hidden fluffy cloud SVG -->
+      <svg class="svg-cloud" viewBox="0 0 160 180">
+        <path d="M 30,110 A 20,20 0 0 1 50,80 A 30,30 0 0 1 110,80 A 20,20 0 0 1 130,110 A 18,18 0 0 1 115,130 L 45,130 A 18,18 0 0 1 30,110 Z" 
+              fill="url(#grid-pattern-red)" 
+              stroke="var(--red)" 
+              stroke-width="3" />
+      </svg>
     </div>
 
     <!-- CENTER GLOBE IN ORBIT (Double ring with revolving cat) -->
@@ -419,34 +540,43 @@
         </div>
       </div>
 
-      <!-- Revolving Pixel Cat Astronaut on the Inner Ring -->
+      <!-- Revolving Pixel Cat Astronaut on the Outer Ring -->
       <div class="cat-astronaut-container">
-        <svg width="54" height="54" viewBox="0 0 60 60">
+        <svg width="54" height="54" viewBox="0 0 60 60" style="transition: transform 0.15s ease;">
           <!-- Glass Helmet (Red theme) -->
           <circle cx="30" cy="30" r="17" fill="rgba(255, 34, 68, 0.12)" stroke="var(--red)" stroke-width="1.5" />
+          
           <!-- Oxygen Tether -->
           <path d="M13 30 Q 3 25 8 8" fill="none" stroke="#581c25" stroke-width="2" stroke-dasharray="3 3" />
           
+          <!-- 4 Floating zero-g paws -->
+          <ellipse cx="19" cy="32" rx="3.5" ry="2.5" fill="#ffffff" />
+          <ellipse cx="41" cy="32" rx="3.5" ry="2.5" fill="#ffffff" />
+          <ellipse cx="18" cy="40" rx="3.5" ry="2.5" fill="#ffffff" />
+          <ellipse cx="42" cy="40" rx="3.5" ry="2.5" fill="#ffffff" />
+
           <!-- Cat Body -->
-          <rect x="22" y="24" width="16" height="12" rx="4" fill="#ffffff" />
+          <rect x="22" y="30" width="16" height="14" rx="6" fill="#ffffff" />
+          
           <!-- Cat Head -->
           <circle cx="30" cy="24" r="8" fill="#ffffff" />
+          
           <!-- Cat Ears -->
           <polygon points="23,17 27,20 24,14" fill="#ffffff" />
           <polygon points="37,17 33,20 36,14" fill="#ffffff" />
+          
           <!-- Cat Eyes -->
           <circle cx="27" cy="24" r="1.2" fill="#080005" />
           <circle cx="33" cy="24" r="1.2" fill="#080005" />
+          
           <!-- Whiskers -->
           <line x1="19" y1="25" x2="15" y2="24" stroke="#e2e8f0" stroke-width="1" />
           <line x1="19" y1="26" x2="15" y2="27" stroke="#e2e8f0" stroke-width="1" />
           <line x1="41" y1="25" x2="45" y2="24" stroke="#e2e8f0" stroke-width="1" />
           <line x1="41" y1="26" x2="45" y2="27" stroke="#e2e8f0" stroke-width="1" />
-          <!-- Tail -->
-          <path d="M38 29 Q 46 31 43 23" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
-          <!-- Paws -->
-          <rect x="24" y="36" width="3" height="6" rx="1.5" fill="#ffffff" />
-          <rect x="33" y="36" width="3" height="6" rx="1.5" fill="#ffffff" />
+          
+          <!-- Curly long Tail -->
+          <path d="M 38,34 Q 48,34 45,20" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
         </svg>
         <div class="speech-bubble">You found me!</div>
       </div>
@@ -454,13 +584,20 @@
 
     <!-- RIGHT '4' DIGIT (Hollow block-mesh SVG) -->
     <div class="retro-4-container" style="animation-delay: 0.5s;">
-      <svg width="150" height="180" viewBox="0 0 160 180">
+      <svg class="svg-digit-4" viewBox="0 0 160 180">
         <!-- Symmetrical block 4 with mesh pattern and glowing red border (shares fill pattern def from left digit) -->
         <path d="M 100,20 L 130,20 L 130,120 L 155,120 L 155,145 L 130,145 L 130,175 L 100,175 L 100,145 L 15,145 L 15,120 Z M 100,60 L 100,120 L 50,120 Z" 
               fill="url(#grid-pattern-red)" 
               stroke="var(--red)" 
               stroke-width="3.5" 
               fill-rule="evenodd" />
+      </svg>
+      <!-- Hidden fluffy cloud SVG -->
+      <svg class="svg-cloud" viewBox="0 0 160 180">
+        <path d="M 30,110 A 20,20 0 0 1 50,80 A 30,30 0 0 1 110,80 A 20,20 0 0 1 130,110 A 18,18 0 0 1 115,130 L 45,130 A 18,18 0 0 1 30,110 Z" 
+              fill="url(#grid-pattern-red)" 
+              stroke="var(--red)" 
+              stroke-width="3" />
       </svg>
     </div>
 
@@ -496,41 +633,74 @@
 <script src="js/nav.js" defer></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // 25-row Detailed Equirectangular World Map for high-resolution 3D projection
+    // 26-row Highly Detailed Equirectangular World Map for high-resolution 3D geocentric projection
     const WORLD_MAP = [
+      /* 0: Arctic */        "                                                                                                                        ",
+      /* 1: Canada/Siberia */"                 ######      ####                                            #####       #########                      ",
+      /* 2: Canada/Siberia */"   #########    #######     ######            #######                       #######     ###########                     ",
+      /* 3: Canada/Siberia */"  ###########  #########    ######           #########                      #######    #############            ####    ",
+      /* 4: US/Europe/Siberia */" ############ ###########    ###            ###########                     ######    ###############          ######   ",
+      /* 5: US/Europe/Asia */" ############ ##########                    ###########                     ####    #################         #######   ",
+      /* 6: US/Spain/Asia */ "  ###########  ########                      =========                       ##     #################        #######    ",
+      /* 7: Mex/Africa/Asia */"   #########    ######                      ===========                             ################        #######     ",
+      /* 8: Mex/Africa/Asia */"    #######     #####                      =============                             ##############          #####      ",
+      /* 9: CentAm/Africa/As*/"     #####      ####                       =============                              ############            ###       ",
+      /* 10: Colombia/Africa*/"      ###        ##                        =============                               ##########                       ",
+      /* 11: Amazon/Africa */"                 ##                         ===========                                 ########                        ",
+      /* 12: Peru/Africa */  "                ####                         =========                                   ######                         ",
+      /* 13: Peru/Africa */  "               ######                         =======                                     ####                          ",
+      /* 14: Chile/Africa */ "               ######                          =====                                       ##                           ",
+      /* 15: Chile/S.Africa */"              #######                          =====                                                                    ",
+      /* 16: Chile/S.Africa */"              ######                            ###                                                #########            ",
+      /* 17: Chile/Patagon */"              #####                             ###                                               ###########           ",
+      /* 18: Patagonia */    "              ####                               #                                                ###########           ",
+      /* 19: Patagonia */    "              ###                                                                                  #########            ",
+      /* 20: Patagonia */    "               #                                                                                    #######             ",
+      /* 21: Ocean */        "                                                                                                                        ",
+      /* 22: Antarctica */   "  ####################################################################################################################  ",
+      /* 23: Antarctica */   " #################################################################################################################### ",
+      /* 24: Antarctica */   "  ##################################################################################################################  ",
+      /* 25: Antarctica */   "   ################################################################################################################   "
+    ].map(line => line.replace(/=/g, '#').padEnd(120, ' '));
+
+    // Symmetrical happy dithered Smiley Face map for 3D projection transformation
+    const SMILEY_MAP = [
       " ",
-      "                                                         ######                       ##################",
-      "                 #############   ##                     ########                     ####################",
-      "  ###           ###############  ###                   ##########                    #####################       ###",
-      "#######        ################  ###                  ############                  #######################     #####",
-      "########      ##################                      ############                  ########################   #######",
-      " #######      #################                      ##############                 ########################    #####",
-      "  #####       ################                      ################                #######################      ###",
-      "   ###        ###############                        ##############                  ######################",
-      "    #         #############                           ############                     ##################",
-      "              #############                            ##########                       ################",
-      "              #############                            #########                        ###############",
-      "              ############                              #######                                         #########",
-      "              ###########                                #####                                         ###########",
-      "               #########                                  ###                                          ###########",
-      "                #######                                                                                 #########",
-      "                 #####                                                                                   #######",
-      "                  ###                                                                                     #####",
-      "                   #                                                                                       ##",
       " ",
       " ",
-      "   ###################################################################################################################",
-      "  #####################################################################################################################",
-      "   ###################################################################################################################",
+      " ",
+      "          #####                 #####", // Eyes
+      "         #######               #######",
+      "         #######               #######",
+      "          #####                 #####",
+      " ",
+      " ",
+      " ",
+      "     ###                             ###", // Smiling mouth
+      "      #####                       #####",
+      "       #######                 #######",
+      "         ###########################",
+      "            #####################",
+      " ",
+      " ",
       " "
-    ].map(line => line.padEnd(120, ' '));
+    ].map(line => line.padEnd(60, ' '));
 
     const ROWS = 25;
     const COLS = 50;
+    
     const mapHeight = WORLD_MAP.length;
     const mapWidth = WORLD_MAP[0].length;
+    
+    const smileyHeight = SMILEY_MAP.length;
+    const smileyWidth = SMILEY_MAP[0].length;
+
     let offset = 0;
+    let isSmiley = false;
+    let fastSpinActive = false;
+
     const preEl = document.getElementById('globe-pre');
+    const globeContent = document.querySelector('.globe-orbit-content');
 
     function updateGlobe() {
       if (!preEl) return;
@@ -561,15 +731,25 @@
           const angle = Math.asin(nx); // [-PI/2, PI/2]
           const latAngle = Math.asin(ny); // [-PI/2, PI/2]
           
-          // Translate angles into 2D equirectangular map indices
-          const mapY = Math.floor(((latAngle / Math.PI) + 0.5) * mapHeight);
-          const clampedY = Math.max(0, Math.min(mapHeight - 1, mapY));
-          
-          const mapX = Math.floor(((angle / Math.PI) + 0.5 + offset) * mapWidth);
-          const wrappedX = ((mapX % mapWidth) + mapWidth) % mapWidth;
+          let isLand = false;
 
-          // Check if coordinates correspond to land or ocean
-          if (WORLD_MAP[clampedY][wrappedX] === '#') {
+          if (isSmiley) {
+            // Map Smiley Face onto the 3D rotating sphere!
+            const mapY = Math.floor(((latAngle / Math.PI) + 0.5) * smileyHeight);
+            const clampedY = Math.max(0, Math.min(smileyHeight - 1, mapY));
+            const mapX = Math.floor(((angle / Math.PI) + 0.5 + offset * 1.6) * smileyWidth);
+            const wrappedX = ((mapX % smileyWidth) + smileyWidth) % smileyWidth;
+            isLand = SMILEY_MAP[clampedY][wrappedX] === '#';
+          } else {
+            // Map the highly detailed accurate World Map
+            const mapY = Math.floor(((latAngle / Math.PI) + 0.5) * mapHeight);
+            const clampedY = Math.max(0, Math.min(mapHeight - 1, mapY));
+            const mapX = Math.floor(((angle / Math.PI) + 0.5 + offset) * mapWidth);
+            const wrappedX = ((mapX % mapWidth) + mapWidth) % mapWidth;
+            isLand = WORLD_MAP[clampedY][wrappedX] === '#';
+          }
+
+          if (isLand) {
             // Apply dynamic depth shading based on proximity to sphere's center facing axis
             if (nz > 0.82) slice += "█"; // Central full-solid block
             else if (nz > 0.62) slice += "▓"; // Dense dither
@@ -577,7 +757,7 @@
             else if (nz > 0.18) slice += "░"; // Light dither
             else slice += "·"; // Horizon boundary dot
           } else {
-            // Transparent empty space for oceans, letting the glowing background shine through
+            // Transparent empty space for oceans
             slice += " ";
           }
         }
@@ -587,8 +767,85 @@
       }
       
       preEl.textContent = output;
-      offset += 0.012; // Controlled smooth spin speed
+      
+      // Control spin speeds depending on state
+      if (fastSpinActive) {
+        offset += 0.075; // Wormhole high speed spin
+      } else {
+        offset += 0.012; // Normal smooth rotate
+      }
     }
+
+    // Interactive Earth Bounce & Smiley Trigger
+    globeContent.addEventListener('click', () => {
+      if (isSmiley || fastSpinActive) return;
+      
+      isSmiley = true;
+      globeContent.classList.add('bounce-happy');
+
+      // Clear after bounce completes (1.2s)
+      setTimeout(() => {
+        globeContent.classList.remove('bounce-happy');
+        isSmiley = false;
+      }, 1200);
+    });
+
+    // Interactive Digit 4 conversions to clouds
+    const digits = document.querySelectorAll('.retro-4-container');
+    digits.forEach((digit, index) => {
+      digit.addEventListener('click', () => {
+        const isLeft = index === 0;
+        const animClass = isLeft ? 'cloud-disappear-left' : 'cloud-disappear-right';
+        
+        if (digit.classList.contains(animClass)) return;
+        
+        digit.classList.add(animClass);
+        
+        // Restore standard digit 4 after 2.4s
+        setTimeout(() => {
+          digit.classList.remove(animClass);
+        }, 2400);
+      });
+    });
+
+    // Interactive Cat Astronaut click trigger
+    const catContainer = document.querySelector('.cat-astronaut-container');
+    const speechBubble = document.querySelector('.speech-bubble');
+    
+    catContainer.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent trigger clicks from falling through
+      if (catContainer.classList.contains('clicked-wiggle') || catContainer.classList.contains('suck-in-active')) return;
+
+      catContainer.classList.add('clicked-wiggle');
+      
+      // Resume orbit after 2.5s
+      setTimeout(() => {
+        catContainer.classList.remove('clicked-wiggle');
+      }, 2500);
+    });
+
+    // Cinematic Return Warp Sequence
+    const returnBtn = document.querySelector('.btn-return');
+    returnBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (catContainer.classList.contains('suck-in-active')) return;
+
+      // Force Earth to stay regular (not smiley)
+      isSmiley = false;
+      fastSpinActive = true;
+
+      // Hide cat speech bubble immediately
+      speechBubble.style.opacity = '0';
+      speechBubble.style.transform = 'translateY(10px)';
+
+      // Trigger spiral suck-in keyframes on cat
+      catContainer.classList.add('suck-in-active');
+
+      // Complete redirect after warp completes (1.5s)
+      setTimeout(() => {
+        window.location.href = returnBtn.getAttribute('href');
+      }, 1500);
+    });
 
     // 60-star space starfield generator
     function createStars() {
