@@ -18,7 +18,7 @@ export async function onRequestPost(context) {
       });
     }
 
-    const { email, plan, paymentIntentId, method } = body;
+    const { email, name, plan, paymentIntentId, method } = body;
     
     if (!email) {
       return new Response(JSON.stringify({ error: "Missing required parameter: email" }), {
@@ -39,9 +39,9 @@ export async function onRequestPost(context) {
     if (db) {
       // Execute standard SQL prepared statement to record purchase securely
       await db.prepare(`
-        INSERT INTO purchases (email, plan, amount, stripe_payment_intent_id, status)
-        VALUES (?, ?, ?, ?, ?)
-      `).bind(email, plan, amount, paymentIntentId || null, 'completed').run();
+        INSERT INTO purchases (email, name, plan, amount, stripe_payment_intent_id, status)
+        VALUES (?, ?, ?, ?, ?, ?)
+      `).bind(email, name || 'Valued Subscriber', plan, amount, paymentIntentId || null, 'completed').run();
 
       return new Response(JSON.stringify({ 
         success: true, 

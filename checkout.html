@@ -103,15 +103,19 @@
 
     /* Express Payment Grid */
     .express-buttons-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
       gap: 12px;
       margin-bottom: 30px;
     }
 
+    .express-btn {
+      flex: 1;
+      min-width: 0;
+    }
+
     @media (max-width: 580px) {
       .express-buttons-grid {
-        grid-template-columns: 1fr;
+        flex-direction: column;
         gap: 10px;
       }
     }
@@ -1049,6 +1053,11 @@
         <div id="express-checkout-element" style="margin-bottom: 20px;"></div>
 
         <div class="form-group">
+          <label for="stripe-name">Cardholder Name</label>
+          <input type="text" id="stripe-name" class="form-input" placeholder="Alex V." required />
+        </div>
+
+        <div class="form-group">
           <label for="stripe-email">Receipt Delivery Email</label>
           <input type="email" id="stripe-email" class="form-input" placeholder="name@organization.com" required />
         </div>
@@ -1086,7 +1095,7 @@
 
         <div class="express-buttons-grid">
           <!-- Apple Pay -->
-          <button class="express-btn btn-apple" onclick="openWalletAuth('apple')" aria-label="Pay with Apple Pay">
+          <button id="express-apple-btn" class="express-btn btn-apple" onclick="openWalletAuth('apple')" aria-label="Pay with Apple Pay">
             <svg viewBox="0 0 100 100" style="width: 16px; height: 16px; fill: currentColor; margin-right: 6px; display: inline-block; vertical-align: middle;">
               <path
                 d="M83.82 46.12c-.15-8.48 6.96-12.56 7.29-12.75-3.95-5.78-10.1-6.56-12.3-6.66-5.26-.53-10.27 3.1-12.94 3.1-2.67 0-6.8-3.08-11.23-2.99-5.83.08-11.21 3.4-14.21 8.62-6.07 10.53-1.55 26.11 4.3 34.58 2.87 4.14 6.27 8.76 10.74 8.59 4.31-.17 5.94-2.78 11.14-2.78 5.18 0 6.66 2.78 11.14 2.69 4.56-.08 7.55-4.22 10.4-8.38 3.3-4.8 4.66-9.45 4.74-9.69-.1-.04-9.08-3.48-9.18-13.82zM73.49 20.4c2.36-2.86 3.96-6.84 3.52-10.82-3.42.14-7.56 2.28-10.02 5.16-2.12 2.45-3.97 6.48-3.47 10.4 3.8.3 7.62-1.88 9.97-4.74z" />
@@ -1095,7 +1104,7 @@
           </button>
 
           <!-- Google Pay -->
-          <button class="express-btn btn-google" onclick="openWalletAuth('google')" aria-label="Pay with Google Pay">
+          <button id="express-google-btn" class="express-btn btn-google" onclick="openWalletAuth('google')" aria-label="Pay with Google Pay">
             <svg viewBox="0 0 65 26" style="height: 18px; width: auto; display: block; margin: 0 auto;">
               <path d="M18.24 13.06c0-.52-.04-1.01-.13-1.49H12.3v2.81h3.33c-.14.76-.57 1.4-1.22 1.83v1.52h2.37c1.39-1.28 2.19-3.16 2.19-5.41l-.73-.26z" fill="#4285F4"/>
               <path d="M12.3 19.12c1.84 0 3.38-.61 4.51-1.65l-2.37-1.83c-.66.44-1.5.7-2.14.7-1.65 0-3.05-1.11-3.55-2.61H6.3v1.92c1.13 2.25 3.47 3.47 6 3.47z" fill="#34A853"/>
@@ -1108,7 +1117,7 @@
           </button>
 
           <!-- PayPal -->
-          <button class="express-btn btn-paypal" onclick="openWalletAuth('paypal')" aria-label="Pay with PayPal">
+          <button id="express-paypal-btn" class="express-btn btn-paypal" onclick="openWalletAuth('paypal')" aria-label="Pay with PayPal">
             <svg viewBox="2 2 18 21" style="height: 18px; width: auto; display: block; margin: 0 auto;">
               <path d="M12.24 3.01H6.18a.67.67 0 0 0-.66.57L2.64 21.92a.33.33 0 0 0 .33.38h3.36a.67.67 0 0 0 .66-.57l.95-6.03a.67.67 0 0 1 .66-.57h1.96c3.92 0 6.07-1.9 6.64-5.5.47-2.95-.78-4.9-3.79-5.46a15.7 15.7 0 0 0-1.21-.16z" fill="#003087"/>
               <path d="M15.42 8.57c-.57 3.6-2.72 5.5-6.64 5.5H6.82a.67.67 0 0 0-.66.57l-.95 6.03a.33.33 0 0 0 .33.38h2.95a.67.67 0 0 0 .66-.57l.95-6.03a.67.67 0 0 1 .66-.57h1.96c3.92 0 6.07-1.9 6.64-5.5.42-2.6-.45-4.43-2.61-5.14-.1-.03-.2-.07-.32-.1-.85 3.32-3.15 4.88-5.32 5.43z" fill="#0079C1"/>
@@ -1531,6 +1540,19 @@
       const period = params.get('period') || 'monthly';
       billingPeriod = period;
 
+      // Dynamic device detection for simulated express checkout
+      const isApple = /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent) && !window.MSStream;
+      const appleBtn = document.getElementById('express-apple-btn');
+      const googleBtn = document.getElementById('express-google-btn');
+      
+      if (isApple) {
+        if (googleBtn) googleBtn.style.display = 'none';
+        if (appleBtn) appleBtn.style.display = 'flex';
+      } else {
+        if (appleBtn) appleBtn.style.display = 'none';
+        if (googleBtn) googleBtn.style.display = 'flex';
+      }
+
       const planNameEl = document.getElementById('plan-name');
       const priceEl = document.getElementById('checkout-price');
       const periodEl = document.getElementById('checkout-period');
@@ -1669,11 +1691,12 @@
         displayError.textContent = '';
         
         const email = document.getElementById('stripe-email').value || '';
+        const name = document.getElementById('stripe-name').value || 'Valued Subscriber';
 
         const { error } = await stripeInstance.confirmPayment({
           elements: stripeElements,
           confirmParams: {
-            return_url: `${window.location.origin}/success.html?email=${encodeURIComponent(email)}&method=Express&plan=${billingPeriod}`,
+            return_url: `${window.location.origin}/success.html?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&method=Express&plan=${billingPeriod}`,
           },
         });
 
@@ -1705,6 +1728,7 @@
       event.preventDefault();
 
       const email = document.getElementById('stripe-email').value;
+      const name = document.getElementById('stripe-name').value || 'Valued Subscriber';
       const submitBtn = document.getElementById('stripe-submit-btn');
       const displayError = document.getElementById('payment-error');
 
@@ -1718,7 +1742,7 @@
       const { error } = await stripeInstance.confirmPayment({
         elements: stripeElements,
         confirmParams: {
-          return_url: `${window.location.origin}/success.html?email=${encodeURIComponent(email)}&method=Stripe&plan=${billingPeriod}`,
+          return_url: `${window.location.origin}/success.html?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&method=Stripe&plan=${billingPeriod}`,
           receipt_email: email
         }
       });
@@ -1961,7 +1985,8 @@
 
             if (idx === steps.length - 1) {
               setTimeout(() => {
-                window.location.href = `success.html?email=simulated-wallet-holder@sovereign-intel.io&method=${encodeURIComponent(walletName)}&plan=${billingPeriod}`;
+                const name = document.getElementById('card-name').value || 'Valued Subscriber';
+                window.location.href = `success.html?email=simulated-wallet-holder@sovereign-intel.io&name=${encodeURIComponent(name)}&method=${encodeURIComponent(walletName)}&plan=${billingPeriod}`;
               }, 1000);
             }
           }, idx * 400);
@@ -2022,7 +2047,7 @@
 
             if (idx === steps.length - 1) {
               setTimeout(() => {
-                window.location.href = `success.html?email=${encodeURIComponent(email)}&method=Card&plan=${billingPeriod}`;
+                window.location.href = `success.html?email=${encodeURIComponent(email)}&name=${encodeURIComponent(cardName)}&method=Card&plan=${billingPeriod}`;
               }, 1000);
             }
           }, idx * 400);

@@ -167,6 +167,7 @@
     // Extract query parameters if any
     const params = new URLSearchParams(window.location.search);
     const email = params.get('email') || 'Associated Business Account';
+    const name = params.get('name') || 'Valued Subscriber';
     const method = params.get('method') || 'Stripe Card';
 
     // Automatically save purchase transaction to serverless database on success
@@ -179,6 +180,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: email,
+          name: name,
           plan: plan,
           paymentIntentId: paymentIntentId,
           method: method
@@ -201,6 +203,10 @@
         <div style="display: flex; justify-content: space-between;">
           <span style="color: #64748b;">Account Level</span>
           <span style="color: #fff; font-weight: 600;">Professional Analyst</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: #64748b;">Subscriber Name</span>
+          <span style="color: #fff; font-weight: 600;">${name}</span>
         </div>
         <div style="display: flex; justify-content: space-between;">
           <span style="color: #64748b;">Billing Account</span>

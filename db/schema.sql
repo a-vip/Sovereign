@@ -2,6 +2,7 @@
 CREATE TABLE IF NOT EXISTS purchases (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     email TEXT NOT NULL,
+    name TEXT DEFAULT 'Valued Subscriber',
     plan TEXT NOT NULL,
     amount INTEGER NOT NULL, -- Transaction amount in cents (USD standard)
     stripe_payment_intent_id TEXT,
