@@ -23,26 +23,32 @@
 
   <style>
     body {
-      background-color: #04060f;
+      background-color: #080005; /* Deep cybernetic space black-red */
       color: #fff;
       overflow-x: hidden;
       font-family: 'Inter', sans-serif;
     }
 
-    /* Cosmic Background grid */
+    /* Red-themed Background grid */
     .bg-grid {
       background-image: 
-        linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(255, 34, 68, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 34, 68, 0.02) 1px, transparent 1px);
     }
 
-    /* Decorative Floating Stars in Background */
+    /* Twinkling Red/White Stars */
     .space-star {
       position: absolute;
       background: #fff;
       border-radius: 50%;
       animation: twinkle 4s infinite ease-in-out;
       pointer-events: none;
+      z-index: 1;
+    }
+
+    .space-star.red-star {
+      background: var(--red);
+      box-shadow: 0 0 8px var(--red);
     }
 
     @keyframes twinkle {
@@ -50,10 +56,49 @@
       50% { opacity: 0.8; transform: scale(1.2); }
     }
 
+    /* Red Theme Nav & Drawer Overrides */
+    nav {
+      border-bottom: 1px solid rgba(255, 34, 68, 0.18) !important;
+    }
+
+    .nav-hamburger span {
+      background-color: var(--red) !important;
+      box-shadow: 0 0 8px var(--red);
+    }
+    
+    .nav-tab:hover {
+      color: var(--red) !important;
+    }
+
+    .nav-drawer {
+      border-left: 1px solid rgba(255, 34, 68, 0.25) !important;
+    }
+
+    .nav-drawer-tab:hover, .nav-drawer-tab.active {
+      border-color: rgba(255, 34, 68, 0.4) !important;
+      background: rgba(255, 34, 68, 0.08) !important;
+      color: var(--red) !important;
+      box-shadow: 0 0 20px rgba(255, 34, 68, 0.12) !important;
+    }
+
+    .btn-cta-small {
+      border-color: rgba(255, 34, 68, 0.4) !important;
+      background: rgba(255, 34, 68, 0.08) !important;
+      color: #fca5a5 !important;
+      box-shadow: 0 0 15px rgba(255, 34, 68, 0.1);
+    }
+
+    .btn-cta-small:hover {
+      background: rgba(255, 34, 68, 0.18) !important;
+      color: #fff !important;
+      box-shadow: 0 0 20px rgba(255, 34, 68, 0.3) !important;
+      border-color: var(--red) !important;
+    }
+
     /* 404 Canvas Area */
     .canvas-404 {
-      max-width: 900px;
-      margin: 60px auto 40px;
+      max-width: 1000px;
+      margin: 50px auto 50px;
       padding: 40px 24px;
       display: flex;
       flex-direction: column;
@@ -67,52 +112,61 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 36px;
+      gap: 55px;
       position: relative;
-      margin-bottom: 24px;
+      margin-bottom: 32px;
     }
 
     @media (max-width: 768px) {
       .row-404 {
-        gap: 16px;
+        gap: 32px;
+        flex-direction: column;
       }
     }
 
-    /* UFO style 4s */
-    .ufo-4-container {
-      animation: floatUFO 6s ease-in-out infinite;
+    /* Bobbing block digits '4' */
+    .retro-4-container {
+      animation: floatDigit 6s ease-in-out infinite;
       position: relative;
+      filter: drop-shadow(0 0 18px rgba(255, 34, 68, 0.3));
     }
 
-    @keyframes floatUFO {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(2deg); }
+    @keyframes floatDigit {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
-    .blinking-light {
-      animation: ledPulse 1s infinite alternate;
-    }
-
-    @keyframes ledPulse {
-      to { opacity: 0.2; }
-    }
-
-    /* Globe Orbit Ring Container */
-    .globe-orbit-wrapper {
+    /* Double Concentric Orbit System matching reference image */
+    .globe-orbit-outer {
       position: relative;
-      width: 220px;
-      height: 220px;
+      width: 250px;
+      height: 250px;
       border-radius: 50%;
-      border: 1.5px dashed rgba(0, 245, 255, 0.25);
+      border: 1px dashed rgba(255, 34, 68, 0.35); /* Outer dashed ring */
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 35px rgba(0, 245, 255, 0.04);
-      animation: rotateOrbit 40s linear infinite;
+      box-shadow: 0 0 35px rgba(255, 34, 68, 0.02);
+      animation: rotateOrbit 60s linear infinite;
+    }
+
+    .globe-orbit-inner {
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 34, 68, 0.25); /* Inner thin circle */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .globe-orbit-content {
-      animation: rotateOrbitInverse 40s linear infinite;
+      animation: rotateOrbitInverse 60s linear infinite;
+      display: grid;
+      place-items: center;
+      width: 180px;
+      height: 180px;
     }
 
     @keyframes rotateOrbit {
@@ -123,104 +177,146 @@
       to { transform: rotate(-360deg); }
     }
 
-    /* 3D Spinning ASCII Globe */
+    /* High-Resolution Spinning 3D ASCII Globe */
     #globe-pre {
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 11px;
-      line-height: 1.15;
-      color: var(--cyan);
-      text-shadow: 0 0 14px rgba(0, 245, 255, 0.6);
+      font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+      font-size: 6.5px;
+      line-height: 1.05;
+      color: var(--red); /* Glowing red earth ASCII */
+      text-shadow: 0 0 8px rgba(255, 34, 68, 0.65);
       margin: 0;
       white-space: pre;
       background: transparent;
       user-select: none;
       font-weight: 700;
+      letter-spacing: -0.4px;
     }
 
     @media (max-width: 580px) {
       #globe-pre {
-        font-size: 8px;
-        line-height: 1.1;
+        font-size: 4.8px;
+        line-height: 1.04;
       }
-      .globe-orbit-wrapper {
-        width: 160px;
-        height: 160px;
+      .globe-orbit-outer {
+        width: 180px;
+        height: 180px;
+      }
+      .globe-orbit-inner {
+        width: 140px;
+        height: 140px;
       }
     }
 
-    /* Pixel Cat Astronaut Container */
+    /* Revolving Pixel Cat Astronaut on the Inner Orbit */
     .cat-astronaut-container {
       position: absolute;
-      top: -30px;
-      left: 170px;
+      top: 50%;
+      left: 50%;
+      margin-top: -27px; /* Half of height 54px */
+      margin-left: -27px; /* Half of width 54px */
       z-index: 20;
-      animation: floatCat 8s ease-in-out infinite;
-      cursor: pointer;
+      /* Revolve around the 190px inner circle (radius 95px) */
+      animation: revolveCat 18s linear infinite;
     }
 
-    @keyframes floatCat {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      50% { transform: translate(-15px, -20px) rotate(-12deg); }
-      100% { transform: translate(0, 0) rotate(0deg); }
+    @keyframes revolveCat {
+      from { transform: rotate(0deg) translate(95px) rotate(0deg); }
+      to { transform: rotate(360deg) translate(95px) rotate(-360deg); }
+    }
+
+    @media (max-width: 580px) {
+      .cat-astronaut-container {
+        animation: revolveCatMobile 18s linear infinite;
+      }
+      @keyframes revolveCatMobile {
+        from { transform: rotate(0deg) translate(70px) rotate(0deg); }
+        to { transform: rotate(360deg) translate(70px) rotate(-360deg); }
+      }
     }
 
     /* Speech Bubble next to Cat */
     .speech-bubble {
       position: absolute;
-      left: 65px;
-      top: 5px;
-      background: #090e1c;
-      border: 1px solid rgba(0, 245, 255, 0.35);
+      left: 58px;
+      top: 4px;
+      background: #080005;
+      border: 1px solid rgba(255, 34, 68, 0.45);
       border-radius: 8px;
-      padding: 5px 10px;
+      padding: 5px 11px;
       font-size: 9px;
       font-family: 'JetBrains Mono', monospace;
-      color: var(--cyan);
+      color: #fca5a5;
       white-space: nowrap;
-      box-shadow: 0 0 15px rgba(0, 245, 255, 0.15);
+      box-shadow: 0 0 15px rgba(255, 34, 68, 0.2);
       pointer-events: none;
       animation: bubbleFloat 4s ease-in-out infinite alternate;
+      z-index: 30;
+    }
+
+    .speech-bubble::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: 5px 5px 5px 0;
+      border-style: solid;
+      border-color: transparent #080005 transparent transparent;
+      display: block;
+      width: 0;
+      z-index: 2;
+    }
+
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: 6px 6px 6px 0;
+      border-style: solid;
+      border-color: transparent rgba(255, 34, 68, 0.45) transparent transparent;
+      display: block;
+      width: 0;
+      z-index: 1;
     }
 
     @keyframes bubbleFloat {
-      to { transform: translateY(-4px); }
+      to { transform: translateY(-3px); }
     }
 
-    /* Return Button and Monospace text */
+    /* Return Button and Monospace text (Red theme) */
     .action-wrap {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 36px;
     }
 
     .btn-return {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
-      color: var(--cyan);
+      color: var(--red);
       text-decoration: none;
-      letter-spacing: 0.18em;
-      transition: all 0.3s;
-      text-shadow: 0 0 10px rgba(0, 245, 255, 0.2);
-      padding: 10px 20px;
+      letter-spacing: 0.22em;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(255, 34, 68, 0.4);
+      background: rgba(255, 34, 68, 0.05);
+      padding: 12px 28px;
+      border-radius: 6px;
+      box-shadow: 0 0 15px rgba(255, 34, 68, 0.08);
+      position: relative;
+      overflow: hidden;
     }
 
     .btn-return:hover {
       color: #fff;
-      text-shadow: 0 0 18px var(--cyan);
-      transform: scale(1.05);
-    }
-
-    .btn-return .bracket {
-      color: #3b4b60;
-      font-weight: 400;
-      transition: color 0.3s;
-    }
-
-    .btn-return:hover .bracket {
-      color: var(--cyan);
+      border-color: var(--red);
+      background: rgba(255, 34, 68, 0.16);
+      box-shadow: 0 0 25px rgba(255, 34, 68, 0.38);
+      transform: translateY(-2px);
     }
   </style>
 </head>
@@ -228,33 +324,20 @@
 
 <div class="bg-grid"></div>
 
-<!-- Background Twinkling Stars -->
-<div class="space-star" style="top: 15%; left: 10%; width: 2px; height: 2px; animation-duration: 3s;"></div>
-<div class="space-star" style="top: 25%; left: 80%; width: 3px; height: 3px; animation-duration: 5s;"></div>
-<div class="space-star" style="top: 75%; left: 15%; width: 2px; height: 2px; animation-duration: 4s;"></div>
-<div class="space-star" style="top: 85%; left: 75%; width: 3px; height: 3px; animation-duration: 6s;"></div>
-<div class="space-star" style="top: 60%; left: 90%; width: 2px; height: 2px; animation-duration: 3.5s;"></div>
-<div class="space-star" style="top: 12%; left: 45%; width: 3px; height: 3px; animation-duration: 4.5s;"></div>
-
-<!-- Decorative Planetary Constellation SVGs -->
-<svg class="decor-planet saturn" style="position: absolute; bottom: 120px; right: 10%; width: 45px; height: 28px; opacity: 0.2; pointer-events: none;" viewBox="0 0 45 28">
-  <ellipse cx="22" cy="14" rx="22" ry="4" fill="none" stroke="var(--cyan)" stroke-width="1.5" transform="rotate(-15 22 14)" />
-  <circle cx="22" cy="14" r="8" fill="#04060f" stroke="var(--cyan)" stroke-width="1.5" />
+<!-- Decorative Planetary Outline SVGs -->
+<svg class="decor-planet saturn-left" style="position: absolute; top: 180px; left: 10%; width: 55px; height: 35px; opacity: 0.45; pointer-events: none; z-index: 1;" viewBox="0 0 45 28">
+  <ellipse cx="22" cy="14" rx="20" ry="5" fill="none" stroke="var(--red)" stroke-width="1.5" transform="rotate(-20 22 14)" />
+  <circle cx="22" cy="14" r="8" fill="#080005" stroke="var(--red)" stroke-width="1.5" />
 </svg>
 
-<svg class="decor-planet constellation" style="position: absolute; top: 120px; left: 8%; width: 40px; height: 40px; opacity: 0.15; pointer-events: none;" viewBox="0 0 40 40">
-  <circle cx="5" cy="5" r="1.5" fill="var(--cyan)" />
-  <circle cx="20" cy="20" r="1.5" fill="var(--cyan)" />
-  <circle cx="35" cy="10" r="1.5" fill="var(--cyan)" />
-  <circle cx="30" cy="35" r="1.5" fill="var(--cyan)" />
-  <line x1="5" y1="5" x2="20" y2="20" stroke="var(--cyan)" stroke-dasharray="2 2" stroke-width="1" />
-  <line x1="20" y1="20" x2="35" y2="10" stroke="var(--cyan)" stroke-dasharray="2 2" stroke-width="1" />
-  <line x1="20" y1="20" x2="30" y2="35" stroke="var(--cyan)" stroke-dasharray="2 2" stroke-width="1" />
+<svg class="decor-planet saturn-right" style="position: absolute; bottom: 220px; right: 10%; width: 55px; height: 35px; opacity: 0.45; pointer-events: none; z-index: 1;" viewBox="0 0 45 28">
+  <ellipse cx="22" cy="14" rx="20" ry="5" fill="none" stroke="var(--red)" stroke-width="1.5" transform="rotate(-20 22 14)" />
+  <circle cx="22" cy="14" r="8" fill="#080005" stroke="var(--red)" stroke-width="1.5" />
 </svg>
 
 <!-- ALARM TICKER -->
-<div class="ticker-bar">
-  <div class="ticker-label" style="color: var(--red); border-right-color: rgba(255,34,68,0.15);">● ALARM</div>
+<div class="ticker-bar" style="border-bottom-color: rgba(255, 34, 68, 0.16);">
+  <div class="ticker-label" style="color: var(--red); border-right-color: rgba(255, 34, 68, 0.2);">● ALARM</div>
   <div class="ticker-track">
     <span class="ticker-inner" style="color: var(--red); animation-duration: 25s;">
       ALERT: RELAY CONNECTION TERMINATED &nbsp;•&nbsp;
@@ -271,9 +354,9 @@
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="logo">
-      <div class="logo-icon" style="border-color: rgba(255,34,68,0.4); background: rgba(255,34,68,0.08); box-shadow: 0 0 22px rgba(255,34,68,0.2);">⬡</div>
+      <div class="logo-icon" style="border-color: rgba(255,34,68,0.4); background: rgba(255,34,68,0.08); box-shadow: 0 0 22px rgba(255,34,68,0.2); color: var(--red);">⬡</div>
       <div class="logo-text">
-        <div class="logo-title">SOVEREIGN</div>
+        <div class="logo-title" style="color: var(--red);">SOVEREIGN</div>
         <div class="logo-sub">Global Intelligence Software</div>
       </div>
     </a>
@@ -291,7 +374,7 @@
 
     <div class="nav-right">
       <div class="live-badge" style="border-color: rgba(255,34,68,0.25); background: rgba(255,34,68,0.08); color: var(--red);">● SIGNAL LOST</div>
-      <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="btn-cta-small" style="border-color: rgba(255,34,68,0.4); background: rgba(255,34,68,0.1); color: #fca5a5;">Enter Dash →</a>
+      <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="btn-cta-small">Enter Dash →</a>
     </div>
   </div>
 
@@ -308,52 +391,41 @@
 <div class="canvas-404">
   <div class="row-404">
     
-    <!-- LEFT '4' UFO -->
-    <div class="ufo-4-container">
-      <svg width="110" height="130" viewBox="0 0 120 150">
-        <!-- Tractor Beam -->
+    <!-- LEFT '4' DIGIT (Hollow block-mesh SVG) -->
+    <div class="retro-4-container">
+      <svg width="150" height="180" viewBox="0 0 160 180">
         <defs>
-          <linearGradient id="beam-left" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="rgba(0, 245, 255, 0.25)" />
-            <stop offset="100%" stop-color="rgba(0, 245, 255, 0)" />
-          </linearGradient>
+          <!-- Checkerboard pixel grid fill pattern -->
+          <pattern id="grid-pattern-red" width="4" height="4" patternUnits="userSpaceOnUse">
+            <rect width="4" height="4" fill="none" />
+            <rect x="0" y="0" width="2" height="2" fill="var(--red)" opacity="0.32" />
+            <rect x="2" y="2" width="2" height="2" fill="var(--red)" opacity="0.32" />
+          </pattern>
         </defs>
-        <path d="M45 80 L75 80 L100 150 L20 150 Z" fill="url(#beam-left)" opacity="0.6" />
-        
-        <!-- Saucer Hull / Horizontal Bar -->
-        <rect x="15" y="70" width="90" height="12" rx="6" fill="#04060f" stroke="var(--cyan)" stroke-width="2" />
-        <!-- Lights on Hull -->
-        <circle cx="28" cy="76" r="2.5" fill="#ff2244" class="blinking-light" style="animation-delay: 0s; animation-duration: 0.8s;" />
-        <circle cx="48" cy="76" r="2.5" fill="#ffd22e" class="blinking-light" style="animation-delay: 0.4s; animation-duration: 0.8s;" />
-        <circle cx="68" cy="76" r="2.5" fill="#00ff88" class="blinking-light" style="animation-delay: 0.8s; animation-duration: 0.8s;" />
-        <circle cx="88" cy="76" r="2.5" fill="#00f5ff" class="blinking-light" style="animation-delay: 1.2s; animation-duration: 0.8s;" />
-
-        <!-- Diagonal leg of 4 -->
-        <path d="M60 22 L20 70 L34 70 L68 22 Z" fill="#080e1c" stroke="var(--cyan)" stroke-width="2" />
-
-        <!-- Vertical stem of 4 -->
-        <path d="M60 22 L60 85 L74 85 L74 22 Z" fill="#080e1c" stroke="var(--cyan)" stroke-width="2" />
-
-        <!-- Cockpit Dome on top -->
-        <path d="M52 22 A 13 13 0 0 1 78 22 Z" fill="rgba(0, 245, 255, 0.15)" stroke="var(--cyan)" stroke-width="2" />
-        <!-- Tiny pilot silhouette -->
-        <circle cx="65" cy="16" r="3" fill="#00f5ff" style="box-shadow: 0 0 8px #00f5ff;" /> 
+        <!-- Symmetrical block 4 with mesh pattern and glowing red border -->
+        <path d="M 100,20 L 130,20 L 130,120 L 155,120 L 155,145 L 130,145 L 130,175 L 100,175 L 100,145 L 15,145 L 15,120 Z M 100,60 L 100,120 L 50,120 Z" 
+              fill="url(#grid-pattern-red)" 
+              stroke="var(--red)" 
+              stroke-width="3.5" 
+              fill-rule="evenodd" />
       </svg>
     </div>
 
-    <!-- CENTER GLOBE IN ORBIT -->
-    <div class="globe-orbit-wrapper">
-      <div class="globe-orbit-content">
-        <pre id="globe-pre"></pre>
+    <!-- CENTER GLOBE IN ORBIT (Double ring with revolving cat) -->
+    <div class="globe-orbit-outer">
+      <div class="globe-orbit-inner">
+        <div class="globe-orbit-content">
+          <pre id="globe-pre"></pre>
+        </div>
       </div>
 
-      <!-- Floating Cat Astronaut -->
+      <!-- Revolving Pixel Cat Astronaut on the Inner Ring -->
       <div class="cat-astronaut-container">
-        <svg width="55" height="55" viewBox="0 0 60 60">
-          <!-- Glass Helmet -->
-          <circle cx="30" cy="30" r="17" fill="rgba(0, 245, 255, 0.12)" stroke="var(--cyan)" stroke-width="1.5" />
+        <svg width="54" height="54" viewBox="0 0 60 60">
+          <!-- Glass Helmet (Red theme) -->
+          <circle cx="30" cy="30" r="17" fill="rgba(255, 34, 68, 0.12)" stroke="var(--red)" stroke-width="1.5" />
           <!-- Oxygen Tether -->
-          <path d="M13 30 Q 3 25 8 8" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="3 3" />
+          <path d="M13 30 Q 3 25 8 8" fill="none" stroke="#581c25" stroke-width="2" stroke-dasharray="3 3" />
           
           <!-- Cat Body -->
           <rect x="22" y="24" width="16" height="12" rx="4" fill="#ffffff" />
@@ -363,13 +435,13 @@
           <polygon points="23,17 27,20 24,14" fill="#ffffff" />
           <polygon points="37,17 33,20 36,14" fill="#ffffff" />
           <!-- Cat Eyes -->
-          <circle cx="27" cy="24" r="1.2" fill="#0f172a" />
-          <circle cx="33" cy="24" r="1.2" fill="#0f172a" />
+          <circle cx="27" cy="24" r="1.2" fill="#080005" />
+          <circle cx="33" cy="24" r="1.2" fill="#080005" />
           <!-- Whiskers -->
-          <line x1="19" y1="25" x2="15" y2="24" stroke="#94a3b8" stroke-width="1" />
-          <line x1="19" y1="26" x2="15" y2="27" stroke="#94a3b8" stroke-width="1" />
-          <line x1="41" y1="25" x2="45" y2="24" stroke="#94a3b8" stroke-width="1" />
-          <line x1="41" y1="26" x2="45" y2="27" stroke="#94a3b8" stroke-width="1" />
+          <line x1="19" y1="25" x2="15" y2="24" stroke="#e2e8f0" stroke-width="1" />
+          <line x1="19" y1="26" x2="15" y2="27" stroke="#e2e8f0" stroke-width="1" />
+          <line x1="41" y1="25" x2="45" y2="24" stroke="#e2e8f0" stroke-width="1" />
+          <line x1="41" y1="26" x2="45" y2="27" stroke="#e2e8f0" stroke-width="1" />
           <!-- Tail -->
           <path d="M38 29 Q 46 31 43 23" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
           <!-- Paws -->
@@ -380,30 +452,15 @@
       </div>
     </div>
 
-    <!-- RIGHT '4' UFO -->
-    <div class="ufo-4-container" style="animation-delay: 0.5s;">
-      <svg width="110" height="130" viewBox="0 0 120 150">
-        <!-- Tractor Beam -->
-        <path d="M45 80 L75 80 L100 150 L20 150 Z" fill="url(#beam-left)" opacity="0.6" />
-        
-        <!-- Saucer Hull / Horizontal Bar -->
-        <rect x="15" y="70" width="90" height="12" rx="6" fill="#04060f" stroke="var(--cyan)" stroke-width="2" />
-        <!-- Lights on Hull -->
-        <circle cx="28" cy="76" r="2.5" fill="#00f5ff" class="blinking-light" style="animation-delay: 1.2s; animation-duration: 0.8s;" />
-        <circle cx="48" cy="76" r="2.5" fill="#00ff88" class="blinking-light" style="animation-delay: 0.8s; animation-duration: 0.8s;" />
-        <circle cx="68" cy="76" r="2.5" fill="#ffd22e" class="blinking-light" style="animation-delay: 0.4s; animation-duration: 0.8s;" />
-        <circle cx="88" cy="76" r="2.5" fill="#ff2244" class="blinking-light" style="animation-delay: 0s; animation-duration: 0.8s;" />
-
-        <!-- Diagonal leg of 4 (Symmetrical swap for right leg layout) -->
-        <path d="M60 22 L20 70 L34 70 L68 22 Z" fill="#080e1c" stroke="var(--cyan)" stroke-width="2" />
-
-        <!-- Vertical stem of 4 -->
-        <path d="M60 22 L60 85 L74 85 L74 22 Z" fill="#080e1c" stroke="var(--cyan)" stroke-width="2" />
-
-        <!-- Cockpit Dome on top -->
-        <path d="M52 22 A 13 13 0 0 1 78 22 Z" fill="rgba(0, 245, 255, 0.15)" stroke="var(--cyan)" stroke-width="2" />
-        <!-- Tiny pilot silhouette -->
-        <circle cx="65" cy="16" r="3" fill="#00f5ff" /> 
+    <!-- RIGHT '4' DIGIT (Hollow block-mesh SVG) -->
+    <div class="retro-4-container" style="animation-delay: 0.5s;">
+      <svg width="150" height="180" viewBox="0 0 160 180">
+        <!-- Symmetrical block 4 with mesh pattern and glowing red border (shares fill pattern def from left digit) -->
+        <path d="M 100,20 L 130,20 L 130,120 L 155,120 L 155,145 L 130,145 L 130,175 L 100,175 L 100,145 L 15,145 L 15,120 Z M 100,60 L 100,120 L 50,120 Z" 
+              fill="url(#grid-pattern-red)" 
+              stroke="var(--red)" 
+              stroke-width="3.5" 
+              fill-rule="evenodd" />
       </svg>
     </div>
 
@@ -411,10 +468,16 @@
 
   <!-- Dialogue and Actions -->
   <div class="action-wrap">
-    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; color: #64748b; letter-spacing: 0.25em; margin-bottom: 24px;">page not found</div>
-    <a href="index.html" class="btn-return">
-      <span class="bracket">[</span> RETURN TO EARTH <span class="bracket">]</span>
-    </a>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; color: #7f1d1d; letter-spacing: 0.25em; margin-bottom: 28px;">
+      page not found
+    </div>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 18px;">
+      <span style="color: rgba(255, 34, 68, 0.4); font-size: 14px; font-family: 'JetBrains Mono', monospace; animation: ledPulse 1s infinite alternate;">◇</span>
+      <a href="index.html" class="btn-return">
+        RETURN TO EARTH
+      </a>
+      <span style="color: rgba(255, 34, 68, 0.4); font-size: 14px; font-family: 'JetBrains Mono', monospace; animation: ledPulse 1s infinite alternate; animation-delay: 0.5s;">◇</span>
+    </div>
   </div>
 </div>
 
@@ -433,49 +496,124 @@
 <script src="js/nav.js" defer></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // 3D Spinning ASCII Globe configuration
-    const GLOBE_ROWS = [
-      { w: 14, map: "░░░░░░██████░░░░░░░░░░██████░░░░░░" },
-      { w: 20, map: "░░░░░██████████░░░░░░░░██████████░░░░░" },
-      { w: 24, map: "░░░░█████████████░░░░░░█████████████░░░░" },
-      { w: 26, map: "░░░████████████████░░░░████████████████░░░" },
-      { w: 28, map: "░░██████████████████░░██████████████████░░" },
-      { w: 28, map: "░░██████████████████░░██████████████████░░" },
-      { w: 26, map: "░░░████████████████░░░░████████████████░░░" },
-      { w: 24, map: "░░░░█████████████░░░░░░█████████████░░░░" },
-      { w: 20, map: "░░░░░██████████░░░░░░░░██████████░░░░░" },
-      { w: 14, map: "░░░░░░██████░░░░░░░░░░██████░░░░░░" }
-    ];
+    // 25-row Detailed Equirectangular World Map for high-resolution 3D projection
+    const WORLD_MAP = [
+      " ",
+      "                                                         ######                       ##################",
+      "                 #############   ##                     ########                     ####################",
+      "  ###           ###############  ###                   ##########                    #####################       ###",
+      "#######        ################  ###                  ############                  #######################     #####",
+      "########      ##################                      ############                  ########################   #######",
+      " #######      #################                      ##############                 ########################    #####",
+      "  #####       ################                      ################                #######################      ###",
+      "   ###        ###############                        ##############                  ######################",
+      "    #         #############                           ############                     ##################",
+      "              #############                            ##########                       ################",
+      "              #############                            #########                        ###############",
+      "              ############                              #######                                         #########",
+      "              ###########                                #####                                         ###########",
+      "               #########                                  ###                                          ###########",
+      "                #######                                                                                 #########",
+      "                 #####                                                                                   #######",
+      "                  ###                                                                                     #####",
+      "                   #                                                                                       ##",
+      " ",
+      " ",
+      "   ###################################################################################################################",
+      "  #####################################################################################################################",
+      "   ###################################################################################################################",
+      " "
+    ].map(line => line.padEnd(120, ' '));
 
+    const ROWS = 25;
+    const COLS = 50;
+    const mapHeight = WORLD_MAP.length;
+    const mapWidth = WORLD_MAP[0].length;
     let offset = 0;
     const preEl = document.getElementById('globe-pre');
 
     function updateGlobe() {
       if (!preEl) return;
       let output = "";
-      GLOBE_ROWS.forEach(row => {
-        const W = row.w;
-        const map = row.map;
+      
+      for (let r = 0; r < ROWS; r++) {
+        // Normalize vertical coordinate to [-1, 1]
+        const ny = (2 * r) / (ROWS - 1) - 1;
+        
+        // Calculate horizontal radius of the sphere slice at height ny
+        const rx = Math.sqrt(1 - ny * ny);
+        
+        // Row width in characters, accounting for aspect ratio
+        const rowWidth = Math.round(COLS * rx);
+        
+        // Calculate padding to center this row in the grid
+        const pad = Math.floor((COLS - rowWidth) / 2);
         let slice = "";
-        for (let col = 0; col < W; col++) {
-          // Normalize col coordinate to [-1, 1]
-          const nx = (2 * col) / (W - 1) - 1;
-          // Apply inverse sine projection to simulate sphere compression
-          const angle = Math.asin(nx) / (Math.PI / 2);
-          // Map back to string index wrapped inside offset
-          const mapIdx = Math.round((angle + 1) * (map.length / 2) + offset) % map.length;
-          slice += map[(mapIdx + map.length) % map.length];
+
+        for (let col = 0; col < rowWidth; col++) {
+          // Normalize horizontal coordinate to [-1, 1]
+          const nx = rowWidth > 1 ? (2 * col) / (rowWidth - 1) - 1 : 0;
+          
+          // 3D depth value of the sphere (z-coordinate, from 1.0 facing front to 0.0 at edge)
+          const nz = Math.sqrt(Math.max(0, 1 - nx * nx - ny * ny));
+          
+          // Map horizontal slice using non-linear spherical compression (orthographic projection)
+          const angle = Math.asin(nx); // [-PI/2, PI/2]
+          const latAngle = Math.asin(ny); // [-PI/2, PI/2]
+          
+          // Translate angles into 2D equirectangular map indices
+          const mapY = Math.floor(((latAngle / Math.PI) + 0.5) * mapHeight);
+          const clampedY = Math.max(0, Math.min(mapHeight - 1, mapY));
+          
+          const mapX = Math.floor(((angle / Math.PI) + 0.5 + offset) * mapWidth);
+          const wrappedX = ((mapX % mapWidth) + mapWidth) % mapWidth;
+
+          // Check if coordinates correspond to land or ocean
+          if (WORLD_MAP[clampedY][wrappedX] === '#') {
+            // Apply dynamic depth shading based on proximity to sphere's center facing axis
+            if (nz > 0.82) slice += "█"; // Central full-solid block
+            else if (nz > 0.62) slice += "▓"; // Dense dither
+            else if (nz > 0.42) slice += "▒"; // Medium dither
+            else if (nz > 0.18) slice += "░"; // Light dither
+            else slice += "·"; // Horizon boundary dot
+          } else {
+            // Transparent empty space for oceans, letting the glowing background shine through
+            slice += " ";
+          }
         }
-        // Center the slice inside a 32-character box for consistent vertical alignment
-        const pad = Math.floor((32 - W) / 2);
+        
+        // Append the padded row slice
         output += " ".repeat(pad) + slice + "\n";
-      });
+      }
+      
       preEl.textContent = output;
-      offset += 0.45; // Spin speed
+      offset += 0.012; // Controlled smooth spin speed
     }
 
-    // Tick the globe rotation
-    setInterval(updateGlobe, 90);
+    // 60-star space starfield generator
+    function createStars() {
+      const container = document.body;
+      const count = 60;
+      for (let i = 0; i < count; i++) {
+        const star = document.createElement('div');
+        star.className = 'space-star';
+        if (Math.random() > 0.35) {
+          star.classList.add('red-star');
+        }
+        const size = Math.random() > 0.85 ? 3 : (Math.random() > 0.4 ? 2 : 1);
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.top = Math.random() * 100 + 'vh';
+        star.style.left = Math.random() * 98 + 'vw';
+        star.style.animationDuration = (2.5 + Math.random() * 5.5) + 's';
+        star.style.animationDelay = (Math.random() * 4) + 's';
+        container.appendChild(star);
+      }
+    }
+
+    // Initialize Starfield and Orbit loop
+    createStars();
+    setInterval(updateGlobe, 80);
     updateGlobe();
   });
 </script>
