@@ -601,47 +601,57 @@
         </div>
       </div>
 
-      <!-- Revolving Pixel Cat Astronaut on the Outer Ring -->
+      <!-- Revolving Pixel Cat Astronaut on the Outer Ring (Perfect reference image silhouette) -->
       <div class="cat-astronaut-container">
         <svg width="54" height="54" viewBox="0 0 60 60" style="transition: transform 0.15s ease;">
-          <!-- Tilted Cat Group to match diagonal zero-g stance -->
-          <g transform="rotate(22 30 30)">
-            <!-- 4 Floating zero-g paws -->
-            <ellipse cx="19" cy="32" rx="3.5" ry="2.5" fill="#ffffff" />
-            <ellipse cx="41" cy="32" rx="3.5" ry="2.5" fill="#ffffff" />
-            <ellipse cx="18" cy="40" rx="3.5" ry="2.5" fill="#ffffff" />
-            <ellipse cx="42" cy="40" rx="3.5" ry="2.5" fill="#ffffff" />
+          <!-- Tilted Cat Group to match diagonal zero-g stance (35 degrees) -->
+          <g transform="rotate(35 30 30)">
+            <!-- Front-Left Paw -->
+            <rect x="15.5" y="32.5" width="6" height="10" rx="3" fill="#ffffff" stroke="#000000" stroke-width="2.2" transform="rotate(30 18.5 37.5)" />
+            <!-- Front-Right Paw -->
+            <rect x="25.5" y="33.5" width="6" height="10" rx="3" fill="#ffffff" stroke="#000000" stroke-width="2.2" transform="rotate(-15 28.5 38.5)" />
+            <!-- Hind-Left Paw -->
+            <rect x="21.5" y="42.5" width="6" height="11" rx="3" fill="#ffffff" stroke="#000000" stroke-width="2.2" transform="rotate(45 24.5 48)" />
+            <!-- Hind-Right Paw -->
+            <rect x="33.5" y="40.5" width="7" height="12" rx="3.5" fill="#ffffff" stroke="#000000" stroke-width="2.2" transform="rotate(-35 37 46.5)" />
+            
+            <!-- Thick Curly Tail -->
+            <path d="M 32,40 C 37,42 46,37 44,24 C 42,24 41,27 39,33 C 37,36 33,37 32,40 Z" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-linejoin="round" />
 
-            <!-- Cat Body -->
-            <rect x="22" y="28" width="16" height="15" rx="7" fill="#ffffff" />
+            <!-- Cat Body Trunk -->
+            <rect x="21" y="28" width="16" height="18" rx="8" fill="#ffffff" stroke="#000000" stroke-width="2.2" transform="rotate(-25 29 37)" />
             
-            <!-- Pointy black ears with white inner linings -->
-            <polygon points="21,17 26,21 23,13" fill="#080005" />
-            <polygon points="39,17 34,21 37,13" fill="#080005" />
-            <polygon points="22,18 25,21 24,15" fill="#ffffff" />
-            <polygon points="38,18 35,21 36,15" fill="#ffffff" />
+            <!-- Cat Head Base -->
+            <circle cx="28" cy="24" r="9" fill="#ffffff" stroke="#000000" stroke-width="2.2" />
 
-            <!-- Cat Head -->
-            <circle cx="30" cy="22" r="8" fill="#ffffff" />
-            
-            <!-- Tuxedo Black head patch between the ears -->
-            <path d="M 25,16.5 A 5.5,5.5 0 0 1 35,16.5 L 35,19 A 5.5,5.5 0 0 1 25,19 Z" fill="#080005" />
-            
-            <!-- Happy Closed Eyes 'u u' curves -->
-            <path d="M 25.5,22 Q 27,23.5 28.5,22" fill="none" stroke="#080005" stroke-width="1.2" stroke-linecap="round" />
-            <path d="M 31.5,22 Q 33,23.5 34.5,22" fill="none" stroke="#080005" stroke-width="1.2" stroke-linecap="round" />
-            
-            <!-- Tiny snout and curved w-smile mouth -->
-            <polygon points="29.5,23.8 30.5,23.8 30,24.5" fill="#080005" />
-            <path d="M 28,25.2 Q 30,26.5 30,24.9 Q 30,26.5 32,25.2" fill="none" stroke="#080005" stroke-width="1.2" stroke-linecap="round" />
-            
-            <!-- Curly long Tail -->
-            <path d="M 36,40 Q 46,41 43,28" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+            <!-- Pointy Ears with outlines -->
+            <path d="M 19,21 L 15,9 L 24,16 Z" fill="#ffffff" stroke="#000000" stroke-width="2.2" stroke-linejoin="round" />
+            <path d="M 37,21 L 41,9 L 32,16 Z" fill="#ffffff" stroke="#000000" stroke-width="2.2" stroke-linejoin="round" />
 
-            <!-- Glass Space Helmet Bubble centered on the head -->
-            <circle cx="30" cy="22" r="14" fill="rgba(255, 34, 68, 0.12)" stroke="var(--red)" stroke-width="1.5" />
-            <!-- Tiny light reflection on space helmet -->
-            <path d="M 20,18 A 12,12 0 0 1 26,12" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.2" stroke-linecap="round" />
+            <!-- Black Tuxedo Patch merging with head top -->
+            <path d="M 19,19 C 19,19 28,14 37,19 C 37,19 35,23.5 33,23.5 C 31,23.5 29,22.5 28,22.5 C 27,22.5 25,23.5 23,23.5 C 21,23.5 19,19 19,19 Z" fill="#000000" />
+            
+            <!-- Face features: Black Square Eyes -->
+            <rect x="22.5" y="24.5" width="2.2" height="2.2" fill="#000000" />
+            <rect x="31.5" y="24.5" width="2.2" height="2.2" fill="#000000" />
+            
+            <!-- Tiny Snout / Nose -->
+            <polygon points="27.5,27.2 28.5,27.2 28,28" fill="#000000" />
+            <!-- w-smile mouth (:3) -->
+            <path d="M 26.2,28.2 Q 28,29.5 28,28 Q 28,29.5 29.8,28.2" fill="none" stroke="#000000" stroke-width="1.2" stroke-linecap="round" />
+
+            <!-- Cheek Whiskers (3 left, 3 right) -->
+            <line x1="17.5" y1="24.5" x2="14" y2="24.5" stroke="#000000" stroke-width="1.2" />
+            <line x1="17" y1="26.5" x2="13.2" y2="26.5" stroke="#000000" stroke-width="1.2" />
+            <line x1="17.5" y1="28.5" x2="14.2" y2="28.5" stroke="#000000" stroke-width="1.2" />
+
+            <line x1="38.5" y1="24.5" x2="42" y2="24.5" stroke="#000000" stroke-width="1.2" />
+            <line x1="39" y1="26.5" x2="42.8" y2="26.5" stroke="#000000" stroke-width="1.2" />
+            <line x1="38.5" y1="28.5" x2="41.8" y2="28.5" stroke="#000000" stroke-width="1.2" />
+
+            <!-- Double Concentric Helmet Bubble centered on the head -->
+            <circle cx="28" cy="24" r="16.5" fill="none" stroke="#000000" stroke-width="2.2" />
+            <circle cx="28" cy="24" r="14.2" fill="none" stroke="#000000" stroke-width="1.2" />
           </g>
           
           <!-- Oxygen Tether -->
