@@ -167,26 +167,66 @@
 
   <!-- BOOT OVERLAY -->
   <div id="boot-ol"
-    style="position:fixed;inset:0;z-index:1000;background:#080810;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.9s;">
+    style="position:fixed;inset:0;z-index:1000;background:#060813;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.9s;">
     <div style="max-width:580px;width:100%;padding:0 32px;text-align:center;">
-      <div
-        style="color:#00f5ff;font-size:13px;font-weight:800;letter-spacing:0.22em;margin-bottom:28px;text-transform:uppercase;">
-        Sovereign Intel Terminal v4.2.1</div>
-      <div id="boot-lines" style="font-size:11px;line-height:2.1;color:#334155;font-family:'JetBrains Mono',monospace;">
-      </div>
-      <div id="boot-bar-wrap" style="margin-top:22px;display:none;">
-        <div style="height:2px;background:rgba(0,245,255,0.12);border-radius:1px;overflow:hidden;">
+      
+      <!-- Lotus ASCII Container -->
+      <pre style="
+        color: var(--cyan);
+        text-shadow: 0 0 15px rgba(0, 245, 255, 0.4);
+        line-height: 1.25;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 11px;
+        margin: 0 auto 28px;
+        display: inline-block;
+        text-align: left;
+        white-space: pre;
+        letter-spacing: 0.5px;
+        user-select: none;
+      ">⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⣠⣆⠘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⠈⠙⠻⠟⠀⣼⡟⠻⣷⡄⠹⠟⠋⢡⢹⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⡿⠿⠿⠀⣿⣷⡄⠸⡿⠁⡠⢻⠇⢀⣴⣿⢸⠸⠿⠿⣿⣿⣿⣿⣿
+⣿⠛⠛⠛⠿⠎⡄⣥⣄⠘⠿⣿⡆⢀⣼⣷⡄⠠⣿⡿⠛⣘⣬⠆⠠⠿⠛⠛⠛⢿
+⣿⣷⣄⠘⣶⣤⠂⣿⣿⣿⣦⠈⢀⣾⣿⣿⣿⡄⠉⣤⣾⣿⣿⢠⣠⣶⠊⢠⣾⣿
+⣿⣿⣿⣆⠘⢿⣰⢸⣿⣿⣿⠀⣾⣿⣿⣿⣿⣿⠀⢻⣿⣿⡟⡈⣿⠃⢠⣿⣿⣿
+⣿⣿⣿⣿⣦⠠⡃⢆⢻⣿⣿⠀⢻⣿⣿⣿⣿⡿⠀⢸⣿⡿⠡⠙⡁⣠⣿⣿⣿⣿
+⣿⣟⡉⠀⠤⣤⡭⠒⡄⠉⠛⠆⠀⠛⠿⠿⠟⠁⠠⠟⠫⢤⡔⠯⣤⡤⠄⠉⣹⣿
+⣿⣿⣿⣶⠄⢂⣤⣶⣾⣿⣶⡦⠀⣩⣭⣤⣄⠀⢴⣶⣾⣷⣶⣦⡀⠀⣶⣿⣿⣿
+⣿⣿⣿⣇⣀⣈⣭⠙⠛⠋⠉⡀⠀⢿⣿⣿⣿⠂⢀⡈⠙⣛⡛⢩⣉⣀⣘⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣤⡀⠙⠋⢁⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿</pre>
+
+      <!-- Hide the old boot logs, but keep element to avoid JS errors -->
+      <div id="boot-lines" style="display: none;"></div>
+
+      <!-- Loading Bar Block -->
+      <div id="boot-bar-wrap" style="margin-top: 10px; max-width: 320px; margin-left: auto; margin-right: auto; display: none;">
+        <div style="height:4px; background:rgba(0,245,255,0.08); border-radius:999px; overflow:hidden;">
           <div id="boot-bar"
-            style="height:100%;width:0%;background:#00f5ff;box-shadow:0 0 10px #00f5ff;border-radius:1px;transition:width 0.08s linear;">
+            style="height:100%; width:0%; background:var(--cyan); box-shadow:0 0 14px rgba(0, 245, 255, 0.6); border-radius:999px; transition:width 0.15s cubic-bezier(0.16, 1, 0.3, 1);">
           </div>
         </div>
-        <div style="margin-top:8px;font-size:8px;color:#1e293b;letter-spacing:0.16em;">LOADING INTELLIGENCE LAYERS...
+        <!-- Status Text Message (Simple, Trustworthy, Welcoming) -->
+        <div id="boot-status" style="
+          margin-top: 16px;
+          font-size: 10px;
+          font-family: 'JetBrains Mono', monospace;
+          color: #64748b;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          transition: color 0.3s;
+        ">
+          Connecting to secure channel...
         </div>
       </div>
+
       <button onclick="dismissBoot()"
-        style="margin-top:28px;padding:7px 18px;border-radius:8px;border:1px solid rgba(0,245,255,0.4);background:transparent;color:#94a3b8;font-size:8px;font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:0.16em;cursor:pointer;transition:color 0.2s,border-color 0.2s;"
-        onmouseover="this.style.color='#00f5ff';this.style.borderColor='rgba(0,245,255,0.8)'"
-        onmouseout="this.style.color='#94a3b8';this.style.borderColor='rgba(0,245,255,0.4)'">SKIP INTRO →</button>
+        style="margin-top:36px;padding:8px 20px;border-radius:8px;border:1px solid rgba(0,245,255,0.15);background:transparent;color:#475569;font-size:8px;font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:0.16em;cursor:pointer;transition:all 0.3s;"
+        onmouseover="this.style.color='#00f5ff';this.style.borderColor='rgba(0,245,255,0.5)';this.style.background='rgba(0,245,255,0.02)';"
+        onmouseout="this.style.color='#475569';this.style.borderColor='rgba(0,245,255,0.15)';this.style.background='transparent';">SKIP INTRO →</button>
     </div>
   </div>
 

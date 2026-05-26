@@ -1,11 +1,11 @@
 /* ── BOOT SEQUENCE ── */
 const bootLines = [
-  { text: '> Establishing secure connection...', delay: 0,    result: '[OK]',  color: '#00ff88' },
-  { text: '> Loading satellite feed (12 active)...', delay: 500, result: '[OK]', color: '#00ff88' },
-  { text: '> Calibrating signal processors...', delay: 1000, result: '[OK]',  color: '#00ff88' },
-  { text: '> Syncing intelligence layers...', delay: 1500,   result: '[OK]',  color: '#00ff88' },
-  { text: '> 27 CRITICAL ALERTS DETECTED',    delay: 2000,   result: '[!!]',  color: '#ff2244' },
-  { text: '> SYSTEM STATUS: OPERATIONAL',     delay: 2500,   result: '',      color: '#00f5ff' },
+  { statusText: 'Initializing encrypted data channel...', delay: 0 },
+  { statusText: 'Establishing high-fidelity satellite nodes...', delay: 500 },
+  { statusText: 'Verifying signal telemetry databases...', delay: 1000 },
+  { statusText: 'Securing algorithmic compliance layers...', delay: 1500 },
+  { statusText: 'All systems operational. Signal clear.', delay: 2000 },
+  { statusText: 'Welcome to Sovereign Intel.', delay: 2550 },
 ];
 let bootDone = false;
 
@@ -28,9 +28,9 @@ function dismissBoot(){
 window.dismissBoot = dismissBoot;
 
 (function runBoot(){
-  const linesEl = document.getElementById('boot-lines');
-  const barWrap = document.getElementById('boot-bar-wrap');
-  const bar     = document.getElementById('boot-bar');
+  const statusEl = document.getElementById('boot-status');
+  const barWrap  = document.getElementById('boot-bar-wrap');
+  const bar      = document.getElementById('boot-bar');
   
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || sessionStorage.getItem('bootPlayed') === 'true') {
     const ol = document.getElementById('boot-ol');
@@ -44,20 +44,24 @@ window.dismissBoot = dismissBoot;
   }
   sessionStorage.setItem('bootPlayed', 'true');
 
-  if (!linesEl || !barWrap || !bar) return;
+  if (!barWrap || !bar) return;
+
+  // Render the loading bar immediately
+  barWrap.style.display = 'block';
 
   let completed = 0;
-  bootLines.forEach(({ text, delay, result, color }) => {
+  bootLines.forEach(({ statusText, delay }) => {
     setTimeout(() => {
-      const row = document.createElement('div');
-      row.style.cssText = 'display:flex;justify-content:space-between;gap:16px;';
-      row.innerHTML = `<span style="color:#475569;">${text}</span><span style="color:${color};font-weight:800;">${result}</span>`;
-      linesEl.appendChild(row);
       completed++;
-      if(completed === 1){ barWrap.style.display='block'; }
+      if (statusEl) {
+        statusEl.textContent = statusText;
+        if (completed === bootLines.length) {
+          statusEl.style.color = '#00f5ff'; // highlight cyan on complete
+        }
+      }
       bar.style.width = ((completed/bootLines.length)*100) + '%';
       if(completed === bootLines.length){
-        setTimeout(() => dismissBoot(), 700);
+        setTimeout(() => dismissBoot(), 800);
       }
     }, delay);
   });
