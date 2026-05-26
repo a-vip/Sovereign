@@ -366,8 +366,8 @@
       }
     }
 
-    /* Wiggle animation for Cat SVG when clicked */
-    .cat-astronaut-container.clicked-wiggle svg {
+    /* Wiggle animation for Cat Image when clicked */
+    .cat-astronaut-container.clicked-wiggle img {
       animation: catWiggle 0.4s ease-in-out infinite alternate;
     }
 
@@ -548,7 +548,7 @@
     <a href="index.html#features" class="nav-drawer-tab">Features</a>
     <a href="enterprise.html" class="nav-drawer-tab">Enterprise</a>
     <a href="pricing.html" class="nav-drawer-tab">Pricing</a>
-    <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="nav-drawer-tab" style="color: var(--red); border-color: rgba(255,34,68,0.3);">Enter Dash →</a>
+    <a href="https://sovereign-intelligence-dashboard.vercel.app/" target="_blank" class="nav-drawer-tab" style="color: var(--red); border-color: rgba(255, 34, 68, 0.3);">Enter Dash →</a>
   </div>
 </nav>
 
@@ -601,62 +601,14 @@
         </div>
       </div>
 
-      <!-- Revolving Pixel Cat Astronaut on the Outer Ring (Perfect reference image silhouette) -->
+      <!-- Revolving Pixel Cat Astronaut on the Outer Ring (Official PNG Image Asset) -->
       <div class="cat-astronaut-container">
-        <svg width="54" height="54" viewBox="0 0 60 60" style="transition: transform 0.15s ease;">
-          <!-- Tilted Cat Group to match diagonal zero-g stance (35 degrees) -->
-          <g transform="rotate(35 30 30)">
-            <!-- Front-Left Paw -->
-            <rect x="15.5" y="32.5" width="6" height="10" rx="3" fill="#ffffff" stroke="#000000" stroke-width="2.2" transform="rotate(30 18.5 37.5)" />
-            <!-- Front-Right Paw -->
-            <rect x="25.5" y="33.5" width="6" height="10" rx="3" fill="#ffffff" stroke="#000000" stroke-width="2.2" transform="rotate(-15 28.5 38.5)" />
-            <!-- Hind-Left Paw -->
-            <rect x="21.5" y="42.5" width="6" height="11" rx="3" fill="#ffffff" stroke="#000000" stroke-width="2.2" transform="rotate(45 24.5 48)" />
-            <!-- Hind-Right Paw -->
-            <rect x="33.5" y="40.5" width="7" height="12" rx="3.5" fill="#ffffff" stroke="#000000" stroke-width="2.2" transform="rotate(-35 37 46.5)" />
-            
-            <!-- Thick Curly Tail -->
-            <path d="M 32,40 C 37,42 46,37 44,24 C 42,24 41,27 39,33 C 37,36 33,37 32,40 Z" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-linejoin="round" />
-
-            <!-- Cat Body Trunk -->
-            <rect x="21" y="28" width="16" height="18" rx="8" fill="#ffffff" stroke="#000000" stroke-width="2.2" transform="rotate(-25 29 37)" />
-            
-            <!-- Cat Head Base -->
-            <circle cx="28" cy="24" r="9" fill="#ffffff" stroke="#000000" stroke-width="2.2" />
-
-            <!-- Pointy Ears with outlines -->
-            <path d="M 19,21 L 15,9 L 24,16 Z" fill="#ffffff" stroke="#000000" stroke-width="2.2" stroke-linejoin="round" />
-            <path d="M 37,21 L 41,9 L 32,16 Z" fill="#ffffff" stroke="#000000" stroke-width="2.2" stroke-linejoin="round" />
-
-            <!-- Black Tuxedo Patch merging with head top -->
-            <path d="M 19,19 C 19,19 28,14 37,19 C 37,19 35,23.5 33,23.5 C 31,23.5 29,22.5 28,22.5 C 27,22.5 25,23.5 23,23.5 C 21,23.5 19,19 19,19 Z" fill="#000000" />
-            
-            <!-- Face features: Black Square Eyes -->
-            <rect x="22.5" y="24.5" width="2.2" height="2.2" fill="#000000" />
-            <rect x="31.5" y="24.5" width="2.2" height="2.2" fill="#000000" />
-            
-            <!-- Tiny Snout / Nose -->
-            <polygon points="27.5,27.2 28.5,27.2 28,28" fill="#000000" />
-            <!-- w-smile mouth (:3) -->
-            <path d="M 26.2,28.2 Q 28,29.5 28,28 Q 28,29.5 29.8,28.2" fill="none" stroke="#000000" stroke-width="1.2" stroke-linecap="round" />
-
-            <!-- Cheek Whiskers (3 left, 3 right) -->
-            <line x1="17.5" y1="24.5" x2="14" y2="24.5" stroke="#000000" stroke-width="1.2" />
-            <line x1="17" y1="26.5" x2="13.2" y2="26.5" stroke="#000000" stroke-width="1.2" />
-            <line x1="17.5" y1="28.5" x2="14.2" y2="28.5" stroke="#000000" stroke-width="1.2" />
-
-            <line x1="38.5" y1="24.5" x2="42" y2="24.5" stroke="#000000" stroke-width="1.2" />
-            <line x1="39" y1="26.5" x2="42.8" y2="26.5" stroke="#000000" stroke-width="1.2" />
-            <line x1="38.5" y1="28.5" x2="41.8" y2="28.5" stroke="#000000" stroke-width="1.2" />
-
-            <!-- Double Concentric Helmet Bubble centered on the head -->
-            <circle cx="28" cy="24" r="16.5" fill="none" stroke="#000000" stroke-width="2.2" />
-            <circle cx="28" cy="24" r="14.2" fill="none" stroke="#000000" stroke-width="1.2" />
-          </g>
-          
-          <!-- Oxygen Tether -->
+        <!-- Oxygen Tether SVG Sibling -->
+        <svg width="54" height="54" viewBox="0 0 60 60" style="position: absolute; top: 0; left: 0; pointer-events: none; z-index: 1;">
           <path d="M13 30 Q 3 25 8 8" fill="none" stroke="#581c25" stroke-width="2" stroke-dasharray="3 3" />
         </svg>
+        <!-- Official PNG Image with Crisp Pixel Art Styling -->
+        <img src="images/cat-astronaut.png" width="54" height="54" alt="Cat Astronaut" style="transition: transform 0.15s ease; image-rendering: pixelated; image-rendering: crisp-edges; pointer-events: none; z-index: 2; position: relative;" />
         <div class="speech-bubble">You found me!</div>
       </div>
     </div>
