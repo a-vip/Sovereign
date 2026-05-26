@@ -11,7 +11,7 @@
   <!-- Fonts Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/base.css" />
@@ -22,88 +22,205 @@
   <link rel="stylesheet" href="css/animations.css" />
 
   <style>
-    .error-container {
-      max-width: 680px;
-      margin: 80px auto;
-      padding: 0 24px;
+    body {
+      background-color: #04060f;
+      color: #fff;
+      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Cosmic Background grid */
+    .bg-grid {
+      background-image: 
+        linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+    }
+
+    /* Decorative Floating Stars in Background */
+    .space-star {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle 4s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.15; transform: scale(0.8); }
+      50% { opacity: 0.8; transform: scale(1.2); }
+    }
+
+    /* 404 Canvas Area */
+    .canvas-404 {
+      max-width: 900px;
+      margin: 60px auto 40px;
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       position: relative;
       z-index: 10;
     }
-    .error-panel {
-      border: 1px solid rgba(255, 34, 68, 0.25);
-      border-radius: 20px;
-      background: rgba(10, 13, 24, 0.8);
-      backdrop-filter: blur(20px);
-      box-shadow: 0 0 48px rgba(255, 34, 68, 0.08);
-      padding: 36px;
+
+    .row-404 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
       position: relative;
-      overflow: hidden;
-    }
-    .error-panel::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; height: 3px;
-      background: var(--red);
-      box-shadow: 0 0 12px var(--red);
-    }
-    .error-title {
-      font-size: clamp(24px, 5vw, 42px);
-      font-weight: 800;
-      color: var(--red);
-      letter-spacing: -0.04em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .error-subtitle {
-      font-size: 11px;
-      color: #64748b;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
       margin-bottom: 24px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      padding-bottom: 12px;
     }
-    .error-log {
+
+    @media (max-width: 768px) {
+      .row-404 {
+        gap: 16px;
+      }
+    }
+
+    /* UFO style 4s */
+    .ufo-4-container {
+      animation: floatUFO 6s ease-in-out infinite;
+      position: relative;
+    }
+
+    @keyframes floatUFO {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(2deg); }
+    }
+
+    .blinking-light {
+      animation: ledPulse 1s infinite alternate;
+    }
+
+    @keyframes ledPulse {
+      to { opacity: 0.2; }
+    }
+
+    /* Globe Orbit Ring Container */
+    .globe-orbit-wrapper {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(0, 245, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 35px rgba(0, 245, 255, 0.04);
+      animation: rotateOrbit 40s linear infinite;
+    }
+
+    .globe-orbit-content {
+      animation: rotateOrbitInverse 40s linear infinite;
+    }
+
+    @keyframes rotateOrbit {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes rotateOrbitInverse {
+      to { transform: rotate(-360deg); }
+    }
+
+    /* 3D Spinning ASCII Globe */
+    #globe-pre {
+      font-family: 'Courier New', Courier, monospace;
       font-size: 11px;
-      line-height: 2.2;
-      color: #cbd5e1;
-      background: #03050b;
-      border: 1px solid rgba(255, 34, 68, 0.12);
-      border-radius: 12px;
-      padding: 20px;
-      font-family: 'JetBrains Mono', monospace;
-      margin-bottom: 32px;
-      min-height: 240px;
+      line-height: 1.15;
+      color: var(--cyan);
+      text-shadow: 0 0 14px rgba(0, 245, 255, 0.6);
+      margin: 0;
+      white-space: pre;
+      background: transparent;
+      user-select: none;
+      font-weight: 700;
     }
-    .btn-red {
+
+    @media (max-width: 580px) {
+      #globe-pre {
+        font-size: 8px;
+        line-height: 1.1;
+      }
+      .globe-orbit-wrapper {
+        width: 160px;
+        height: 160px;
+      }
+    }
+
+    /* Pixel Cat Astronaut Container */
+    .cat-astronaut-container {
+      position: absolute;
+      top: -30px;
+      left: 170px;
+      z-index: 20;
+      animation: floatCat 8s ease-in-out infinite;
+      cursor: pointer;
+    }
+
+    @keyframes floatCat {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-15px, -20px) rotate(-12deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+    /* Speech Bubble next to Cat */
+    .speech-bubble {
+      position: absolute;
+      left: 65px;
+      top: 5px;
+      background: #090e1c;
+      border: 1px solid rgba(0, 245, 255, 0.35);
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 9px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--cyan);
+      white-space: nowrap;
+      box-shadow: 0 0 15px rgba(0, 245, 255, 0.15);
+      pointer-events: none;
+      animation: bubbleFloat 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes bubbleFloat {
+      to { transform: translateY(-4px); }
+    }
+
+    /* Return Button and Monospace text */
+    .action-wrap {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .btn-return {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 16px 28px;
-      border-radius: 14px;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s;
-      border: 1px solid rgba(255, 34, 68, 0.5);
-      background: rgba(255, 34, 68, 0.10);
-      color: #fca5a5;
-      box-shadow: 0 0 34px rgba(255, 34, 68, 0.14);
+      gap: 8px;
       font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cyan);
+      text-decoration: none;
+      letter-spacing: 0.18em;
+      transition: all 0.3s;
+      text-shadow: 0 0 10px rgba(0, 245, 255, 0.2);
+      padding: 10px 20px;
     }
-    .btn-red:hover {
-      background: rgba(255, 34, 68, 0.18);
-      transform: translateY(-1px);
+
+    .btn-return:hover {
       color: #fff;
+      text-shadow: 0 0 18px var(--cyan);
+      transform: scale(1.05);
     }
-    .btn-red .arrow {
-      transition: transform 0.2s;
+
+    .btn-return .bracket {
+      color: #3b4b60;
+      font-weight: 400;
+      transition: color 0.3s;
     }
-    .btn-red:hover .arrow {
-      transform: translateX(4px);
+
+    .btn-return:hover .bracket {
+      color: var(--cyan);
     }
   </style>
 </head>
@@ -111,7 +228,31 @@
 
 <div class="bg-grid"></div>
 
-<!-- TICKER -->
+<!-- Background Twinkling Stars -->
+<div class="space-star" style="top: 15%; left: 10%; width: 2px; height: 2px; animation-duration: 3s;"></div>
+<div class="space-star" style="top: 25%; left: 80%; width: 3px; height: 3px; animation-duration: 5s;"></div>
+<div class="space-star" style="top: 75%; left: 15%; width: 2px; height: 2px; animation-duration: 4s;"></div>
+<div class="space-star" style="top: 85%; left: 75%; width: 3px; height: 3px; animation-duration: 6s;"></div>
+<div class="space-star" style="top: 60%; left: 90%; width: 2px; height: 2px; animation-duration: 3.5s;"></div>
+<div class="space-star" style="top: 12%; left: 45%; width: 3px; height: 3px; animation-duration: 4.5s;"></div>
+
+<!-- Decorative Planetary Constellation SVGs -->
+<svg class="decor-planet saturn" style="position: absolute; bottom: 120px; right: 10%; width: 45px; height: 28px; opacity: 0.2; pointer-events: none;" viewBox="0 0 45 28">
+  <ellipse cx="22" cy="14" rx="22" ry="4" fill="none" stroke="var(--cyan)" stroke-width="1.5" transform="rotate(-15 22 14)" />
+  <circle cx="22" cy="14" r="8" fill="#04060f" stroke="var(--cyan)" stroke-width="1.5" />
+</svg>
+
+<svg class="decor-planet constellation" style="position: absolute; top: 120px; left: 8%; width: 40px; height: 40px; opacity: 0.15; pointer-events: none;" viewBox="0 0 40 40">
+  <circle cx="5" cy="5" r="1.5" fill="var(--cyan)" />
+  <circle cx="20" cy="20" r="1.5" fill="var(--cyan)" />
+  <circle cx="35" cy="10" r="1.5" fill="var(--cyan)" />
+  <circle cx="30" cy="35" r="1.5" fill="var(--cyan)" />
+  <line x1="5" y1="5" x2="20" y2="20" stroke="var(--cyan)" stroke-dasharray="2 2" stroke-width="1" />
+  <line x1="20" y1="20" x2="35" y2="10" stroke="var(--cyan)" stroke-dasharray="2 2" stroke-width="1" />
+  <line x1="20" y1="20" x2="30" y2="35" stroke="var(--cyan)" stroke-dasharray="2 2" stroke-width="1" />
+</svg>
+
+<!-- ALARM TICKER -->
 <div class="ticker-bar">
   <div class="ticker-label" style="color: var(--red); border-right-color: rgba(255,34,68,0.15);">● ALARM</div>
   <div class="ticker-track">
@@ -163,19 +304,117 @@
   </div>
 </nav>
 
-<!-- MAIN CONTENT -->
-<div class="error-container">
-  <div class="error-panel">
-    <div class="error-title">Signal Lost</div>
-    <div class="error-subtitle">Diagnostic Status — CONNECTION_ERROR_404</div>
+<!-- MAIN CANVAS -->
+<div class="canvas-404">
+  <div class="row-404">
+    
+    <!-- LEFT '4' UFO -->
+    <div class="ufo-4-container">
+      <svg width="110" height="130" viewBox="0 0 120 150">
+        <!-- Tractor Beam -->
+        <defs>
+          <linearGradient id="beam-left" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="rgba(0, 245, 255, 0.25)" />
+            <stop offset="100%" stop-color="rgba(0, 245, 255, 0)" />
+          </linearGradient>
+        </defs>
+        <path d="M45 80 L75 80 L100 150 L20 150 Z" fill="url(#beam-left)" opacity="0.6" />
+        
+        <!-- Saucer Hull / Horizontal Bar -->
+        <rect x="15" y="70" width="90" height="12" rx="6" fill="#04060f" stroke="var(--cyan)" stroke-width="2" />
+        <!-- Lights on Hull -->
+        <circle cx="28" cy="76" r="2.5" fill="#ff2244" class="blinking-light" style="animation-delay: 0s; animation-duration: 0.8s;" />
+        <circle cx="48" cy="76" r="2.5" fill="#ffd22e" class="blinking-light" style="animation-delay: 0.4s; animation-duration: 0.8s;" />
+        <circle cx="68" cy="76" r="2.5" fill="#00ff88" class="blinking-light" style="animation-delay: 0.8s; animation-duration: 0.8s;" />
+        <circle cx="88" cy="76" r="2.5" fill="#00f5ff" class="blinking-light" style="animation-delay: 1.2s; animation-duration: 0.8s;" />
 
-    <div class="error-log" id="diag-log"></div>
+        <!-- Diagonal leg of 4 -->
+        <path d="M60 22 L20 70 L34 70 L68 22 Z" fill="#080e1c" stroke="var(--cyan)" stroke-width="2" />
 
-    <div style="text-align: center;">
-      <a href="index.html" class="btn-red">
-        Re-establish Connection <span class="arrow">→</span>
-      </a>
+        <!-- Vertical stem of 4 -->
+        <path d="M60 22 L60 85 L74 85 L74 22 Z" fill="#080e1c" stroke="var(--cyan)" stroke-width="2" />
+
+        <!-- Cockpit Dome on top -->
+        <path d="M52 22 A 13 13 0 0 1 78 22 Z" fill="rgba(0, 245, 255, 0.15)" stroke="var(--cyan)" stroke-width="2" />
+        <!-- Tiny pilot silhouette -->
+        <circle cx="65" cy="16" r="3" fill="#00f5ff" style="box-shadow: 0 0 8px #00f5ff;" /> 
+      </svg>
     </div>
+
+    <!-- CENTER GLOBE IN ORBIT -->
+    <div class="globe-orbit-wrapper">
+      <div class="globe-orbit-content">
+        <pre id="globe-pre"></pre>
+      </div>
+
+      <!-- Floating Cat Astronaut -->
+      <div class="cat-astronaut-container">
+        <svg width="55" height="55" viewBox="0 0 60 60">
+          <!-- Glass Helmet -->
+          <circle cx="30" cy="30" r="17" fill="rgba(0, 245, 255, 0.12)" stroke="var(--cyan)" stroke-width="1.5" />
+          <!-- Oxygen Tether -->
+          <path d="M13 30 Q 3 25 8 8" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="3 3" />
+          
+          <!-- Cat Body -->
+          <rect x="22" y="24" width="16" height="12" rx="4" fill="#ffffff" />
+          <!-- Cat Head -->
+          <circle cx="30" cy="24" r="8" fill="#ffffff" />
+          <!-- Cat Ears -->
+          <polygon points="23,17 27,20 24,14" fill="#ffffff" />
+          <polygon points="37,17 33,20 36,14" fill="#ffffff" />
+          <!-- Cat Eyes -->
+          <circle cx="27" cy="24" r="1.2" fill="#0f172a" />
+          <circle cx="33" cy="24" r="1.2" fill="#0f172a" />
+          <!-- Whiskers -->
+          <line x1="19" y1="25" x2="15" y2="24" stroke="#94a3b8" stroke-width="1" />
+          <line x1="19" y1="26" x2="15" y2="27" stroke="#94a3b8" stroke-width="1" />
+          <line x1="41" y1="25" x2="45" y2="24" stroke="#94a3b8" stroke-width="1" />
+          <line x1="41" y1="26" x2="45" y2="27" stroke="#94a3b8" stroke-width="1" />
+          <!-- Tail -->
+          <path d="M38 29 Q 46 31 43 23" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+          <!-- Paws -->
+          <rect x="24" y="36" width="3" height="6" rx="1.5" fill="#ffffff" />
+          <rect x="33" y="36" width="3" height="6" rx="1.5" fill="#ffffff" />
+        </svg>
+        <div class="speech-bubble">You found me!</div>
+      </div>
+    </div>
+
+    <!-- RIGHT '4' UFO -->
+    <div class="ufo-4-container" style="animation-delay: 0.5s;">
+      <svg width="110" height="130" viewBox="0 0 120 150">
+        <!-- Tractor Beam -->
+        <path d="M45 80 L75 80 L100 150 L20 150 Z" fill="url(#beam-left)" opacity="0.6" />
+        
+        <!-- Saucer Hull / Horizontal Bar -->
+        <rect x="15" y="70" width="90" height="12" rx="6" fill="#04060f" stroke="var(--cyan)" stroke-width="2" />
+        <!-- Lights on Hull -->
+        <circle cx="28" cy="76" r="2.5" fill="#00f5ff" class="blinking-light" style="animation-delay: 1.2s; animation-duration: 0.8s;" />
+        <circle cx="48" cy="76" r="2.5" fill="#00ff88" class="blinking-light" style="animation-delay: 0.8s; animation-duration: 0.8s;" />
+        <circle cx="68" cy="76" r="2.5" fill="#ffd22e" class="blinking-light" style="animation-delay: 0.4s; animation-duration: 0.8s;" />
+        <circle cx="88" cy="76" r="2.5" fill="#ff2244" class="blinking-light" style="animation-delay: 0s; animation-duration: 0.8s;" />
+
+        <!-- Diagonal leg of 4 (Symmetrical swap for right leg layout) -->
+        <path d="M60 22 L20 70 L34 70 L68 22 Z" fill="#080e1c" stroke="var(--cyan)" stroke-width="2" />
+
+        <!-- Vertical stem of 4 -->
+        <path d="M60 22 L60 85 L74 85 L74 22 Z" fill="#080e1c" stroke="var(--cyan)" stroke-width="2" />
+
+        <!-- Cockpit Dome on top -->
+        <path d="M52 22 A 13 13 0 0 1 78 22 Z" fill="rgba(0, 245, 255, 0.15)" stroke="var(--cyan)" stroke-width="2" />
+        <!-- Tiny pilot silhouette -->
+        <circle cx="65" cy="16" r="3" fill="#00f5ff" /> 
+      </svg>
+    </div>
+
+  </div>
+
+  <!-- Dialogue and Actions -->
+  <div class="action-wrap">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; color: #64748b; letter-spacing: 0.25em; margin-bottom: 24px;">page not found</div>
+    <a href="index.html" class="btn-return">
+      <span class="bracket">[</span> RETURN TO EARTH <span class="bracket">]</span>
+    </a>
   </div>
 </div>
 
@@ -194,29 +433,50 @@
 <script src="js/nav.js" defer></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const logEl = document.getElementById('diag-log');
-    const path = window.location.pathname;
-
-    const diagLines = [
-      { text: '> Initiating encrypted diagnostic routing...', delay: 100, status: '[OK]', color: '#00ff88' },
-      { text: `> Querying secure node path: sovereign.intel${path}...`, delay: 600, status: '[FAILED]', color: '#ff2244' },
-      { text: '> ERROR: 404 PACKET_NOT_FOUND (relay target missing)', delay: 1200, status: '[!!]', color: '#ff2244' },
-      { text: '> Scanning biometric and SIGINT network integrity...', delay: 1800, status: '[OK]', color: '#00ff88' },
-      { text: '> Attempting trace bypass via satellite heliotrope...', delay: 2400, status: '[REJECTED]', color: '#ff6b00' },
-      { text: '> CAUTION: STATE ACTOR FIREWALL ENFORCING PORT LOCK', delay: 3000, status: '[ALERT]', color: '#ff2244' },
-      { text: '> RECOMMENDED PORTAL: Return to primary command base.', delay: 3600, status: '[WAIT]', color: '#ffd22e' }
+    // 3D Spinning ASCII Globe configuration
+    const GLOBE_ROWS = [
+      { w: 14, map: "░░░░░░██████░░░░░░░░░░██████░░░░░░" },
+      { w: 20, map: "░░░░░██████████░░░░░░░░██████████░░░░░" },
+      { w: 24, map: "░░░░█████████████░░░░░░█████████████░░░░" },
+      { w: 26, map: "░░░████████████████░░░░████████████████░░░" },
+      { w: 28, map: "░░██████████████████░░██████████████████░░" },
+      { w: 28, map: "░░██████████████████░░██████████████████░░" },
+      { w: 26, map: "░░░████████████████░░░░████████████████░░░" },
+      { w: 24, map: "░░░░█████████████░░░░░░█████████████░░░░" },
+      { w: 20, map: "░░░░░██████████░░░░░░░░██████████░░░░░" },
+      { w: 14, map: "░░░░░░██████░░░░░░░░░░██████░░░░░░" }
     ];
 
-    if (logEl) {
-      diagLines.forEach(({ text, delay, status, color }) => {
-        setTimeout(() => {
-          const row = document.createElement('div');
-          row.style.cssText = 'display:flex;justify-content:space-between;gap:16px;margin-bottom:4px;';
-          row.innerHTML = `<span style="color:#64748b;">${text}</span><span style="color:${color};font-weight:800;">${status}</span>`;
-          logEl.appendChild(row);
-        }, delay);
+    let offset = 0;
+    const preEl = document.getElementById('globe-pre');
+
+    function updateGlobe() {
+      if (!preEl) return;
+      let output = "";
+      GLOBE_ROWS.forEach(row => {
+        const W = row.w;
+        const map = row.map;
+        let slice = "";
+        for (let col = 0; col < W; col++) {
+          // Normalize col coordinate to [-1, 1]
+          const nx = (2 * col) / (W - 1) - 1;
+          // Apply inverse sine projection to simulate sphere compression
+          const angle = Math.asin(nx) / (Math.PI / 2);
+          // Map back to string index wrapped inside offset
+          const mapIdx = Math.round((angle + 1) * (map.length / 2) + offset) % map.length;
+          slice += map[(mapIdx + map.length) % map.length];
+        }
+        // Center the slice inside a 32-character box for consistent vertical alignment
+        const pad = Math.floor((32 - W) / 2);
+        output += " ".repeat(pad) + slice + "\n";
       });
+      preEl.textContent = output;
+      offset += 0.45; // Spin speed
     }
+
+    // Tick the globe rotation
+    setInterval(updateGlobe, 90);
+    updateGlobe();
   });
 </script>
 </body>
