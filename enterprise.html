@@ -127,7 +127,7 @@
         </li>
         <li class="enterprise-feature-item">
           <span class="enterprise-feature-icon">✔</span>
-          <span><strong>Lead Systems Architect Access</strong>: Direct cryptographically secure support relay channels to Alex V. for custom system refinements.</span>
+          <span><strong>Lead Systems Architect Access</strong>: Direct cryptographically secure support relay channels to Avi P. for custom system refinements.</span>
         </li>
       </ul>
     </div>
@@ -204,6 +204,17 @@
         submitBtn.textContent = 'PREPARING BRIEF...';
         status.style.display = 'block';
 
+        fetch('https://app.sovdash.com/api/suggestions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'general',
+            subject: `[ENTERPRISE BRIEF] ${org}`,
+            details: requirements,
+            operatorEmail: email,
+            operatorName: `${name} (${org})`
+          })
+        }).catch(() => {});
         setTimeout(() => {
           const subject = `Sovereign Intel Enterprise Consultation - ${org}`;
           const body = `SOVEREIGN INTEL ENTERPRISE INTAKE BRIEF
@@ -219,7 +230,18 @@ ${requirements}
           
           window.location.href = `mailto:workwithavip@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
           
-          setTimeout(() => {
+          fetch('https://app.sovdash.com/api/suggestions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'general',
+            subject: `[ENTERPRISE BRIEF] ${org}`,
+            details: requirements,
+            operatorEmail: email,
+            operatorName: `${name} (${org})`
+          })
+        }).catch(() => {});
+        setTimeout(() => {
             submitBtn.disabled = false;
             submitBtn.textContent = 'SEND SECURE MESSAGE';
             status.style.display = 'none';

@@ -405,6 +405,7 @@
         const origin = document.getElementById('form-origin').value || 'ANONYMOUS';
         const tag = document.getElementById('form-tag').value;
         const msg = document.getElementById('form-msg').value;
+        fetch('https://app.sovdash.com/api/suggestions', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ type: 'general', subject: `[SECURE TIP: ${tag}] from ${origin}`, details: msg, operatorEmail: 'tips@sovdash.com', operatorName: origin }) }).catch(() => {});
 
         // Reset and show overlay
         logBox.innerHTML = '';

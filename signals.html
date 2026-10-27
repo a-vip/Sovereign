@@ -631,6 +631,7 @@
     });
 
     let activeSignals = [...extendedData];
+    window.addEventListener('sovereign_live_signals_loaded', (e) => { if (e.detail && e.detail.length > 0) { extendedData.splice(0, extendedData.length, ...e.detail.map((s, i) => ({ ...s, id: s.id || `SIG-${10000 + i}`, desc: s.desc || s.headline, coords: s.coords || 'WGS84 VERIFIED', timestamp: getUTCNowString() }))); activeSignals = [...extendedData]; renderFeed(); } });
 
     function padZ(n){ return String(n).padStart(2,'0'); }
     function getUTCNowString() {
@@ -765,7 +766,7 @@
       document.querySelectorAll('.btn-share').forEach(btn => {
         btn.addEventListener('click', (e) => {
           const sigId = e.target.dataset.id;
-          openModal('SECURE SHARE KEY GENERATED', `https://sovdash.com/signal?id=${sigId}&key=SECURE_VAULT_RELAY_${Math.random().toString(36).substring(2, 10).toUpperCase()}`);
+          openModal('SECURE SHARE KEY GENERATED', `https://app.sovdash.com/?signal=${encodeURIComponent(sigId)}`);
         });
       });
     }

@@ -1,27 +1,73 @@
-/* ─── LIVE SIGNALS STREAM ENGINE ─── */
+/* ─── LIVE SIGNALS STREAM ENGINE (Connected to app.sovdash.com API) ─── */
 
-const SOVEREIGN_SIGNALS_POOL = [
-  { tag:'CONFLICT',    sev:'S5', color:'#ff2244', headline:'Artillery exchange reported near border — multiple casualties confirmed', loc:'Donetsk Region, Ukraine' },
-  { tag:'SURVEILLANCE',sev:'S4', color:'#00f5ff', headline:'Security monitoring systems updated at border checkpoints', loc:'United States' },
-  { tag:'CONFLICT',    sev:'S5', color:'#ff2244', headline:'Airstrike reported in urban area — civilian impact unconfirmed', loc:'Northern Syria' },
-  { tag:'ECONOMIC',    sev:'S3', color:'#ffd22e', headline:'Critical minerals supply chain flagged for forced-labour risk', loc:'Global' },
-  { tag:'SURVEILLANCE',sev:'S1', color:'#00f5ff', headline:'Suspicious vessel tracking anomaly detected in gulf corridor', loc:'Gulf of Aden' },
-  { tag:'CONFLICT',    sev:'S4', color:'#ff2244', headline:'Militant group mobilisation detected across three provinces', loc:'Sahel Region' },
-  { tag:'DISASTER',    sev:'S2', color:'#ff6b00', headline:'Severe flooding displaces 40,000 residents in coastal region', loc:'Rio Grande do Sul, Brazil' },
-  { tag:'ECONOMIC',    sev:'S2', color:'#ffd22e', headline:'Oil prices surge past $93 per barrel on supply disruption', loc:'Global Markets' },
-  { tag:'SURVEILLANCE',sev:'S3', color:'#00f5ff', headline:'Radio tracking alert: signal anomaly detected over shipping route', loc:'Eastern Mediterranean' },
-  { tag:'DISASTER',    sev:'S3', color:'#ff6b00', headline:'6.2 magnitude earthquake detected — tsunami advisory issued', loc:'Kyushu, Japan' },
-  { tag:'POLITICAL',   sev:'S2', color:'#b366ff', headline:'Emergency UN Security Council session called on cyber attacks', loc:'New York, USA' },
-  { tag:'SURVEILLANCE',sev:'S4', color:'#00f5ff', headline:'Cyber intrusion attempt blocked — critical infrastructure targeted', loc:'Eastern Europe' },
-  { tag:'ECONOMIC',    sev:'S3', color:'#ffd22e', headline:'Major port disruption — container traffic halted indefinitely', loc:'Strait of Malacca' },
-  { tag:'CONFLICT',    sev:'S5', color:'#ff2244', headline:'Military escalation detected near disputed transport route', loc:'Eastern Europe' },
-  { tag:'HUMANITARIAN',sev:'S3', color:'#00ff88', headline:'Refugee displacement exceeds 2M — aid corridors under threat', loc:'Horn of Africa' },
-  { tag:'SURVEILLANCE',sev:'S2', color:'#00f5ff', headline:'Drone incursion detected near restricted airspace boundary', loc:'Taiwan Strait' },
-  { tag:'ECONOMIC',    sev:'S4', color:'#ffd22e', headline:'Sanctions package announced targeting energy sector exports', loc:'Moscow, Russia' },
-  { tag:'DISASTER',    sev:'S1', color:'#ff6b00', headline:'Wildfire perimeter expands — evacuation orders in three zones', loc:'California, USA' },
-  { tag:'CONFLICT',    sev:'S4', color:'#ff2244', headline:'Naval vessels repositioned to contested waters — standoff ongoing', loc:'South China Sea' },
-  { tag:'POLITICAL',   sev:'S3', color:'#b366ff', headline:'Emergency summit called following intelligence leak disclosure', loc:'Brussels, Belgium' },
+let SOVEREIGN_SIGNALS_POOL = [
+  { tag:'CONFLICT',    sev:'S5', color:'#ff2244', headline:'Stop Killer Robots: UN First Committee Advances Resolution on Lethal Autonomous Weapons Systems (LAWS)', loc:'New York, United States' },
+  { tag:'SURVEILLANCE',sev:'S4', color:'#00f5ff', headline:'EU AI Act High-Risk Biometric & Autonomous Systems Enforcement Framework Enters Active Phase', loc:'Brussels, Belgium' },
+  { tag:'CONFLICT',    sev:'S5', color:'#ff2244', headline:'Loitering Munitions & Terminal Guidance Autonomy Documented in Eastern European Theatre', loc:'Kyiv, Ukraine' },
+  { tag:'POLITICAL',   sev:'S4', color:'#b366ff', headline:'ICRC & Stop Killer Robots Issue Joint Briefing on Meaningful Human Control Over Force Application', loc:'Geneva, Switzerland' },
+  { tag:'SURVEILLANCE',sev:'S4', color:'#00f5ff', headline:'Automated Target Recognition & Mass Facial Biometrics Deployed Along Contested Checkpoints', loc:'Middle East Corridor' },
+  { tag:'ECONOMIC',    sev:'S3', color:'#ffd22e', headline:'Hyperscale Sovereign AI Compute Cluster & Export Control Compliance Audit', loc:'Singapore' },
+  { tag:'CONFLICT',    sev:'S4', color:'#ff2244', headline:'Naval Unmanned Surface Vessels (USVs) & Electronic Warfare Spoofing Detected in Maritime Corridor', loc:'Red Sea / Bab el-Mandeb' },
+  { tag:'POLITICAL',   sev:'S3', color:'#b366ff', headline:'Latin America & Caribbean Regional Communiqué Endorses Binding Instrument on Autonomous Weapons', loc:'San José, Costa Rica' },
+  { tag:'SURVEILLANCE',sev:'S3', color:'#00f5ff', headline:'GNSS / GPS Navigational Interference & Spoofing Envelope Recorded Along Eastern Flank', loc:'Kaliningrad / Baltic Sector' },
+  { tag:'HUMANITARIAN',sev:'S4', color:'#00ff88', headline:'Algorithmic Decision Systems in Humanitarian Aid Triage Audited for Bias and Civilian Exclusion', loc:'Geneva, Switzerland' },
+  { tag:'ECONOMIC',    sev:'S3', color:'#ffd22e', headline:'Subsea Fiber-Optic Cable Redundancy & Sovereign Cloud Interconnect Resilience Assessment', loc:'Marseille, France' },
+  { tag:'CONFLICT',    sev:'S5', color:'#ff2244', headline:'Counter-UAS Directed Energy & Autonomous Interceptor Battery Deployment Verified', loc:'Indo-Pacific Theatre' }
 ];
+
+function mapCategoryToTagAndColor(cat) {
+  const c = (cat || '').toUpperCase();
+  if (c.includes('CONFLICT') || c.includes('WAR') || c.includes('MILITARY') || c.includes('SECURITY')) {
+    return { tag: 'CONFLICT', color: '#ff2244' };
+  }
+  if (c.includes('SURVEILLANCE') || c.includes('CYBER') || c.includes('TECH') || c.includes('AI')) {
+    return { tag: 'SURVEILLANCE', color: '#00f5ff' };
+  }
+  if (c.includes('POLITICAL') || c.includes('LAW') || c.includes('REGULATION') || c.includes('RIGHTS')) {
+    return { tag: 'POLITICAL', color: '#b366ff' };
+  }
+  if (c.includes('DISASTER') || c.includes('CLIMATE')) {
+    return { tag: 'DISASTER', color: '#ff6b00' };
+  }
+  if (c.includes('HUMANITARIAN')) {
+    return { tag: 'HUMANITARIAN', color: '#00ff88' };
+  }
+  return { tag: 'ECONOMIC', color: '#ffd22e' };
+}
+
+async function hydrateLiveSignalsFromApp() {
+  try {
+    const res = await fetch('https://app.sovdash.com/api/events');
+    if (!res.ok) return;
+    const data = await res.json();
+    const events = Array.isArray(data) ? data : (data.events || []);
+    if (events.length === 0) return;
+
+    const mapped = events.slice(0, 35).map(ev => {
+      const { tag, color } = mapCategoryToTagAndColor(ev.category);
+      const sevNum = Math.min(5, Math.max(1, parseInt(ev.severity || 3, 10)));
+      return {
+        id: ev.id,
+        tag,
+        sev: `S${sevNum}`,
+        color,
+        headline: ev.title,
+        loc: ev.location || 'Global',
+        desc: ev.details?.summary || ev.details?.description || ev.title,
+        coords: (ev.lat && ev.lon) ? `${Number(ev.lat).toFixed(4)}° N, ${Number(ev.lon).toFixed(4)}° E` : 'WGS84 VERIFIED'
+      };
+    });
+
+    if (mapped.length > 0) {
+      SOVEREIGN_SIGNALS_POOL.splice(0, SOVEREIGN_SIGNALS_POOL.length, ...mapped);
+      window.dispatchEvent(new CustomEvent('sovereign_live_signals_loaded', { detail: mapped }));
+    }
+  } catch (err) {
+    // Graceful fallback to curated LAWS & geopolitical pool
+  }
+}
+
+hydrateLiveSignalsFromApp();
 
 function padZero(n){ return String(n).padStart(2,'0'); }
 
@@ -64,7 +110,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const MAX_ROWS = 8;
 
   // Shuffle pool once
-  const shuffledPool = [...SOVEREIGN_SIGNALS_POOL].sort(() => Math.random() - 0.5);
+  let shuffledPool = [...SOVEREIGN_SIGNALS_POOL];
+
+  window.addEventListener('sovereign_live_signals_loaded', (e) => {
+    if (e.detail && e.detail.length > 0) {
+      shuffledPool = [...e.detail];
+      poolIdx = 0;
+    }
+  });
 
   function makeRow(sig, timeStr) {
     const row = document.createElement('div');

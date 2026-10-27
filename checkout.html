@@ -1023,6 +1023,7 @@
           <a href="https://app.sovdash.com/" target="_blank" class="btn-cta-small">Enter Dash →</a>
         </div>
       </div>
+      <div class="nav-drawer" aria-hidden="true"><a href="index.html#features" class="nav-drawer-tab">Features</a><a href="enterprise.html" class="nav-drawer-tab">Enterprise</a><a href="pricing.html" class="nav-drawer-tab">Pricing</a><a href="https://app.sovdash.com/" target="_blank" class="nav-drawer-tab" style="color: var(--cyan); border-color: rgba(0,245,255,0.3);">Enter Dash →</a></div>
     </nav>
   </header>
 
@@ -1038,7 +1039,9 @@
       </div>
 
       <!-- Sandbox Warning Banner (Simulator Mode Only - Hidden for professional aesthetics) -->
-      <div id="sandbox-notice" style="display: none;"></div>
+      <div id="sandbox-notice" style="display: block; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 10px; padding: 12px 16px; margin-bottom: 18px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #f59e0b; line-height: 1.5;">
+        ● EVALUATION SANDBOX PREVIEW — Stripe live gateway keys not active on this edge node. Completing this flow provisions an Evaluation / Academic Preview key on <a href="https://app.sovdash.com/" style="color: #00f5ff; text-decoration: underline;">app.sovdash.com</a> without billing a card.
+      </div>
 
 
       <!-- STRIPE PAYMENT ELEMENT CONTAINER (LOADS IN PRODUCTION) -->
@@ -1056,7 +1059,7 @@
 
         <div class="form-group">
           <label for="stripe-name">Cardholder Name</label>
-          <input type="text" id="stripe-name" class="form-input" placeholder="Alex V." required />
+          <input type="text" id="stripe-name" class="form-input" placeholder="Avi P." required />
         </div>
 
         <div class="form-group">
@@ -1598,7 +1601,7 @@
       if (STRIPE_PUBLISHABLE_KEY && !STRIPE_PUBLISHABLE_KEY.includes('PLACEHOLDER')) {
         try {
           // Fetch secure PaymentIntent from serverless edge endpoint
-          const response = await fetch('/functions/api/create-payment-intent', {
+          const response = await fetch('/api/create-payment-intent', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ plan: billingPeriod })
@@ -1975,7 +1978,8 @@
             if (idx === steps.length - 1) {
               setTimeout(() => {
                 const name = document.getElementById('card-name').value || 'Valued Subscriber';
-                window.location.href = `success.html?email=simulated-wallet-holder@sovereign-intel.io&name=${encodeURIComponent(name)}&method=${encodeURIComponent(walletName)}&plan=${billingPeriod}`;
+                const walletEmail = document.getElementById('email')?.value || document.getElementById('stripe-email')?.value || 'operator@sovdash.com';
+                window.location.href = `success.html?email=${encodeURIComponent(walletEmail)}&name=${encodeURIComponent(name)}&method=${encodeURIComponent(walletName)}&plan=${billingPeriod}&sandbox=1`;
               }, 1000);
             }
           }, idx * 400);
@@ -2036,7 +2040,7 @@
 
             if (idx === steps.length - 1) {
               setTimeout(() => {
-                window.location.href = `success.html?email=${encodeURIComponent(email)}&name=${encodeURIComponent(cardName)}&method=Card&plan=${billingPeriod}`;
+                window.location.href = `success.html?email=${encodeURIComponent(email)}&name=${encodeURIComponent(cardName)}&method=Card&plan=${billingPeriod}&sandbox=1`;
               }, 1000);
             }
           }, idx * 400);

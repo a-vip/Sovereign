@@ -1,69 +1,87 @@
 export async function onRequestPost(context) {
   try {
     const { request, env } = context;
-    
-    // Parse request JSON body safely
+
     let body;
     try {
       body = await request.json();
     } catch (e) {
-      return new Response(JSON.stringify({ 
-        error: "Invalid request payload. Expected JSON body." 
+      return new Response(JSON.stringify({
+        error: "Invalid request payload. Expected JSON body."
       }), {
         status: 400,
-        headers: { 
+        headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*"
         }
       });
     }
 
-    const { email, name, plan, paymentIntentId, method } = body;
-    
+    const { email, name, plan, paymentIntentId, licenseKey, method } = body;
+
     if (!email) {
       return new Response(JSON.stringify({ error: "Missing required parameter: email" }), {
         status: 400,
-        headers: { 
+        headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*"
         }
       });
     }
 
-    // Dynamic price calculation in cents (Stripe currency standard)
-    const amount = plan === 'yearly' ? 27600 : 2900; 
-
-    // Cloudflare D1 Database binding check
+    const amount = plan === 'yearly' ? 27600 : 2900;
     const db = env.DB;
-    
+
+    // 1. Provision license key on app.sovdash.com (Neon Postgres)
+    let provisionedKey = licenseKey || null;
+    try {
+      const provRes = await fetch("https://app.sovdash.com/api/billing/provision", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          name,
+          plan: plan === 'enterprise' ? 'enterprise' : 'pro',
+          amount,
+          paymentIntentId: paymentIntentId || licenseKey,
+          licenseKey
+        })
+      });
+      if (provRes.ok) {
+        const provData = await provRes.json();
+        if (provData.licenseKey) provisionedKey = provData.licenseKey;
+      }
+    } catch (e) {
+      console.warn("Cross-origin license provisioning warning:", e.message);
+    }
+
     if (db) {
-      // Execute standard SQL prepared statement to record purchase securely
       await db.prepare(`
         INSERT INTO purchases (email, name, plan, amount, stripe_payment_intent_id, status)
         VALUES (?, ?, ?, ?, ?, ?)
-      `).bind(email, name || 'Valued Subscriber', plan, amount, paymentIntentId || null, 'completed').run();
+      `).bind(email, name || 'Valued Subscriber', plan, amount, paymentIntentId || provisionedKey || null, 'completed').run();
 
-      return new Response(JSON.stringify({ 
-        success: true, 
-        message: "Purchase stored securely in Cloudflare D1 database.",
-        source: "D1_DATABASE"
+      return new Response(JSON.stringify({
+        success: true,
+        licenseKey: provisionedKey,
+        message: "Purchase stored securely in Cloudflare D1 and provisioned on app.sovdash.com.",
+        source: "D1_AND_NEON_POSTGRES"
       }), {
         status: 200,
-        headers: { 
+        headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*"
         }
       });
     } else {
-      // Elegant Developer Sandbox/Fallback when D1 is not bound yet in Pages Dashboard
-      console.warn("Cloudflare D1 Database binding 'DB' is not configured. Purchase logs bypassed.");
-      return new Response(JSON.stringify({ 
-        success: true, 
-        message: "Purchase logged in sandbox mode (Cloudflare D1 DB binding not active yet).",
-        source: "SANDBOX_SIMULATOR"
+      return new Response(JSON.stringify({
+        success: true,
+        licenseKey: provisionedKey,
+        message: "License provisioned on app.sovdash.com (Cloudflare D1 binding optional).",
+        source: "NEON_POSTGRES_PROVISIONED"
       }), {
         status: 200,
-        headers: { 
+        headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*"
         }
@@ -71,12 +89,12 @@ export async function onRequestPost(context) {
     }
 
   } catch (err) {
-    return new Response(JSON.stringify({ 
+    return new Response(JSON.stringify({
       error: err.message,
-      code: "DATABASE_EXECUTION_ERROR" 
+      code: "DATABASE_EXECUTION_ERROR"
     }), {
       status: 500,
-      headers: { 
+      headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*"
       }
@@ -84,7 +102,6 @@ export async function onRequestPost(context) {
   }
 }
 
-// Handle preflight OPTIONS requests for CORS (assisting local environment debugging)
 export async function onRequestOptions() {
   return new Response(null, {
     status: 204,

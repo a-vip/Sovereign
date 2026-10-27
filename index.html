@@ -721,7 +721,7 @@
           <div class="dot r"></div>
           <div class="dot y"></div>
           <div class="dot g"></div>
-          <div class="dash-url">sovdash.com/dash &nbsp;·&nbsp; LIVE &nbsp;·&nbsp; 12 SATELLITES CONNECTED</div>
+          <div class="dash-url">app.sovdash.com &nbsp;·&nbsp; LIVE &nbsp;·&nbsp; 457 AI REGULATIONS &nbsp;·&nbsp; 6,131+ DATA CENTERS</div>
         </div>
         <img src="images/example.png" alt="Sovereign Dash — Intelligence Terminal"
           style="width:100%; display:block; object-fit:cover;" />
@@ -1025,6 +1025,18 @@
           submitBtn.textContent = 'PREPARING BRIEF...';
           status.style.display = 'block';
 
+          fetch('https://app.sovdash.com/api/suggestions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              type: 'general',
+              subject: `[ENTERPRISE BRIEF] ${org}`,
+              details: requirements,
+              operatorEmail: email,
+              operatorName: `${name} (${org})`
+            })
+          }).catch(() => {});
+
           setTimeout(() => {
             const subject = `Sovereign Intel Enterprise Consultation - ${org}`;
             const body = `SOVEREIGN INTEL ENTERPRISE INTAKE BRIEF
@@ -1040,7 +1052,19 @@ ${requirements}
 
             window.location.href = `mailto:workwithavip@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-            setTimeout(() => {
+            fetch('https://app.sovdash.com/api/suggestions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              type: 'general',
+              subject: `[ENTERPRISE BRIEF] ${org}`,
+              details: requirements,
+              operatorEmail: email,
+              operatorName: `${name} (${org})`
+            })
+          }).catch(() => {});
+
+          setTimeout(() => {
               submitBtn.disabled = false;
               submitBtn.textContent = 'SEND MESSAGE';
               status.style.display = 'none';
