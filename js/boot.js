@@ -1,9 +1,9 @@
-/* ── FAST NON-BLOCKING BOOT SEQUENCE (PRE-WARMS 3D GLOBE IN PARALLEL) ── */
+/* ── PREMIUM NON-BLOCKING SVG EMBLEM BOOT SEQUENCE (PRE-WARMS 3D GLOBE IN PARALLEL) ── */
 const bootLines = [
-  { statusText: 'Initializing encrypted data channel...', delay: 0 },
-  { statusText: 'Syncing orbital & regulatory telemetry...', delay: 220 },
-  { statusText: 'All systems operational. Signal clear.', delay: 480 },
-  { statusText: 'Welcome to Sovereign Intel.', delay: 720 },
+  { statusText: 'Syncing live intelligence layers...', delay: 0 },
+  { statusText: 'Calibrating 3D orbital globe...', delay: 260 },
+  { statusText: 'Verifying citation-locked AI...', delay: 540 },
+  { statusText: 'Systems ready.', delay: 800 },
 ];
 let bootDone = false;
 
@@ -12,11 +12,10 @@ function dismissBoot() {
   bootDone = true;
   const ol = document.getElementById('boot-ol');
   if (ol) {
-    ol.style.pointerEvents = 'none';
-    ol.style.opacity = '0';
+    ol.classList.add('boot-exit');
     setTimeout(() => {
       ol.style.display = 'none';
-    }, 420);
+    }, 480);
   }
   if (typeof startIntro === 'function') {
     startIntro();
@@ -29,18 +28,24 @@ window.dismissBoot = dismissBoot;
 function runBoot() {
   const ol       = document.getElementById('boot-ol');
   const statusEl = document.getElementById('boot-status');
-  const barWrap  = document.getElementById('boot-bar-wrap');
   const bar      = document.getElementById('boot-bar');
 
-  // Pre-warm the 3D globe immediately behind the curtain so there is zero black pause
+  // Pre-warm the 3D globe immediately behind the curtain for zero black pause
   if (typeof startIntro === 'function') {
     startIntro();
   }
 
-  // Instant skip for returning tabs, hash deep-links, restored scroll position, or reduced-motion users
+  // Instant skip for returning tabs, cross-page transitions, hash links, restored scroll, or reduced-motion
   const hasDeepLink = window.location.hash && window.location.hash.length > 1;
+  let fromInternalNav = false;
+  try {
+    const ts = Number(sessionStorage.getItem('sov_page_transition_ts') || 0);
+    if (ts && Date.now() - ts < 3500) fromInternalNav = true;
+  } catch {}
+
   if (
     hasDeepLink ||
+    fromInternalNav ||
     window.scrollY > 20 ||
     window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
     sessionStorage.getItem('bootPlayed') === 'true'
@@ -56,7 +61,7 @@ function runBoot() {
   }
 
   sessionStorage.setItem('bootPlayed', 'true');
-  if (!ol || !barWrap || !bar) return;
+  if (!ol || !bar) return;
 
   // Click anywhere, scroll, or press Escape/Space to dismiss immediately
   ol.addEventListener('click', (e) => {
@@ -67,8 +72,6 @@ function runBoot() {
   document.addEventListener('keydown', (e) => {
     if (!bootDone && (e.key === 'Escape' || e.key === ' ')) dismissBoot();
   }, { once: true });
-
-  barWrap.style.display = 'block';
 
   let completed = 0;
   bootLines.forEach(({ statusText, delay }) => {
@@ -83,7 +86,7 @@ function runBoot() {
       }
       bar.style.width = ((completed / bootLines.length) * 100) + '%';
       if (completed === bootLines.length) {
-        setTimeout(() => dismissBoot(), 280);
+        setTimeout(() => dismissBoot(), 260);
       }
     }, delay);
   });

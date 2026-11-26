@@ -31,21 +31,21 @@ const CHAPTERS = [
   {
     id: 1, start: 0.23, end: 0.46,
     accentHex: '#ff2244', lightHex: 0xff2244,
-    hudSector: 'EASTERN EUROPE & MENA LOCK',
+    hudSector: 'LIVE OPERATIONS & RISK LOCK',
     lat: 43.2, lon: 31.4, alt: '1,840 KM',
     focusSectors: ['conflict']
   },
   {
     id: 2, start: 0.46, end: 0.69,
     accentHex: '#ff6b00', lightHex: 0xff8c1a,
-    hudSector: 'EU–APAC REGULATORY CORRIDOR',
+    hudSector: 'COMPLIANCE & AI SEARCH',
     lat: 16.8, lon: 106.4, alt: '1,590 KM',
     focusSectors: ['regulation']
   },
   {
     id: 3, start: 0.69, end: 0.92,
     accentHex: '#b366ff', lightHex: 0xb366ff,
-    hudSector: 'SOVEREIGN COMMAND & PRIVATE AI',
+    hudSector: 'LIVE DASHBOARD & PRIVATE AI',
     lat: 34.5, lon: 14.2, alt: '3,120 KM',
     focusSectors: ['global', 'conflict', 'regulation', 'enterprise']
   }
