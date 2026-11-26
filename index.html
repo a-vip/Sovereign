@@ -39,7 +39,7 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/nav.css" />
   <link rel="stylesheet" href="css/hero.css" />
-  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/sections.css?v=20261127" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/footer.css" />
   <link rel="stylesheet" href="css/animations.css" />
@@ -730,89 +730,466 @@
   </section>
 
   <!-- ASK SOVDASH AI -->
-  <section id="ask-sovdash-ai" class="ask-ai-section">
+  <section id="ask-sovdash-ai" style="border-top: 1px solid rgba(0,245,255,0.07); position: relative; overflow-x: clip;">
+    <style>
+      /* Scoped, cache-proof styles matching Sovereign's native terminal aesthetic */
+      #ask-sovdash-ai .sovai-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+        gap: 28px;
+        align-items: stretch;
+        margin-top: 40px;
+        width: 100%;
+        max-width: 100%;
+      }
+      #ask-sovdash-ai .sovai-terminal {
+        display: flex;
+        flex-direction: column;
+        border-radius: 18px;
+        border: 1px solid rgba(0, 245, 255, 0.18);
+        background: rgba(10, 13, 24, 0.82);
+        backdrop-filter: blur(16px);
+        box-shadow: 0 0 56px rgba(0, 245, 255, 0.06);
+        overflow: hidden;
+        min-width: 0;
+      }
+      #ask-sovdash-ai .sovai-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 12px 18px;
+        background: rgba(8, 8, 16, 0.97);
+        border-bottom: 1px solid rgba(0, 245, 255, 0.10);
+        flex-wrap: wrap;
+      }
+      #ask-sovdash-ai .sovai-bar-title {
+        font-size: 9px;
+        font-weight: 700;
+        color: #64748b;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+      #ask-sovdash-ai .sovai-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        display: inline-block;
+        flex-shrink: 0;
+      }
+      #ask-sovdash-ai .sovai-status-pill {
+        font-size: 8px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgba(0, 255, 136, 0.08);
+        border: 1px solid rgba(0, 255, 136, 0.24);
+        color: var(--green);
+        white-space: nowrap;
+      }
+      #ask-sovdash-ai .sovai-prompts-bar {
+        padding: 14px 18px;
+        background: rgba(6, 9, 18, 0.85);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      #ask-sovdash-ai .sovai-prompts-label {
+        font-size: 8.5px;
+        font-weight: 800;
+        color: #475569;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      #ask-sovdash-ai .sovai-prompt-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+      #ask-sovdash-ai .sovai-prompt-btn {
+        text-align: left;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        background: rgba(15, 20, 36, 0.65);
+        color: #94a3b8;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
+        line-height: 1.45;
+        cursor: pointer;
+        transition: border-color 0.2s, background 0.2s, color 0.2s;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      #ask-sovdash-ai .sovai-prompt-btn:hover {
+        border-color: rgba(0, 245, 255, 0.35);
+        color: #e2e8f0;
+        background: rgba(0, 245, 255, 0.06);
+      }
+      #ask-sovdash-ai .sovai-prompt-btn.active {
+        border-color: rgba(0, 245, 255, 0.52);
+        background: rgba(0, 245, 255, 0.10);
+        color: #ffffff;
+        box-shadow: inset 3px 0 0 var(--cyan);
+      }
+      #ask-sovdash-ai .sovai-prompt-btn[data-mode="enterprise"].active {
+        border-color: rgba(179, 102, 255, 0.55);
+        background: rgba(179, 102, 255, 0.11);
+        box-shadow: inset 3px 0 0 #b366ff;
+      }
+      #ask-sovdash-ai .sovai-prompt-tag {
+        font-size: 7.5px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--cyan);
+        display: block;
+        margin-bottom: 3px;
+      }
+      #ask-sovdash-ai .sovai-prompt-btn[data-mode="enterprise"] .sovai-prompt-tag {
+        color: #b366ff;
+      }
+      #ask-sovdash-ai .sovai-chat-body {
+        background: #03050b;
+        padding: 20px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        flex: 1;
+        min-height: 295px;
+      }
+      #ask-sovdash-ai .sovai-user-bubble {
+        align-self: flex-end;
+        max-width: 88%;
+        padding: 10px 14px;
+        border-radius: 12px 12px 3px 12px;
+        border: 1px solid rgba(0, 245, 255, 0.32);
+        background: rgba(0, 245, 255, 0.08);
+        color: #f8fafc;
+        font-size: 11px;
+        line-height: 1.55;
+      }
+      #ask-sovdash-ai .sovai-thinking {
+        display: none;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+        border-radius: 12px;
+        border: 1px solid rgba(0, 245, 255, 0.22);
+        background: rgba(10, 14, 28, 0.85);
+        font-size: 10px;
+        color: var(--cyan);
+        letter-spacing: 0.08em;
+      }
+      #ask-sovdash-ai .sovai-thinking.visible {
+        display: flex;
+      }
+      #ask-sovdash-ai .sovai-orbit-ring {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 2px solid rgba(0, 245, 255, 0.18);
+        border-top-color: var(--cyan);
+        border-right-color: #b366ff;
+        flex-shrink: 0;
+        animation: sovaiSpin 0.8s linear infinite;
+      }
+      @keyframes sovaiSpin {
+        to { transform: rotate(360deg); }
+      }
+      #ask-sovdash-ai .sovai-reply {
+        padding: 16px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        background: rgba(10, 14, 26, 0.9);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        transition: opacity 0.2s ease;
+      }
+      #ask-sovdash-ai .sovai-trace {
+        font-size: 9px;
+        font-weight: 700;
+        color: #64748b;
+        letter-spacing: 0.08em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        flex-wrap: wrap;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding-bottom: 8px;
+      }
+      #ask-sovdash-ai .sovai-answer {
+        font-size: 11.5px;
+        color: #cbd5e1;
+        line-height: 1.75;
+      }
+      #ask-sovdash-ai .sovai-answer strong {
+        color: #ffffff;
+      }
+      #ask-sovdash-ai .sovai-cite {
+        display: inline-block;
+        padding: 0 5px;
+        margin: 0 2px;
+        border-radius: 4px;
+        font-size: 9px;
+        font-weight: 800;
+        color: var(--cyan);
+        background: rgba(0, 245, 255, 0.12);
+        border: 1px solid rgba(0, 245, 255, 0.28);
+        vertical-align: middle;
+      }
+      #ask-sovdash-ai .sovai-sources {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      #ask-sovdash-ai .sovai-source-chip {
+        font-size: 9px;
+        color: #94a3b8;
+        padding: 4px 9px;
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.02);
+      }
+      #ask-sovdash-ai .sovai-source-chip b {
+        color: var(--cyan);
+      }
+      #ask-sovdash-ai .sovai-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        min-width: 0;
+      }
+      #ask-sovdash-ai .sovai-card {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 26px 24px;
+        border-radius: 18px;
+        border: 1px solid rgba(0, 245, 255, 0.16);
+        background: rgba(10, 13, 24, 0.65);
+        backdrop-filter: blur(14px);
+        transition: border-color 0.25s, box-shadow 0.25s;
+      }
+      #ask-sovdash-ai .sovai-card:hover {
+        border-color: rgba(0, 245, 255, 0.34);
+        box-shadow: 0 0 36px rgba(0, 245, 255, 0.06);
+      }
+      #ask-sovdash-ai .sovai-card.enterprise {
+        border-color: rgba(179, 102, 255, 0.26);
+        background: radial-gradient(circle at 100% 0%, rgba(179, 102, 255, 0.08) 0%, rgba(10, 13, 24, 0.78) 70%);
+      }
+      #ask-sovdash-ai .sovai-card.enterprise:hover {
+        border-color: rgba(179, 102, 255, 0.48);
+        box-shadow: 0 0 36px rgba(179, 102, 255, 0.08);
+      }
+      #ask-sovdash-ai .sovai-kicker {
+        display: inline-block;
+        font-size: 8px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 4px 9px;
+        border-radius: 4px;
+        margin-bottom: 14px;
+        color: var(--cyan);
+        background: rgba(0, 245, 255, 0.08);
+        border: 1px solid rgba(0, 245, 255, 0.22);
+      }
+      #ask-sovdash-ai .sovai-card.enterprise .sovai-kicker {
+        color: #b366ff;
+        background: rgba(179, 102, 255, 0.10);
+        border-color: rgba(179, 102, 255, 0.28);
+      }
+      #ask-sovdash-ai .sovai-card h3 {
+        font-size: 17px;
+        font-weight: 800;
+        color: #ffffff;
+        letter-spacing: -0.02em;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+      }
+      #ask-sovdash-ai .sovai-card p {
+        font-size: 12px;
+        color: #94a3b8;
+        line-height: 1.7;
+        margin-bottom: 16px;
+      }
+      #ask-sovdash-ai .sovai-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 20px;
+        font-size: 11px;
+        color: #cbd5e1;
+        line-height: 1.5;
+      }
+      #ask-sovdash-ai .sovai-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      #ask-sovdash-ai .sovai-check {
+        color: var(--cyan);
+        font-weight: 800;
+        flex-shrink: 0;
+      }
+      #ask-sovdash-ai .sovai-card.enterprise .sovai-check {
+        color: #b366ff;
+      }
+      @media (max-width: 960px) {
+        #ask-sovdash-ai .sovai-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+      }
+      @media (max-width: 640px) {
+        #ask-sovdash-ai .section-inner {
+          padding: 60px 16px;
+        }
+        #ask-sovdash-ai .sovai-prompt-list {
+          grid-template-columns: 1fr;
+        }
+        #ask-sovdash-ai .sovai-chat-body {
+          padding: 16px 14px;
+          min-height: 260px;
+        }
+        #ask-sovdash-ai .sovai-card {
+          padding: 20px 18px;
+        }
+        #ask-sovdash-ai .sovai-card a {
+          width: 100%;
+          justify-content: center;
+          font-size: 10.5px !important;
+          padding: 13px 16px !important;
+        }
+      }
+    </style>
+
     <div class="section-inner">
       <div class="section-header">
-        <div class="section-badge" style="border-color:rgba(0,245,255,0.34); background:rgba(0,245,255,0.08);">✦ Ask SovDash AI</div>
-        <h2>Talk Directly to<br /><span style="color:var(--cyan)">Your Live Intelligence.</span></h2>
-        <p class="section-desc" style="max-width:620px;">Interrogate Sovereign's entire live database in plain language—events, AI legislation, data centers, and verified primary sources—with grounded citations and zero noise.</p>
+        <div class="section-badge">✦ Ask SovDash AI</div>
+        <h2>Talk Directly to<br /><span style="color:var(--cyan)">the Intelligence Database.</span></h2>
+        <p class="section-desc">Query live global signals, AI legislation, and data centers in plain language — with verified citations and instant globe targeting.</p>
       </div>
 
-      <div class="ask-ai-layout">
-        <!-- LEFT: Selling Points for Dashboard Users + Enterprise Buyers -->
-        <div>
-          <div class="ask-ai-points">
-            <div class="ask-ai-point">
-              <div class="ask-ai-icon">✦</div>
-              <div>
-                <div class="ask-ai-point-title">Conversational Database Intelligence</div>
-                <div class="ask-ai-point-desc">Ask complex questions across live OSINT feeds, 60+ AI regulatory jurisdictions, frontier compute clusters, and 6,000+ data centers—and receive clear, concise briefings in seconds.</div>
-              </div>
+      <div class="sovai-grid">
+        <!-- LEFT: Interactive Native Terminal Preview -->
+        <div class="sovai-terminal">
+          <div class="sovai-bar">
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span class="sovai-dot" style="background:#ff5f57;"></span>
+              <span class="sovai-dot" style="background:#febc2e;"></span>
+              <span class="sovai-dot" style="background:#28c840;"></span>
+              <span class="sovai-bar-title" style="margin-left:6px;">ASK SOVDASH AI · INTERACTIVE DEMO</span>
             </div>
+            <span class="sovai-status-pill">● CITATION VERIFIED</span>
+          </div>
 
-            <div class="ask-ai-point">
-              <div class="ask-ai-icon">⌖</div>
-              <div>
-                <div class="ask-ai-point-title">Source-Cited &amp; Linked to the Globe</div>
-                <div class="ask-ai-point-desc">Every answer cross-checks Sovereign's verified archive alongside live authoritative web sources—with clickable citations, transparent reasoning steps, and one-click map targeting.</div>
-              </div>
-            </div>
-
-            <div class="ask-ai-point enterprise-point">
-              <div class="ask-ai-icon">⬡</div>
-              <div>
-                <div class="ask-ai-point-title">Private AI Inside Bespoke Enterprise Dashboards</div>
-                <div class="ask-ai-point-desc">Commissioning a custom Sovereign build? Deploy a private <strong>Ask SovDash AI</strong> instance indexed directly over your proprietary databases, internal reports, and regional asset telemetry—so your team can talk directly to your own data.</div>
-              </div>
+          <div class="sovai-prompts-bar">
+            <div class="sovai-prompts-label">Select a sample query to inspect how Ask SovDash AI responds</div>
+            <div class="sovai-prompt-list" role="tablist" aria-label="Ask SovDash AI sample queries">
+              <button type="button" class="sovai-prompt-btn active" data-q="0" data-mode="public" role="tab" aria-selected="true">
+                <span>
+                  <span class="sovai-prompt-tag">AI Regulation</span>
+                  Compare EU AI Act &amp; CA SB 53 incident clocks
+                </span>
+                <span style="color:var(--cyan);">→</span>
+              </button>
+              <button type="button" class="sovai-prompt-btn" data-q="1" data-mode="public" role="tab" aria-selected="false">
+                <span>
+                  <span class="sovai-prompt-tag">Infrastructure</span>
+                  How many data centers are in Germany?
+                </span>
+                <span style="color:var(--cyan);">→</span>
+              </button>
+              <button type="button" class="sovai-prompt-btn" data-q="2" data-mode="public" role="tab" aria-selected="false">
+                <span>
+                  <span class="sovai-prompt-tag">Live OSINT Feed</span>
+                  Latest critical AI &amp; cyber signals today
+                </span>
+                <span style="color:var(--cyan);">→</span>
+              </button>
+              <button type="button" class="sovai-prompt-btn" data-q="3" data-mode="enterprise" role="tab" aria-selected="false">
+                <span>
+                  <span class="sovai-prompt-tag">Enterprise Private DB</span>
+                  Audit our proprietary supplier risk alerts
+                </span>
+                <span style="color:#b366ff;">→</span>
+              </button>
             </div>
           </div>
 
-          <div class="ask-ai-actions">
-            <a href="https://app.sovdash.com/" target="_blank" class="btn-primary" style="font-size:11px; padding:14px 24px;">
-              Try Ask SovDash AI <span class="arrow">→</span>
-            </a>
-            <a href="#enterprise-tier" class="btn-secondary" style="font-size:11px; padding:14px 22px; border-color:rgba(179,102,255,0.35); color:#b366ff;">
-              Add Private AI to Enterprise →
-            </a>
+          <div class="sovai-chat-body">
+            <div class="sovai-user-bubble" id="sovai-user-msg">
+              Compare mandatory incident-reporting windows across the EU AI Act and California SB 53.
+            </div>
+
+            <div class="sovai-thinking" id="sovai-thinking">
+              <div class="sovai-orbit-ring"></div>
+              <span id="sovai-thinking-text">QUERYING VECTOR ARCHIVE + PRIMARY SOURCES...</span>
+            </div>
+
+            <div class="sovai-reply" id="sovai-reply">
+              <div class="sovai-trace">
+                <span id="sovai-trace-meta">✓ VERIFIED IN 1.4S · 3 PRIMARY SOURCES</span>
+                <span id="sovai-locate-badge" style="color:var(--cyan);">⌖ LOCATE ON GLOBE</span>
+              </div>
+              <div class="sovai-answer" id="sovai-answer-text">
+                <strong>EU AI Act (Art. 73):</strong> Tiered reporting clock for high-risk serious incidents — <strong>≤2 days</strong> for critical infrastructure disruption or widespread rights infringement, <strong>≤10 days</strong> for death, and <strong>≤15 days</strong> for standard serious incidents <span class="sovai-cite">1</span>.<br /><br />
+                <strong>California SB 53:</strong> Frontier developers must report critical safety incidents to CalOES within <strong>15 days</strong> of discovery, or within <strong>24 hours</strong> if posing imminent risk of death or serious physical injury <span class="sovai-cite">2</span>.
+              </div>
+              <div class="sovai-sources" id="sovai-sources">
+                <span class="sovai-source-chip"><b>[1]</b> Reg. (EU) 2024/1689 · EUR-Lex</span>
+                <span class="sovai-source-chip"><b>[2]</b> California SB 53 · LegInfo</span>
+                <span class="sovai-source-chip"><b>[3]</b> Sovereign Legal Diff Matrix</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- RIGHT: Interactive Live Preview Frame -->
-        <div class="ask-ai-visual">
-          <div class="ask-ai-visual-bar">
-            <div class="ask-ai-bar-left">
-              <div class="dot r"></div>
-              <div class="dot y"></div>
-              <div class="dot g"></div>
-              <span class="ask-ai-bar-title">ASK SOVDASH AI · LIVE TERMINAL</span>
+        <!-- RIGHT: Dual Selling Points (Sovereign Dash + Bespoke Enterprise) -->
+        <div class="sovai-stack">
+          <div class="sovai-card">
+            <div>
+              <div class="sovai-kicker">01 / Built Into Sovereign Dash</div>
+              <h3>Converse With Every Layer.</h3>
+              <p>Stop manually cross-referencing spreadsheets and dozens of feeds. Ask natural-language questions across Sovereign's live intelligence archive and get verified answers in seconds.</p>
+              <ul class="sovai-list">
+                <li><span class="sovai-check">✔</span><span>Searches live OSINT events, 60+ AI jurisdictions &amp; 6,000+ data centers</span></li>
+                <li><span class="sovai-check">✔</span><span>Cross-checks internal archive with authoritative primary web sources</span></li>
+                <li><span class="sovai-check">✔</span><span>Every claim links to a source and jumps straight to the 3D globe</span></li>
+              </ul>
             </div>
-            <div class="ask-ai-tabs" role="tablist" aria-label="Ask SovDash AI Preview Views">
-              <button type="button" class="ask-ai-tab active" role="tab" aria-selected="true"
-                data-img="images/live-ask-ai.png"
-                data-caption="Interactive holographic reasoning trace cross-checking live global signals, statutory databases, and primary sources in real time.">
-                Live Reasoning
-              </button>
-              <button type="button" class="ask-ai-tab" role="tab" aria-selected="false"
-                data-img="images/live-ask-ai-welcome.png"
-                data-caption="Non-blocking floating AI overlay docked beside the 3D Globe and live feed—ask questions without losing situational awareness.">
-                Floating Copilot
-              </button>
-            </div>
+            <a href="https://app.sovdash.com/" target="_blank" class="btn-primary" style="font-size:10.5px; padding:13px 20px; justify-content:center;">
+              Try Ask SovDash AI <span class="arrow">→</span>
+            </a>
           </div>
 
-          <div class="ask-ai-img-stage">
-            <img id="ask-ai-preview-img" src="images/live-ask-ai.png" alt="Ask SovDash AI conversing directly with Sovereign's live intelligence database over the 3D Globe" loading="lazy" />
-          </div>
-
-          <div class="ask-ai-visual-footer">
-            <div id="ask-ai-preview-caption" class="ask-ai-caption">
-              Interactive holographic reasoning trace cross-checking live global signals, statutory databases, and primary sources in real time.
+          <div class="sovai-card enterprise">
+            <div>
+              <div class="sovai-kicker">02 / Enterprise Private AI</div>
+              <h3>Talk Directly to Your Own Data.</h3>
+              <p>Commissioning a bespoke Sovereign dashboard? Embed a dedicated <strong>Ask SovDash AI</strong> instance indexed exclusively over your organization's internal databases and private telemetry.</p>
+              <ul class="sovai-list">
+                <li><span class="sovai-check">✔</span><span>Private vector search over internal threat briefs, policies &amp; asset logs</span></li>
+                <li><span class="sovai-check">✔</span><span>Sealed cloud or on-premise deployment with zero third-party training</span></li>
+                <li><span class="sovai-check">✔</span><span>Instant citation-backed executive answers for leadership &amp; legal teams</span></li>
+              </ul>
             </div>
-            <div class="ask-ai-prompts">
-              <span class="ask-ai-prompt-chip">“Compare EU AI Act &amp; CA SB 53 reporting windows”</span>
-              <span class="ask-ai-prompt-chip">“How many data centers are tracked in Germany?”</span>
-              <span class="ask-ai-prompt-chip">“Latest critical signals across Europe”</span>
-            </div>
+            <a href="#enterprise-tier" class="btn-secondary" style="font-size:10.5px; padding:13px 20px; justify-content:center; border-color:rgba(179,102,255,0.4); color:#b366ff; background:rgba(179,102,255,0.08);">
+              Request Private Enterprise AI →
+            </a>
           </div>
         </div>
       </div>
@@ -1098,28 +1475,89 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Standalone Ask SovDash AI preview tab switcher
-      const askAiTabs = document.querySelectorAll('.ask-ai-tab');
-      const askAiImg = document.getElementById('ask-ai-preview-img');
-      const askAiCap = document.getElementById('ask-ai-preview-caption');
-      askAiTabs.forEach((tab) => {
-        tab.addEventListener('click', () => {
-          askAiTabs.forEach((t) => {
-            t.classList.remove('active');
-            t.setAttribute('aria-selected', 'false');
+      // Standalone Ask SovDash AI interactive sample query switcher
+      const SOVAI_SAMPLES = [
+        {
+          prompt: 'Compare mandatory incident-reporting windows across the EU AI Act and California SB 53.',
+          meta: '✓ VERIFIED IN 1.4S · 3 PRIMARY SOURCES',
+          locate: '⌖ LOCATE ON GLOBE',
+          locateColor: 'var(--cyan)',
+          answer: '<strong>EU AI Act (Art. 73):</strong> Tiered reporting clock for high-risk serious incidents — <strong>≤2 days</strong> for critical infrastructure disruption or widespread rights infringement, <strong>≤10 days</strong> for death, and <strong>≤15 days</strong> for standard serious incidents <span class="sovai-cite">1</span>.<br /><br /><strong>California SB 53:</strong> Frontier developers must report critical safety incidents to CalOES within <strong>15 days</strong> of discovery, or within <strong>24 hours</strong> if posing imminent risk of death or serious physical injury <span class="sovai-cite">2</span>.',
+          sources: ['<b>[1]</b> Reg. (EU) 2024/1689 · EUR-Lex', '<b>[2]</b> California SB 53 · LegInfo', '<b>[3]</b> Sovereign Legal Diff Matrix']
+        },
+        {
+          prompt: 'How many verified data centers are tracked in Germany, and what are the main hubs?',
+          meta: '✓ VERIFIED IN 0.9S · PEERINGDB + EPOCH AI',
+          locate: '⌖ FLY TO FRANKFURT',
+          locateColor: 'var(--cyan)',
+          answer: 'Sovereign tracks <strong>238 verified colocation &amp; interconnection facilities</strong> across Germany (out of 6,033+ globally), anchored in <strong>Frankfurt am Main</strong>, Berlin, Munich, Hamburg, and Stuttgart <span class="sovai-cite">1</span>.<br /><br />All German facilities operate under <strong>EU AI Act</strong> market surveillance (BNetzA) and <strong>BSI</strong> critical cyber-infrastructure mandates <span class="sovai-cite">2</span>.',
+          sources: ['<b>[1]</b> PeeringDB Global Facility Registry', '<b>[2]</b> Germany BNetzA / BSI Profile']
+        },
+        {
+          prompt: 'Summarize the latest critical AI, compute, and cyber signals across the live feed.',
+          meta: '✓ VERIFIED IN 1.2S · 65+ LIVE OSINT FEEDS',
+          locate: '⌖ SHOW ON 3D GLOBE',
+          locateColor: 'var(--cyan)',
+          answer: '<strong>Compute &amp; Chips:</strong> Semiconductor export compliance shifts and new hyperscale AI data center grid projects in Europe and Asia-Pacific flagged at <strong>S3–S4</strong> <span class="sovai-cite">1</span>.<br /><br /><strong>Cyber &amp; Surveillance:</strong> Active state-linked supply-chain malware campaigns and commercial biometric deployments mapped with Admiralty reliability grading <span class="sovai-cite">2</span>.',
+          sources: ['<b>[1]</b> Live Sovereign Events API', '<b>[2]</b> Data Center Dynamics · The Hacker News']
+        },
+        {
+          prompt: 'Enterprise Query: Cross-check our internal Red Sea &amp; Taiwan maritime routes against active disruptions.',
+          meta: '✓ PRIVATE INSTANCE · SEALED VECTOR DB',
+          locate: '⌖ PRIVATE ASSET LAYER',
+          locateColor: '#b366ff',
+          answer: '<strong>Maritime Corridor Alert:</strong> 2 tracked vessels intersect active GNSS spoofing envelopes near Bab el-Mandeb; rerouting contingency <code>OPS-14B</code> recommended from your internal logistics playbook <span class="sovai-cite">1</span>.<br /><br /><strong>Semiconductor Hub Status:</strong> Hsinchu export-control advisory updated 4h ago — zero port closure impact to Tier-1 supplier shipments <span class="sovai-cite">2</span>.',
+          sources: ['<b>[1]</b> Internal Fleet Geofence DB', '<b>[2]</b> Sovereign Live Supply-Chain Feed']
+        }
+      ];
+
+      const sovaiBtns = document.querySelectorAll('#ask-sovdash-ai .sovai-prompt-btn');
+      const sovaiUser = document.getElementById('sovai-user-msg');
+      const sovaiThink = document.getElementById('sovai-thinking');
+      const sovaiThinkTxt = document.getElementById('sovai-thinking-text');
+      const sovaiReply = document.getElementById('sovai-reply');
+      const sovaiMeta = document.getElementById('sovai-trace-meta');
+      const sovaiLoc = document.getElementById('sovai-locate-badge');
+      const sovaiAns = document.getElementById('sovai-answer-text');
+      const sovaiSrc = document.getElementById('sovai-sources');
+      let sovaiTimer = null;
+
+      sovaiBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const idx = Number(btn.dataset.q || 0);
+          const item = SOVAI_SAMPLES[idx];
+          if (!item) return;
+
+          sovaiBtns.forEach((b) => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
           });
-          tab.classList.add('active');
-          tab.setAttribute('aria-selected', 'true');
-          if (askAiImg && tab.dataset.img) {
-            askAiImg.style.opacity = '0.25';
-            setTimeout(() => {
-              askAiImg.src = tab.dataset.img;
-              askAiImg.onload = () => { askAiImg.style.opacity = '1'; };
-            }, 130);
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+
+          if (sovaiTimer) clearTimeout(sovaiTimer);
+          if (sovaiUser) sovaiUser.textContent = item.prompt;
+          if (sovaiReply) sovaiReply.style.display = 'none';
+          if (sovaiThinkTxt) {
+            sovaiThinkTxt.textContent = btn.dataset.mode === 'enterprise'
+              ? 'QUERYING ISOLATED PRIVATE DATABASE + LIVE FEEDS...'
+              : 'QUERYING VECTOR ARCHIVE + PRIMARY SOURCES...';
           }
-          if (askAiCap && tab.dataset.caption) {
-            askAiCap.textContent = tab.dataset.caption;
-          }
+          if (sovaiThink) sovaiThink.classList.add('visible');
+
+          sovaiTimer = setTimeout(() => {
+            if (sovaiThink) sovaiThink.classList.remove('visible');
+            if (sovaiMeta) sovaiMeta.textContent = item.meta;
+            if (sovaiLoc) {
+              sovaiLoc.textContent = item.locate;
+              sovaiLoc.style.color = item.locateColor;
+            }
+            if (sovaiAns) sovaiAns.innerHTML = item.answer;
+            if (sovaiSrc) {
+              sovaiSrc.innerHTML = item.sources.map((s) => `<span class="sovai-source-chip">${s}</span>`).join('');
+            }
+            if (sovaiReply) sovaiReply.style.display = 'flex';
+          }, 520);
         });
       });
 
