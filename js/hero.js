@@ -574,7 +574,7 @@ function countUpStats() {
     const dec = parseInt(el.dataset.dec, 10);
     const sfx = el.dataset.sfx;
     if (reduced) {
-      el.textContent = target.toFixed(dec) + sfx;
+      el.textContent = (dec === 0 ? Math.round(target).toLocaleString('en-US') : target.toFixed(dec)) + sfx;
       return;
     }
     const dur = 1100;
@@ -582,7 +582,8 @@ function countUpStats() {
     function tick(now) {
       const t = Math.min((now - start) / dur, 1);
       const ease = 1 - Math.pow(1 - t, 3);
-      el.textContent = (target * ease).toFixed(dec) + sfx;
+      const cur = target * ease;
+      el.textContent = (dec === 0 ? Math.round(cur).toLocaleString('en-US') : cur.toFixed(dec)) + sfx;
       if (t < 1) requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);

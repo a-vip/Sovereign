@@ -36,14 +36,14 @@
     rel="stylesheet" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css?v=20261127c" />
-  <link rel="stylesheet" href="css/nav.css?v=20261127c" />
-  <link rel="stylesheet" href="css/hero.css?v=20261127c" />
-  <link rel="stylesheet" href="css/sections.css?v=20261127c" />
-  <link rel="stylesheet" href="css/components.css?v=20261127c" />
-  <link rel="stylesheet" href="css/footer.css?v=20261127c" />
-  <link rel="stylesheet" href="css/animations.css?v=20261127c" />
-  <link rel="stylesheet" href="css/intro.css?v=20261127c" />
+  <link rel="stylesheet" href="css/base.css?v=20261127d" />
+  <link rel="stylesheet" href="css/nav.css?v=20261127d" />
+  <link rel="stylesheet" href="css/hero.css?v=20261127d" />
+  <link rel="stylesheet" href="css/sections.css?v=20261127d" />
+  <link rel="stylesheet" href="css/components.css?v=20261127d" />
+  <link rel="stylesheet" href="css/footer.css?v=20261127d" />
+  <link rel="stylesheet" href="css/animations.css?v=20261127d" />
+  <link rel="stylesheet" href="css/intro.css?v=20261127d" />
   <!-- /INCLUDE -->
 </head>
 
@@ -298,46 +298,48 @@
     <div>
       <div class="hero-badge" id="hbadge" style="opacity:0;transition:opacity 0.5s;">
         <span class="pulse"></span>
-        Real-time intelligence layer — active now
+        Live Intelligence &amp; AI Platform — Active Now
       </div>
 
       <h1 id="hero-h1" style="min-height:2.4em;">
-        <span id="hero-txt">TRACK CONSEQUENTIAL SHIFTS.<br /><span style="color:var(--cyan)">IN REAL TIME.</span></span><span id="hero-cur"
+        <span id="hero-txt">SEE WHAT MATTERS.<br /><span style="color:var(--cyan)">IN REAL TIME.</span></span><span id="hero-cur"
           style="color:var(--cyan);font-weight:300;animation:heroCursor 0.75s step-end infinite;">|</span>
       </h1>
 
       <p class="hero-desc" id="hero-p"
         style="opacity:0;transform:translateY(10px);transition:opacity 0.6s,transform 0.6s;">
-        Sovereign surfaces geopolitical signals, AI deployment events, and regulatory developments — verified,
-        timestamped, and mapped the moment they emerge. Built for analysts, researchers, journalists, enterprises,
-        and an informed society who cannot afford to be last.
+        Turn fast-moving global data, regulatory changes, and operational signals into clear, citation-backed answers —
+        on our live dashboard or inside a custom platform built around your organization's own data.
       </p>
 
       <div class="hero-actions" id="hero-act"
         style="opacity:0;transform:translateY(10px);transition:opacity 0.6s 0.14s,transform 0.6s 0.14s;">
-        <a href="https://app.sovdash.com/" target="_blank" class="btn-secondary"
-          style="justify-content: center; border-color:rgba(0,245,255,0.3); color:var(--cyan);">
-          Enter Dash <span class="arrow">→</span>
+        <a href="https://app.sovdash.com/" target="_blank" class="btn-primary"
+          style="justify-content: center; padding: 15px 22px; font-size: 11px;">
+          Launch Live Dash <span class="arrow">→</span>
         </a>
-        <a href="signals.html" class="btn-secondary" style="justify-content: center;">Live Signals</a>
+        <a href="#ask-sovdash-ai" class="btn-secondary" style="justify-content: center; padding: 15px 22px; font-size: 11px;">
+          Try AI Demo
+        </a>
         <a href="enterprise.html" class="btn-secondary"
-          style="grid-column: span 2; justify-content: center; border-color:rgba(179,102,255,0.2); color:#b366ff;">Enterprise
-          Systems</a>
+          style="grid-column: span 2; justify-content: center; padding: 14px 22px; font-size: 11px; border-color:rgba(179,102,255,0.28); color:#d8b4fe; background:rgba(179,102,255,0.06);">
+          Commission a Custom Enterprise Dashboard →
+        </a>
       </div>
 
       <div class="hero-stats" id="hero-sts"
         style="opacity:0;transform:translateY(10px);transition:opacity 0.6s 0.28s,transform 0.6s 0.28s;">
         <div class="stat-card">
-          <div class="stat-num" id="sn0" data-target="482" data-dec="0" data-sfx="">0</div>
-          <div class="stat-label">new signals today</div>
+          <div class="stat-num" id="sn0" data-target="6000" data-dec="0" data-sfx="+">0+</div>
+          <div class="stat-label">tracked facilities</div>
         </div>
         <div class="stat-card">
           <div class="stat-num" id="sn1" data-target="99.2" data-dec="1" data-sfx="%">0%</div>
-          <div class="stat-label">feed quality</div>
+          <div class="stat-label">verified accuracy</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num" id="sn2" data-target="200" data-dec="0" data-sfx="+">0</div>
-          <div class="stat-label">intel sources</div>
+          <div class="stat-num" id="sn2" data-target="190" data-dec="0" data-sfx="+">0+</div>
+          <div class="stat-label">regions monitored</div>
         </div>
       </div>
     </div>
@@ -997,13 +999,43 @@
       #ask-sovdash-ai .sovai-source-chip {
         font-size: 9px;
         color: #94a3b8;
-        padding: 4px 9px;
+        padding: 5px 10px;
         border-radius: 6px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        background: rgba(255, 255, 255, 0.03);
+        font-family: 'JetBrains Mono', monospace;
+        cursor: pointer;
+        transition: border-color 0.2s, background 0.2s, color 0.2s;
+      }
+      #ask-sovdash-ai .sovai-source-chip:hover,
+      #ask-sovdash-ai .sovai-source-chip.selected {
+        border-color: rgba(0, 245, 255, 0.45);
+        background: rgba(0, 245, 255, 0.10);
+        color: #ffffff;
       }
       #ask-sovdash-ai .sovai-source-chip b {
         color: var(--cyan);
+      }
+      #ask-sovdash-ai .sovai-source-inspector {
+        display: none;
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid rgba(0, 245, 255, 0.22);
+        background: rgba(0, 245, 255, 0.05);
+        font-size: 10px;
+        color: #cbd5e1;
+        line-height: 1.55;
+      }
+      #ask-sovdash-ai .sovai-source-inspector.open {
+        display: block;
+      }
+      #ask-sovdash-ai .sovai-source-inspector strong {
+        color: var(--cyan);
+        font-size: 8.5px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 3px;
       }
       #ask-sovdash-ai .sovai-stack {
         display: flex;
@@ -1121,9 +1153,10 @@
 
     <div class="section-inner">
       <div class="section-header">
-        <div class="section-badge">✦ Ask SovDash AI</div>
-        <h2>Talk Directly to<br /><span style="color:var(--cyan)">the Intelligence Database.</span></h2>
-        <p class="section-desc">Query live global signals, AI legislation, and data centers in plain language — with verified citations and instant globe targeting.</p>
+        <div class="section-badge">✦ Ask SovDash AI · Citation-Verified RAG</div>
+        <h2>Talk Directly to<br /><span style="color:var(--cyan)">Your Live Data.</span></h2>
+        <p class="section-desc">Ask plain-English questions across live feeds, global records, or your company's own
+          private databases — and get clear, source-verified answers in seconds.</p>
       </div>
 
       <div class="sovai-grid">
@@ -1140,33 +1173,33 @@
           </div>
 
           <div class="sovai-prompts-bar">
-            <div class="sovai-prompts-label">Select a sample query to inspect how Ask SovDash AI responds</div>
+            <div class="sovai-prompts-label">Click any sample question — then click a source chip below to inspect verification</div>
             <div class="sovai-prompt-list" role="tablist" aria-label="Ask SovDash AI sample queries">
               <button type="button" class="sovai-prompt-btn active" data-q="0" data-mode="public" role="tab" aria-selected="true">
                 <span>
-                  <span class="sovai-prompt-tag">AI Regulation</span>
-                  Compare EU AI Act &amp; CA SB 53 incident clocks
+                  <span class="sovai-prompt-tag">Compliance &amp; Policy</span>
+                  Compare EU AI Act &amp; CA SB 53 reporting windows
                 </span>
                 <span style="color:var(--cyan);">→</span>
               </button>
               <button type="button" class="sovai-prompt-btn" data-q="1" data-mode="public" role="tab" aria-selected="false">
                 <span>
                   <span class="sovai-prompt-tag">Infrastructure</span>
-                  How many data centers are in Germany?
+                  How many data centers are tracked in Germany?
                 </span>
                 <span style="color:var(--cyan);">→</span>
               </button>
               <button type="button" class="sovai-prompt-btn" data-q="2" data-mode="public" role="tab" aria-selected="false">
                 <span>
-                  <span class="sovai-prompt-tag">Live OSINT Feed</span>
-                  Latest critical AI &amp; cyber signals today
+                  <span class="sovai-prompt-tag">Live Intelligence</span>
+                  Summarize today's top market &amp; cyber signals
                 </span>
                 <span style="color:var(--cyan);">→</span>
               </button>
               <button type="button" class="sovai-prompt-btn" data-q="3" data-mode="enterprise" role="tab" aria-selected="false">
                 <span>
-                  <span class="sovai-prompt-tag">Enterprise Private DB</span>
-                  Audit our proprietary supplier risk alerts
+                  <span class="sovai-prompt-tag">Private Enterprise RAG</span>
+                  Check our internal routes &amp; supplier alerts
                 </span>
                 <span style="color:#b366ff;">→</span>
               </button>
@@ -1180,7 +1213,7 @@
 
             <div class="sovai-thinking" id="sovai-thinking">
               <div class="sovai-orbit-ring"></div>
-              <span id="sovai-thinking-text">QUERYING VECTOR ARCHIVE + PRIMARY SOURCES...</span>
+              <span id="sovai-thinking-text">SEARCHING VECTOR DATABASE &amp; VERIFYING PRIMARY SOURCES...</span>
             </div>
 
             <div class="sovai-reply" id="sovai-reply">
@@ -1189,14 +1222,15 @@
                 <span id="sovai-locate-badge" style="color:var(--cyan);">⌖ LOCATE ON GLOBE</span>
               </div>
               <div class="sovai-answer" id="sovai-answer-text">
-                <strong>EU AI Act (Art. 73):</strong> Tiered reporting clock for high-risk serious incidents — <strong>≤2 days</strong> for critical infrastructure disruption or widespread rights infringement, <strong>≤10 days</strong> for death, and <strong>≤15 days</strong> for standard serious incidents <span class="sovai-cite">1</span>.<br /><br />
-                <strong>California SB 53:</strong> Frontier developers must report critical safety incidents to CalOES within <strong>15 days</strong> of discovery, or within <strong>24 hours</strong> if posing imminent risk of death or serious physical injury <span class="sovai-cite">2</span>.
+                <strong>EU AI Act (Art. 73):</strong> Tiered reporting clock for high-risk incidents — <strong>≤2 days</strong> for critical infrastructure disruption, <strong>≤10 days</strong> for fatalities, and <strong>≤15 days</strong> for standard serious incidents <span class="sovai-cite">1</span>.<br /><br />
+                <strong>California SB 53:</strong> Frontier AI providers must notify CalOES within <strong>15 days</strong> of discovery, or within <strong>24 hours</strong> when posing imminent risk of severe harm <span class="sovai-cite">2</span>.
               </div>
               <div class="sovai-sources" id="sovai-sources">
-                <span class="sovai-source-chip"><b>[1]</b> Reg. (EU) 2024/1689 · EUR-Lex</span>
-                <span class="sovai-source-chip"><b>[2]</b> California SB 53 · LegInfo</span>
-                <span class="sovai-source-chip"><b>[3]</b> Sovereign Legal Diff Matrix</span>
+                <button type="button" class="sovai-source-chip" data-sidx="0"><b>[1]</b> Reg. (EU) 2024/1689 · EUR-Lex</button>
+                <button type="button" class="sovai-source-chip" data-sidx="1"><b>[2]</b> California SB 53 · LegInfo</button>
+                <button type="button" class="sovai-source-chip" data-sidx="2"><b>[3]</b> Sovereign Legal Diff Matrix</button>
               </div>
+              <div class="sovai-source-inspector" id="sovai-source-inspector"></div>
             </div>
           </div>
         </div>
@@ -1206,31 +1240,33 @@
           <div class="sovai-card">
             <div>
               <div class="sovai-kicker">01 / Built Into Sovereign Dash</div>
-              <h3>Converse With Every Layer.</h3>
-              <p>Stop manually cross-referencing spreadsheets and dozens of feeds. Ask natural-language questions across Sovereign's live intelligence archive and get verified answers in seconds.</p>
+              <h3>Instant Answers, Zero Guesswork.</h3>
+              <p>Skip hours of manual searching across spreadsheets, legal filings, and news feeds. Ask any question in
+                plain English and get concise, verifiable answers immediately.</p>
               <ul class="sovai-list">
-                <li><span class="sovai-check">✔</span><span>Searches live OSINT events, 60+ AI jurisdictions &amp; 6,000+ data centers</span></li>
-                <li><span class="sovai-check">✔</span><span>Cross-checks internal archive with authoritative primary web sources</span></li>
-                <li><span class="sovai-check">✔</span><span>Every claim links to a source and jumps straight to the 3D globe</span></li>
+                <li><span class="sovai-check">✔</span><span>Searches live global feeds, 60+ legal profiles &amp; 6,000+ facilities</span></li>
+                <li><span class="sovai-check">✔</span><span>Cross-checks Sovereign's database against verified primary web sources</span></li>
+                <li><span class="sovai-check">✔</span><span>Every fact links directly to its source and highlights on the 3D map</span></li>
               </ul>
             </div>
             <a href="https://app.sovdash.com/" target="_blank" class="btn-primary" style="font-size:10.5px; padding:13px 20px; justify-content:center;">
-              Try Ask SovDash AI <span class="arrow">→</span>
+              Try Ask SovDash AI Live <span class="arrow">→</span>
             </a>
           </div>
 
           <div class="sovai-card enterprise">
             <div>
-              <div class="sovai-kicker">02 / Enterprise Private AI</div>
-              <h3>Talk Directly to Your Own Data.</h3>
-              <p>Commissioning a bespoke Sovereign dashboard? Embed a dedicated <strong>Ask SovDash AI</strong> instance indexed exclusively over your organization's internal databases and private telemetry.</p>
+              <div class="sovai-kicker">02 / Private Enterprise RAG AI</div>
+              <h3>Deploy AI Over Your Own Data.</h3>
+              <p>Need this capability for your own business? We build dedicated dashboards with private <strong>RAG AI</strong>
+                connected securely to your internal databases, documents, and live operations.</p>
               <ul class="sovai-list">
-                <li><span class="sovai-check">✔</span><span>Private vector search over internal threat briefs, policies &amp; asset logs</span></li>
-                <li><span class="sovai-check">✔</span><span>Sealed cloud or on-premise deployment with zero third-party training</span></li>
-                <li><span class="sovai-check">✔</span><span>Instant citation-backed executive answers for leadership &amp; legal teams</span></li>
+                <li><span class="sovai-check">✔</span><span>Search internal reports, contracts, policies &amp; operational logs in seconds</span></li>
+                <li><span class="sovai-check">✔</span><span>Private cloud or on-premise hosting — zero training on your data</span></li>
+                <li><span class="sovai-check">✔</span><span>Audit-ready citations built for executives, analysts &amp; compliance teams</span></li>
               </ul>
             </div>
-            <a href="#enterprise-tier" class="btn-secondary" style="font-size:10.5px; padding:13px 20px; justify-content:center; border-color:rgba(179,102,255,0.4); color:#b366ff; background:rgba(179,102,255,0.08);">
+            <a href="#enterprise-tier" class="btn-secondary" style="font-size:10.5px; padding:13px 20px; justify-content:center; border-color:rgba(179,102,255,0.4); color:#d8b4fe; background:rgba(179,102,255,0.09);">
               Request Private Enterprise AI →
             </a>
           </div>
@@ -1245,101 +1281,105 @@
       <div class="section-header">
         <div class="section-badge"
           style="border-color:rgba(179,102,255,0.3); background:rgba(179,102,255,0.06); color:#b366ff;">⬡ Enterprise
-          Customisation</div>
-        <h2>Built for Organisations<br /><span style="color:#b366ff">That Operate at Scale.</span></h2>
-        <p class="section-desc">For global logistics networks, legal and compliance teams, defence contractors, and
-          private intelligence units — Sovereign engineers dedicated intelligence environments built to your operational
-          criteria.</p>
+          Solutions</div>
+        <h2>Custom Dashboards &amp; Private AI.<br /><span style="color:#b366ff">Built Around Your Business.</span></h2>
+        <p class="section-desc">Whether you run operations, finance, logistics, compliance, or research — we build
+          dedicated real-time dashboards and private RAG AI tailored to your exact data and workflows.</p>
       </div>
 
       <div class="enterprise-grid">
-        <!-- LEFT: Detailed Value Pitch -->
+        <!-- LEFT: Broad, Clear Enterprise Value Pitch -->
         <div class="enterprise-card-hero">
           <span class="plan-badge"
             style="background:rgba(179,102,255,0.08); border-color:rgba(179,102,255,0.25); color:#b366ff;">Dedicated
-            Environments</span>
+            Custom Builds</span>
           <div style="display:flex; align-items:baseline; gap:8px; margin: 16px 0 6px;">
             <span style="font-size:38px; font-weight:800; color:#fff; font-family:'JetBrains Mono',monospace;">Bespoke
               Quote</span>
           </div>
-          <p style="font-size:13px; color:#94a3b8; line-height:1.7; margin-bottom:24px;">Deploy a custom instance of
-            Sovereign's spatial engine, customized with proprietary data layers, specialized asset geofences, and
-            closed-circuit operational telemetry.</p>
+          <p style="font-size:13px; color:#94a3b8; line-height:1.7; margin-bottom:24px;">Launch a private, branded
+            instance of Sovereign combining your internal databases, live external feeds, interactive maps, and
+            citation-verified AI in one secure hub.</p>
 
           <ul class="enterprise-features-list">
             <li class="enterprise-feature-item">
               <span class="enterprise-feature-icon">✔</span>
-              <span><strong>Proprietary Data Layers</strong>: Integrate closed-circuit asset transponders, custom
-                geofences, and internal data feeds alongside Sovereign's live signals.</span>
+              <span><strong>Your Own Data &amp; Live APIs</strong>: Connect internal SQL/warehouse tables, PDFs,
+                CRM/ERP feeds, and asset trackers alongside Sovereign's live global layers.</span>
             </li>
             <li class="enterprise-feature-item">
               <span class="enterprise-feature-icon">✔</span>
-              <span><strong>AI Governance Monitoring Suite</strong>: Dedicated regulatory tracking scoped to your
-                jurisdictions of operation, with alert thresholds and export tools.</span>
+              <span><strong>Private RAG AI Copilot</strong>: Let leadership and analysts ask plain-English questions
+                over your proprietary archive with strict citations and zero third-party model training.</span>
             </li>
             <li class="enterprise-feature-item">
               <span class="enterprise-feature-icon">✔</span>
-              <span><strong>Isolated Deployment Options</strong>: Run within a sealed cloud instance or fully
-                on-premise, meeting the most stringent requirements.</span>
+              <span><strong>Private Cloud or On-Premise</strong>: Hosted in a dedicated VPC or fully self-hosted inside
+                your infrastructure to satisfy strict security and privacy policies.</span>
             </li>
             <li class="enterprise-feature-item">
               <span class="enterprise-feature-icon">✔</span>
-              <span><strong>Analyst-Grade Reporting</strong>: Structured, exportable intelligence reports with source
-                citations, severity gradings, and temporal analysis built in.</span>
+              <span><strong>Custom Alerts &amp; Executive Reports</strong>: Automated anomaly alerts, compliance
+                monitoring, and export-ready briefs formatted for your stakeholders.</span>
             </li>
           </ul>
-          <div style="margin-top: 32px;">
+          <div style="margin-top: 32px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
             <a href="enterprise.html" class="btn-primary"
-              style="font-size: 11px; padding: 14px 24px; box-shadow: 0 0 20px rgba(179,102,255,0.15); border-color: rgba(179,102,255,0.4); background: rgba(179,102,255,0.1); color: #b366ff;">
-              Explore Enterprise Solutions <span class="arrow">→</span>
+              style="font-size: 11px; padding: 14px 24px; box-shadow: 0 0 20px rgba(179,102,255,0.15); border-color: rgba(179,102,255,0.45); background: rgba(179,102,255,0.12); color: #d8b4fe;">
+              Configure Your Build <span class="arrow">→</span>
             </a>
+            <span style="font-size:9.5px; color:#64748b; letter-spacing:0.08em;">● Proposal within 24h · Zero obligation</span>
           </div>
         </div>
 
-        <!-- RIGHT: Embedded Simple Contact Form -->
+        <!-- RIGHT: Clean Frictionless Contact Form with 1-Click Scope Chips -->
         <div
-          style="border: 1px solid rgba(179,102,255,0.25); border-radius:18px; background:rgba(10,13,24,0.7); backdrop-filter:blur(12px); padding:36px; box-shadow:0 0 32px rgba(179,102,255,0.04);">
+          style="border: 1px solid rgba(179,102,255,0.25); border-radius:18px; background:rgba(10,13,24,0.75); backdrop-filter:blur(12px); padding:34px; box-shadow:0 0 32px rgba(179,102,255,0.05);">
           <div
-            style="font-size:11px; font-weight:800; color:#b366ff; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:14px; border-bottom:1px solid rgba(255, 255, 255, 0.06); padding-bottom:10px;">
-            Contact Sales & Custom Dashboard Queries</div>
-          <p style="font-size:13.5px; color:#cbd5e1; line-height:1.7; margin-bottom:24px;">Send a message to our
-            solutions team. Briefly describe your mapping, threat alerts, or visual analytics needs, and we will follow
-            up with a proposal within 24 hours.</p>
+            style="font-size:11px; font-weight:800; color:#b366ff; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:12px; border-bottom:1px solid rgba(255, 255, 255, 0.06); padding-bottom:10px;">
+            Request a Custom Dashboard Proposal</div>
+          <p style="font-size:13px; color:#cbd5e1; line-height:1.68; margin-bottom:18px;">Select what you're looking to
+            build and tell us briefly about your data or goals. We reply directly within 24 hours.</p>
 
-          <!-- Interactive Simple Contact Form -->
+          <!-- Quick Scope Selector Chips -->
+          <div style="display:flex; flex-wrap:wrap; gap:7px; margin-bottom:18px;" id="ent-scope-chips">
+            <button type="button" class="ent-chip active" data-scope="Custom Dashboard" style="padding:6px 11px;border-radius:999px;font-size:9px;font-weight:700;letter-spacing:0.09em;font-family:'JetBrains Mono',monospace;cursor:pointer;border:1px solid rgba(179,102,255,0.55);background:rgba(179,102,255,0.16);color:#f3e8ff;transition:all 0.2s;">+ Custom Dashboard</button>
+            <button type="button" class="ent-chip" data-scope="Private RAG AI" style="padding:6px 11px;border-radius:999px;font-size:9px;font-weight:700;letter-spacing:0.09em;font-family:'JetBrains Mono',monospace;cursor:pointer;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.03);color:#94a3b8;transition:all 0.2s;">+ Private RAG AI</button>
+            <button type="button" class="ent-chip" data-scope="Live Data Pipelines" style="padding:6px 11px;border-radius:999px;font-size:9px;font-weight:700;letter-spacing:0.09em;font-family:'JetBrains Mono',monospace;cursor:pointer;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.03);color:#94a3b8;transition:all 0.2s;">+ Data Pipelines</button>
+            <button type="button" class="ent-chip" data-scope="Private Cloud / On-Prem" style="padding:6px 11px;border-radius:999px;font-size:9px;font-weight:700;letter-spacing:0.09em;font-family:'JetBrains Mono',monospace;cursor:pointer;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.03);color:#94a3b8;transition:all 0.2s;">+ Private Cloud / On-Prem</button>
+          </div>
+
           <form id="enterprise-form" style="display:block;">
             <div class="form-group">
-              <label class="form-label">Your Name</label>
+              <label class="form-label" for="ent-name">Your Name</label>
               <input type="text" class="form-input" id="ent-name" placeholder="e.g. Sarah Jenkins" required />
             </div>
 
             <div class="form-group">
-              <label class="form-label">Company / Organization</label>
-              <input type="text" class="form-input" id="ent-org" placeholder="e.g. Vanguard Logistics" required />
+              <label class="form-label" for="ent-org">Company / Organization</label>
+              <input type="text" class="form-input" id="ent-org" placeholder="e.g. Acme Operations" required />
             </div>
 
             <div class="form-group">
-              <label class="form-label">Business Email</label>
-              <input type="email" class="form-input" id="ent-email" placeholder="e.g. s.jenkins@vanguard.com"
-                required />
+              <label class="form-label" for="ent-email">Work Email</label>
+              <input type="email" class="form-input" id="ent-email" placeholder="e.g. sarah@company.com" required />
             </div>
 
             <div class="form-group">
-              <label class="form-label">Project Requirements</label>
+              <label class="form-label" for="ent-requirements">What would you like to track or build?</label>
               <textarea class="form-textarea" id="ent-requirements"
-                placeholder="Tell us about your tracking, geofencing, or data visualization goals..." required
-                style="height: 110px;"></textarea>
+                placeholder="Tell us about your data sources, dashboards, AI search, or reporting goals..." required
+                style="height: 98px;"></textarea>
             </div>
 
             <button type="submit" class="btn-primary" id="ent-submit-btn"
-              style="width:100%; justify-content:center; padding:16px; font-size:11px; border-color:rgba(179,102,255,0.5); background:rgba(179,102,255,0.10); color:#b366ff; box-shadow:0 0 20px rgba(179,102,255,0.06);">
-              SEND MESSAGE <span class="arrow">→</span>
+              style="width:100%; justify-content:center; padding:15px; font-size:11px; border-color:rgba(179,102,255,0.55); background:rgba(179,102,255,0.14); color:#e9d5ff; box-shadow:0 0 20px rgba(179,102,255,0.08);">
+              SEND PROPOSAL REQUEST <span class="arrow">→</span>
             </button>
           </form>
 
           <div id="enterprise-status"
-            style="display:none; font-size:11px; font-family:'JetBrains Mono',monospace; color:var(--green); margin-top:16px; text-align:center; letter-spacing:0.06em;">
-            ● LAUNCHING MAIL RELAY CLIENT...
+            style="display:none; font-size:11px; font-family:'JetBrains Mono',monospace; color:var(--green); margin-top:16px; padding:14px 16px; border-radius:10px; border:1px solid rgba(0,255,136,0.28); background:rgba(0,255,136,0.06); line-height:1.6;">
           </div>
         </div>
       </div>
@@ -1469,47 +1509,60 @@
 
   <!-- JS SCRIPTS (deferred; unused GSAP removed for faster load & native 60fps sticky scroll) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-  <script src="js/intro.js?v=20261127c" defer></script>
-  <script src="js/boot.js?v=20261127c" defer></script>
-  <script src="js/hero.js?v=20261127c" defer></script>
-  <script src="js/nav.js?v=20261127c" defer></script>
-  <script src="js/signals.js?v=20261127c" defer></script>
+  <script src="js/intro.js?v=20261127d" defer></script>
+  <script src="js/boot.js?v=20261127d" defer></script>
+  <script src="js/hero.js?v=20261127d" defer></script>
+  <script src="js/nav.js?v=20261127d" defer></script>
+  <script src="js/signals.js?v=20261127d" defer></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Standalone Ask SovDash AI interactive sample query switcher
+      // Standalone Ask SovDash AI interactive demo + clickable source verification inspector
       const SOVAI_SAMPLES = [
         {
           prompt: 'Compare mandatory incident-reporting windows across the EU AI Act and California SB 53.',
           meta: '✓ VERIFIED IN 1.4S · 3 PRIMARY SOURCES',
           locate: '⌖ LOCATE ON GLOBE',
           locateColor: 'var(--cyan)',
-          answer: '<strong>EU AI Act (Art. 73):</strong> Tiered reporting clock for high-risk serious incidents — <strong>≤2 days</strong> for critical infrastructure disruption or widespread rights infringement, <strong>≤10 days</strong> for death, and <strong>≤15 days</strong> for standard serious incidents <span class="sovai-cite">1</span>.<br /><br /><strong>California SB 53:</strong> Frontier developers must report critical safety incidents to CalOES within <strong>15 days</strong> of discovery, or within <strong>24 hours</strong> if posing imminent risk of death or serious physical injury <span class="sovai-cite">2</span>.',
-          sources: ['<b>[1]</b> Reg. (EU) 2024/1689 · EUR-Lex', '<b>[2]</b> California SB 53 · LegInfo', '<b>[3]</b> Sovereign Legal Diff Matrix']
+          answer: '<strong>EU AI Act (Art. 73):</strong> Tiered reporting clock for high-risk incidents — <strong>≤2 days</strong> for critical infrastructure disruption, <strong>≤10 days</strong> for fatalities, and <strong>≤15 days</strong> for standard serious incidents <span class="sovai-cite">1</span>.<br /><br /><strong>California SB 53:</strong> Frontier AI providers must notify CalOES within <strong>15 days</strong> of discovery, or within <strong>24 hours</strong> when posing imminent risk of severe harm <span class="sovai-cite">2</span>.',
+          sources: [
+            { label: '<b>[1]</b> Reg. (EU) 2024/1689 · EUR-Lex', detail: 'Official Journal of the European Union — Article 73 establishes 2-day, 10-day, and 15-day reporting clocks for high-risk AI serious incidents.' },
+            { label: '<b>[2]</b> California SB 53 · LegInfo', detail: 'California Legislative Information — Transparency in Frontier AI Act mandates 15-day CalOES notification (24 hours for imminent severe risk).' },
+            { label: '<b>[3]</b> Sovereign Legal Diff Matrix', detail: 'Cross-jurisdictional statutory comparison indexed across 60+ global AI regulatory profiles inside Sovereign Observatory.' }
+          ]
         },
         {
           prompt: 'How many verified data centers are tracked in Germany, and what are the main hubs?',
           meta: '✓ VERIFIED IN 0.9S · PEERINGDB + EPOCH AI',
           locate: '⌖ FLY TO FRANKFURT',
           locateColor: 'var(--cyan)',
-          answer: 'Sovereign tracks <strong>238 verified colocation &amp; interconnection facilities</strong> across Germany (out of 6,033+ globally), anchored in <strong>Frankfurt am Main</strong>, Berlin, Munich, Hamburg, and Stuttgart <span class="sovai-cite">1</span>.<br /><br />All German facilities operate under <strong>EU AI Act</strong> market surveillance (BNetzA) and <strong>BSI</strong> critical cyber-infrastructure mandates <span class="sovai-cite">2</span>.',
-          sources: ['<b>[1]</b> PeeringDB Global Facility Registry', '<b>[2]</b> Germany BNetzA / BSI Profile']
+          answer: 'Sovereign tracks <strong>238 verified colocation &amp; interconnection facilities</strong> across Germany (out of 6,033+ globally), anchored in <strong>Frankfurt am Main</strong>, Berlin, Munich, Hamburg, and Stuttgart <span class="sovai-cite">1</span>.<br /><br />All German facilities operate under <strong>EU AI Act</strong> market surveillance (BNetzA) and <strong>BSI</strong> critical cyber-infrastructure standards <span class="sovai-cite">2</span>.',
+          sources: [
+            { label: '<b>[1]</b> PeeringDB Global Facility Registry', detail: 'Live synchronized facility inventory counting 238 active German colocation and network exchange sites with coordinates & operators.' },
+            { label: '<b>[2]</b> Germany BNetzA / BSI Profile', detail: 'National market surveillance and critical infrastructure cybersecurity compliance metadata tracked in Sovereign Observatory.' }
+          ]
         },
         {
-          prompt: 'Summarize the latest critical AI, compute, and cyber signals across the live feed.',
-          meta: '✓ VERIFIED IN 1.2S · 65+ LIVE OSINT FEEDS',
+          prompt: 'Summarize today\'s top market, infrastructure, and cyber signals across the live feed.',
+          meta: '✓ VERIFIED IN 1.2S · 65+ LIVE DATA FEEDS',
           locate: '⌖ SHOW ON 3D GLOBE',
           locateColor: 'var(--cyan)',
-          answer: '<strong>Compute &amp; Chips:</strong> Semiconductor export compliance shifts and new hyperscale AI data center grid projects in Europe and Asia-Pacific flagged at <strong>S3–S4</strong> <span class="sovai-cite">1</span>.<br /><br /><strong>Cyber &amp; Surveillance:</strong> Active state-linked supply-chain malware campaigns and commercial biometric deployments mapped with Admiralty reliability grading <span class="sovai-cite">2</span>.',
-          sources: ['<b>[1]</b> Live Sovereign Events API', '<b>[2]</b> Data Center Dynamics · The Hacker News']
+          answer: '<strong>Infrastructure &amp; Supply Chain:</strong> Semiconductor export compliance shifts and new hyperscale AI grid expansions across Europe and Asia-Pacific flagged at <strong>S3–S4</strong> <span class="sovai-cite">1</span>.<br /><br /><strong>Cyber &amp; Operations:</strong> Active enterprise software advisories and regional connectivity disruptions verified and severity-scored in real time <span class="sovai-cite">2</span>.',
+          sources: [
+            { label: '<b>[1]</b> Live Sovereign Events API', detail: 'Real-time deduplicated event stream scored S1–S5 with geographic coordinates and verified primary publisher links.' },
+            { label: '<b>[2]</b> Verified Industry &amp; Security Feeds', detail: 'Continuous ingestion across 65+ authoritative regulatory, infrastructure, and security bulletins with Admiralty grading.' }
+          ]
         },
         {
-          prompt: 'Enterprise Query: Cross-check our internal Red Sea &amp; Taiwan maritime routes against active disruptions.',
+          prompt: 'Private Enterprise RAG: Cross-check our internal supplier routes against active disruptions.',
           meta: '✓ PRIVATE INSTANCE · SEALED VECTOR DB',
           locate: '⌖ PRIVATE ASSET LAYER',
           locateColor: '#b366ff',
-          answer: '<strong>Maritime Corridor Alert:</strong> 2 tracked vessels intersect active GNSS spoofing envelopes near Bab el-Mandeb; rerouting contingency <code>OPS-14B</code> recommended from your internal logistics playbook <span class="sovai-cite">1</span>.<br /><br /><strong>Semiconductor Hub Status:</strong> Hsinchu export-control advisory updated 4h ago — zero port closure impact to Tier-1 supplier shipments <span class="sovai-cite">2</span>.',
-          sources: ['<b>[1]</b> Internal Fleet Geofence DB', '<b>[2]</b> Sovereign Live Supply-Chain Feed']
+          answer: '<strong>Corridor Alert:</strong> 2 tracked shipments intersect active GNSS interference zones near Bab el-Mandeb; rerouting contingency <code>OPS-14B</code> recommended from your internal logistics playbook <span class="sovai-cite">1</span>.<br /><br /><strong>Supplier Hub Status:</strong> Hsinchu export-control advisory updated 4h ago — zero port closure impact to Tier-1 deliveries <span class="sovai-cite">2</span>.',
+          sources: [
+            { label: '<b>[1]</b> Internal Logistics Playbook (Private DB)', detail: 'Retrieved exclusively from your organization\'s isolated vector store — never shared or used to train external AI models.' },
+            { label: '<b>[2]</b> Sovereign Live Supply-Chain Layer', detail: 'Cross-referenced automatically with verified maritime, customs, and regional advisory telemetry in real time.' }
+          ]
         }
       ];
 
@@ -1522,13 +1575,40 @@
       const sovaiLoc = document.getElementById('sovai-locate-badge');
       const sovaiAns = document.getElementById('sovai-answer-text');
       const sovaiSrc = document.getElementById('sovai-sources');
+      const sovaiInspector = document.getElementById('sovai-source-inspector');
       let sovaiTimer = null;
+      let currentSampleIdx = 0;
+
+      function bindSourceChips(sampleIdx) {
+        if (!sovaiSrc || !sovaiInspector) return;
+        const sample = SOVAI_SAMPLES[sampleIdx];
+        sovaiInspector.classList.remove('open');
+        sovaiInspector.innerHTML = '';
+        sovaiSrc.querySelectorAll('.sovai-source-chip').forEach((chip) => {
+          chip.addEventListener('click', () => {
+            const sIdx = Number(chip.dataset.sidx || 0);
+            const srcObj = sample?.sources?.[sIdx];
+            if (!srcObj) return;
+            const wasSelected = chip.classList.contains('selected');
+            sovaiSrc.querySelectorAll('.sovai-source-chip').forEach((c) => c.classList.remove('selected'));
+            if (wasSelected) {
+              sovaiInspector.classList.remove('open');
+              return;
+            }
+            chip.classList.add('selected');
+            sovaiInspector.innerHTML = `<strong>✓ Source Verification · ${srcObj.label.replace(/<[^>]+>/g, '')}</strong>${srcObj.detail}`;
+            sovaiInspector.classList.add('open');
+          });
+        });
+      }
+      bindSourceChips(0);
 
       sovaiBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
           const idx = Number(btn.dataset.q || 0);
           const item = SOVAI_SAMPLES[idx];
           if (!item) return;
+          currentSampleIdx = idx;
 
           sovaiBtns.forEach((b) => {
             b.classList.remove('active');
@@ -1540,10 +1620,11 @@
           if (sovaiTimer) clearTimeout(sovaiTimer);
           if (sovaiUser) sovaiUser.textContent = item.prompt;
           if (sovaiReply) sovaiReply.style.display = 'none';
+          if (sovaiInspector) sovaiInspector.classList.remove('open');
           if (sovaiThinkTxt) {
             sovaiThinkTxt.textContent = btn.dataset.mode === 'enterprise'
-              ? 'QUERYING ISOLATED PRIVATE DATABASE + LIVE FEEDS...'
-              : 'QUERYING VECTOR ARCHIVE + PRIMARY SOURCES...';
+              ? 'SEARCHING ISOLATED PRIVATE DATABASE & LIVE FEEDS...'
+              : 'SEARCHING VECTOR DATABASE & VERIFYING PRIMARY SOURCES...';
           }
           if (sovaiThink) sovaiThink.classList.add('visible');
 
@@ -1556,76 +1637,75 @@
             }
             if (sovaiAns) sovaiAns.innerHTML = item.answer;
             if (sovaiSrc) {
-              sovaiSrc.innerHTML = item.sources.map((s) => `<span class="sovai-source-chip">${s}</span>`).join('');
+              sovaiSrc.innerHTML = item.sources.map((s, si) => `<button type="button" class="sovai-source-chip" data-sidx="${si}">${s.label}</button>`).join('');
+              bindSourceChips(currentSampleIdx);
             }
             if (sovaiReply) sovaiReply.style.display = 'flex';
-          }, 520);
+          }, 480);
         });
       });
 
+      // Enterprise scope selector chips
+      const scopeChips = document.querySelectorAll('#ent-scope-chips .ent-chip');
+      scopeChips.forEach((chip) => {
+        chip.addEventListener('click', () => {
+          const active = chip.classList.toggle('active');
+          chip.style.borderColor = active ? 'rgba(179,102,255,0.55)' : 'rgba(255,255,255,0.12)';
+          chip.style.background = active ? 'rgba(179,102,255,0.16)' : 'rgba(255,255,255,0.03)';
+          chip.style.color = active ? '#f3e8ff' : '#94a3b8';
+        });
+      });
+
+      // Clean single-request Enterprise form submission (no duplicate POST, no broken mailto: hijack)
       const form = document.getElementById('enterprise-form');
       const status = document.getElementById('enterprise-status');
       const submitBtn = document.getElementById('ent-submit-btn');
 
       if (form && status && submitBtn) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
           e.preventDefault();
 
-          const name = document.getElementById('ent-name').value;
-          const org = document.getElementById('ent-org').value;
-          const email = document.getElementById('ent-email').value;
-          const requirements = document.getElementById('ent-requirements').value;
+          const name = document.getElementById('ent-name').value.trim();
+          const org = document.getElementById('ent-org').value.trim();
+          const email = document.getElementById('ent-email').value.trim();
+          const requirements = document.getElementById('ent-requirements').value.trim();
+          const selectedScopes = Array.from(document.querySelectorAll('#ent-scope-chips .ent-chip.active'))
+            .map((c) => c.dataset.scope)
+            .filter(Boolean);
+          const scopePrefix = selectedScopes.length ? `[Scopes: ${selectedScopes.join(', ')}]\n` : '';
 
           submitBtn.disabled = true;
-          submitBtn.textContent = 'PREPARING BRIEF...';
-          status.style.display = 'block';
+          submitBtn.textContent = 'SENDING REQUEST...';
+          status.style.display = 'none';
 
-          fetch('https://app.sovdash.com/api/suggestions', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              type: 'general',
-              subject: `[ENTERPRISE BRIEF] ${org}`,
-              details: requirements,
-              operatorEmail: email,
-              operatorName: `${name} (${org})`
-            })
-          }).catch(() => {});
-
-          setTimeout(() => {
-            const subject = `Sovereign Intel Enterprise Consultation - ${org}`;
-            const body = `SOVEREIGN INTEL ENTERPRISE INTAKE BRIEF
---------------------------------------------------
-CONTACT NAME: ${name}
-COMPANY / ORGANIZATION: ${org}
-BUSINESS EMAIL: ${email}
-
-PROJECT SPECIFICATION DETAILS:
-${requirements}
---------------------------------------------------
-[Form submitted via Sovereign Intel Landing System]`;
-
-            window.location.href = `mailto:workwithavip@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-            fetch('https://app.sovdash.com/api/suggestions', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              type: 'general',
-              subject: `[ENTERPRISE BRIEF] ${org}`,
-              details: requirements,
-              operatorEmail: email,
-              operatorName: `${name} (${org})`
-            })
-          }).catch(() => {});
-
-          setTimeout(() => {
-              submitBtn.disabled = false;
-              submitBtn.textContent = 'SEND MESSAGE';
-              status.style.display = 'none';
-              form.reset();
-            }, 2000);
-          }, 1200);
+          const refId = 'SOV-' + Math.random().toString(36).slice(2, 7).toUpperCase();
+          try {
+            await fetch('https://app.sovdash.com/api/suggestions', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                type: 'general',
+                subject: `[ENTERPRISE BRIEF ${refId}] ${org}`,
+                details: `${scopePrefix}${requirements}`,
+                operatorEmail: email,
+                operatorName: `${name} (${org})`
+              })
+            });
+            status.style.color = 'var(--green)';
+            status.style.borderColor = 'rgba(0,255,136,0.28)';
+            status.style.background = 'rgba(0,255,136,0.06)';
+            status.innerHTML = `✓ PROPOSAL REQUEST RECEIVED · REF <strong>${refId}</strong><br/><span style="color:#94a3b8;">Thank you, ${name.replace(/</g, '&lt;')}. We'll respond to ${email.replace(/</g, '&lt;')} within 24 hours.</span>`;
+            form.reset();
+          } catch {
+            status.style.color = '#ffd22e';
+            status.style.borderColor = 'rgba(255,210,46,0.35)';
+            status.style.background = 'rgba(255,210,46,0.07)';
+            status.innerHTML = `Direct relay unavailable — email us at <a href="mailto:workwithavip@gmail.com" style="color:var(--cyan);text-decoration:underline;">workwithavip@gmail.com</a> and we'll respond within 24 hours.`;
+          } finally {
+            status.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'SEND PROPOSAL REQUEST <span class="arrow">→</span>';
+          }
         });
       }
     });

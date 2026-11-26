@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Enterprise Bespoke Dashboards | Sovereign Intel</title>
-  
+  <title>Enterprise Custom Dashboards &amp; Private RAG AI | Sovereign</title>
+  <meta name="description" content="Commission a bespoke real-time intelligence dashboard and private RAG AI copilot built around your organization's databases, APIs, and security requirements." />
+
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%23b366ff%22>⬡</text></svg>" />
 
@@ -14,20 +15,233 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css?v=20261127b" />
-  <link rel="stylesheet" href="css/nav.css?v=20261127b" />
-  <link rel="stylesheet" href="css/sections.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/footer.css" />
-  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/base.css?v=20261127d" />
+  <link rel="stylesheet" href="css/nav.css?v=20261127d" />
+  <link rel="stylesheet" href="css/sections.css?v=20261127d" />
+  <link rel="stylesheet" href="css/components.css?v=20261127d" />
+  <link rel="stylesheet" href="css/footer.css?v=20261127d" />
+  <link rel="stylesheet" href="css/animations.css?v=20261127d" />
 
   <style>
     .enterprise-header {
       max-width: 1400px;
-      margin: 60px auto 40px;
+      margin: 56px auto 34px;
       padding: 0 24px;
       position: relative;
       z-index: 10;
+    }
+
+    /* Trust / Assurance Strip */
+    .ent-trust-strip {
+      max-width: 1400px;
+      margin: 0 auto 36px;
+      padding: 0 24px;
+      position: relative;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 900px) {
+      .ent-trust-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px) {
+      .ent-trust-strip { grid-template-columns: 1fr; }
+    }
+    .ent-trust-item {
+      padding: 16px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(179, 102, 255, 0.16);
+      background: rgba(10, 13, 24, 0.65);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .ent-trust-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      border: 1px solid rgba(179, 102, 255, 0.3);
+      background: rgba(179, 102, 255, 0.1);
+      color: #d8b4fe;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .ent-trust-title {
+      font-size: 10px;
+      font-weight: 800;
+      color: #f8fafc;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .ent-trust-sub {
+      font-size: 9.5px;
+      color: #64748b;
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+
+    /* Interactive Architecture Scope Builder */
+    .scope-builder {
+      border: 1px solid rgba(179, 102, 255, 0.24);
+      border-radius: 18px;
+      background: rgba(8, 12, 24, 0.8);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .scope-title {
+      font-size: 10px;
+      font-weight: 800;
+      color: #d8b4fe;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .scope-step-label {
+      font-size: 9px;
+      font-weight: 700;
+      color: #64748b;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .deploy-toggle {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 520px) {
+      .deploy-toggle { grid-template-columns: 1fr; }
+    }
+    .deploy-btn {
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.02);
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .deploy-btn span {
+      display: block;
+      font-size: 8.5px;
+      font-weight: 400;
+      color: #64748b;
+      margin-top: 3px;
+    }
+    .deploy-btn.active {
+      border-color: rgba(0, 245, 255, 0.5);
+      background: rgba(0, 245, 255, 0.09);
+      color: #ffffff;
+    }
+    .deploy-btn.active span { color: #a5f3fc; }
+
+    .module-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .module-chip {
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.03);
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .module-chip:hover {
+      border-color: rgba(179, 102, 255, 0.45);
+      color: #e2e8f0;
+    }
+    .module-chip.active {
+      border-color: rgba(179, 102, 255, 0.6);
+      background: rgba(179, 102, 255, 0.18);
+      color: #f3e8ff;
+    }
+
+    .blueprint-summary {
+      padding: 13px 15px;
+      border-radius: 10px;
+      border: 1px dashed rgba(0, 245, 255, 0.28);
+      background: rgba(0, 245, 255, 0.04);
+      font-size: 10.5px;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+    .blueprint-summary strong { color: var(--cyan); }
+
+    /* Delivery Process Section */
+    .process-wrap {
+      max-width: 1400px;
+      margin: 0 auto 88px;
+      padding: 0 24px;
+      position: relative;
+      z-index: 10;
+    }
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 28px;
+    }
+    @media (max-width: 860px) {
+      .process-grid { grid-template-columns: 1fr; }
+    }
+    .process-card {
+      padding: 26px 24px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(10, 13, 24, 0.62);
+    }
+    .process-step-num {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      color: #b366ff;
+      background: rgba(179, 102, 255, 0.1);
+      border: 1px solid rgba(179, 102, 255, 0.28);
+      padding: 4px 9px;
+      border-radius: 5px;
+      margin-bottom: 12px;
+    }
+    .process-card h3 {
+      font-size: 15px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .process-card p {
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.68;
+    }
+    .ent-form-card {
+      position: sticky;
+      top: 96px;
+    }
+    @media (max-width: 900px) {
+      .ent-form-card {
+        position: static;
+      }
     }
   </style>
 </head>
@@ -35,15 +249,17 @@
 
 <div class="bg-grid"></div>
 
-<!-- TICKER -->
+<!-- TICKER (Enterprise-specific, fixed from legacy pricing text) -->
 <div class="ticker-bar">
-  <div class="ticker-label">● LIVE</div>
+  <div class="ticker-label">● ENTERPRISE</div>
   <div class="ticker-track">
     <span class="ticker-inner">
-      PRICING PORTAL ACTIVE &nbsp;•&nbsp;
-      SELECT ANALYST PROTOCOL &nbsp;•&nbsp;
-      TACTICAL SUBSCRIPTIONS SECURE &nbsp;•&nbsp;
-      UPGRADES PROCESSED INSTANTLY &nbsp;•&nbsp;
+      BESPOKE DASHBOARDS &amp; PRIVATE RAG AI &nbsp;•&nbsp;
+      DEDICATED CLOUD (VPC) OR ON-PREMISE DEPLOYMENT &nbsp;•&nbsp;
+      ZERO THIRD-PARTY AI TRAINING ON YOUR DATA &nbsp;•&nbsp;
+      DIRECT ENGINEERING PROPOSAL WITHIN 24 HOURS &nbsp;•&nbsp;
+      BESPOKE DASHBOARDS &amp; PRIVATE RAG AI &nbsp;•&nbsp;
+      DEDICATED CLOUD (VPC) OR ON-PREMISE DEPLOYMENT &nbsp;•&nbsp;
     </span>
   </div>
 </div>
@@ -87,90 +303,177 @@
 
 <!-- ENTERPRISE HEADER -->
 <header class="enterprise-header">
-  <div class="section-badge" style="border-color:rgba(179,102,255,0.3); background:rgba(179,102,255,0.06); color:#b366ff;">⬡ Enterprise Customisation</div>
-  <h2 style="font-size: clamp(32px, 5vw, 54px);">Custom Dashboards<br/><span style="color:#b366ff;">& data visualizers.</span></h2>
-  <p class="section-desc" style="max-width:620px; margin-top: 14px;">Dedicated visual analytics platforms engineered for investment firms, global shipping fleets, supply-chain logistics conglomerates, and security organizations.</p>
+  <div class="section-badge" style="border-color:rgba(179,102,255,0.3); background:rgba(179,102,255,0.06); color:#d8b4fe;">⬡ Enterprise Solutions</div>
+  <h2 style="font-size: clamp(32px, 5vw, 54px); line-height: 1.04;">Custom Dashboards<br/><span style="color:#b366ff;">&amp; Private Data AI.</span></h2>
+  <p class="section-desc" style="max-width:650px; margin-top: 14px; color:#94a3b8;">Dedicated real-time dashboards, automated data pipelines, and citation-verified RAG AI — custom-built for operations, finance, logistics, compliance, and research teams.</p>
 </header>
 
-<!-- MAIN CONTAINER -->
-<div class="section-inner" style="padding-top: 0; max-width: 1400px; margin: 0 auto 80px;">
-  <div class="enterprise-grid">
-    
-    <!-- LEFT: Detailed Value Pitch -->
-    <div class="enterprise-card-hero">
-      <span class="plan-badge" style="background:rgba(179,102,255,0.08); border-color:rgba(179,102,255,0.25); color:#b366ff;">Elite Corporate Plan</span>
-      <div style="display:flex; align-items:baseline; gap:8px; margin: 16px 0 6px;">
-        <span style="font-size:38px; font-weight:800; color:#fff; font-family:'JetBrains Mono',monospace;">Bespoke Pricing</span>
-      </div>
-      <p style="font-size:13.5px; color:#94a3b8; line-height:1.7; margin-bottom:24px;">Deploy a custom, dedicated instance of Sovereign, tailored with your company's proprietary data layers, asset locations, and specific regional threat focuses.</p>
+<!-- TRUST & OWNERSHIP STRIP -->
+<div class="ent-trust-strip">
+  <div class="ent-trust-item">
+    <div class="ent-trust-icon">🔒</div>
+    <div>
+      <div class="ent-trust-title">Zero Model Training</div>
+      <div class="ent-trust-sub">Your private data never trains third-party AI</div>
+    </div>
+  </div>
+  <div class="ent-trust-item">
+    <div class="ent-trust-icon">☁</div>
+    <div>
+      <div class="ent-trust-title">VPC or On-Premise</div>
+      <div class="ent-trust-sub">Isolated cloud or fully self-hosted deployment</div>
+    </div>
+  </div>
+  <div class="ent-trust-item">
+    <div class="ent-trust-icon">✦</div>
+    <div>
+      <div class="ent-trust-title">Citation-Verified RAG</div>
+      <div class="ent-trust-sub">Every AI answer links to its exact source record</div>
+    </div>
+  </div>
+  <div class="ent-trust-item">
+    <div class="ent-trust-icon">⚡</div>
+    <div>
+      <div class="ent-trust-title">24-Hour Proposal</div>
+      <div class="ent-trust-sub">Direct technical scoping with lead architect</div>
+    </div>
+  </div>
+</div>
 
-      <ul class="enterprise-features-list">
-        <li class="enterprise-feature-item">
-          <span class="enterprise-feature-icon">✔</span>
-          <span><strong>Custom Dashboard Visualizer Interface</strong>: Tailored analytical metrics panels, unique visual layout grids, and brand-aligned dashboard widgets.</span>
-        </li>
-        <li class="enterprise-feature-item">
-          <span class="enterprise-feature-icon">✔</span>
-          <span><strong>Closed Telemetry Ingress Pipelines</strong>: Import private logistics transponders, closed asset geofencing coordinates, and proprietary threat intelligence nodes.</span>
-        </li>
-        <li class="enterprise-feature-item">
-          <span class="enterprise-feature-icon">✔</span>
-          <span><strong>Bespoke OSINT Search Crawlers</strong>: Program thematic scraper systems focusing on proprietary region names, specific actors, or custom minerals indices.</span>
-        </li>
-        <li class="enterprise-feature-item">
-          <span class="enterprise-feature-icon">✔</span>
-          <span><strong>Automated Satellite Radars Tasking</strong>: Programmatically queue target scans and LEO orbital radar telemetry feeds over your dedicated coordinates.</span>
-        </li>
-        <li class="enterprise-feature-item">
-          <span class="enterprise-feature-icon">✔</span>
-          <span><strong>Cryptographically Isolated Nodes</strong>: Run in a completely sealed cloud database network or deployed on-premise for secure local network analyses.</span>
-        </li>
-        <li class="enterprise-feature-item">
-          <span class="enterprise-feature-icon">✔</span>
-          <span><strong>Lead Systems Architect Access</strong>: Direct cryptographically secure support relay channels to Avi P. for custom system refinements.</span>
-        </li>
-      </ul>
+<!-- MAIN CONTAINER -->
+<div class="section-inner" style="padding-top: 0; max-width: 1400px; margin: 0 auto 64px;">
+  <div class="enterprise-grid" style="align-items: start; margin-top: 0;">
+
+    <!-- LEFT: Capabilities + Interactive Build Configurator -->
+    <div>
+      <div class="enterprise-card-hero" style="margin-bottom: 24px;">
+        <span class="plan-badge" style="background:rgba(179,102,255,0.08); border-color:rgba(179,102,255,0.25); color:#d8b4fe;">Bespoke Enterprise Platform</span>
+        <div style="display:flex; align-items:baseline; gap:8px; margin: 16px 0 6px;">
+          <span style="font-size:36px; font-weight:800; color:#fff; font-family:'JetBrains Mono',monospace;">Custom Build</span>
+        </div>
+        <p style="font-size:13px; color:#94a3b8; line-height:1.7; margin-bottom:22px;">Go beyond generic BI tools. Launch a tailored Sovereign workspace uniting your private databases, external APIs, spatial maps, and conversational AI in one place.</p>
+
+        <ul class="enterprise-features-list">
+          <li class="enterprise-feature-item">
+            <span class="enterprise-feature-icon">✔</span>
+            <span><strong>Tailored Dashboards &amp; Visualizers</strong>: Brand-aligned KPI panels, interactive 3D/2D maps, and real-time views built for how your team actually works.</span>
+          </li>
+          <li class="enterprise-feature-item">
+            <span class="enterprise-feature-icon">✔</span>
+            <span><strong>Private RAG AI Copilot</strong>: Ask natural-language questions over internal documents, SQL tables, policies, and live feeds with source citations.</span>
+          </li>
+          <li class="enterprise-feature-item">
+            <span class="enterprise-feature-icon">✔</span>
+            <span><strong>Automated Data Connectors</strong>: Sync internal warehouses, ERP/CRM systems, logistics trackers, and external market or regulatory feeds automatically.</span>
+          </li>
+          <li class="enterprise-feature-item">
+            <span class="enterprise-feature-icon">✔</span>
+            <span><strong>Role-Based Security &amp; Isolation</strong>: SSO authentication, granular permissions, and dedicated VPC or self-hosted on-premise deployment.</span>
+          </li>
+          <li class="enterprise-feature-item">
+            <span class="enterprise-feature-icon">✔</span>
+            <span><strong>Automated Alerts &amp; Executive Briefs</strong>: Real-time Slack/email/webhook alerts and export-ready reports whenever key thresholds shift.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- INTERACTIVE BUILD CONFIGURATOR (syncs directly into the brief form!) -->
+      <div class="scope-builder" id="scope-builder">
+        <div class="scope-title">
+          <span>◈ Interactive Architecture Scoper</span>
+          <span style="font-size:8.5px; color:var(--cyan); font-weight:700;">AUTO-ATTACHES TO YOUR BRIEF</span>
+        </div>
+
+        <div class="scope-step-label">1. Select Preferred Deployment</div>
+        <div class="deploy-toggle" id="deploy-toggle">
+          <button type="button" class="deploy-btn active" data-deploy="Dedicated Cloud (VPC)">
+            Dedicated Cloud (VPC)
+            <span>Fastest launch · Isolated instance</span>
+          </button>
+          <button type="button" class="deploy-btn" data-deploy="Self-Hosted / On-Premise">
+            Self-Hosted / On-Premise
+            <span>Runs inside your own network</span>
+          </button>
+        </div>
+
+        <div class="scope-step-label">2. Choose Your Core Modules</div>
+        <div class="module-chips" id="module-chips">
+          <button type="button" class="module-chip active" data-mod="Custom Dashboard & KPIs">✔ Custom Dashboard</button>
+          <button type="button" class="module-chip active" data-mod="Private RAG AI Copilot">✔ Private RAG AI</button>
+          <button type="button" class="module-chip" data-mod="Interactive 3D/2D Map">+ 3D/2D Map</button>
+          <button type="button" class="module-chip" data-mod="Automated Data Pipelines">+ Data Pipelines</button>
+          <button type="button" class="module-chip" data-mod="Compliance & Alerting">+ Alerts &amp; Compliance</button>
+          <button type="button" class="module-chip" data-mod="SSO & Role Access">+ SSO &amp; Permissions</button>
+        </div>
+
+        <div class="blueprint-summary" id="blueprint-summary">
+          <strong>Blueprint Ready:</strong> Dedicated Cloud (VPC) · 2 modules selected (Custom Dashboard &amp; KPIs, Private RAG AI Copilot) · Typical pilot delivery: <strong>2–4 weeks</strong>.
+        </div>
+      </div>
     </div>
 
-    <!-- RIGHT: Embedded Contact Form -->
-    <div style="border: 1px solid rgba(179,102,255,0.25); border-radius:18px; background:rgba(10,13,24,0.7); backdrop-filter:blur(12px); padding:36px; box-shadow:0 0 32px rgba(179,102,255,0.04);">
-      <div style="font-size:11px; font-weight:800; color:#b366ff; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:14px; border-bottom:1px solid rgba(255, 255, 255, 0.06); padding-bottom:10px;">Contact Sales & Advisories</div>
-      <p style="font-size:13.5px; color:#cbd5e1; line-height:1.7; margin-bottom:24px;">Submit your customized requirements below. Our specialized integrations team will analyze your briefing and compile a bespoke dashboard proposal within 24 hours.</p>
-      
-      <!-- Interactive Simple Contact Form -->
+    <!-- RIGHT: Frictionless Single-Request Proposal Form -->
+    <div class="ent-form-card" style="border: 1px solid rgba(179,102,255,0.28); border-radius:18px; background:rgba(10,13,24,0.78); backdrop-filter:blur(12px); padding:34px; box-shadow:0 0 36px rgba(179,102,255,0.06);">
+      <div style="font-size:11px; font-weight:800; color:#d8b4fe; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:12px; border-bottom:1px solid rgba(255, 255, 255, 0.06); padding-bottom:10px;">Request Your Architecture Proposal</div>
+      <p style="font-size:13px; color:#cbd5e1; line-height:1.68; margin-bottom:22px;">Share a quick summary of your goals and data sources. Your selected blueprint is attached automatically — we respond directly within 24 hours.</p>
+
       <form id="enterprise-form" style="display:block;">
         <div class="form-group">
-          <label class="form-label">Your Name</label>
+          <label class="form-label" for="ent-name">Your Name</label>
           <input type="text" class="form-input" id="ent-name" placeholder="e.g. Sarah Jenkins" required />
         </div>
 
         <div class="form-group">
-          <label class="form-label">Company / Organization</label>
-          <input type="text" class="form-input" id="ent-org" placeholder="e.g. Vanguard Logistics" required />
+          <label class="form-label" for="ent-org">Company / Organization</label>
+          <input type="text" class="form-input" id="ent-org" placeholder="e.g. Acme Operations" required />
         </div>
 
         <div class="form-group">
-          <label class="form-label">Business Email</label>
-          <input type="email" class="form-input" id="ent-email" placeholder="e.g. s.jenkins@vanguard.com" required />
+          <label class="form-label" for="ent-email">Work Email</label>
+          <input type="email" class="form-input" id="ent-email" placeholder="e.g. sarah@company.com" required />
         </div>
 
         <div class="form-group">
-          <label class="form-label">Project Requirements</label>
-          <textarea class="form-textarea" id="ent-requirements" placeholder="Briefly describe your tracking, asset mapping, or visual analytics goals..." required style="height: 110px;"></textarea>
+          <label class="form-label" for="ent-requirements">Project Goals &amp; Data Sources</label>
+          <textarea class="form-textarea" id="ent-requirements" placeholder="Briefly describe what your team wants to track, connect, or ask with AI..." required style="height: 118px;"></textarea>
         </div>
 
-        <button type="submit" class="btn-primary" id="ent-submit-btn" style="width:100%; justify-content:center; padding:16px; font-size:11px; border-color:rgba(179,102,255,0.5); background:rgba(179,102,255,0.10); color:#b366ff; box-shadow:0 0 20px rgba(179,102,255,0.06);">
-          SEND SECURE MESSAGE <span class="arrow">→</span>
+        <button type="submit" class="btn-primary" id="ent-submit-btn" style="width:100%; justify-content:center; padding:16px; font-size:11px; border-color:rgba(179,102,255,0.55); background:rgba(179,102,255,0.14); color:#f3e8ff; box-shadow:0 0 22px rgba(179,102,255,0.09);">
+          REQUEST PROPOSAL <span class="arrow">→</span>
         </button>
       </form>
 
-      <div id="enterprise-status" style="display:none; font-size:11px; font-family:'JetBrains Mono',monospace; color:var(--green); margin-top:16px; text-align:center; letter-spacing:0.06em;">
-        ● LAUNCHING MAIL RELAY CLIENT...
-      </div>
+      <div id="enterprise-status" style="display:none; font-size:11px; font-family:'JetBrains Mono',monospace; color:var(--green); margin-top:16px; padding:14px 16px; border-radius:10px; border:1px solid rgba(0,255,136,0.28); background:rgba(0,255,136,0.06); line-height:1.65;"></div>
     </div>
 
   </div>
 </div>
+
+<!-- 3-STEP DELIVERY PROCESS -->
+<section class="process-wrap">
+  <div class="section-header" style="margin-bottom: 12px;">
+    <div class="section-badge" style="border-color:rgba(179,102,255,0.3); background:rgba(179,102,255,0.06); color:#d8b4fe;">⬡ How We Deliver</div>
+    <h2 style="font-size: clamp(24px, 3.2vw, 38px);">From Scoping to Live Launch.<br/><span style="color:var(--cyan);">In Weeks, Not Months.</span></h2>
+  </div>
+
+  <div class="process-grid">
+    <div class="process-card">
+      <div class="process-step-num">STEP 01 · DAYS 1–3</div>
+      <h3>Discovery &amp; Data Audit</h3>
+      <p>We map your existing databases, documents, APIs, and KPIs — returning a clear architecture blueprint, timeline, and fixed-scope quote.</p>
+    </div>
+    <div class="process-card">
+      <div class="process-step-num">STEP 02 · WEEKS 1–3</div>
+      <h3>Custom Build &amp; RAG AI</h3>
+      <p>We engineer your custom dashboard UI, automated ingestion pipelines, and private citation-locked RAG search over your own data.</p>
+    </div>
+    <div class="process-card">
+      <div class="process-step-num">STEP 03 · LAUNCH</div>
+      <h3>Secure Deploy &amp; Handover</h3>
+      <p>We deploy to your dedicated VPC or on-premise infrastructure with SSO, role permissions, documentation, and ongoing priority support.</p>
+    </div>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
@@ -184,75 +487,100 @@
   </div>
 </footer>
 
-<script src="js/nav.js" defer></script>
+<script src="js/nav.js?v=20261127d" defer></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    // 1. Interactive Architecture Configurator
+    let selectedDeploy = 'Dedicated Cloud (VPC)';
+    const deployBtns = document.querySelectorAll('#deploy-toggle .deploy-btn');
+    const moduleChips = document.querySelectorAll('#module-chips .module-chip');
+    const summaryEl = document.getElementById('blueprint-summary');
+
+    function getSelectedModules() {
+      return Array.from(moduleChips)
+        .filter((c) => c.classList.contains('active'))
+        .map((c) => c.dataset.mod);
+    }
+
+    function updateSummary() {
+      const mods = getSelectedModules();
+      const timeline = selectedDeploy.includes('On-Premise') || mods.length >= 5 ? '3–6 weeks' : '2–4 weeks';
+      const modText = mods.length ? `${mods.length} module${mods.length > 1 ? 's' : ''} (${mods.join(', ')})` : 'Core Platform';
+      if (summaryEl) {
+        summaryEl.innerHTML = `<strong>Blueprint Ready:</strong> ${selectedDeploy} · ${modText} · Typical pilot delivery: <strong>${timeline}</strong>.`;
+      }
+    }
+
+    deployBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        deployBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedDeploy = btn.dataset.deploy || selectedDeploy;
+        updateSummary();
+      });
+    });
+
+    moduleChips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        const isActive = chip.classList.toggle('active');
+        const label = chip.textContent.replace(/^[✔+]\s*/, '');
+        chip.textContent = `${isActive ? '✔' : '+'} ${label}`;
+        updateSummary();
+      });
+    });
+    updateSummary();
+
+    // 2. Clean single-request Enterprise form submission (fixed duplicate POST + removed mailto hijack)
     const form = document.getElementById('enterprise-form');
     const status = document.getElementById('enterprise-status');
     const submitBtn = document.getElementById('ent-submit-btn');
 
     if (form && status && submitBtn) {
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        const name = document.getElementById('ent-name').value;
-        const org = document.getElementById('ent-org').value;
-        const email = document.getElementById('ent-email').value;
-        const requirements = document.getElementById('ent-requirements').value;
+
+        const name = document.getElementById('ent-name').value.trim();
+        const org = document.getElementById('ent-org').value.trim();
+        const email = document.getElementById('ent-email').value.trim();
+        const requirements = document.getElementById('ent-requirements').value.trim();
+        const mods = getSelectedModules();
+        const blueprintBlock = `[Deployment: ${selectedDeploy}]\n[Modules: ${mods.join(', ') || 'Core Platform'}]\n\n`;
 
         submitBtn.disabled = true;
-        submitBtn.textContent = 'PREPARING BRIEF...';
-        status.style.display = 'block';
+        submitBtn.textContent = 'SENDING PROPOSAL REQUEST...';
+        status.style.display = 'none';
 
-        fetch('https://app.sovdash.com/api/suggestions', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            type: 'general',
-            subject: `[ENTERPRISE BRIEF] ${org}`,
-            details: requirements,
-            operatorEmail: email,
-            operatorName: `${name} (${org})`
-          })
-        }).catch(() => {});
-        setTimeout(() => {
-          const subject = `Sovereign Intel Enterprise Consultation - ${org}`;
-          const body = `SOVEREIGN INTEL ENTERPRISE INTAKE BRIEF
---------------------------------------------------
-CONTACT NAME: ${name}
-COMPANY / ORGANIZATION: ${org}
-BUSINESS EMAIL: ${email}
-
-PROJECT SPECIFICATION DETAILS:
-${requirements}
---------------------------------------------------
-[Form submitted via Sovereign Intel Landing System]`;
-          
-          window.location.href = `mailto:workwithavip@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-          
-          fetch('https://app.sovdash.com/api/suggestions', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            type: 'general',
-            subject: `[ENTERPRISE BRIEF] ${org}`,
-            details: requirements,
-            operatorEmail: email,
-            operatorName: `${name} (${org})`
-          })
-        }).catch(() => {});
-        setTimeout(() => {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'SEND SECURE MESSAGE';
-            status.style.display = 'none';
-            form.reset();
-          }, 2000);
-        }, 1200);
+        const refId = 'SOV-' + Math.random().toString(36).slice(2, 7).toUpperCase();
+        try {
+          await fetch('https://app.sovdash.com/api/suggestions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              type: 'general',
+              subject: `[ENTERPRISE BRIEF ${refId}] ${org}`,
+              details: blueprintBlock + requirements,
+              operatorEmail: email,
+              operatorName: `${name} (${org})`
+            })
+          });
+          status.style.color = 'var(--green)';
+          status.style.borderColor = 'rgba(0,255,136,0.28)';
+          status.style.background = 'rgba(0,255,136,0.06)';
+          status.innerHTML = `✓ PROPOSAL REQUEST RECEIVED · REF <strong>${refId}</strong><br/><span style="color:#94a3b8;">Thank you, ${name.replace(/</g, '&lt;')}. Your ${selectedDeploy} blueprint has been logged and we will reply to ${email.replace(/</g, '&lt;')} within 24 hours.</span>`;
+          form.reset();
+        } catch {
+          status.style.color = '#ffd22e';
+          status.style.borderColor = 'rgba(255,210,46,0.35)';
+          status.style.background = 'rgba(255,210,46,0.07)';
+          status.innerHTML = `Direct relay unavailable — email us at <a href="mailto:workwithavip@gmail.com" style="color:var(--cyan);text-decoration:underline;">workwithavip@gmail.com</a> and we'll respond within 24 hours.`;
+        } finally {
+          status.style.display = 'block';
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = 'REQUEST PROPOSAL <span class="arrow">→</span>';
+        }
       });
     }
   });
 </script>
-
 </body>
 </html>
-

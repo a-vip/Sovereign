@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Analyst Tiers & Access Plans | Sovereign Intel</title>
-  
+  <title>Plans &amp; Pricing | Sovereign Intelligence Platform</title>
+  <meta name="description" content="Transparent plans for researchers, analysts, and enterprises — start free on Sovereign Dash, upgrade for unlimited Ask SovDash AI and API access, or commission a custom build." />
+
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300f5ff%22>⬡</text></svg>" />
 
@@ -14,17 +15,17 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css?v=20261127b" />
-  <link rel="stylesheet" href="css/nav.css?v=20261127b" />
-  <link rel="stylesheet" href="css/sections.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/footer.css" />
-  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/base.css?v=20261127d" />
+  <link rel="stylesheet" href="css/nav.css?v=20261127d" />
+  <link rel="stylesheet" href="css/sections.css?v=20261127d" />
+  <link rel="stylesheet" href="css/components.css?v=20261127d" />
+  <link rel="stylesheet" href="css/footer.css?v=20261127d" />
+  <link rel="stylesheet" href="css/animations.css?v=20261127d" />
 
   <style>
     .pricing-header {
       max-width: 1400px;
-      margin: 60px auto 30px;
+      margin: 56px auto 28px;
       padding: 0 24px;
       text-align: center;
       position: relative;
@@ -35,18 +36,19 @@
     .toggle-billing-wrap {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       padding: 6px;
       border-radius: 999px;
-      border: 1px solid rgba(0, 245, 255, 0.2);
-      background: rgba(10, 13, 24, 0.6);
-      margin: 20px auto 40px;
+      border: 1px solid rgba(0, 245, 255, 0.22);
+      background: rgba(10, 13, 24, 0.72);
+      margin: 24px auto 34px;
       position: relative;
       z-index: 10;
     }
     .toggle-billing-btn {
       padding: 8px 18px;
       border-radius: 999px;
+      font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       font-weight: 800;
       letter-spacing: 0.12em;
@@ -55,28 +57,30 @@
       color: #64748b;
       border: none;
       background: transparent;
-      transition: all 0.25s;
+      transition: all 0.22s;
       outline: none;
     }
     .toggle-billing-btn.active {
-      background: rgba(0, 245, 255, 0.1);
+      background: rgba(0, 245, 255, 0.12);
       color: var(--cyan);
-      box-shadow: 0 0 14px rgba(0, 245, 255, 0.15);
+      box-shadow: 0 0 14px rgba(0, 245, 255, 0.16);
     }
     .annually-discount {
-      font-size: 8px;
+      font-size: 8.5px;
+      font-weight: 800;
       color: var(--green);
-      border: 1px solid rgba(0, 255, 136, 0.25);
+      border: 1px solid rgba(0, 255, 136, 0.28);
       background: rgba(0, 255, 136, 0.08);
-      padding: 2px 8px;
+      padding: 3px 9px;
       border-radius: 999px;
       letter-spacing: 0.08em;
+      margin-right: 4px;
     }
 
     /* Tiers grid */
     .pricing-grid {
-      max-width: 1400px;
-      margin: 0 auto 80px;
+      max-width: 1320px;
+      margin: 0 auto 72px;
       padding: 0 24px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -85,114 +89,138 @@
       z-index: 10;
       align-items: stretch;
     }
-    
     @media (max-width: 960px) {
       .pricing-grid {
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 28px;
       }
     }
 
     .pricing-card {
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 20px;
-      background: rgba(10, 13, 24, 0.6);
+      background: rgba(10, 13, 24, 0.68);
       backdrop-filter: blur(12px);
-      padding: 40px 32px;
+      padding: 36px 30px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
-      transition: border-color 0.3s, box-shadow 0.3s, transform 0.25s;
-      box-shadow: 0 0 32px rgba(0, 0, 0, 0.2);
+      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+      box-shadow: 0 0 32px rgba(0, 0, 0, 0.24);
     }
     .pricing-card:hover {
-      border-color: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.16);
       transform: translateY(-2px);
     }
-    
+
     .pricing-card.premium {
-      border-color: rgba(0, 245, 255, 0.3);
-      box-shadow: 0 0 48px rgba(0, 245, 255, 0.08);
-      background: rgba(10, 15, 28, 0.7);
+      border-color: rgba(0, 245, 255, 0.38);
+      box-shadow: 0 0 52px rgba(0, 245, 255, 0.10);
+      background: linear-gradient(160deg, rgba(10, 18, 34, 0.85) 0%, rgba(10, 13, 24, 0.78) 100%);
     }
     .pricing-card.premium:hover {
       border-color: var(--cyan);
-      box-shadow: 0 0 48px rgba(0, 245, 255, 0.16);
+      box-shadow: 0 0 56px rgba(0, 245, 255, 0.18);
     }
+    .pricing-card.enterprise-tier {
+      border-color: rgba(179, 102, 255, 0.30);
+      background: radial-gradient(circle at 100% 0%, rgba(179, 102, 255, 0.09) 0%, rgba(10, 13, 24, 0.78) 65%);
+    }
+    .pricing-card.enterprise-tier:hover {
+      border-color: rgba(179, 102, 255, 0.55);
+      box-shadow: 0 0 44px rgba(179, 102, 255, 0.12);
+    }
+
     .premium-tag {
       position: absolute;
       top: -12px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 8px;
+      font-size: 8.5px;
       font-weight: 800;
       color: #03050b;
       background: var(--cyan);
-      box-shadow: 0 0 14px var(--cyan);
+      box-shadow: 0 0 14px rgba(0, 245, 255, 0.6);
       padding: 4px 14px;
       border-radius: 999px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .card-plan-header {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      padding-bottom: 24px;
-      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      padding-bottom: 22px;
+      margin-bottom: 22px;
     }
     .plan-badge {
       display: inline-block;
-      font-size: 8px;
+      font-size: 8.5px;
       font-weight: 800;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       padding: 4px 10px;
       border-radius: 6px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       color: #94a3b8;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .premium .plan-badge {
-      background: rgba(0, 245, 255, 0.08);
-      border-color: rgba(0, 245, 255, 0.25);
+      background: rgba(0, 245, 255, 0.09);
+      border-color: rgba(0, 245, 255, 0.28);
       color: var(--cyan);
     }
-    
+    .enterprise-tier .plan-badge {
+      background: rgba(179, 102, 255, 0.10);
+      border-color: rgba(179, 102, 255, 0.30);
+      color: #d8b4fe;
+    }
+
     .plan-price-wrap {
       display: flex;
       align-items: flex-end;
-      gap: 6px;
+      gap: 8px;
+      flex-wrap: wrap;
     }
     .plan-price {
-      font-size: 42px;
+      font-size: 40px;
       font-weight: 800;
       color: #fff;
       line-height: 1;
     }
     .plan-period {
       font-size: 10px;
-      color: #475569;
+      color: #64748b;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
+    .savings-note {
+      display: none;
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--green);
+      margin-top: 8px;
+      letter-spacing: 0.08em;
+    }
+    .savings-note.visible { display: block; }
 
     .plan-desc {
       font-size: 12px;
-      color: #64748b;
-      line-height: 1.6;
-      margin-top: 14px;
+      color: #94a3b8;
+      line-height: 1.62;
+      margin-top: 12px;
     }
 
-    /* Benefits list */
+    /* Benefits list + Baymard-backed inline feature tooltips */
     .benefits-list {
       list-style: none;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       flex-grow: 1;
     }
     .benefit-item {
@@ -201,59 +229,175 @@
       gap: 10px;
       font-size: 12px;
       color: #cbd5e1;
-      line-height: 1.4;
+      line-height: 1.48;
+      position: relative;
     }
     .benefit-check {
       font-size: 11px;
       color: var(--cyan);
       font-weight: 800;
-      line-height: 1.2;
+      line-height: 1.3;
+      flex-shrink: 0;
     }
-    .premium .benefit-check {
-      color: var(--cyan);
-      text-shadow: 0 0 6px var(--cyan);
-    }
-    
-    .benefit-disabled {
-      color: #475569;
-    }
-    .benefit-disabled .benefit-check {
-      color: #334155;
-    }
+    .enterprise-tier .benefit-check { color: #b366ff; }
+    .benefit-disabled { color: #475569; }
+    .benefit-disabled .benefit-check { color: #334155; }
 
-    /* Simulated Access Dialog overlay */
-    .access-dialog-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(3, 5, 11, 0.85);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
-      display: none;
+    .info-tip {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-    }
-    .access-dialog-content {
-      max-width: 540px;
-      width: 100%;
-      background: rgba(10, 13, 24, 0.95);
-      border: 1px solid rgba(0, 245, 255, 0.3);
-      border-radius: 20px;
-      box-shadow: 0 0 60px rgba(0, 245, 255, 0.15);
-      padding: 32px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: 1px solid rgba(148, 163, 184, 0.38);
+      color: #94a3b8;
+      font-size: 9px;
+      font-weight: 800;
+      margin-left: 5px;
+      cursor: help;
       position: relative;
+      vertical-align: middle;
+      flex-shrink: 0;
     }
-    .access-dialog-log {
-      font-size: 11px;
-      line-height: 2;
+    .info-tip:hover, .info-tip:focus {
+      border-color: var(--cyan);
       color: var(--cyan);
-      background: #03050b;
-      border: 1px solid rgba(0, 245, 255, 0.12);
-      border-radius: 12px;
-      padding: 20px;
+      outline: none;
+    }
+    .info-tip-pop {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: 220px;
+      padding: 9px 11px;
+      border-radius: 8px;
+      background: rgba(5, 9, 20, 0.98);
+      border: 1px solid rgba(0, 245, 255, 0.35);
+      color: #e2e8f0;
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 1.5;
+      z-index: 40;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.65);
+      pointer-events: none;
+      text-align: left;
+    }
+    .info-tip:hover .info-tip-pop,
+    .info-tip:focus .info-tip-pop {
+      display: block;
+    }
+
+    /* Comparison Matrix (Baymard scannability standard) */
+    .matrix-section {
+      max-width: 1320px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+      position: relative;
+      z-index: 10;
+    }
+    .matrix-scroll {
+      overflow-x: auto;
+      border-radius: 18px;
+      border: 1px solid rgba(0, 245, 255, 0.15);
+      background: rgba(10, 13, 24, 0.68);
+      backdrop-filter: blur(12px);
+    }
+    .matrix-table {
+      width: 100%;
+      min-width: 640px;
+      border-collapse: collapse;
+      font-size: 11.5px;
+    }
+    .matrix-table th, .matrix-table td {
+      padding: 15px 18px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .matrix-table thead th {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      background: rgba(6, 9, 18, 0.92);
+    }
+    .matrix-table th:not(:first-child),
+    .matrix-table td:not(:first-child) {
+      text-align: center;
+      width: 21%;
+    }
+    .matrix-table tbody tr:hover {
+      background: rgba(0, 245, 255, 0.03);
+    }
+    .matrix-table td:first-child {
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+    .m-yes { color: var(--cyan); font-weight: 800; }
+    .m-ent { color: #d8b4fe; font-weight: 700; }
+    .m-no  { color: #334155; }
+
+    /* FAQ Accordion (CXL objection handling) */
+    .faq-section {
+      max-width: 920px;
+      margin: 0 auto 92px;
+      padding: 0 24px;
+      position: relative;
+      z-index: 10;
+    }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .faq-item {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      background: rgba(10, 13, 24, 0.65);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .faq-item.open {
+      border-color: rgba(0, 245, 255, 0.32);
+    }
+    .faq-q {
+      width: 100%;
+      padding: 18px 22px;
+      background: transparent;
+      border: none;
+      color: #f8fafc;
       font-family: 'JetBrains Mono', monospace;
-      margin-bottom: 24px;
-      min-height: 200px;
+      font-size: 12.5px;
+      font-weight: 700;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .faq-icon {
+      color: var(--cyan);
+      font-size: 16px;
+      flex-shrink: 0;
+      transition: transform 0.22s;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+    .faq-a {
+      display: none;
+      padding: 0 22px 18px;
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.72;
+    }
+    .faq-item.open .faq-a {
+      display: block;
     }
   </style>
 </head>
@@ -263,13 +407,15 @@
 
 <!-- TICKER -->
 <div class="ticker-bar">
-  <div class="ticker-label">● LIVE</div>
+  <div class="ticker-label">● PLANS</div>
   <div class="ticker-track">
     <span class="ticker-inner">
-      PRICING PORTAL ACTIVE &nbsp;•&nbsp;
-      SELECT ANALYST PROTOCOL &nbsp;•&nbsp;
-      TACTICAL SUBSCRIPTIONS SECURE &nbsp;•&nbsp;
-      UPGRADES PROCESSED INSTANTLY &nbsp;•&nbsp;
+      START FREE ON SOVEREIGN DASH &nbsp;•&nbsp;
+      UPGRADE FOR UNLIMITED ASK SOVDASH AI &amp; API ACCESS &nbsp;•&nbsp;
+      SAVE 20% WITH ANNUAL BILLING &nbsp;•&nbsp;
+      BESPOKE ENTERPRISE BUILDS AVAILABLE &nbsp;•&nbsp;
+      START FREE ON SOVEREIGN DASH &nbsp;•&nbsp;
+      UPGRADE FOR UNLIMITED ASK SOVDASH AI &amp; API ACCESS &nbsp;•&nbsp;
     </span>
   </div>
 </div>
@@ -313,154 +459,266 @@
 
 <!-- PRICING HEADER -->
 <header class="pricing-header">
-  <div class="section-badge">⬡ SECURE LICENSING</div>
-  <h2 style="font-size: clamp(32px, 5vw, 54px);">Analyst Access Tiers</h2>
-  <p class="section-desc" style="margin: 12px auto 0;">Deploy Sovereign Intel dashboard queries inside your security team.</p>
+  <div class="section-badge">⬡ Simple, Transparent Plans</div>
+  <h2 style="font-size: clamp(32px, 5vw, 54px);">Choose Your Plan.</h2>
+  <p class="section-desc" style="margin: 12px auto 0; max-width: 580px; color: #94a3b8;">Explore live intelligence for free, unlock unlimited Ask SovDash AI and API data with Pro, or commission a custom platform for your organization.</p>
 
   <!-- Billing selector toggle -->
-  <div class="toggle-billing-wrap">
-    <button class="toggle-billing-btn active" id="btn-monthly">Monthly</button>
-    <button class="toggle-billing-btn" id="btn-yearly">Yearly</button>
+  <div class="toggle-billing-wrap" role="group" aria-label="Billing interval">
+    <button type="button" class="toggle-billing-btn active" id="btn-monthly">Monthly</button>
+    <button type="button" class="toggle-billing-btn" id="btn-yearly">Yearly</button>
     <span class="annually-discount">Save 20%</span>
   </div>
 </header>
 
-<!-- MAIN CONTAINER -->
+<!-- 3 PRICING TIERS -->
 <div class="pricing-grid">
-  
-  <!-- Tier 1: Free -->
+
+  <!-- Tier 1: Explorer (Free) -->
   <div class="pricing-card">
     <div class="card-plan-header">
-      <div class="plan-badge">Standard OSINT Feed</div>
+      <div class="plan-badge">Explorer</div>
       <div class="plan-price-wrap">
         <span class="plan-price">$0</span>
         <span class="plan-period">/ forever</span>
       </div>
-      <div class="plan-desc">Basic real-time crisis and threat monitoring for local observers and researchers.</div>
+      <div class="plan-desc">Full open access to explore Sovereign Dash's live map, global Observatory, and core feeds.</div>
     </div>
 
     <ul class="benefits-list">
       <li class="benefit-item">
         <span class="benefit-check">✔</span>
-        <span>Basic real-time feed preview (landing page)</span>
+        <span>Interactive 3D Globe &amp; 2D Equal Earth map</span>
       </li>
       <li class="benefit-item">
         <span class="benefit-check">✔</span>
-        <span>S1 - S3 severity levels (Low to Moderate)</span>
+        <span>Verified live feeds across 190+ regions</span>
       </li>
       <li class="benefit-item">
         <span class="benefit-check">✔</span>
-        <span>Basic map layer previews</span>
+        <span>60+ jurisdiction AI Policy Observatory &amp; Whitepaper</span>
+      </li>
+      <li class="benefit-item">
+        <span class="benefit-check">✔</span>
+        <span>Starter <strong>Ask SovDash AI</strong> access (free account)</span>
       </li>
       <li class="benefit-item benefit-disabled">
         <span class="benefit-check">✕</span>
-        <span>Advanced console filtering features</span>
+        <span>Automated email &amp; webhook watchlists</span>
       </li>
       <li class="benefit-item benefit-disabled">
         <span class="benefit-check">✕</span>
-        <span>Commercial satellite orbits tracking</span>
-      </li>
-      <li class="benefit-item benefit-disabled">
-        <span class="benefit-check">✕</span>
-        <span>Bulk database exports (JSON)</span>
+        <span>REST &amp; GeoJSON API + bulk CSV/JSON exports</span>
       </li>
     </ul>
 
-    <a href="https://app.sovdash.com/" target="_blank" class="btn-secondary" style="width:100%; text-align:center; justify-content:center; padding:14px; font-size:10px; border-radius:12px;">
-      ACCESS BASIC FEED
+    <a href="https://app.sovdash.com/" target="_blank" class="btn-secondary" style="width:100%; text-align:center; justify-content:center; padding:14px; font-size:10.5px; border-radius:12px;">
+      START FREE ON SOVDASH →
     </a>
   </div>
 
-  <!-- Tier 2: Pro (Premium) -->
+  <!-- Tier 2: Pro (Popular) -->
   <div class="pricing-card premium">
-    <div class="premium-tag">POPULAR</div>
+    <div class="premium-tag">MOST POPULAR</div>
     <div class="card-plan-header">
-      <div class="plan-badge">Professional Threat Intel</div>
+      <div class="plan-badge">Pro Analyst</div>
       <div class="plan-price-wrap">
         <span class="plan-price" id="pro-price">$29</span>
         <span class="plan-period" id="pro-period">/ month</span>
       </div>
-      <div class="plan-desc">Advanced threat tracking and OSINT console queries for security analysts, researchers, and risk managers.</div>
+      <div class="savings-note" id="pro-savings">✓ Saving $72/year ($276 billed annually)</div>
+      <div class="plan-desc">For analysts, researchers, consultants, and teams who need deeper AI answers, alerts, and clean data exports.</div>
     </div>
 
     <ul class="benefits-list">
       <li class="benefit-item">
         <span class="benefit-check">✔</span>
-        <span><strong>Unlimited signals.html console queries</strong></span>
+        <span>
+          <strong>Unlimited Ask SovDash AI</strong> citation-verified queries
+          <span class="info-tip" tabindex="0" aria-label="About Ask SovDash AI">?<span class="info-tip-pop">Natural-language RAG search across live feeds, 60+ legal profiles, and 6,000+ facilities — every claim backed by linked sources.</span></span>
+        </span>
       </li>
       <li class="benefit-item">
         <span class="benefit-check">✔</span>
-        <span>Full S1 - S5 severity levels (including Critical events)</span>
+        <span>Full S1–S5 critical signals, custom filters &amp; saved watchlists</span>
       </li>
       <li class="benefit-item">
         <span class="benefit-check">✔</span>
-        <span>Satellite orbits data and coordinates tracking</span>
+        <span>
+          REST &amp; GeoJSON API access + CSV/JSON exports
+          <span class="info-tip" tabindex="0" aria-label="About API and exports">?<span class="info-tip-pop">Pull structured event streams, legal comparisons, and data center registries straight into Excel, BI tools, or your own apps.</span></span>
+        </span>
       </li>
       <li class="benefit-item">
         <span class="benefit-check">✔</span>
-        <span>Desktop and email signal notifications</span>
+        <span>Real-time email &amp; webhook alerts on priority regions</span>
       </li>
       <li class="benefit-item">
         <span class="benefit-check">✔</span>
-        <span>Payload data exports (JSON format)</span>
+        <span>Full Legal Diff Matrix &amp; Compute Atlas datasets</span>
       </li>
       <li class="benefit-item benefit-disabled">
         <span class="benefit-check">✕</span>
-        <span>Custom satellite imaging passes</span>
+        <span>Private RAG AI over internal company databases</span>
       </li>
     </ul>
 
-    <button id="btn-acquire-pro" class="btn-primary" style="width:100%; text-align:center; justify-content:center; padding:14px; font-size:10px; border-radius:12px;">
-      SUBSCRIBE NOW <span class="arrow">→</span>
+    <button id="btn-acquire-pro" class="btn-primary" style="width:100%; text-align:center; justify-content:center; padding:14px; font-size:10.5px; border-radius:12px;">
+      UPGRADE TO PRO <span class="arrow">→</span>
     </button>
   </div>
 
-  <!-- Tier 3: Enterprise -->
-  <div class="pricing-card">
+  <!-- Tier 3: Enterprise (Custom — consistent across index.html & enterprise.html) -->
+  <div class="pricing-card enterprise-tier">
     <div class="card-plan-header">
-      <div class="plan-badge">Bespoke Enterprise</div>
+      <div class="plan-badge">Enterprise Custom</div>
       <div class="plan-price-wrap">
-        <span class="plan-price" id="ent-price">$149</span>
-        <span class="plan-period" id="ent-period">/ month</span>
+        <span class="plan-price">Custom</span>
+        <span class="plan-period">/ tailored build</span>
       </div>
-      <div class="plan-desc">Custom geofenced dashboard software and dedicated visualization servers.</div>
+      <div class="plan-desc">A dedicated dashboard and private RAG AI system engineered around your organization's own data and workflows.</div>
     </div>
 
     <ul class="benefits-list">
       <li class="benefit-item">
         <span class="benefit-check">✔</span>
-        <span>Multi-seat dashboard licensing</span>
+        <span><strong>Custom-built dashboard</strong>, KPI panels &amp; interactive maps</span>
       </li>
       <li class="benefit-item">
         <span class="benefit-check">✔</span>
-        <span><strong>Custom data viz & asset mapping setups</strong></span>
+        <span>
+          <strong>Private RAG AI</strong> over your internal databases &amp; docs
+          <span class="info-tip" tabindex="0" aria-label="About Private RAG AI">?<span class="info-tip-pop">Dedicated AI copilot indexed strictly on your private files, databases, and feeds — zero third-party model training.</span></span>
+        </span>
       </li>
       <li class="benefit-item">
         <span class="benefit-check">✔</span>
-        <span>Unlimited system API requests</span>
+        <span>Automated connectors for internal APIs, ERP &amp; external feeds</span>
       </li>
       <li class="benefit-item">
         <span class="benefit-check">✔</span>
-        <span>Custom OSINT keyword threat crawlers</span>
+        <span>
+          Dedicated VPC cloud or on-premise deployment
+          <span class="info-tip" tabindex="0" aria-label="About Isolated Deployment">?<span class="info-tip-pop">Host inside a sealed private cloud environment or directly inside your corporate network with SSO &amp; role permissions.</span></span>
+        </span>
       </li>
       <li class="benefit-item">
         <span class="benefit-check">✔</span>
-        <span>Bulk visualizer data exports</span>
+        <span>Multi-seat licensing, SSO &amp; executive reporting</span>
       </li>
       <li class="benefit-item">
         <span class="benefit-check">✔</span>
-        <span>24/7 dedicated support priority channels</span>
+        <span>Direct architecture &amp; engineering support</span>
       </li>
     </ul>
 
-    <a href="enterprise.html" class="btn-secondary" style="width:100%; text-align:center; justify-content:center; padding:14px; font-size:10px; border-radius:12px; border-color:rgba(0,245,255,0.18);">
-      CONTACT ADVISORY TEAM
+    <a href="enterprise.html" class="btn-secondary" style="width:100%; text-align:center; justify-content:center; padding:14px; font-size:10.5px; border-radius:12px; border-color:rgba(179,102,255,0.45); color:#e9d5ff; background:rgba(179,102,255,0.12);">
+      CONFIGURE ENTERPRISE BUILD →
     </a>
   </div>
 
 </div>
 
+<!-- SCANNABLE SIDE-BY-SIDE COMPARISON MATRIX -->
+<section class="matrix-section">
+  <div class="section-header" style="margin-bottom: 24px;">
+    <div class="section-badge">⬡ Side-by-Side Comparison</div>
+    <h2 style="font-size: clamp(22px, 3vw, 34px);">Compare Every Capability.</h2>
+  </div>
 
+  <div class="matrix-scroll">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Explorer ($0)</th>
+          <th style="color:var(--cyan);">Pro ($29/mo)</th>
+          <th style="color:#d8b4fe;">Enterprise (Custom)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Interactive 3D Globe &amp; 2D Equal Earth Map</td>
+          <td class="m-yes">✔</td>
+          <td class="m-yes">✔</td>
+          <td class="m-ent">✔ Custom Branded</td>
+        </tr>
+        <tr>
+          <td>Live Global Signals &amp; 60+ Jurisdiction Observatory</td>
+          <td class="m-yes">✔</td>
+          <td class="m-yes">✔ Full S1–S5</td>
+          <td class="m-ent">✔ + Private Feeds</td>
+        </tr>
+        <tr>
+          <td>Ask SovDash AI (Citation-Verified RAG)</td>
+          <td>Starter Quota</td>
+          <td class="m-yes">Unlimited</td>
+          <td class="m-ent">Private Over Your DB</td>
+        </tr>
+        <tr>
+          <td>Custom Watchlists, Email &amp; Webhook Alerts</td>
+          <td class="m-no">—</td>
+          <td class="m-yes">✔</td>
+          <td class="m-ent">✔ Custom Workflows</td>
+        </tr>
+        <tr>
+          <td>REST / GeoJSON API &amp; CSV/JSON Data Exports</td>
+          <td class="m-no">—</td>
+          <td class="m-yes">✔</td>
+          <td class="m-ent">✔ Unlimited</td>
+        </tr>
+        <tr>
+          <td>Dedicated VPC / Self-Hosted On-Premise &amp; SSO</td>
+          <td class="m-no">—</td>
+          <td class="m-no">—</td>
+          <td class="m-ent">✔ Included</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FAQ ACCORDION (CXL OBJECTION HANDLING) -->
+<section class="faq-section">
+  <div class="section-header" style="margin-bottom: 8px;">
+    <div class="section-badge">⬡ Common Questions</div>
+    <h2 style="font-size: clamp(22px, 3vw, 34px);">Frequently Asked Questions.</h2>
+  </div>
+
+  <div class="faq-list">
+    <div class="faq-item open">
+      <button type="button" class="faq-q" aria-expanded="true">
+        <span>Can I try Sovereign Dash before upgrading?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">Yes. Explorer is free forever — you can launch <a href="https://app.sovdash.com/" target="_blank" style="color:var(--cyan);">app.sovdash.com</a> right now with no credit card required to explore the 3D globe, live feeds, Observatory, and starter Ask SovDash AI queries.</div>
+    </div>
+
+    <div class="faq-item">
+      <button type="button" class="faq-q" aria-expanded="false">
+        <span>How does Private RAG AI protect our company's internal data?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">Enterprise builds deploy an isolated vector index inside your dedicated cloud VPC or on-premise infrastructure. Your documents and databases are never shared across tenants and are never used to train external AI models.</div>
+    </div>
+
+    <div class="faq-item">
+      <button type="button" class="faq-q" aria-expanded="false">
+        <span>How long does it take to build a custom Enterprise dashboard?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">Most custom dashboards and Private RAG AI pilots launch within 2–4 weeks from scoping, depending on the number of internal data connectors and security/on-premise deployment requirements.</div>
+    </div>
+
+    <div class="faq-item">
+      <button type="button" class="faq-q" aria-expanded="false">
+        <span>Can I switch between Monthly and Yearly billing, or cancel anytime?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">Yes. Pro subscriptions have zero lock-in — you can upgrade, switch billing intervals, or cancel anytime without penalty. Annual billing saves 20% ($72/year).</div>
+    </div>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
@@ -474,22 +732,15 @@
   </div>
 </footer>
 
-<script src="js/nav.js" defer></script>
+<script src="js/nav.js?v=20261127d" defer></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const btnMonthly = document.getElementById('btn-monthly');
     const btnYearly = document.getElementById('btn-yearly');
-    
     const proPrice = document.getElementById('pro-price');
     const proPeriod = document.getElementById('pro-period');
-    const entPrice = document.getElementById('ent-price');
-    const entPeriod = document.getElementById('ent-period');
-
+    const proSavings = document.getElementById('pro-savings');
     const proBtn = document.getElementById('btn-acquire-pro');
-    const modal = document.getElementById('access-modal');
-    const modalClose = document.getElementById('modal-close');
-    const modalLog = document.getElementById('modal-log');
-    const modalSubmit = document.getElementById('modal-submit-btn');
 
     let currentPeriod = 'monthly';
 
@@ -498,27 +749,21 @@
       if (period === 'monthly') {
         btnMonthly.classList.add('active');
         btnYearly.classList.remove('active');
-        
         proPrice.textContent = '$29';
         proPeriod.textContent = '/ month';
-        entPrice.textContent = '$149';
-        entPeriod.textContent = '/ month';
+        if (proSavings) proSavings.classList.remove('visible');
       } else {
         btnMonthly.classList.remove('active');
         btnYearly.classList.add('active');
-        
         proPrice.textContent = '$23';
-        proPeriod.textContent = '/ mo billed annually';
-        entPrice.textContent = '$119';
-        entPeriod.textContent = '/ mo billed annually';
+        proPeriod.textContent = '/ mo billed yearly';
+        if (proSavings) proSavings.classList.add('visible');
       }
     }
 
     btnMonthly.addEventListener('click', () => setBilling('monthly'));
     btnYearly.addEventListener('click', () => setBilling('yearly'));
 
-    // ─── CHECKOUT ROUTING SYSTEM ───
-    // Redirects to a secure form-based checkout page inside the platform.
     const CHECKOUT_LINKS = {
       monthly: 'checkout.html?period=monthly',
       yearly: 'checkout.html?period=yearly'
@@ -529,8 +774,23 @@
         window.location.href = CHECKOUT_LINKS[currentPeriod];
       });
     }
+
+    // FAQ Accordion toggle
+    document.querySelectorAll('.faq-item .faq-q').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach((el) => {
+          el.classList.remove('open');
+          el.querySelector('.faq-q')?.setAttribute('aria-expanded', 'false');
+        });
+        if (!wasOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
   });
 </script>
 </body>
 </html>
-
