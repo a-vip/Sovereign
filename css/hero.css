@@ -143,75 +143,135 @@ h1 {
 .tag-label { font-weight: 800; display: block; }
 
 .hp-stage {
-  position: relative; height: 320px; background: #03050b; border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden; border: 1px solid rgba(0,245,255,0.07); margin: 0;
-  touch-action: none;
+  position: relative;
+  height: 360px;
+  background: radial-gradient(circle at 50% 48%, rgba(0, 245, 255, 0.09) 0%, #03060f 68%, #02040a 100%);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(0, 245, 255, 0.12);
+  margin: 0;
+  touch-action: pan-y; /* Never block vertical touch scrolling on mobile/tablet */
 }
-.hp-sphere {
-  position: absolute; width: 240px; height: 240px; border-radius: 50%;
-  background: radial-gradient(circle at 36% 30%, rgba(255,255,255,0.18), rgba(0,245,255,0.12) 18%, rgba(8,20,35,0.96) 54%, #02050c 100%);
-  border: 1px solid rgba(0,245,255,0.28);
-  box-shadow: 0 0 70px rgba(0,245,255,0.18), inset 0 0 40px rgba(0,0,0,0.5);
-  animation: hpShimmer 7s ease-in-out infinite alternate;
-  z-index: 2;
-}
-.hp-radar {
-  position: absolute; width: 240px; height: 240px; border-radius: 50%;
-  background: conic-gradient(from 0deg, rgba(0,245,255,0.2), transparent 50deg, transparent 360deg);
-  animation: hpRadarSpin 3.5s linear infinite;
-  z-index: 3; mix-blend-mode: screen; pointer-events: none;
-}
-.hp-halo {
-  position: absolute; width: 240px; height: 240px; border-radius: 50%;
-  border: 1px solid rgba(0,245,255,0.4);
-  animation: hpHalo 3.5s ease-out infinite; pointer-events: none;
-}
-.hp-orbit { position: absolute; border-radius: 50%; border: 1px solid rgba(0,245,255,0.2); pointer-events: none; }
-.hp-o1 { width: 360px; height: 100px; animation: hpOrb1 11s linear infinite; }
-.hp-o2 { width: 320px; height: 80px; border-color: rgba(255,107,0,0.25); animation: hpOrb2 7s linear infinite; }
-.hp-o3 { width: 400px; height: 60px; border-color: rgba(179,102,255,0.2); animation: hpOrb3 16s linear infinite reverse; }
-.hp-sat { position: absolute; width: 8px; height: 8px; border-radius: 50%; }
 
-/* Dynamic marker */
-.hp-marker {
-  position: absolute;
-  animation: hpMarkerIn 0.35s ease both;
+.hp-globe-canvas {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: block;
   pointer-events: none;
 }
-.hp-marker-dot {
-  width: 10px; height: 10px; border-radius: 50%;
-  animation: hpDotPulse 1s ease-in-out infinite;
-}
-.hp-marker-label {
-  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-  font-size: 7px; font-weight: 800; letter-spacing: 0.1em;
-  padding: 3px 7px; border-radius: 4px; white-space: nowrap;
-  backdrop-filter: blur(6px);
+
+/* Foreground signal telemetry cards — strictly IN FRONT of the globe (z-index: 20) */
+.hp-signal-hud {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px;
 }
 
-/* Toast notification */
-.hp-toast-inner {
-  padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,34,68,0.4);
-  background: rgba(8,8,16,0.92); backdrop-filter: blur(12px);
-  animation: hpToastIn 0.3s ease both;
+.hp-hud-row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.hp-sector-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(5, 9, 20, 0.86);
+  border: 1px solid rgba(0, 245, 255, 0.25);
+  color: #cbd5e1;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.hp-live-callout {
+  align-self: flex-start;
+  max-width: 295px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  background: rgba(5, 9, 20, 0.90);
+  border: 1px solid rgba(0, 245, 255, 0.26);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55), 0 0 22px rgba(0, 245, 255, 0.08);
+  transition: opacity 0.28s ease, transform 0.28s ease, border-color 0.28s ease;
+}
+
+.hp-live-callout.swapping {
+  opacity: 0;
+  transform: translate3d(0, 6px, 0);
+}
+
+.hp-callout-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.hp-callout-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hp-callout-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.hp-callout-sev {
+  font-size: 7.5px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.1em;
+}
+
+.hp-callout-title {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #f8fafc;
+  line-height: 1.45;
+  margin-bottom: 4px;
+}
+
+.hp-callout-meta {
+  font-size: 8.5px;
+  color: #94a3b8;
+  letter-spacing: 0.06em;
 }
 
 /* Responsive Overrides for Globe */
 @media (max-width: 768px) {
   .hp-stage {
-    height: 220px;
+    height: 310px;
   }
-  .hp-sphere, .hp-radar, .hp-halo {
-    width: 170px;
-    height: 170px;
+  .hp-live-callout {
+    max-width: 100%;
+    padding: 9px 12px;
   }
-  .hp-o1 { width: 260px; height: 75px; }
-  .hp-o2 { width: 230px; height: 60px; }
-  .hp-o3 { width: 290px; height: 45px; }
-}
-@media (max-width: 400px) {
-  .hp-orbit {
-    display: none !important;
+  .hp-callout-title {
+    font-size: 9.5px;
   }
 }
