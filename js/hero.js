@@ -1,69 +1,67 @@
-/* ── HERO SEQUENCE (fires after boot) ── */
+/* ── HERO SEQUENCE (LCP-SAFE, IDEMPOTENT, VIEWPORT-AWARE) ── */
+let heroStarted = false;
+let globeStarted = false;
+
 function startHero(){
-  // 1. Show badge
+  if (heroStarted) return;
+  heroStarted = true;
+
+  // 1. Ensure headline & badge are immediately visible (semantic HTML already painted for fast LCP)
   const badge = document.getElementById('hbadge');
   if (badge) badge.style.opacity = '1';
 
-  // 2. Typewriter on h1
-  const lines = [
-    { text: 'TRACK CONSEQUENTIAL SHIFTS.', cls: '', color: '#ffffff' },
-    { text: 'IN REAL TIME.',         cls: 'glitch-word', color: 'var(--cyan)' },
-  ];
-  const txtEl = document.getElementById('hero-txt');
   const curEl = document.getElementById('hero-cur');
-  
-  if (txtEl) {
-    let lineI = 0, charI = 0;
-    let currentSpan = null;
+  if (curEl) {
+    setTimeout(() => {
+      curEl.style.animation = 'none';
+      curEl.style.opacity = '0';
+    }, 900);
+  }
 
-    function typeNext(){
-      if(lineI >= lines.length){
-        if (curEl) {
-          curEl.style.animation = 'none'; 
-          curEl.style.opacity = '0';
-        }
-        revealRest();
-        return;
-      }
-      if(charI === 0){
-        if(lineI > 0){ const br = document.createElement('br'); txtEl.appendChild(br); }
-        currentSpan = document.createElement('span');
-        if(lines[lineI].color){ currentSpan.style.color = lines[lineI].color; }
-        txtEl.appendChild(currentSpan);
-      }
-      const line = lines[lineI].text;
-      currentSpan.textContent = line.slice(0, charI + 1);
-      charI++;
-      if(charI >= line.length){ lineI++; charI = 0; setTimeout(typeNext, lineI < lines.length ? 180 : 60); }
-      else { setTimeout(typeNext, charI===1 && lineI>0 ? 160 : 42); }
+  // 2. Smoothly reveal hero body, CTAs & stats without blocking text readability
+  ['hero-p', 'hero-act', 'hero-sts'].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
     }
-    setTimeout(typeNext, 300);
-  } else {
-    revealRest();
-  }
+  });
+  countUpStats();
 
-  function revealRest(){
-    ['hero-p','hero-act','hero-sts'].forEach((id,i) => {
-      const el = document.getElementById(id);
-      if(el){ el.style.opacity='1'; el.style.transform='translateY(0)'; }
-    });
-    countUpStats();
-  }
-
-  // 3. Start globe interactivity
+  // 3. Start interactive globe preview
   startGlobe();
 }
 window.startHero = startHero;
 
+// Safety fallback: ensure Hero always activates when scrolled into view (deep links, fast scrolls, Skip Intro)
+document.addEventListener('DOMContentLoaded', () => {
+  const heroSection = document.getElementById('hero-section');
+  if (!heroSection || typeof IntersectionObserver === 'undefined') return;
+  const heroObs = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        startHero();
+        heroObs.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
+  heroObs.observe(heroSection);
+});
+
 /* ── STATS COUNT-UP ── */
 function countUpStats(){
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   ['sn0','sn1','sn2'].forEach(id => {
     const el = document.getElementById(id);
     if(!el) return;
     const target = parseFloat(el.dataset.target);
     const dec = parseInt(el.dataset.dec);
     const sfx = el.dataset.sfx;
-    const dur = 1400;
+    if (reduced) {
+      el.textContent = target.toFixed(dec) + sfx;
+      return;
+    }
+    const dur = 1100;
     const start = performance.now();
     function tick(now){
       const t = Math.min((now-start)/dur,1);
@@ -78,19 +76,30 @@ function countUpStats(){
 
 /* ── GLOBE INTERACTIVITY ── */
 function startGlobe(){
+  if (globeStarted) return;
+  globeStarted = true;
+
   const panel = document.getElementById('hero-panel');
   const wrap  = document.getElementById('hero-panel-wrap');
   const clockEl = document.getElementById('hp-clock');
   const countEl = document.getElementById('hp-sigcount');
   const markersEl = document.getElementById('hp-markers');
-  const toastEl  = document.getElementById('hp-toast');
   let sigCount = 482;
+  let panelInView = true;
 
   if (!panel || !wrap) return;
 
-  // Clock
+  if (typeof IntersectionObserver !== 'undefined') {
+    const panelObs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { panelInView = e.isIntersecting; });
+    }, { threshold: 0.05 });
+    panelObs.observe(wrap);
+  }
+
+  // Clock (pauses work when off-screen or tab hidden)
   function padZ(n){ return String(n).padStart(2,'0'); }
   function tickClock(){
+    if (!panelInView || document.hidden) return;
     if (clockEl) {
       const d = new Date();
       clockEl.textContent = `${padZ(d.getUTCHours())}:${padZ(d.getUTCMinutes())}:${padZ(d.getUTCSeconds())} UTC`;
@@ -100,6 +109,7 @@ function startGlobe(){
 
   // Signal counter
   setInterval(() => {
+    if (!panelInView || document.hidden) return;
     sigCount++;
     if (countEl) countEl.textContent = sigCount + ' SIGNALS';
   }, 3200);
@@ -131,7 +141,7 @@ function startGlobe(){
     panel.style.transform = 'rotateY(0deg) rotateX(0deg)';
   });
 
-  // Event markers on globe
+  // Event markers on globe (paused when off-screen or hidden to protect INP)
   const events = [
     { x:'33%', y:'28%', type:'CONFLICT',     loc:'Donetsk, UA',        color:'#ff2244' },
     { x:'58%', y:'34%', type:'SURVEILLANCE', loc:'E. Mediterranean',   color:'#00f5ff' },
@@ -144,7 +154,7 @@ function startGlobe(){
   ];
   let evtI = 0;
   function addMarker(){
-    if (!markersEl) return;
+    if (!markersEl || !panelInView || document.hidden) return;
     const ev = events[evtI % events.length]; evtI++;
     const m = document.createElement('div');
     m.className = 'hp-marker';
@@ -163,8 +173,6 @@ function startGlobe(){
   }
   addMarker();
   setInterval(addMarker, 2000);
-
-
 }
 
 /* ── CATEGORIES SELECTOR FILTER ── */

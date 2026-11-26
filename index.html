@@ -36,14 +36,14 @@
     rel="stylesheet" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/nav.css" />
-  <link rel="stylesheet" href="css/hero.css" />
-  <link rel="stylesheet" href="css/sections.css?v=20261127" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/footer.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/intro.css" />
+  <link rel="stylesheet" href="css/base.css?v=20261127b" />
+  <link rel="stylesheet" href="css/nav.css?v=20261127b" />
+  <link rel="stylesheet" href="css/hero.css?v=20261127b" />
+  <link rel="stylesheet" href="css/sections.css?v=20261127b" />
+  <link rel="stylesheet" href="css/components.css?v=20261127b" />
+  <link rel="stylesheet" href="css/footer.css?v=20261127b" />
+  <link rel="stylesheet" href="css/animations.css?v=20261127b" />
+  <link rel="stylesheet" href="css/intro.css?v=20261127b" />
   <!-- /INCLUDE -->
 </head>
 
@@ -129,37 +129,99 @@
       <!-- Cyber ambient grid -->
       <div class="intro-grid-overlay"></div>
 
-      <!-- Telemetry HUD indicators -->
-      <div class="intro-hud-bottom-center">
-        <span class="hud-item pulsing">SCROLL ↓</span>
+      <!-- Top Orbital Telemetry & Utility HUD -->
+      <div class="intro-hud-top">
+        <div class="intro-brand-hud">
+          <span class="intro-brand-dot" id="intro-brand-dot"></span>
+          <span class="intro-brand-label">⬡ SOVEREIGN</span>
+          <span class="intro-telemetry-readout" id="intro-telemetry-readout">01/04 · GLOBAL PLANETARY SCAN · ALT 6,420 KM</span>
+        </div>
+        <div class="intro-hud-actions">
+          <a href="https://app.sovdash.com/" target="_blank" class="intro-hud-btn primary">Launch Dash →</a>
+          <button type="button" class="intro-hud-btn" id="intro-skip-btn" aria-label="Skip 3D introduction">Skip Intro ↓</button>
+        </div>
       </div>
 
-      <!-- Text Slides -->
+      <!-- Interactive 4-Chapter Scroll Progress Rail -->
+      <div class="intro-chapter-rail" role="navigation" aria-label="Introduction layers">
+        <button type="button" class="intro-chapter-pill active" data-chapter="0" data-accent="cyan" aria-label="Layer 01 Global Signals">
+          <span class="intro-chapter-label">01 Global</span>
+          <span class="intro-chapter-bar"><span class="intro-chapter-fill"></span></span>
+        </button>
+        <button type="button" class="intro-chapter-pill" data-chapter="1" data-accent="red" aria-label="Layer 02 AI Impact Tracking">
+          <span class="intro-chapter-label">02 AI Impact</span>
+          <span class="intro-chapter-bar"><span class="intro-chapter-fill"></span></span>
+        </button>
+        <button type="button" class="intro-chapter-pill" data-chapter="2" data-accent="orange" aria-label="Layer 03 Regulatory Intelligence">
+          <span class="intro-chapter-label">03 Regulation</span>
+          <span class="intro-chapter-bar"><span class="intro-chapter-fill"></span></span>
+        </button>
+        <button type="button" class="intro-chapter-pill" data-chapter="3" data-accent="purple" aria-label="Layer 04 Enterprise Deployment">
+          <span class="intro-chapter-label">04 Deploy</span>
+          <span class="intro-chapter-bar"><span class="intro-chapter-fill"></span></span>
+        </button>
+      </div>
+
+      <!-- Bottom Telemetry Scroll Cue + Master Progress -->
+      <div class="intro-hud-bottom-center" id="intro-hud-bottom">
+        <span class="hud-item pulsing" id="intro-scroll-label">SCROLL TO EXPLORE · LAYER 01 / 04 ↓</span>
+        <div class="intro-global-progress-track">
+          <div class="intro-global-progress-fill" id="intro-global-progress-fill"></div>
+        </div>
+      </div>
+
+      <!-- Text Slides (4 Equal Dwell Chapters) -->
       <div class="intro-slides">
-        <div class="intro-slide" id="intro-slide-1">
+        <div class="intro-slide active" id="intro-slide-1">
           <div class="slide-badge">⬡ LAYER 01 // GLOBAL SIGNALS</div>
           <h2>One Platform.<br><span style="color:var(--cyan)">Every Signal That Matters.</span></h2>
           <p>Sovereign aggregates open-source intelligence, regulatory filings, and verified field reports into a single
             live terminal — giving analysts, researchers, and enterprise teams a clear operational picture, continuously
             updated.</p>
+          <div class="slide-metrics">
+            <span class="slide-metric-chip"><b>65+</b> Live OSINT Feeds</span>
+            <span class="slide-metric-chip"><b>6,000+</b> Data Centers</span>
+            <span class="slide-metric-chip"><b>3D + 2D</b> Live Map</span>
+          </div>
+          <div class="slide-dwell-track"><div class="slide-dwell-fill"></div></div>
         </div>
+
         <div class="intro-slide" id="intro-slide-2">
           <div class="slide-badge">⬡ LAYER 02 // AI IMPACT TRACKING</div>
           <h2>AI Is Reshaping<br><span style="color:var(--red)">Every Region on Earth.</span></h2>
           <p>Track where artificial intelligence is being deployed by state and corporate actors — surveillance
             expansion, autonomous systems, algorithmic border enforcement, and AI-enabled conflict — mapped as it
             happens.</p>
+          <div class="slide-metrics">
+            <span class="slide-metric-chip"><b>S1–S5</b> Severity Grading</span>
+            <span class="slide-metric-chip"><b>Admiralty</b> Source Audit</span>
+            <span class="slide-metric-chip"><b>Live</b> Conflict &amp; Rights Nodes</span>
+          </div>
+          <div class="slide-dwell-track"><div class="slide-dwell-fill"></div></div>
         </div>
+
         <div class="intro-slide" id="intro-slide-3">
           <div class="slide-badge">⬡ LAYER 03 // REGULATORY INTELLIGENCE</div>
           <h2>AI Regulation<br><span style="color:var(--orange)">Moves Fast.</span><br><span style="color:var(--orange)">So Do We.</span></h2>
           <p>Monitor live developments in AI governance across 190+ jurisdictions — legislative filings, enforcement
             actions, treaty negotiations, and regulatory gaps — before they reach mainstream news cycles.</p>
+          <div class="slide-metrics">
+            <span class="slide-metric-chip"><b>60+</b> Deep Statutory Profiles</span>
+            <span class="slide-metric-chip"><b>EU · US · APAC</b> Legal Diff</span>
+            <span class="slide-metric-chip"><b>Ask AI</b> Citation-Verified</span>
+          </div>
+          <div class="slide-dwell-track"><div class="slide-dwell-fill"></div></div>
         </div>
+
         <div class="intro-slide" id="intro-slide-4">
           <div class="slide-badge">⬡ LAYER 04 // ENTERPRISE DEPLOYMENT</div>
           <h2>Deploy Your Feed.<br><span style="color:var(--cyan)">Own the Signal.</span></h2>
-          <p>Access our live terminal instantly, or partner with Sovereign to design and build a bespoke, self-hosted global intelligence instance tailored exclusively to your organization's unique threat model and strategic footprint.</p>
+          <p>Access our live terminal instantly, or partner with Sovereign to design and build a bespoke, self-hosted global intelligence instance with private Ask SovDash AI tailored exclusively to your organization's threat model and strategic footprint.</p>
+          <div class="slide-cta-row">
+            <a href="https://app.sovdash.com/" target="_blank" class="slide-cta-pill">Enter Live Dash →</a>
+            <button type="button" class="slide-cta-pill secondary" onclick="skipSovereignIntro()">Explore Overview ↓</button>
+          </div>
+          <div class="slide-dwell-track"><div class="slide-dwell-fill"></div></div>
         </div>
       </div>
     </div>
@@ -167,7 +229,7 @@
 
   <!-- BOOT OVERLAY -->
   <div id="boot-ol"
-    style="position:fixed;inset:0;z-index:1000;background:#060813;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.9s;">
+    style="position:fixed;inset:0;z-index:1000;background:#060813;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.4s ease;">
     <div style="max-width:580px;width:100%;padding:0 32px;text-align:center;">
       
       <!-- Lotus ASCII Container -->
@@ -239,8 +301,8 @@
         Real-time intelligence layer — active now
       </div>
 
-      <h1 id="hero-h1" style="min-height:3em;">
-        <span id="hero-txt"></span><span id="hero-cur"
+      <h1 id="hero-h1" style="min-height:2.4em;">
+        <span id="hero-txt">TRACK CONSEQUENTIAL SHIFTS.<br /><span style="color:var(--cyan)">IN REAL TIME.</span></span><span id="hero-cur"
           style="color:var(--cyan);font-weight:300;animation:heroCursor 0.75s step-end infinite;">|</span>
       </h1>
 
@@ -1463,15 +1525,15 @@
   </footer>
   <!-- /INCLUDE -->
 
-  <!-- JS SCRIPTS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="js/intro.js" defer></script>
-  <script src="js/boot.js" defer></script>
-  <script src="js/hero.js" defer></script>
-  <script src="js/nav.js" defer></script>
-  <script src="js/signals.js" defer></script>
+  <!-- JS SCRIPTS (deferred in strict execution order for non-blocking HTML parse) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  <script src="js/intro.js?v=20261127b" defer></script>
+  <script src="js/boot.js?v=20261127b" defer></script>
+  <script src="js/hero.js?v=20261127b" defer></script>
+  <script src="js/nav.js?v=20261127b" defer></script>
+  <script src="js/signals.js?v=20261127b" defer></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
