@@ -1,444 +1,1299 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mission & Methodology | Sovereign Intel</title>
-  
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300f5ff%22>⬡</text></svg>" />
+  <title>About Sovereign — Mission, Founder &amp; Independent Support | SovDash</title>
+  <meta name="description"
+    content="Meet Avi Perera and learn why Sovereign (SovDash) was built: independent real-time global intelligence, empirical AI governance research, citation-verified RAG AI, and how to support open public clarity." />
 
-  <!-- Fonts Preconnect -->
+  <!-- OpenGraph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sovdash.com/about.html" />
+  <meta property="og:title" content="About Sovereign — Independent Global Intelligence &amp; AI Governance" />
+  <meta property="og:description"
+    content="Founded by Avi Perera (aviperera.com). Explore Sovereign's mission, empirical standards, open methodology, and how to support independent global intelligence." />
+  <meta property="og:image" content="https://sovdash.com/images/og-card.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="About Sovereign — Mission, Founder &amp; Support" />
+  <meta property="twitter:description"
+    content="Independent global intelligence, AI governance tracking, and citation-locked RAG AI — built by Avi Perera." />
+
+  <!-- Favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300f5ff%22>⬡</text></svg>" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap"
+    rel="stylesheet" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css?v=20261127b" />
-  <link rel="stylesheet" href="css/nav.css?v=20261127b" />
-  <link rel="stylesheet" href="css/sections.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/footer.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/transitions.css?v=20261127e" />
+  <link rel="stylesheet" href="css/base.css?v=20261128" />
+  <link rel="stylesheet" href="css/nav.css?v=20261128" />
+  <link rel="stylesheet" href="css/sections.css?v=20261128" />
+  <link rel="stylesheet" href="css/components.css?v=20261128" />
+  <link rel="stylesheet" href="css/footer.css?v=20261128" />
+  <link rel="stylesheet" href="css/transitions.css?v=20261128" />
 
   <style>
-    .about-header {
-      max-width: 1400px;
-      margin: 60px auto 40px;
-      padding: 0 24px;
+    /* ── ABOUT PAGE PREMIUM EDITORIAL & TRUST ARCHITECTURE ── */
+    .ab-hero {
       position: relative;
       z-index: 10;
-    }
-    
-    .about-grid {
-      max-width: 1400px;
-      margin: 0 auto 80px;
-      padding: 0 24px;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 40px;
-      position: relative;
-      z-index: 10;
-    }
-    
-    @media (max-width: 900px) {
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-    }
-
-    .about-card {
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 18px;
-      background: rgba(10, 13, 24, 0.6);
-      backdrop-filter: blur(12px);
-      padding: 32px;
-      height: fit-content;
-      box-shadow: 0 0 32px rgba(0, 0, 0, 0.2);
-    }
-    .about-card-title {
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--cyan);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      padding-bottom: 10px;
-    }
-    
-    .about-card p {
-      font-size: 13px;
-      color: #94a3b8;
-      line-height: 1.8;
-      margin-bottom: 16px;
-    }
-    .about-card p:last-child {
-      margin-bottom: 0;
-    }
-    .about-card strong {
-      color: #fff;
-    }
-
-    /* Methodology block */
-    .method-item {
-      display: flex;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-    .method-item:last-child {
-      margin-bottom: 0;
-    }
-    .method-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      border: 1px solid rgba(0, 245, 255, 0.2);
-      background: rgba(0, 245, 255, 0.06);
-      display: grid;
-      place-items: center;
-      font-size: 14px;
-      color: var(--cyan);
-      flex-shrink: 0;
-    }
-    .method-text {
-      flex: 1;
-    }
-    .method-name {
-      font-size: 11px;
-      font-weight: 800;
-      color: #fff;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
-    }
-    .method-desc {
-      font-size: 12px;
-      color: #64748b;
-      line-height: 1.6;
-    }
-
-    /* Form control */
-    .form-group {
-      margin-bottom: 18px;
-    }
-    .form-label {
-      display: block;
-      font-size: 9px;
-      font-weight: 800;
-      color: #64748b;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .form-input, .form-textarea {
-      width: 100%;
-      background: #03050b;
-      border: 1px solid rgba(0, 245, 255, 0.2);
-      border-radius: 10px;
-      padding: 12px 16px;
-      color: #fff;
-      font-size: 12px;
-      font-family: 'JetBrains Mono', monospace;
-      outline: none;
-      transition: all 0.2s;
-    }
-    .form-textarea {
-      height: 120px;
-      resize: none;
-    }
-    .form-input:focus, .form-textarea:focus {
-      border-color: var(--cyan);
-      box-shadow: 0 0 14px rgba(0, 245, 255, 0.15);
-    }
-
-    /* Team section */
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-      margin-top: 20px;
-    }
-    .team-member {
-      padding: 16px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.04);
+      padding: 86px 24px 64px;
       text-align: center;
+      overflow: hidden;
     }
-    .team-role {
-      font-size: 8px;
+
+    .ab-hero-glow {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 68% 58% at 50% 10%, rgba(0, 245, 255, 0.10) 0%, transparent 65%),
+        radial-gradient(ellipse 46% 45% at 78% 65%, rgba(179, 102, 255, 0.08) 0%, transparent 70%);
+    }
+
+    .ab-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .ab-h1 {
+      font-size: clamp(32px, 5vw, 60px);
       font-weight: 800;
-      color: var(--cyan);
-      letter-spacing: 0.12em;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
       text-transform: uppercase;
+      color: #fff;
+      margin: 22px auto 0;
+      max-width: 900px;
+    }
+
+    .ab-lead {
+      font-size: 14px;
+      color: #94a3b8;
+      line-height: 1.85;
+      max-width: 680px;
+      margin: 22px auto 0;
+    }
+
+    .ab-hero-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    /* ── VERIFIED SCALE METRICS STRIP ── */
+    .ab-metrics-bar {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 52px;
+      text-align: left;
+    }
+
+    .ab-metric-card {
+      padding: 22px 20px;
+      border-radius: 16px;
+      background: rgba(10, 14, 26, 0.84);
+      border: 1px solid rgba(0, 245, 255, 0.14);
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .ab-metric-card:hover {
+      border-color: rgba(0, 245, 255, 0.34);
+      transform: translateY(-2px);
+    }
+
+    .ab-metric-val {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .ab-metric-label {
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cyan);
       margin-top: 8px;
     }
-    .team-name {
-      font-size: 12px;
-      font-weight: 700;
+
+    .ab-metric-sub {
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.55;
+      margin-top: 5px;
+    }
+
+    /* ── SECTION SHELL ── */
+    .ab-section {
+      position: relative;
+      z-index: 10;
+      padding: 76px 24px;
+      border-top: 1px solid rgba(0, 245, 255, 0.08);
+      scroll-margin-top: 86px;
+    }
+
+    .ab-section-head {
+      max-width: 720px;
+      margin-bottom: 40px;
+    }
+
+    .ab-section-head.centered {
+      text-align: center;
+      margin: 0 auto 44px;
+    }
+
+    .ab-h2 {
+      font-size: clamp(24px, 3.4vw, 42px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
       color: #fff;
+      margin-top: 16px;
+    }
+
+    .ab-sub {
+      font-size: 13.5px;
+      color: #94a3b8;
+      line-height: 1.8;
+      margin-top: 14px;
+    }
+
+    /* ── FOUNDER DOSSIER CARD (AVI PERERA) ── */
+    .founder-card {
+      display: grid;
+      grid-template-columns: 310px minmax(0, 1fr);
+      gap: 36px;
+      padding: 36px;
+      border-radius: 22px;
+      background: linear-gradient(145deg, rgba(11, 16, 30, 0.92) 0%, rgba(8, 10, 20, 0.92) 100%);
+      border: 1px solid rgba(0, 245, 255, 0.22);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45), 0 0 50px rgba(0, 245, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .founder-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), #38bdf8, var(--purple));
+    }
+
+    .founder-aside {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+      padding-right: 28px;
+      border-right: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .founder-crest {
+      width: 82px;
+      height: 82px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(0, 245, 255, 0.18), rgba(179, 102, 255, 0.22));
+      border: 1px solid rgba(0, 245, 255, 0.42);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      box-shadow: 0 0 32px rgba(0, 245, 255, 0.18);
+    }
+
+    .founder-name {
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .founder-role {
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--cyan);
       margin-top: 4px;
     }
 
-    /* Terminal secure transmission logs */
-    .secure-transmission-overlay {
-      position: absolute;
-      inset: 0;
-      background: #03050b;
-      border-radius: 18px;
-      z-index: 100;
-      display: none;
+    .founder-loc {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 6px;
+    }
+
+    .founder-web-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: 12px;
+      background: rgba(0, 245, 255, 0.12);
+      border: 1px solid rgba(0, 245, 255, 0.44);
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .founder-web-cta:hover {
+      background: rgba(0, 245, 255, 0.22);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0, 245, 255, 0.18);
+    }
+
+    .founder-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .founder-mini-link {
+      flex: 1;
+      min-width: 90px;
+      text-align: center;
+      padding: 9px 10px;
+      border-radius: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      background: rgba(255, 255, 255, 0.03);
+      color: #cbd5e1;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .founder-mini-link:hover {
+      border-color: rgba(0, 245, 255, 0.4);
+      color: #fff;
+      background: rgba(0, 245, 255, 0.08);
+    }
+
+    .founder-bio {
+      display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 32px;
+      gap: 16px;
     }
-    .sec-log-box {
-      font-size: 11px;
-      line-height: 2;
+
+    .founder-quote {
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: #f1f5f9;
+      font-weight: 600;
+      padding-left: 16px;
+      border-left: 2px solid var(--cyan);
+    }
+
+    .founder-body {
+      font-size: 13px;
+      line-height: 1.85;
+      color: #94a3b8;
+    }
+
+    .founder-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .founder-tag {
+      padding: 6px 11px;
+      border-radius: 999px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    .founder-tag b {
       color: var(--cyan);
-      font-family: 'JetBrains Mono', monospace;
-      margin-bottom: 24px;
+    }
+
+    /* ── 4 OPERATING PRINCIPLES GRID ── */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .principle-card {
+      padding: 28px;
+      border-radius: 18px;
+      background: rgba(11, 14, 24, 0.80);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .principle-card:hover {
+      border-color: rgba(0, 245, 255, 0.30);
+      transform: translateY(-2px);
+    }
+
+    .principle-num {
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 12px;
+    }
+
+    .principle-card h3 {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+
+    .principle-card p {
+      font-size: 12.5px;
+      color: #94a3b8;
+      line-height: 1.78;
+    }
+
+    /* ── SUPPORT INDEPENDENT INTELLIGENCE SECTION ── */
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .support-card {
+      display: flex;
+      flex-direction: column;
+      padding: 30px 26px;
+      border-radius: 20px;
+      background: rgba(10, 13, 24, 0.86);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .support-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .support-card.featured {
+      border-color: rgba(0, 245, 255, 0.38);
+      background: linear-gradient(155deg, rgba(8, 22, 34, 0.92) 0%, rgba(10, 13, 24, 0.92) 100%);
+      box-shadow: 0 0 46px rgba(0, 245, 255, 0.09);
+    }
+
+    .support-card.featured::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), #00ff88);
+    }
+
+    .support-card.institutional {
+      border-color: rgba(179, 102, 255, 0.30);
+    }
+
+    .support-card.institutional::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+    }
+
+    .support-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: max-content;
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 8.5px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .support-card h3 {
+      font-size: 19px;
+      font-weight: 800;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .support-card p {
+      font-size: 12.5px;
+      color: #94a3b8;
+      line-height: 1.75;
+      margin-bottom: 18px;
+    }
+
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      flex: 1;
+    }
+
+    .support-list li {
+      font-size: 11.5px;
+      color: #cbd5e1;
+      line-height: 1.5;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .support-list li span.chk {
+      color: var(--green);
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .support-btn-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-top: auto;
+    }
+
+    .support-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: 11px;
+      font-family: inherit;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .support-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .support-btn.cyan {
+      background: var(--cyan);
+      color: #030712;
+      border: 1px solid var(--cyan);
+    }
+
+    .support-btn.cyan:hover {
+      background: #4df8ff;
+    }
+
+    .support-btn.patreon {
+      background: rgba(255, 66, 77, 0.14);
+      border: 1px solid rgba(255, 66, 77, 0.45);
+      color: #ff6b74;
+    }
+
+    .support-btn.patreon:hover {
+      background: rgba(255, 66, 77, 0.24);
+      color: #fff;
+    }
+
+    .support-btn.coffee {
+      background: rgba(255, 210, 46, 0.12);
+      border: 1px solid rgba(255, 210, 46, 0.40);
+      color: #ffd22e;
+    }
+
+    .support-btn.coffee:hover {
+      background: rgba(255, 210, 46, 0.22);
+      color: #fff;
+    }
+
+    .support-btn.purple {
+      background: rgba(179, 102, 255, 0.14);
+      border: 1px solid rgba(179, 102, 255, 0.44);
+      color: #d8b4fe;
+    }
+
+    .support-btn.purple:hover {
+      background: rgba(179, 102, 255, 0.24);
+      color: #fff;
+    }
+
+    .support-btn.ghost {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #cbd5e1;
+    }
+
+    .support-btn.ghost:hover {
+      border-color: rgba(0, 245, 255, 0.42);
+      color: #fff;
+    }
+
+    /* ── OPEN METHODOLOGY & RESEARCH LINKS STRIP ── */
+    .research-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .research-link-card {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 18px 20px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+
+    .research-link-card:hover {
+      border-color: rgba(0, 245, 255, 0.36);
+      background: rgba(0, 245, 255, 0.05);
+      transform: translateY(-2px);
+    }
+
+    .research-link-kicker {
+      font-size: 8.5px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--cyan);
+    }
+
+    .research-link-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .research-link-sub {
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    /* ── DIRECT CONTACT & SIGNAL TIP SECTION ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+      gap: 32px;
+      align-items: start;
+    }
+
+    .contact-info-box {
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(10, 13, 24, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .contact-row {
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .contact-row-label {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 5px;
+    }
+
+    .contact-row-val {
+      font-size: 12.5px;
+      color: #e2e8f0;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .contact-row-val:hover {
+      color: var(--cyan);
+    }
+
+    .contact-form-card {
+      padding: 32px;
+      border-radius: 20px;
+      background: rgba(10, 13, 24, 0.86);
+      border: 1px solid rgba(0, 245, 255, 0.18);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+    }
+
+    .ab-field {
+      margin-bottom: 16px;
+    }
+
+    .ab-label {
+      display: block;
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 7px;
+    }
+
+    .ab-input,
+    .ab-select,
+    .ab-textarea {
+      width: 100%;
+      padding: 13px 15px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(4, 7, 15, 0.90);
+      color: #fff;
+      font-family: inherit;
+      font-size: 12.5px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .ab-input:focus,
+    .ab-select:focus,
+    .ab-textarea:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(0, 245, 255, 0.10);
+    }
+
+    .ab-textarea {
+      resize: vertical;
+      min-height: 112px;
+      line-height: 1.65;
+    }
+
+    .ab-field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .ab-form-status {
+      display: none;
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 11px;
+      border: 1px solid rgba(0, 255, 136, 0.28);
+      background: rgba(0, 255, 136, 0.06);
+      font-size: 11.5px;
+      line-height: 1.65;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .ab-metrics-bar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .founder-card {
+        grid-template-columns: 1fr;
+        gap: 26px;
+        padding: 26px;
+      }
+      .founder-aside {
+        padding-right: 0;
+        padding-bottom: 22px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .support-grid,
+      .research-strip,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .ab-hero {
+        padding: 64px 18px 46px;
+      }
+      .ab-section {
+        padding: 56px 18px;
+      }
+      .ab-metrics-bar,
+      .principles-grid,
+      .ab-field-row {
+        grid-template-columns: 1fr;
+      }
+      .contact-form-card,
+      .contact-info-box {
+        padding: 22px;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<div class="bg-grid"></div>
+  <div class="bg-grid"></div>
 
-<!-- TICKER -->
-<div class="ticker-bar">
-  <div class="ticker-label">● LIVE</div>
-  <div class="ticker-track">
-    <span class="ticker-inner">
-      SECURE PROTOCOLS ACTIVATED &nbsp;•&nbsp;
-      NODE SECURE CORRIDORS ONLINE &nbsp;•&nbsp;
-      VALIDATING GEOPOLITICAL LOG ENTRIES &nbsp;•&nbsp;
-      ORBIT CONSTELLATIONS SECURE &nbsp;•&nbsp;
-    </span>
-  </div>
-</div>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <a href="index.html" class="logo">
-      <div class="logo-icon">⬡</div>
-      <div class="logo-text">
-        <div class="logo-title">SOVEREIGN</div>
-        <div class="logo-sub">Global Intelligence Software</div>
-      </div>
-    </a>
-
-    <!-- Hamburger (shows on mobile) -->
-    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-
-    <div class="nav-tabs">
-      <a href="index.html#features" class="nav-tab">Features</a>
-      <a href="enterprise.html" class="nav-tab">Enterprise</a>
-      <a href="pricing.html" class="nav-tab">Pricing</a>
-    </div>
-
-    <div class="nav-right">
-      <div class="live-badge">● SYSTEM LIVE</div>
-      <a href="https://app.sovdash.com/" target="_blank" class="btn-cta-small">Enter Dash →</a>
+  <!-- TICKER -->
+  <div class="ticker-bar">
+    <div class="ticker-label">● LIVE</div>
+    <div class="ticker-track">
+      <span class="ticker-inner">
+        SOVEREIGN OBSERVATORY: 60+ GLOBAL AI JURISDICTIONS MONITORED &nbsp;•&nbsp;
+        6,000+ VERIFIED COMPUTE &amp; DATA FACILITIES MAPPED &nbsp;•&nbsp;
+        ASK SOVDASH AI: CITATION-LOCKED RAG QUERY ENGINE ACTIVE &nbsp;•&nbsp;
+        65+ AUTHORITATIVE OSINT &amp; RESEARCH FEEDS INGESTED IN REAL TIME &nbsp;•&nbsp;
+        FOUNDED BY AVI PERERA · AVIPERERA.COM &nbsp;•&nbsp;
+        SOVEREIGN OBSERVATORY: 60+ GLOBAL AI JURISDICTIONS MONITORED &nbsp;•&nbsp;
+        6,000+ VERIFIED COMPUTE &amp; DATA FACILITIES MAPPED &nbsp;•&nbsp;
+        ASK SOVDASH AI: CITATION-LOCKED RAG QUERY ENGINE ACTIVE &nbsp;•&nbsp;
+      </span>
     </div>
   </div>
 
-  <!-- Full-screen mobile nav drawer -->
-  <div class="nav-drawer" aria-hidden="true">
-    <a href="index.html#features" class="nav-drawer-tab">Features</a>
-    <a href="enterprise.html" class="nav-drawer-tab">Enterprise</a>
-    <a href="pricing.html" class="nav-drawer-tab">Pricing</a>
-    <a href="https://app.sovdash.com/" target="_blank" class="nav-drawer-tab" style="color: var(--cyan); border-color: rgba(0,245,255,0.3);">Enter Dash →</a>
-  </div>
-</nav>
-
-<!-- ABOUT HEADER -->
-<header class="about-header">
-  <div class="section-badge">⬡ Operation Profile</div>
-  <h2 style="font-size: clamp(32px, 5vw, 54px);">About the<br/><span style="color:var(--cyan);">platform.</span></h2>
-  <p class="section-desc" style="max-width:600px;">Sovereign Intel is an independent intelligence platform built to monitor state violations, geopolitical changes, climate disasters, and economic anomalies in real time.</p>
-</header>
-
-<!-- MAIN CONTAINER -->
-<div class="about-grid">
-  
-  <!-- LEFT: Mission and Methodology -->
-  <div style="display:flex; flex-direction:column; gap:28px;">
-    <!-- Mission -->
-    <section class="about-card">
-      <div class="about-card-title">01 / Operational Mission</div>
-      <p>Sovereign Intel was founded in response to a growing void: traditional media coverage of conflict, state aggression, and resource crises is increasingly delayed, filtered, or outright censored.</p>
-      <p>We trace global infrastructure, state policies, satellite orbital paths, and physical supply lines to generate an objective, real-time map of global changes. We seek to give analysts, journalists, humanitarians, and private citizens immediate, actionable signal data directly at their fingertips.</p>
-      <p>Our philosophy is simple: <strong>No noise. No bias. Just the signal.</strong></p>
-    </section>
-
-    <!-- Methodology -->
-    <section class="about-card">
-      <div class="about-card-title">02 / Signal Ingestion Methodology</div>
-      <p style="margin-bottom: 24px;">Signals displayed inside the terminal are verified through three primary channels before ingestion:</p>
-      
-      <div style="display:flex; flex-direction:column; gap:18px;">
-        <div class="method-item">
-          <div class="method-icon">📡</div>
-          <div class="method-text">
-            <div class="method-name">OSINT Core Streams</div>
-            <div class="method-desc">Automated aggregators index official announcements, aviation notifications, regional radio frequencies, maritime logs, and localized community feeds.</div>
-          </div>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">⬡</div>
+        <div class="logo-text">
+          <div class="logo-title">SOVEREIGN</div>
+          <div class="logo-sub">Global Intelligence Software</div>
         </div>
+      </a>
 
-        <div class="method-item">
-          <div class="method-icon">🛰</div>
-          <div class="method-text">
-            <div class="method-name">Satellite Constellations</div>
-            <div class="method-desc">Real-time telemetry and imagery verification from our tracked radar systems confirm physical changes such as wildfire perimeters, forest cover loss, border builds, or orbital anomalies.</div>
-          </div>
-        </div>
-
-        <div class="method-item">
-          <div class="method-icon">◈</div>
-          <div class="method-text">
-            <div class="method-name">Vetted Decentralized Nodes</div>
-            <div class="method-desc">Cryptographically authenticated field reporters, local researchers, and active citizens upload media updates directly inside high-risk environments.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Team -->
-    <section class="about-card">
-      <div class="about-card-title">03 / Our Core Team</div>
-      <p>We are a distributed team of developers, GIS specialists, OSINT researchers, and investigative journalists dedicated to preserving open-access global threat analysis.</p>
-      
-      <div class="team-grid">
-        <div class="team-member">
-          <div style="font-size:18px;">⬢</div>
-          <div class="team-role">Founder & Lead Developer</div>
-          <div class="team-name"><a href="https://aviperera.com" target="_blank" style="color: inherit; text-decoration: none;">Avi P.</a></div>
-        </div>
-        <div class="team-member">
-          <div style="font-size:18px;">⬡</div>
-          <div class="team-role">OSINT Threat Analyst</div>
-          <div class="team-name">Elena R.</div>
-        </div>
-        <div class="team-member">
-          <div style="font-size:18px;">⬡</div>
-          <div class="team-role">GIS Data Specialist</div>
-          <div class="team-name">Marcus T.</div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- RIGHT: Secure Tips & Contact Box -->
-  <aside class="about-card" style="position:relative;">
-    <div class="about-card-title">Secure Tips & Contacts</div>
-    <p style="margin-bottom: 24px;">Submit signal observations, company inquiries, or research briefings directly to our team.</p>
-
-    <!-- Ingestion form -->
-    <form id="secure-form">
-      <div class="form-group">
-        <label class="form-label">Your Name / Organization (Optional)</label>
-        <input type="text" class="form-input" id="form-origin" placeholder="e.g. Sarah Jenkins / Vanguard Group" />
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Subject Category</label>
-        <select class="form-input" id="form-tag" style="background:#03050b;">
-          <option value="CONFLICT">Geopolitical Conflict</option>
-          <option value="SURVEILLANCE">Digital Surveillance</option>
-          <option value="DISASTER">Climate & Disaster</option>
-          <option value="ECONOMIC">Supply Chains / Logistics</option>
-          <option value="GENERAL">General Inquiry</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Your Message</label>
-        <textarea class="form-textarea" id="form-msg" placeholder="Write your message or paste coordinates/links here..." required></textarea>
-      </div>
-
-      <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:14px; font-size:10px; border-radius:10px;">
-        SEND MESSAGE <span class="arrow">→</span>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
       </button>
-    </form>
 
-    <!-- Simulated Log Overlay -->
-    <div class="secure-transmission-overlay" id="trans-overlay">
-      <div class="sec-log-box" id="trans-log"></div>
-      <div style="text-align:center;">
-        <button class="btn-secondary" id="trans-reset-btn" style="font-size:10px; padding:10px 20px; border-color:rgba(0, 245, 255, 0.3);">SEND ANOTHER MESSAGE</button>
+      <div class="nav-tabs">
+        <a href="index.html#features" class="nav-tab">Features</a>
+        <a href="enterprise.html" class="nav-tab">Enterprise</a>
+        <a href="pricing.html" class="nav-tab">Pricing</a>
+      </div>
+
+      <div class="nav-right">
+        <div class="live-badge">● SYSTEM LIVE</div>
+        <a href="https://app.sovdash.com/" target="_blank" rel="noopener noreferrer" class="btn-cta-small">Enter Dash →</a>
       </div>
     </div>
-  </aside>
 
-</div>
+    <div class="nav-drawer" aria-hidden="true">
+      <a href="index.html#features" class="nav-drawer-tab">Features</a>
+      <a href="enterprise.html" class="nav-drawer-tab">Enterprise</a>
+      <a href="pricing.html" class="nav-drawer-tab">Pricing</a>
+      <a href="https://app.sovdash.com/" target="_blank" rel="noopener noreferrer" class="nav-drawer-tab"
+        style="color: var(--cyan); border-color: rgba(0,245,255,0.3);">Enter Dash →</a>
+    </div>
+  </nav>
 
-<!-- FOOTER -->
-<footer>
-  <span>© 2026 SOVDASH &nbsp;·&nbsp; GLOBAL INTELLIGENCE SOFTWARE</span>
-  <div class="footer-links">
-    <a href="about.html">About</a>
-    <a href="pricing.html">Pricing</a>
-  </div>
-  <div class="footer-live">
-    <span>◈</span> ENCRYPTED DATA CHANNEL SECURED
-  </div>
-</footer>
+  <!-- HERO -->
+  <section class="ab-hero">
+    <div class="ab-hero-glow"></div>
+    <div class="ab-inner">
+      <div class="section-badge">⬡ About Sovereign &nbsp;·&nbsp; Open Empirical Intelligence</div>
+      <h1 class="ab-h1">
+        Independent Intelligence<br />
+        <span style="color:var(--cyan);">Built for Public Clarity.</span>
+      </h1>
+      <p class="ab-lead">
+        Sovereign (SovDash) brings together live geospatial signals, global AI regulation tracking, infrastructure
+        mapping, and citation-verified AI inside one transparent dashboard — built to give researchers, analysts,
+        journalists, enterprises, and citizens primary-source clarity in real time.
+      </p>
 
-<script src="js/nav.js" defer></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('secure-form');
-    const overlay = document.getElementById('trans-overlay');
-    const logBox = document.getElementById('trans-log');
-    const resetBtn = document.getElementById('trans-reset-btn');
+      <div class="ab-hero-actions">
+        <a href="https://app.sovdash.com/" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          Launch Live Dashboard →
+        </a>
+        <a href="#support" class="btn-secondary" style="border-color:rgba(0,255,136,0.36);color:#00ff88;">
+          Support the Mission ↓
+        </a>
+        <a href="https://app.sovdash.com/whitepaper" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+          Read Whitepaper ↗
+        </a>
+      </div>
 
-    if (form && overlay && logBox) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const origin = document.getElementById('form-origin').value || 'ANONYMOUS';
-        const tag = document.getElementById('form-tag').value;
-        const msg = document.getElementById('form-msg').value;
-        fetch('https://app.sovdash.com/api/suggestions', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ type: 'general', subject: `[SECURE TIP: ${tag}] from ${origin}`, details: msg, operatorEmail: 'tips@sovdash.com', operatorName: origin }) }).catch(() => {});
+      <!-- Verified Scale Metrics -->
+      <div class="ab-metrics-bar">
+        <div class="ab-metric-card">
+          <div class="ab-metric-val">60<span style="color:var(--cyan);">+</span></div>
+          <div class="ab-metric-label">AI Legal Profiles</div>
+          <div class="ab-metric-sub">Binding statutes, safety treaties &amp; enforcement clocks tracked across 190+ regions.</div>
+        </div>
+        <div class="ab-metric-card">
+          <div class="ab-metric-val">6,000<span style="color:var(--cyan);">+</span></div>
+          <div class="ab-metric-label">Mapped Facilities</div>
+          <div class="ab-metric-sub">Verified global data centers, frontier AI compute clusters &amp; critical cables.</div>
+        </div>
+        <div class="ab-metric-card">
+          <div class="ab-metric-val">65<span style="color:var(--green);">+</span></div>
+          <div class="ab-metric-label">Live Data Feeds</div>
+          <div class="ab-metric-sub">Continuous ingestion from institutional bulletins, regulators &amp; verified OSINT.</div>
+        </div>
+        <div class="ab-metric-card">
+          <div class="ab-metric-val">100<span style="color:var(--purple);">%</span></div>
+          <div class="ab-metric-label">Citation-Locked AI</div>
+          <div class="ab-metric-sub">Every Ask SovDash AI answer links back to verifiable primary sources.</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Reset and show overlay
-        logBox.innerHTML = '';
-        overlay.style.display = 'flex';
+  <!-- FOUNDER SPOTLIGHT: AVI PERERA -->
+  <section class="ab-section" id="founder">
+    <div class="ab-inner">
+      <div class="ab-section-head">
+        <div class="section-badge">⬡ Founder &amp; Lead Architect</div>
+        <h2 class="ab-h2">The Vision Behind <span style="color:var(--cyan);">Sovereign.</span></h2>
+        <p class="ab-sub">
+          Sovereign wasn't built by an ad-tech company or a black-box brokerage. It was conceived at the intersection of
+          international law, AI governance research, and real-time software engineering.
+        </p>
+      </div>
 
-        const lines = [
-          { text: '> Connecting to tips gateway...', delay: 100, res: '[OK]' },
-          { text: `> Sender established: ${origin}...`, delay: 600, res: '[OK]' },
-          { text: `> Classifying subject category: ${tag}...`, delay: 1100, res: '[OK]' },
-          { text: '> Encrypting submission payload...', delay: 1600, res: '[DONE]' },
-          { text: '> Routing message to secure vault...', delay: 2100, res: '[OK]' },
-          { text: '> Transmission ticket generated: SOV-' + Math.floor(100000 + Math.random() * 900000), delay: 2600, res: '[SECURE]' }
-        ];
+      <div class="founder-card">
+        <div class="founder-aside">
+          <div class="founder-crest" aria-hidden="true">AP</div>
+          <div>
+            <div class="founder-name">Avi Perera</div>
+            <div class="founder-role">Founder &amp; Principal Architect</div>
+            <div class="founder-loc">United Kingdom · AI Governance &amp; Law</div>
+          </div>
 
-        lines.forEach(({ text, delay, res }) => {
-          setTimeout(() => {
-            const r = document.createElement('div');
-            r.style.cssText = 'display:flex;justify-content:space-between;gap:16px;margin-bottom:4px;';
-            r.innerHTML = `<span style="color:#64748b;">${text}</span><span style="color:var(--cyan);font-weight:800;">${res}</span>`;
-            logBox.appendChild(r);
-          }, delay);
+          <a href="https://aviperera.com" target="_blank" rel="noopener noreferrer" class="founder-web-cta">
+            Visit aviperera.com ↗
+          </a>
+
+          <div class="founder-links-row">
+            <a href="https://x.com/SovDash" target="_blank" rel="noopener noreferrer" class="founder-mini-link">X / Twitter</a>
+            <a href="https://www.linkedin.com/company/sovdash" target="_blank" rel="noopener noreferrer" class="founder-mini-link">LinkedIn</a>
+            <a href="https://app.sovdash.com/whitepaper" target="_blank" rel="noopener noreferrer" class="founder-mini-link">Whitepaper</a>
+          </div>
+        </div>
+
+        <div class="founder-bio">
+          <blockquote class="founder-quote">
+            "The biggest risk in global AI governance and geopolitical monitoring isn't a shortage of information — it's
+            that verified, empirical facts remain trapped in scattered documents while fast-moving systems reshape the
+            world in real time."
+          </blockquote>
+
+          <p class="founder-body">
+            <strong style="color:#fff;">Avi Perera</strong> is a British academic, international lawyer, and AI
+            governance researcher whose work spans the University of Cambridge and international disarmament and AI
+            policy contexts. His research examines how emerging technologies — from frontier AI models and algorithmic
+            surveillance to lethal autonomous weapons systems (LAWS) — challenge international humanitarian law,
+            accountability, and democratic oversight.
+          </p>
+
+          <p class="founder-body">
+            Frustrated by slow static PDF reports and expensive closed intelligence terminals, Avi designed and
+            engineered <strong style="color:#fff;">Sovereign (SovDash)</strong> from the ground up as a living
+            empirical observatory: combining 3D/2D geospatial mapping, statutory tracking across 60+ jurisdictions,
+            infrastructure telemetry, and a citation-locked RAG AI assistant anyone can query in seconds. Explore his
+            publications, academic background, and broader projects directly at
+            <a href="https://aviperera.com" target="_blank" rel="noopener noreferrer"
+              style="color:var(--cyan);font-weight:700;text-decoration:underline;text-underline-offset:3px;">aviperera.com</a>.
+          </p>
+
+          <div class="founder-tags">
+            <span class="founder-tag"><b>⬡</b> AI Governance &amp; Safety</span>
+            <span class="founder-tag"><b>⬡</b> International Humanitarian Law</span>
+            <span class="founder-tag"><b>⬡</b> Autonomous Weapons (LAWS)</span>
+            <span class="founder-tag"><b>⬡</b> Open-Source Geospatial Engineering</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Direct Open Observatory Links -->
+      <div class="research-strip">
+        <a href="https://app.sovdash.com/whitepaper" target="_blank" rel="noopener noreferrer" class="research-link-card">
+          <span class="research-link-kicker">01 · Empirical Publication</span>
+          <span class="research-link-title">Observatory Whitepaper ↗</span>
+          <span class="research-link-sub">Evidence-backed findings on compute concentration, statutory fragmentation &amp; risk gaps.</span>
+        </a>
+        <a href="https://app.sovdash.com/methodology" target="_blank" rel="noopener noreferrer" class="research-link-card">
+          <span class="research-link-kicker">02 · Open Standards</span>
+          <span class="research-link-title">Verification Methodology ↗</span>
+          <span class="research-link-sub">Admiralty source grading, deduplication pipelines &amp; citation-lock architecture.</span>
+        </a>
+        <a href="https://app.sovdash.com/jurisdictions" target="_blank" rel="noopener noreferrer" class="research-link-card">
+          <span class="research-link-kicker">03 · Statutory Matrix</span>
+          <span class="research-link-title">60+ AI Jurisdiction Profiles ↗</span>
+          <span class="research-link-sub">Side-by-side statutory comparison across the EU, US, UK, China, APAC &amp; Global South.</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 OPERATING STANDARDS -->
+  <section class="ab-section" id="standards">
+    <div class="ab-inner">
+      <div class="ab-section-head">
+        <div class="section-badge">⬡ Operating Principles</div>
+        <h2 class="ab-h2">Built for Rigor. <span style="color:var(--cyan);">Never for Clicks.</span></h2>
+      </div>
+
+      <div class="principles-grid">
+        <div class="principle-card">
+          <div class="principle-num">01 // Primary-Source Provenance</div>
+          <h3>Every Signal Traces to the Source</h3>
+          <p>
+            Whether it's an EU AI Act statutory clause, a data center registry entry, or a live field incident,
+            Sovereign attaches timestamped provenance and direct primary links so analysts can audit every claim in
+            one click.
+          </p>
+        </div>
+
+        <div class="principle-card">
+          <div class="principle-num">02 // Zero-Hallucination RAG AI</div>
+          <h3>Citation-Locked Intelligence Search</h3>
+          <p>
+            Ask SovDash AI retrieves directly from Sovereign's curated database, legal profiles, and live event corpus
+            rather than guessing from open web noise — turning hours of cross-referencing into verified answers in
+            seconds.
+          </p>
+        </div>
+
+        <div class="principle-card">
+          <div class="principle-num">03 // True Independence</div>
+          <h3>No Ads. No Surveillance. No Agenda.</h3>
+          <p>
+            Sovereign never sells user attention, never runs behavioral ad trackers, and never buries public-interest
+            research behind opaque paywalls. Funding comes transparently from Pro users, supporters, grants, and
+            enterprise builds.
+          </p>
+        </div>
+
+        <div class="principle-card">
+          <div class="principle-num">04 // Public Impact &amp; Enterprise Scale</div>
+          <h3>One Engine, Two Missions</h3>
+          <p>
+            The exact spatial engine and RAG AI architecture that powers our public observatory also deploys privately
+            for enterprise teams — enabling commercial partnerships to cross-subsidize free global public access.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUPPORT INDEPENDENT INTELLIGENCE -->
+  <section class="ab-section" id="support">
+    <div class="ab-inner">
+      <div class="ab-section-head centered">
+        <div class="section-badge" style="border-color:rgba(0,255,136,0.32);color:var(--green);background:rgba(0,255,136,0.07);">
+          ⬡ Keep Sovereign Independent &amp; Growing
+        </div>
+        <h2 class="ab-h2">
+          Back Open Global<br /><span style="color:var(--cyan);">Intelligence Infrastructure.</span>
+        </h2>
+        <p class="ab-sub">
+          Running real-time ingestion pipelines, 3D geospatial mapping, verified statutory databases, and citation-locked
+          AI compute carries real monthly infrastructure costs. Choose the pathway that fits you best — every
+          contribution directly accelerates development and keeps core observatory access open to the world.
+        </p>
+      </div>
+
+      <div class="support-grid">
+        <!-- Pathway 1: Pro Subscription -->
+        <div class="support-card">
+          <span class="support-pill" style="background:rgba(0,245,255,0.10);border:1px solid rgba(0,245,255,0.28);color:var(--cyan);">
+            01 · Individual &amp; Analyst
+          </span>
+          <h3>Upgrade to Pro</h3>
+          <p>
+            Get extended analyst features inside SovDash while providing steady recurring support for live servers and
+            AI API costs.
+          </p>
+          <ul class="support-list">
+            <li><span class="chk">✓</span> 365-day full historical archive &amp; timeline replay</li>
+            <li><span class="chk">✓</span> Priority Ask SovDash AI query throughput</li>
+            <li><span class="chk">✓</span> CSV / JSON exports &amp; custom severity watchlists</li>
+            <li><span class="chk">✓</span> From $23/mo billed annually ($29/mo monthly)</li>
+          </ul>
+          <div class="support-btn-stack">
+            <a href="pricing.html" class="support-btn cyan">View Pro Plans →</a>
+          </div>
+        </div>
+
+        <!-- Pathway 2: Direct Community Support -->
+        <div class="support-card featured">
+          <span class="support-pill" style="background:rgba(0,255,136,0.12);border:1px solid rgba(0,255,136,0.34);color:var(--green);">
+            ★ Direct Independent Patronage
+          </span>
+          <h3>Support Directly</h3>
+          <p>
+            Value open-access AI safety tracking and transparent geopolitical monitoring? Back continued development
+            directly — whether monthly or once-off.
+          </p>
+          <ul class="support-list">
+            <li><span class="chk">✓</span> 100% funds hosting, data feeds &amp; new observatory layers</li>
+            <li><span class="chk">✓</span> Keeps public AI governance &amp; safety research free</li>
+            <li><span class="chk">✓</span> Supports ongoing open methodology &amp; whitepaper updates</li>
+            <li><span class="chk">✓</span> Zero corporate strings or editorial interference</li>
+          </ul>
+          <div class="support-btn-stack">
+            <a href="https://patreon.com/aviperera?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink"
+              target="_blank" rel="noopener noreferrer" class="support-btn patreon">
+              ⚡ Support Monthly on Patreon ↗
+            </a>
+            <a href="https://buymeacoffee.com/avip" target="_blank" rel="noopener noreferrer" class="support-btn coffee">
+              ☕ Buy Avi a Coffee ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Pathway 3: Institutional Grants & Enterprise -->
+        <div class="support-card institutional">
+          <span class="support-pill" style="background:rgba(179,102,255,0.12);border:1px solid rgba(179,102,255,0.34);color:#d8b4fe;">
+            03 · Institutions &amp; Organizations
+          </span>
+          <h3>Partner or Commission</h3>
+          <p>
+            Work with us on philanthropic research grants, university collaborations, or a bespoke private Sovereign
+            dashboard engineered for your organization.
+          </p>
+          <ul class="support-list">
+            <li><span class="chk">✓</span> Research grants &amp; civil-society funding partnerships</li>
+            <li><span class="chk">✓</span> Dedicated private dashboards &amp; sealed RAG AI deployments</li>
+            <li><span class="chk">✓</span> Custom data connectors, alerts &amp; executive reporting</li>
+            <li><span class="chk">✓</span> Direct collaboration with the founding architect</li>
+          </ul>
+          <div class="support-btn-stack">
+            <a href="enterprise.html" class="support-btn purple">Explore Enterprise Builds →</a>
+            <a href="#contact" class="support-btn ghost" id="jump-funding-btn">Discuss a Grant or Partnership ↓</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT, PARTNERSHIPS & SIGNAL TIPS -->
+  <section class="ab-section" id="contact">
+    <div class="ab-inner">
+      <div class="ab-section-head">
+        <div class="section-badge">⬡ Get in Touch</div>
+        <h2 class="ab-h2">Contact, Funding &amp; <span style="color:var(--cyan);">Signal Tips.</span></h2>
+        <p class="ab-sub">
+          Reach out directly regarding research collaborations, institutional funding, enterprise deployments, press
+          inquiries, or verified high-authority sources to add to the live observatory.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info-box">
+          <div>
+            <div style="font-size:10px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;">
+              Direct Communications
+            </div>
+            <p style="font-size:12.5px;color:#94a3b8;line-height:1.75;">
+              Every message goes straight to the founding team — no outsourced ticketing queues. Typical response time
+              is under 24 hours.
+            </p>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-row-label">Founder &amp; Portfolio</div>
+            <a href="https://aviperera.com" target="_blank" rel="noopener noreferrer" class="contact-row-val">
+              aviperera.com ↗
+            </a>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-row-label">Direct Email</div>
+            <a href="mailto:workwithavip@gmail.com" class="contact-row-val">workwithavip@gmail.com</a>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-row-label">Live Platform &amp; Research</div>
+            <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:4px;">
+              <a href="https://app.sovdash.com/" target="_blank" rel="noopener noreferrer" class="contact-row-val">app.sovdash.com ↗</a>
+              <a href="https://x.com/SovDash" target="_blank" rel="noopener noreferrer" class="contact-row-val">@SovDash ↗</a>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-row-label">Open Methodology License</div>
+            <div style="font-size:11.5px;color:#94a3b8;line-height:1.6;">
+              Observatory datasets &amp; whitepaper insights shared for transparent academic and public verification.
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form-card" id="about-contact-form">
+          <div class="ab-field">
+            <label class="ab-label" for="ab-topic">Topic</label>
+            <select class="ab-select" id="ab-topic">
+              <option value="Funding & Research Partnership">Funding, Grant or Research Partnership</option>
+              <option value="Enterprise Build">Bespoke Enterprise Dashboard / Private RAG AI</option>
+              <option value="Signal or Source Tip">Verified Signal, Paper or Dataset Tip</option>
+              <option value="Press & Speaking">Press, Academic Invitation or Speaking</option>
+              <option value="General Inquiry">General Inquiry / Feedback</option>
+            </select>
+          </div>
+
+          <div class="ab-field-row">
+            <div class="ab-field">
+              <label class="ab-label" for="ab-name">Your Name</label>
+              <input type="text" class="ab-input" id="ab-name" placeholder="e.g. Dr. Hannah Patel" required />
+            </div>
+            <div class="ab-field">
+              <label class="ab-label" for="ab-email">Email Address</label>
+              <input type="email" class="ab-input" id="ab-email" placeholder="you@organization.org" required />
+            </div>
+          </div>
+
+          <div class="ab-field">
+            <label class="ab-label" for="ab-message">Message</label>
+            <textarea class="ab-textarea" id="ab-message"
+              placeholder="Share details on your research collaboration, funding inquiry, enterprise goals, or source link..."
+              required></textarea>
+          </div>
+
+          <button type="submit" id="ab-submit-btn" class="support-btn cyan" style="padding:15px 20px;font-size:11px;">
+            Send Direct Message →
+          </button>
+
+          <div id="ab-form-status" class="ab-form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 SOVDASH &nbsp;·&nbsp; FOUNDED BY <a href="https://aviperera.com" target="_blank" rel="noopener noreferrer" style="color:var(--cyan);text-decoration:none;">AVI PERERA</a></span>
+    <div class="footer-links">
+      <a href="about.html" style="color:#fff;">About</a>
+      <a href="enterprise.html">Enterprise</a>
+      <a href="pricing.html">Pricing</a>
+    </div>
+    <div class="footer-live">
+      <span>◈</span> ENCRYPTED DATA CHANNEL SECURED
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="js/nav.js?v=20261128" defer></script>
+  <script src="js/transitions.js?v=20261128" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const jumpBtn = document.getElementById('jump-funding-btn');
+      const topicEl = document.getElementById('ab-topic');
+      if (jumpBtn && topicEl) {
+        jumpBtn.addEventListener('click', () => {
+          topicEl.value = 'Funding & Research Partnership';
         });
-      });
+      }
 
-      resetBtn.addEventListener('click', () => {
-        overlay.style.display = 'none';
-        form.reset();
-      });
-    }
-  });
-</script>
-<script src="js/transitions.js?v=20261127e" defer></script>
+      const form = document.getElementById('about-contact-form');
+      const status = document.getElementById('ab-form-status');
+      const submitBtn = document.getElementById('ab-submit-btn');
+
+      if (form && status && submitBtn) {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const topic = (topicEl ? topicEl.value : 'General Inquiry').trim();
+          const name = document.getElementById('ab-name').value.trim();
+          const email = document.getElementById('ab-email').value.trim();
+          const msg = document.getElementById('ab-message').value.trim();
+
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'SENDING MESSAGE...';
+          status.style.display = 'none';
+
+          const refId = 'SOV-' + Math.random().toString(36).slice(2, 7).toUpperCase();
+          try {
+            const res = await fetch('https://app.sovdash.com/api/suggestions', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                type: topic.includes('Signal') ? 'source' : 'general',
+                subject: `[ABOUT · ${topic} · ${refId}] ${name}`,
+                details: msg,
+                operatorEmail: email,
+                operatorName: name
+              })
+            });
+            if (!res.ok) throw new Error('Relay returned ' + res.status);
+
+            status.style.color = '#00ff88';
+            status.style.borderColor = 'rgba(0,255,136,0.32)';
+            status.style.background = 'rgba(0,255,136,0.07)';
+            status.innerHTML =
+              `✓ MESSAGE RECEIVED · REF <strong>${refId}</strong><br/>` +
+              `<span style="color:#94a3b8;">Thank you, ${name.replace(/</g, '&lt;')}. We'll respond to ${email.replace(/</g, '&lt;')} within 24 hours.</span>`;
+            form.reset();
+          } catch {
+            status.style.color = '#ffd22e';
+            status.style.borderColor = 'rgba(255,210,46,0.36)';
+            status.style.background = 'rgba(255,210,46,0.08)';
+            status.innerHTML =
+              `Direct relay temporarily unavailable — email Avi directly at ` +
+              `<a href="mailto:workwithavip@gmail.com" style="color:var(--cyan);text-decoration:underline;">workwithavip@gmail.com</a>.`;
+          } finally {
+            status.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Direct Message →';
+          }
+        });
+      }
+    });
+  </script>
+
 </body>
-</html>
 
+</html>

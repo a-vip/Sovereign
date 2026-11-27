@@ -1,9 +1,9 @@
 /* ── PREMIUM NON-BLOCKING SVG EMBLEM BOOT SEQUENCE (PRE-WARMS 3D GLOBE IN PARALLEL) ── */
 const bootLines = [
   { statusText: 'Syncing live intelligence layers...', delay: 0 },
-  { statusText: 'Calibrating 3D orbital globe...', delay: 260 },
-  { statusText: 'Verifying citation-locked AI...', delay: 540 },
-  { statusText: 'Systems ready.', delay: 800 },
+  { statusText: 'Calibrating 3D orbital globe...', delay: 190 },
+  { statusText: 'Verifying citation-locked AI...', delay: 390 },
+  { statusText: 'Systems ready.', delay: 580 },
 ];
 let bootDone = false;
 

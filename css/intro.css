@@ -320,6 +320,12 @@
   pointer-events: auto;
 }
 
+/* Progressive-enhancement default: Layer 01 is immediately visible before JS first frame */
+#intro-slide-1.active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
 .slide-badge {
   display: inline-flex;
   align-items: center;
