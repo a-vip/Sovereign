@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Enterprise Solutions &amp; Private RAG AI Use Cases | Sovereign</title>
+  <title>Enterprise Solutions &amp; Interactive Private RAG AI Sandbox | Sovereign</title>
   <meta name="description"
-    content="Explore real-world enterprise blueprints built on Sovereign's live geospatial engine and citation-locked private RAG AI across logistics, legal & compliance, finance, energy, cyber, AI cloud, research, and operations." />
+    content="Test Sovereign's interactive 3D enterprise command sandbox and citation-locked private RAG AI across 8 industries — logistics, legal, finance, energy, cyber, AI cloud, research, and pharma." />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sovdash.com/solutions.html" />
-  <meta property="og:title" content="Enterprise Solutions &amp; Private RAG AI Blueprints | Sovereign" />
+  <meta property="og:title" content="Enterprise Solutions &amp; Interactive Private RAG AI Sandbox | Sovereign" />
   <meta property="og:description"
-    content="See how Sovereign builds custom live intelligence dashboards and private citation-locked RAG AI systems across 8 high-impact industries." />
+    content="Explore interactive 3D operational dashboards and citation-locked private RAG AI blueprints across 8 high-impact industries." />
   <meta property="og:image" content="https://sovdash.com/images/og-card.png" />
 
   <link rel="icon"
@@ -23,18 +23,19 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/base.css?v=20261128b" />
-  <link rel="stylesheet" href="css/nav.css?v=20261128b" />
-  <link rel="stylesheet" href="css/sections.css?v=20261128b" />
-  <link rel="stylesheet" href="css/components.css?v=20261128b" />
-  <link rel="stylesheet" href="css/footer.css?v=20261128b" />
-  <link rel="stylesheet" href="css/transitions.css?v=20261128b" />
+  <link rel="stylesheet" href="css/base.css?v=20261128c" />
+  <link rel="stylesheet" href="css/nav.css?v=20261128c" />
+  <link rel="stylesheet" href="css/sections.css?v=20261128c" />
+  <link rel="stylesheet" href="css/components.css?v=20261128c" />
+  <link rel="stylesheet" href="css/footer.css?v=20261128c" />
+  <link rel="stylesheet" href="css/transitions.css?v=20261128c" />
 
   <style>
+    /* ── HERO ── */
     .sol-hero {
       position: relative;
       z-index: 10;
-      padding: 82px 24px 52px;
+      padding: 74px 24px 44px;
       text-align: center;
       overflow: hidden;
     }
@@ -44,34 +45,58 @@
       inset: 0;
       pointer-events: none;
       background:
-        radial-gradient(ellipse 68% 54% at 50% 8%, rgba(0, 245, 255, 0.11) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 48% at 82% 72%, rgba(179, 102, 255, 0.09) 0%, transparent 70%);
+        radial-gradient(ellipse 70% 56% at 50% 6%, rgba(0, 245, 255, 0.12) 0%, transparent 65%),
+        radial-gradient(ellipse 52% 48% at 84% 72%, rgba(179, 102, 255, 0.10) 0%, transparent 70%);
     }
 
     .sol-inner {
-      max-width: 1240px;
+      max-width: 1260px;
       margin: 0 auto;
       position: relative;
       z-index: 2;
     }
 
     .sol-h1 {
-      font-size: clamp(30px, 4.8vw, 58px);
+      font-size: clamp(30px, 4.9vw, 60px);
       font-weight: 800;
-      line-height: 1.04;
+      line-height: 1.03;
       letter-spacing: -0.03em;
       text-transform: uppercase;
       color: #fff;
-      margin: 20px auto 0;
-      max-width: 960px;
+      margin: 18px auto 0;
+      max-width: 980px;
     }
 
     .sol-lead {
-      font-size: 14px;
+      font-size: 13.8px;
       color: #94a3b8;
       line-height: 1.85;
-      max-width: 720px;
-      margin: 20px auto 0;
+      max-width: 740px;
+      margin: 18px auto 0;
+    }
+
+    .sol-proof-pills {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .sol-proof-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(10, 15, 28, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #cbd5e1;
+    }
+
+    .sol-proof-pill b {
+      color: var(--cyan);
     }
 
     .sol-actions {
@@ -79,17 +104,742 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 30px;
+      margin-top: 26px;
     }
 
-    /* Filter Pills */
+    /* ── FLAGSHIP INTERACTIVE 3D + RAG SANDBOX ── */
+    .sim-section {
+      position: relative;
+      z-index: 10;
+      padding: 20px 24px 72px;
+      scroll-margin-top: 78px;
+    }
+
+    .sim-shell {
+      --sim-accent: #00f5ff;
+      border-radius: 24px;
+      border: 1px solid rgba(0, 245, 255, 0.22);
+      background: linear-gradient(160deg, rgba(8, 13, 26, 0.96) 0%, rgba(4, 7, 15, 0.98) 100%);
+      box-shadow: 0 32px 90px rgba(0, 0, 0, 0.58), 0 0 60px rgba(0, 245, 255, 0.06);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .sim-shell::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--sim-accent), transparent);
+      transition: background 0.35s;
+    }
+
+    .sim-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(5, 8, 18, 0.85);
+    }
+
+    .sim-status-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e2e8f0;
+    }
+
+    .sim-live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 10px var(--green);
+      animation: simPulse 2s infinite;
+    }
+
+    @keyframes simPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.85); }
+    }
+
+    .sim-pilot-tag {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--sim-accent);
+    }
+
+    /* Industry Switcher Tabs */
+    .sim-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(7, 10, 20, 0.65);
+    }
+
+    .sim-ind-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      background: rgba(12, 17, 30, 0.8);
+      color: #94a3b8;
+      font-family: inherit;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sim-tab-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--tab-col, var(--cyan));
+      opacity: 0.55;
+      transition: opacity 0.2s, box-shadow 0.2s;
+    }
+
+    .sim-ind-tab:hover {
+      border-color: rgba(255, 255, 255, 0.28);
+      color: #fff;
+    }
+
+    .sim-ind-tab.active {
+      border-color: var(--tab-col, var(--cyan));
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(0, 245, 255, 0.12);
+    }
+
+    .sim-ind-tab.active .sim-tab-dot {
+      opacity: 1;
+      box-shadow: 0 0 8px var(--tab-col, var(--cyan));
+    }
+
+    /* Split Stage: 3D Globe Left + Private RAG AI Right */
+    .sim-stage {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.12fr);
+      min-height: 520px;
+    }
+
+    .sim-globe-pane {
+      position: relative;
+      border-right: 1px solid rgba(255, 255, 255, 0.07);
+      background: radial-gradient(circle at 50% 48%, rgba(10, 22, 42, 0.55) 0%, rgba(4, 7, 15, 0.96) 76%);
+      display: flex;
+      flex-direction: column;
+      min-height: 460px;
+      overflow: hidden;
+    }
+
+    .sim-globe-hud-top {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      right: 16px;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .sim-hud-pill {
+      padding: 5px 10px;
+      border-radius: 7px;
+      background: rgba(4, 8, 18, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      font-size: 8.8px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sim-accent);
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .sim-drag-hint {
+      font-size: 8.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #64748b;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: rgba(4, 8, 18, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      flex-shrink: 0;
+    }
+
+    .sim-canvas-wrap {
+      flex: 1;
+      position: relative;
+      width: 100%;
+      min-height: 390px;
+      cursor: grab;
+    }
+
+    .sim-canvas-wrap:active {
+      cursor: grabbing;
+    }
+
+    #sol-globe-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      touch-action: pan-y;
+    }
+
+    .sim-globe-hud-bot {
+      padding: 11px 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(4, 7, 15, 0.90);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .sim-globe-hud-bot b {
+      color: var(--sim-accent);
+    }
+
+    /* Right Panel: Interactive Private RAG AI Console */
+    .sim-rag-pane {
+      display: flex;
+      flex-direction: column;
+      padding: 20px 22px;
+      gap: 14px;
+      background: rgba(6, 10, 20, 0.92);
+    }
+
+    .sim-rag-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .sim-rag-kicker {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sim-accent);
+    }
+
+    .sim-rag-sub {
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+
+    .sim-prompt-chips {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .sim-prompt-chip {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      text-align: left;
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.025);
+      color: #94a3b8;
+      font-family: inherit;
+      font-size: 11px;
+      line-height: 1.48;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sim-prompt-chip:hover {
+      border-color: rgba(255, 255, 255, 0.24);
+      color: #e2e8f0;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .sim-prompt-chip.active {
+      border-color: var(--sim-accent);
+      background: rgba(0, 245, 255, 0.07);
+      color: #fff;
+    }
+
+    .sim-p-idx {
+      flex-shrink: 0;
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-size: 8.5px;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--sim-accent);
+      margin-top: 1px;
+    }
+
+    /* Pipeline Step Indicator */
+    .sim-rag-steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .sim-step {
+      padding: 6px 8px;
+      border-radius: 7px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(255, 255, 255, 0.02);
+      font-size: 8.2px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #64748b;
+      text-align: center;
+      transition: all 0.25s;
+    }
+
+    .sim-step.running {
+      border-color: var(--sim-accent);
+      color: var(--sim-accent);
+      background: rgba(0, 245, 255, 0.09);
+    }
+
+    .sim-step.done {
+      border-color: rgba(0, 255, 136, 0.35);
+      color: #00ff88;
+      background: rgba(0, 255, 136, 0.06);
+    }
+
+    /* Active Answer Box */
+    .sim-answer-box {
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: rgba(3, 6, 14, 0.94);
+      padding: 15px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sim-active-q {
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 700;
+      padding-bottom: 9px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      line-height: 1.5;
+    }
+
+    .sim-rag-answer {
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.72;
+      min-height: 64px;
+    }
+
+    .sim-rag-answer.sim-reveal {
+      animation: simFadeIn 0.32s ease-out;
+    }
+
+    @keyframes simFadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .sim-thinking {
+      color: var(--sim-accent);
+      font-style: italic;
+      font-size: 11px;
+    }
+
+    .sim-rag-answer strong {
+      color: #ffffff;
+    }
+
+    .sim-rag-answer code {
+      padding: 1px 5px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 11px;
+    }
+
+    .sim-inline-cite {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 5px;
+      margin: 0 2px;
+      border-radius: 5px;
+      border: 1px solid rgba(0, 245, 255, 0.42);
+      background: rgba(0, 245, 255, 0.14);
+      color: var(--cyan);
+      font-family: inherit;
+      font-size: 9.5px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+
+    .sim-inline-cite:hover,
+    .sim-inline-cite.active {
+      background: var(--cyan);
+      color: #030712;
+      transform: translateY(-1px);
+    }
+
+    .sim-cite-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .sim-cite-pill {
+      padding: 4px 9px;
+      border-radius: 7px;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      background: rgba(255, 255, 255, 0.03);
+      color: #94a3b8;
+      font-family: inherit;
+      font-size: 9px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+
+    .sim-cite-pill span {
+      color: var(--cyan);
+      margin-right: 3px;
+    }
+
+    .sim-cite-pill:hover,
+    .sim-cite-pill.active {
+      border-color: var(--cyan);
+      background: rgba(0, 245, 255, 0.12);
+      color: #fff;
+    }
+
+    /* Source Provenance Inspector Card */
+    .sim-inspector {
+      border-radius: 12px;
+      border: 1px solid rgba(0, 255, 136, 0.24);
+      background: linear-gradient(145deg, rgba(6, 20, 22, 0.90) 0%, rgba(5, 10, 18, 0.94) 100%);
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .sim-insp-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 8.5px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    .sim-insp-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .sim-insp-meta {
+      font-size: 9.5px;
+      color: #94a3b8;
+    }
+
+    .sim-insp-excerpt {
+      font-size: 10.8px;
+      color: #cbd5e1;
+      line-height: 1.55;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.35);
+      border-left: 2px solid var(--green);
+      margin-top: 2px;
+    }
+
+    /* Animated Data Flow Pipe Footer inside Sandbox */
+    .sim-pipe-bar {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) auto minmax(0, 0.9fr) auto minmax(0, 0.95fr);
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(5, 8, 18, 0.92);
+    }
+
+    .pipe-node {
+      padding: 10px 13px;
+      border-radius: 11px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .pipe-kicker {
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sim-accent);
+      margin-bottom: 6px;
+    }
+
+    .pipe-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .pipe-chip {
+      font-size: 8.8px;
+      font-weight: 700;
+      color: #cbd5e1;
+      padding: 3px 7px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .pipe-arrow {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--sim-accent);
+      opacity: 0.75;
+      text-align: center;
+    }
+
+    .sim-bottom-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding: 14px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(8, 12, 24, 0.96);
+    }
+
+    .sim-bottom-note {
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    .sim-bottom-note strong {
+      color: #fff;
+    }
+
+    /* ── DEPLOYMENT ARCHITECTURE SWITCHER ── */
+    .sol-band {
+      position: relative;
+      z-index: 10;
+      padding: 72px 24px;
+      border-top: 1px solid rgba(0, 245, 255, 0.08);
+      scroll-margin-top: 84px;
+    }
+
+    .arch-grid {
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+      gap: 24px;
+      margin-top: 34px;
+      align-items: stretch;
+    }
+
+    .arch-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .arch-tab-btn {
+      text-align: left;
+      padding: 18px 18px;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: rgba(10, 14, 26, 0.82);
+      color: #94a3b8;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.22s;
+    }
+
+    .arch-tab-btn:hover {
+      border-color: rgba(0, 245, 255, 0.35);
+      color: #fff;
+    }
+
+    .arch-tab-btn.active {
+      border-color: var(--cyan);
+      background: linear-gradient(145deg, rgba(8, 24, 38, 0.95), rgba(10, 14, 26, 0.92));
+      color: #fff;
+      box-shadow: 0 0 28px rgba(0, 245, 255, 0.12);
+    }
+
+    .arch-tab-num {
+      font-size: 8.5px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 5px;
+    }
+
+    .arch-tab-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #fff;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .arch-tab-desc {
+      font-size: 10.8px;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    .arch-detail-card {
+      padding: 30px;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 245, 255, 0.22);
+      background: linear-gradient(155deg, rgba(10, 15, 28, 0.94), rgba(6, 9, 18, 0.96));
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .arch-top-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .arch-badge {
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: rgba(0, 255, 136, 0.10);
+      border: 1px solid rgba(0, 255, 136, 0.34);
+      font-size: 8.5px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    .arch-time {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--cyan);
+    }
+
+    .arch-detail-card h3 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    .arch-sub {
+      font-size: 12.8px;
+      color: #94a3b8;
+      line-height: 1.75;
+    }
+
+    .arch-ideal {
+      font-size: 11px;
+      color: #cbd5e1;
+      padding: 9px 13px;
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .arch-spec-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .arch-spec-item {
+      padding: 13px 14px;
+      border-radius: 12px;
+      background: rgba(4, 7, 15, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .arch-spec-k {
+      font-size: 8.5px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 5px;
+    }
+
+    .arch-spec-v {
+      font-size: 11.4px;
+      color: #cbd5e1;
+      line-height: 1.58;
+    }
+
+    /* ── BLUEPRINT CARDS WITH MOUSE SPOTLIGHT GLOW ── */
     .sol-filter-bar {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 8px;
-      margin: 44px auto 0;
-      max-width: 1020px;
+      margin: 28px auto 34px;
+      max-width: 1040px;
     }
 
     .sol-filter-btn {
@@ -98,7 +848,7 @@
       border: 1px solid rgba(255, 255, 255, 0.11);
       background: rgba(10, 14, 26, 0.82);
       color: #94a3b8;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: inherit;
       font-size: 9.5px;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -119,14 +869,6 @@
       box-shadow: 0 0 18px rgba(0, 245, 255, 0.14);
     }
 
-    /* Blueprint Cards Grid */
-    .sol-section {
-      position: relative;
-      z-index: 10;
-      padding: 46px 24px 80px;
-      scroll-margin-top: 86px;
-    }
-
     .uc-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -134,12 +876,16 @@
     }
 
     .uc-card {
+      --mx: 50%;
+      --my: 0%;
       display: flex;
       flex-direction: column;
       border-radius: 20px;
       border: 1px solid rgba(255, 255, 255, 0.09);
-      background: linear-gradient(155deg, rgba(11, 15, 28, 0.90) 0%, rgba(7, 10, 19, 0.92) 100%);
-      padding: 28px;
+      background:
+        radial-gradient(420px circle at var(--mx) var(--my), rgba(0, 245, 255, 0.09), transparent 55%),
+        linear-gradient(155deg, rgba(11, 15, 28, 0.92) 0%, rgba(7, 10, 19, 0.95) 100%);
+      padding: 26px;
       position: relative;
       overflow: hidden;
       transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
@@ -156,9 +902,9 @@
     }
 
     .uc-card:hover {
-      border-color: var(--uc-color, rgba(0, 245, 255, 0.36));
+      border-color: var(--uc-color, rgba(0, 245, 255, 0.40));
       transform: translateY(-3px);
-      box-shadow: 0 22px 54px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 24px 58px rgba(0, 0, 0, 0.48);
     }
 
     .uc-card.hidden {
@@ -171,7 +917,7 @@
       justify-content: space-between;
       gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .uc-badge {
@@ -198,7 +944,7 @@
     }
 
     .uc-card h3 {
-      font-size: 20px;
+      font-size: 19.5px;
       font-weight: 800;
       color: #fff;
       letter-spacing: -0.02em;
@@ -218,7 +964,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 15px;
     }
 
     .uc-mini-box {
@@ -240,16 +986,15 @@
     .uc-mini-box p {
       font-size: 11.2px;
       color: #cbd5e1;
-      line-height: 1.62;
+      line-height: 1.6;
     }
 
-    /* Simulated Citation-Locked RAG AI Box inside each Blueprint */
     .uc-rag-box {
       border-radius: 14px;
       border: 1px solid rgba(0, 245, 255, 0.18);
       background: rgba(4, 7, 16, 0.92);
-      padding: 14px 16px;
-      margin-bottom: 18px;
+      padding: 14px 15px;
+      margin-bottom: 16px;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -269,7 +1014,7 @@
     }
 
     .uc-rag-q {
-      font-size: 11.5px;
+      font-size: 11.2px;
       color: #f8fafc;
       font-weight: 700;
       padding: 8px 11px;
@@ -280,14 +1025,12 @@
     }
 
     .uc-rag-a {
-      font-size: 11.2px;
+      font-size: 11px;
       color: #94a3b8;
       line-height: 1.65;
     }
 
-    .uc-rag-a strong {
-      color: #e2e8f0;
-    }
+    .uc-rag-a strong { color: #e2e8f0; }
 
     .uc-cite {
       display: inline-block;
@@ -300,51 +1043,57 @@
       margin: 0 2px;
     }
 
-    .uc-sources {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      padding-top: 6px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .uc-src-chip {
-      font-size: 8.5px;
-      font-weight: 700;
-      color: #94a3b8;
-      padding: 3px 8px;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
     .uc-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
       padding-top: 14px;
       border-top: 1px solid rgba(255, 255, 255, 0.06);
       margin-top: auto;
     }
 
-    .uc-impact {
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--green);
+    .uc-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .uc-sim-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 9px 12px;
+      border-radius: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.035);
+      color: #cbd5e1;
+      font-family: inherit;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .uc-sim-btn:hover {
+      border-color: var(--uc-color, var(--cyan));
+      color: #fff;
+      background: rgba(0, 245, 255, 0.10);
     }
 
     .uc-cta {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 10px 15px;
-      border-radius: 10px;
+      padding: 9px 14px;
+      border-radius: 9px;
       border: 1px solid var(--uc-color, rgba(0, 245, 255, 0.44));
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255, 255, 255, 0.05);
       color: #fff;
-      font-size: 9.5px;
+      font-size: 9px;
       font-weight: 800;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -357,26 +1106,128 @@
       transform: translateY(-1px);
     }
 
-    /* RAG Value Strip & Engagement Models */
-    .sol-band {
-      position: relative;
-      z-index: 10;
-      padding: 76px 24px;
-      border-top: 1px solid rgba(0, 245, 255, 0.08);
-      scroll-margin-top: 86px;
+    /* ── INTERACTIVE PILOT SCOPE ESTIMATOR ── */
+    .est-card {
+      margin-top: 36px;
+      padding: 28px;
+      border-radius: 20px;
+      border: 1px solid rgba(179, 102, 255, 0.30);
+      background: linear-gradient(150deg, rgba(16, 12, 32, 0.92), rgba(7, 11, 22, 0.95));
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 28px;
+      align-items: center;
     }
 
+    .est-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .est-field label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+
+    .est-field label b { color: var(--cyan); }
+
+    .est-range {
+      width: 100%;
+      accent-color: #00f5ff;
+      cursor: pointer;
+    }
+
+    .est-select {
+      width: 100%;
+      padding: 11px 13px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      background: rgba(4, 7, 15, 0.92);
+      color: #fff;
+      font-family: inherit;
+      font-size: 11.5px;
+      outline: none;
+    }
+
+    .est-output {
+      padding: 22px;
+      border-radius: 16px;
+      background: rgba(4, 8, 18, 0.92);
+      border: 1px solid rgba(0, 245, 255, 0.22);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .est-out-kicker {
+      font-size: 8.5px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #d8b4fe;
+    }
+
+    .est-out-stage {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .est-metrics-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .est-metric {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .est-metric span {
+      display: block;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+
+    .est-metric strong {
+      display: block;
+      font-size: 15px;
+      color: var(--cyan);
+      margin-top: 3px;
+    }
+
+    .est-summary {
+      font-size: 11px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    /* ── 3-STAGE ENGAGEMENT MODELS ── */
     .sol-3col {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 20px;
-      margin-top: 38px;
+      margin-top: 34px;
     }
 
     .sol-model-card {
       display: flex;
       flex-direction: column;
-      padding: 28px 24px;
+      padding: 26px 22px;
       border-radius: 18px;
       background: rgba(10, 13, 24, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.09);
@@ -400,7 +1251,7 @@
     }
 
     .sol-model-card h3 {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 800;
       color: #fff;
       text-transform: uppercase;
@@ -415,10 +1266,10 @@
     }
 
     .sol-model-card p {
-      font-size: 12px;
+      font-size: 11.8px;
       color: #94a3b8;
       line-height: 1.72;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .sol-model-list {
@@ -432,37 +1283,153 @@
     }
 
     .sol-model-list li {
-      font-size: 11.2px;
+      font-size: 11px;
       color: #cbd5e1;
       display: flex;
       gap: 8px;
       line-height: 1.5;
     }
 
-    .sol-model-list li b {
-      color: var(--green);
+    .sol-model-list li b { color: var(--green); }
+
+    /* ── WALKTHROUGH MODAL ── */
+    .walk-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(2, 5, 12, 0.86);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
 
-    @media (max-width: 980px) {
+    .walk-modal.open {
+      display: flex;
+    }
+
+    .walk-dialog {
+      width: 100%;
+      max-width: 780px;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 245, 255, 0.30);
+      background: linear-gradient(160deg, rgba(10, 15, 28, 0.98), rgba(4, 7, 16, 0.99));
+      padding: 26px;
+      box-shadow: 0 32px 90px rgba(0, 0, 0, 0.72);
+    }
+
+    .walk-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .walk-close {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+      color: #cbd5e1;
+      font-family: inherit;
+      font-size: 10px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .walk-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .walk-step {
+      padding: 15px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .walk-step-time {
+      font-size: 9px;
+      font-weight: 800;
+      color: var(--cyan);
+      letter-spacing: 0.14em;
+      margin-bottom: 5px;
+    }
+
+    .walk-step h4 {
+      font-size: 13px;
+      color: #fff;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .walk-step p {
+      font-size: 11px;
+      color: #94a3b8;
+      line-height: 1.55;
+    }
+
+    /* Scroll reveal */
+    .sol-reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .sol-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1020px) {
+      .sim-stage,
+      .arch-grid,
+      .est-card,
       .uc-grid,
       .sol-3col {
         grid-template-columns: 1fr;
       }
+
+      .sim-globe-pane {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        min-height: 360px;
+      }
+
+      .sim-canvas-wrap {
+        min-height: 320px;
+      }
+
+      .sim-pipe-bar {
+        grid-template-columns: 1fr;
+      }
+
+      .pipe-arrow {
+        transform: rotate(90deg);
+      }
     }
 
     @media (max-width: 640px) {
-      .sol-hero {
-        padding: 60px 18px 36px;
-      }
-      .sol-section,
-      .sol-band {
-        padding: 46px 18px 60px;
-      }
-      .uc-card {
-        padding: 20px;
-      }
-      .uc-split {
+      .sol-hero { padding: 56px 16px 32px; }
+      .sim-section { padding: 14px 16px 52px; }
+      .sol-band { padding: 52px 16px; }
+      .sim-rag-pane { padding: 16px; }
+      .sim-rag-steps,
+      .arch-spec-grid,
+      .uc-split,
+      .walk-steps-grid {
         grid-template-columns: 1fr;
+      }
+      .uc-card,
+      .arch-detail-card,
+      .est-card {
+        padding: 20px;
       }
     }
   </style>
@@ -477,12 +1444,12 @@
     <div class="ticker-label">● SOLUTIONS</div>
     <div class="ticker-track">
       <span class="ticker-inner">
+        INTERACTIVE 3D ENTERPRISE COMMAND SANDBOX &nbsp;•&nbsp;
         PRIVATE CITATION-LOCKED RAG AI FOR YOUR INTERNAL DOCUMENTS &amp; DATABASES &nbsp;•&nbsp;
-        DEDICATED 3D/2D LIVE OPERATIONAL DASHBOARDS &nbsp;•&nbsp;
-        DEPLOYED IN YOUR PRIVATE CLOUD (VPC) OR ON-PREMISE &nbsp;•&nbsp;
+        DEPLOYED IN YOUR PRIVATE CLOUD (VPC) OR AIR-GAPPED ON-PREMISE &nbsp;•&nbsp;
         WORKING PILOT IN 2–4 WEEKS · ZERO THIRD-PARTY AI TRAINING &nbsp;•&nbsp;
+        INTERACTIVE 3D ENTERPRISE COMMAND SANDBOX &nbsp;•&nbsp;
         PRIVATE CITATION-LOCKED RAG AI FOR YOUR INTERNAL DOCUMENTS &amp; DATABASES &nbsp;•&nbsp;
-        DEDICATED 3D/2D LIVE OPERATIONAL DASHBOARDS &nbsp;•&nbsp;
       </span>
     </div>
   </div>
@@ -529,25 +1496,196 @@
   <section class="sol-hero">
     <div class="sol-hero-glow"></div>
     <div class="sol-inner">
-      <div class="section-badge">⬡ Enterprise Blueprints &amp; Private RAG AI</div>
+      <div class="section-badge">⬡ Interactive Enterprise Sandbox &amp; Private RAG AI</div>
       <h1 class="sol-h1">
         Built Around Your Data.<br />
         <span style="color:var(--cyan);">Engineered for Decisions.</span>
       </h1>
       <p class="sol-lead">
-        Every team sits on fragmented databases, PDFs, contracts, ERP feeds, and fast-moving external risks. Explore 8
-        concrete blueprints showing how Sovereign combines live spatial dashboards and private citation-verified RAG AI
-        to give your organization instant, auditable clarity.
+        Don't just read a feature sheet — test Sovereign's live 3D spatial engine and citation-locked private RAG AI
+        below. Switch industries, spin the globe, run private queries, and click any <code>[1]</code> citation to
+        inspect exact source provenance in real time.
       </p>
 
-      <div class="sol-actions">
-        <a href="enterprise.html" class="btn-primary">Commission a Custom Build →</a>
-        <a href="#models" class="btn-secondary">How Engagement Works ↓</a>
-        <a href="https://app.sovdash.com/" target="_blank" rel="noopener noreferrer" class="btn-secondary">See Live Demo ↗</a>
+      <div class="sol-proof-pills">
+        <span class="sol-proof-pill"><b>⬡</b> Live 3D + 2D Spatial Engine</span>
+        <span class="sol-proof-pill"><b>⬡</b> 0 Phantom Citations Verified</span>
+        <span class="sol-proof-pill"><b>⬡</b> Private VPC or Air-Gapped On-Prem</span>
+        <span class="sol-proof-pill"><b>⬡</b> Working Pilot in 2–4 Weeks</span>
       </div>
 
-      <!-- Interactive Industry Filter -->
-      <div class="sol-filter-bar" role="tablist" aria-label="Filter solutions by industry">
+      <div class="sol-actions">
+        <a href="#sandbox" class="btn-primary">Test Interactive Sandbox ↓</a>
+        <button type="button" id="open-walkthrough-btn" class="btn-secondary" style="border-color:rgba(179,102,255,0.45);color:#d8b4fe;">
+          ▶ 90-Sec Platform Walkthrough
+        </button>
+        <a href="enterprise.html" class="btn-secondary">Commission Custom Build →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLAGSHIP INTERACTIVE 3D + PRIVATE RAG COMMAND SANDBOX -->
+  <section class="sim-section" id="sandbox">
+    <div class="sol-inner">
+      <div class="sim-shell" id="sandbox-shell">
+        <div class="sim-topbar">
+          <div class="sim-status-left">
+            <span class="sim-live-dot"></span>
+            <span>SOVEREIGN ENTERPRISE SANDBOX // INTERACTIVE PRIVATE INSTANCE SIMULATOR</span>
+          </div>
+          <span class="sim-pilot-tag" id="sim-pilot-badge">PILOT: 3–5 WEEKS</span>
+        </div>
+
+        <!-- 8-Industry Interactive Selector -->
+        <div class="sim-tabs" id="sim-industry-tabs" role="tablist" aria-label="Choose industry simulation"></div>
+
+        <!-- Split Interactive Terminal -->
+        <div class="sim-stage">
+          <!-- Left: Interactive 3D Real-Earth Canvas -->
+          <div class="sim-globe-pane">
+            <div class="sim-globe-hud-top">
+              <span class="sim-hud-pill" id="sim-globe-title">01 // Live Fleet, Port &amp; Route Risk Command</span>
+              <span class="sim-drag-hint">⟲ Drag to Orbit</span>
+            </div>
+            <div class="sim-canvas-wrap">
+              <canvas id="sol-globe-canvas" aria-label="Interactive 3D enterprise intelligence globe"></canvas>
+            </div>
+            <div class="sim-globe-hud-bot">
+              <span>LAYER: <b id="sim-globe-layer">SAP TMS + AIS CORRIDORS</b></span>
+              <span>ZERO-WEBGL 60FPS · CLICK CITATION TO FOCUS PIN</span>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Private Citation-Locked RAG AI Console -->
+          <div class="sim-rag-pane">
+            <div class="sim-rag-head">
+              <span class="sim-rag-kicker">⬡ Ask Private Sovereign AI — Click Any Query</span>
+              <span class="sim-rag-sub" id="sim-rag-index">PRIVATE VPC · ZERO RETENTION</span>
+            </div>
+
+            <div class="sim-prompt-chips" id="sim-prompt-chips"></div>
+
+            <div class="sim-rag-steps" id="sim-rag-steps">
+              <div class="sim-step done">① Embed (Private VPC)</div>
+              <div class="sim-step done">② Retrieve Top-K Chunks</div>
+              <div class="sim-step done">③ Lock Citations [1..N]</div>
+            </div>
+
+            <div class="sim-answer-box">
+              <div class="sim-active-q" id="sim-active-q"></div>
+              <div class="sim-rag-answer" id="sim-rag-answer"></div>
+              <div class="sim-cite-bar" id="sim-cite-bar"></div>
+            </div>
+
+            <!-- Interactive Citation Provenance Inspector -->
+            <div class="sim-inspector" id="sim-inspector">
+              <div class="sim-insp-head">
+                <span>✓ VERIFIED SOURCE PROVENANCE INSPECTOR</span>
+                <span>ZERO HALLUCINATION LOCK</span>
+              </div>
+              <div class="sim-insp-title" id="sim-insp-title"></div>
+              <div class="sim-insp-meta" id="sim-insp-meta"></div>
+              <div class="sim-insp-excerpt" id="sim-insp-excerpt"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Industry Data-Flow Architecture Strip -->
+        <div class="sim-pipe-bar">
+          <div class="pipe-node">
+            <div class="pipe-kicker">01 · Your Private Data Connectors</div>
+            <div class="pipe-chips" id="sim-connectors"></div>
+          </div>
+          <div class="pipe-arrow" aria-hidden="true">→</div>
+          <div class="pipe-node">
+            <div class="pipe-kicker">02 · Isolated VPC Vector Engine</div>
+            <div class="pipe-chips">
+              <span class="pipe-chip">Zero AI Training</span>
+              <span class="pipe-chip">RBAC / SSO Enforced</span>
+            </div>
+          </div>
+          <div class="pipe-arrow" aria-hidden="true">→</div>
+          <div class="pipe-node">
+            <div class="pipe-kicker">03 · Command Output</div>
+            <div class="pipe-chips">
+              <span class="pipe-chip">3D/2D Live Globe</span>
+              <span class="pipe-chip">Citation-Locked AI</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sandbox Action Footer -->
+        <div class="sim-bottom-cta">
+          <div class="sim-bottom-note">
+            <strong>Want this running on your own internal files &amp; live feeds?</strong> Start with a scoped 2–4 week working pilot.
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <a href="enterprise.html?usecase=logistics" id="sim-commission-btn" class="btn-primary" style="padding:11px 18px;font-size:10.5px;">
+              Commission Logistics Blueprint →
+            </a>
+            <a href="https://app.sovdash.com/" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="padding:11px 16px;font-size:10.5px;">
+              Open Live Public Observatory ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVATE DEPLOYMENT & SECURITY ARCHITECTURE SWITCHER -->
+  <section class="sol-band sol-reveal" id="architecture">
+    <div class="sol-inner">
+      <div class="section-header" style="max-width:780px;margin:0 auto;text-align:center;">
+        <div class="section-badge" style="border-color:rgba(0,255,136,0.34);color:var(--green);background:rgba(0,255,136,0.06);">
+          ⬡ Zero-Retention Security &amp; Deployment Topology
+        </div>
+        <h2 style="font-size:clamp(24px,3.6vw,44px);font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:-0.03em;margin-top:14px;line-height:1.08;">
+          Your Data Never Leaves <span style="color:var(--cyan);">Your Perimeter.</span>
+        </h2>
+        <p style="font-size:13.5px;color:#94a3b8;line-height:1.8;margin-top:14px;">
+          Choose the exact hosting topology your security and procurement teams require. Every Sovereign build guarantees
+          zero third-party model training and strict source-level citation verification.
+        </p>
+      </div>
+
+      <div class="arch-grid">
+        <div class="arch-tabs" role="tablist" aria-label="Deployment architecture options">
+          <button type="button" class="arch-tab-btn active" data-arch="vpc">
+            <div class="arch-tab-num">01 // Dedicated Cloud</div>
+            <div class="arch-tab-title">Private Cloud VPC</div>
+            <div class="arch-tab-desc">AWS, GCP, or Azure inside your own tenant with private LLM endpoints.</div>
+          </button>
+          <button type="button" class="arch-tab-btn" data-arch="onprem">
+            <div class="arch-tab-num">02 // Air-Gapped</div>
+            <div class="arch-tab-title">On-Premise Sealed</div>
+            <div class="arch-tab-desc">Zero external internet egress; local open-weights models on your GPUs.</div>
+          </button>
+          <button type="button" class="arch-tab-btn" data-arch="managed">
+            <div class="arch-tab-num">03 // Rapid Pilot</div>
+            <div class="arch-tab-title">Managed Single-Tenant</div>
+            <div class="arch-tab-desc">Isolated database &amp; vector schema managed end-to-end for 2–4 week launch.</div>
+          </button>
+        </div>
+        <div class="arch-detail-card" id="arch-detail-panel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALL 8 INDUSTRY BLUEPRINTS (FILTERABLE + LOAD IN SIMULATOR) -->
+  <section class="sol-band sol-reveal" id="blueprints">
+    <div class="sol-inner">
+      <div class="section-header" style="max-width:780px;margin:0 auto;text-align:center;">
+        <div class="section-badge">⬡ Complete Industry Blueprint Library</div>
+        <h2 style="font-size:clamp(24px,3.6vw,44px);font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:-0.03em;margin-top:14px;line-height:1.08;">
+          8 Proven Blueprints. <span style="color:var(--cyan);">Ready to Customize.</span>
+        </h2>
+        <p style="font-size:13.5px;color:#94a3b8;line-height:1.8;margin-top:14px;">
+          Filter by sector, click <strong>Load in Live Simulator</strong> on any blueprint to test it interactively above,
+          or jump straight to scoping.
+        </p>
+      </div>
+
+      <div class="sol-filter-bar" role="tablist" aria-label="Filter blueprints by industry">
         <button type="button" class="sol-filter-btn active" data-filter="all">All Blueprints (8)</button>
         <button type="button" class="sol-filter-btn" data-filter="logistics">Logistics &amp; Supply Chain</button>
         <button type="button" class="sol-filter-btn" data-filter="legal">Legal &amp; Compliance</button>
@@ -558,15 +1696,10 @@
         <button type="button" class="sol-filter-btn" data-filter="research">Research &amp; Media</button>
         <button type="button" class="sol-filter-btn" data-filter="health">Pharma &amp; Global Ops</button>
       </div>
-    </div>
-  </section>
 
-  <!-- 8 INDUSTRY USE-CASE BLUEPRINTS -->
-  <section class="sol-section" id="blueprints">
-    <div class="sol-inner">
       <div class="uc-grid" id="uc-grid">
 
-        <!-- 1. Logistics & Supply Chain -->
+        <!-- 1. Logistics -->
         <article class="uc-card" data-cat="logistics" style="--uc-color:#00f5ff;">
           <div class="uc-top">
             <span class="uc-badge">01 · Logistics &amp; Supply Chain</span>
@@ -585,23 +1718,21 @@
             </div>
           </div>
           <div class="uc-rag-box">
-            <div class="uc-rag-head"><span>⬡ Private RAG AI Example</span><span>Citation-Locked</span></div>
+            <div class="uc-rag-head"><span>⬡ Private RAG AI Highlight</span><span>Citation-Locked</span></div>
             <div class="uc-rag-q">"Which Q4 container shipments pass within 150 km of active Red Sea interference, and what is our backup carrier clause?"</div>
             <div class="uc-rag-a">
-              <strong>3 active containers</strong> (<code>MAERSK-882</code>, <code>MSC-419</code>, <code>CMA-204</code>) intersect active Bab el-Mandeb alerts <span class="uc-cite">1</span>. Under <strong>Master Freight Agreement §14.2</strong>, Cape rerouting triggers zero penalty when UKMTO advisories exceed Level 3 <span class="uc-cite">2</span>.
-            </div>
-            <div class="uc-sources">
-              <span class="uc-src-chip">[1] SAP TMS Live Feed + Sovereign Maritime</span>
-              <span class="uc-src-chip">[2] Internal Carrier SLA PDF (p. 14)</span>
+              <strong>3 active containers</strong> intersect Bab el-Mandeb alerts <span class="uc-cite">1</span>. Under <strong>Master Freight Agreement §14.2</strong>, Cape rerouting triggers zero penalty when UKMTO advisories exceed Level 3 <span class="uc-cite">2</span>.
             </div>
           </div>
           <div class="uc-footer">
-            <span class="uc-impact">↑ Cuts disruption response from hours to minutes</span>
-            <a href="enterprise.html?usecase=logistics" class="uc-cta">Commission Blueprint →</a>
+            <div class="uc-btn-row">
+              <button type="button" class="uc-sim-btn" data-load-sim="logistics">▶ Load in Simulator</button>
+              <a href="enterprise.html?usecase=logistics" class="uc-cta">Commission →</a>
+            </div>
           </div>
         </article>
 
-        <!-- 2. Legal, Regulatory & Compliance -->
+        <!-- 2. Legal -->
         <article class="uc-card" data-cat="legal" style="--uc-color:#b366ff;">
           <div class="uc-top">
             <span class="uc-badge">02 · Legal, Risk &amp; Compliance</span>
@@ -620,24 +1751,21 @@
             </div>
           </div>
           <div class="uc-rag-box">
-            <div class="uc-rag-head"><span>⬡ Private RAG AI Example</span><span>Zero Hallucination</span></div>
+            <div class="uc-rag-head"><span>⬡ Private RAG AI Highlight</span><span>Zero Hallucination</span></div>
             <div class="uc-rag-q">"Flag which client AI deployments in Germany and California face mandatory incident-reporting deadlines under 15 days."</div>
             <div class="uc-rag-a">
-              <strong>4 active client deployments</strong> fall under <strong>EU AI Act Art. 73</strong> (≤2d critical infra / ≤15d standard) <span class="uc-cite">1</span> and <strong>CA SB 53</strong> (24h imminent / 15d standard) <span class="uc-cite">2</span>. Client compliance register shows <strong>2 missing incident SOP sign-offs</strong> <span class="uc-cite">3</span>.
-            </div>
-            <div class="uc-sources">
-              <span class="uc-src-chip">[1] Reg. (EU) 2024/1689</span>
-              <span class="uc-src-chip">[2] CA SB 53</span>
-              <span class="uc-src-chip">[3] Internal Client Audit DB</span>
+              <strong>4 active deployments</strong> fall under <strong>EU AI Act Art. 73</strong> (≤2d critical / ≤15d standard) <span class="uc-cite">1</span> and <strong>CA SB 53</strong> <span class="uc-cite">2</span>. Audit register shows <strong>2 missing SOP sign-offs</strong> <span class="uc-cite">3</span>.
             </div>
           </div>
           <div class="uc-footer">
-            <span class="uc-impact">↑ 80% faster multi-jurisdiction statutory research</span>
-            <a href="enterprise.html?usecase=legal" class="uc-cta">Commission Blueprint →</a>
+            <div class="uc-btn-row">
+              <button type="button" class="uc-sim-btn" data-load-sim="legal">▶ Load in Simulator</button>
+              <a href="enterprise.html?usecase=legal" class="uc-cta">Commission →</a>
+            </div>
           </div>
         </article>
 
-        <!-- 3. Finance, Hedge Funds & Underwriting -->
+        <!-- 3. Finance -->
         <article class="uc-card" data-cat="finance" style="--uc-color:#ffd22e;">
           <div class="uc-top">
             <span class="uc-badge">03 · Finance, Funds &amp; Insurance</span>
@@ -648,7 +1776,7 @@
           <div class="uc-split">
             <div class="uc-mini-box">
               <div class="uc-mini-kicker">The Problem</div>
-              <p>Sovereign risk, sanctions, export controls, and extreme weather break before consensus digests—and internal memos stay buried.</p>
+              <p>Sovereign risk, sanctions, export controls, and extreme weather break before consensus digests — and internal memos stay buried.</p>
             </div>
             <div class="uc-mini-box">
               <div class="uc-mini-kicker">What Sovereign Builds</div>
@@ -656,23 +1784,21 @@
             </div>
           </div>
           <div class="uc-rag-box">
-            <div class="uc-rag-head"><span>⬡ Private RAG AI Example</span><span>Auditable Trail</span></div>
+            <div class="uc-rag-head"><span>⬡ Private RAG AI Highlight</span><span>Auditable Trail</span></div>
             <div class="uc-rag-q">"Summarize our portfolio exposure to new semiconductor export controls announced this month with our IC thesis notes."</div>
             <div class="uc-rag-a">
-              <strong>3 portfolio holdings</strong> source lithography components via hubs affected by this week's export notice <span class="uc-cite">1</span>. Per <strong>Q3 Investment Committee Memo</strong>, downside hedge triggers automatically if lead times exceed 14 weeks <span class="uc-cite">2</span>.
-            </div>
-            <div class="uc-sources">
-              <span class="uc-src-chip">[1] Live BIS / Trade Feed</span>
-              <span class="uc-src-chip">[2] Internal IC Vault (Q3-2026.pdf)</span>
+              <strong>3 portfolio holdings</strong> source lithography via affected hubs <span class="uc-cite">1</span>. Per <strong>Q3 IC Memo</strong>, downside hedge triggers when lead times breach 14 weeks <span class="uc-cite">2</span>.
             </div>
           </div>
           <div class="uc-footer">
-            <span class="uc-impact">↑ Real-time edge across physical &amp; policy catalysts</span>
-            <a href="enterprise.html?usecase=finance" class="uc-cta">Commission Blueprint →</a>
+            <div class="uc-btn-row">
+              <button type="button" class="uc-sim-btn" data-load-sim="finance">▶ Load in Simulator</button>
+              <a href="enterprise.html?usecase=finance" class="uc-cta">Commission →</a>
+            </div>
           </div>
         </article>
 
-        <!-- 4. Energy, Commodities & Critical Infrastructure -->
+        <!-- 4. Energy -->
         <article class="uc-card" data-cat="energy" style="--uc-color:#ff6b00;">
           <div class="uc-top">
             <span class="uc-badge">04 · Energy &amp; Critical Infrastructure</span>
@@ -691,34 +1817,32 @@
             </div>
           </div>
           <div class="uc-rag-box">
-            <div class="uc-rag-head"><span>⬡ Private RAG AI Example</span><span>Field + SOP Grounded</span></div>
+            <div class="uc-rag-head"><span>⬡ Private RAG AI Highlight</span><span>Field + SOP Grounded</span></div>
             <div class="uc-rag-q">"Check which coastal terminals sit inside the 72-hour storm track and pull our Level-2 shutdown checklist."</div>
             <div class="uc-rag-a">
-              <strong>Terminal West-04</strong> falls inside the NOAA/EONET high-wind cone within 48h <span class="uc-cite">1</span>. Per <strong>HSE Protocol OPS-77</strong>, initiate pressure isolation 24h pre-landfall and notify regional grid dispatch <span class="uc-cite">2</span>.
-            </div>
-            <div class="uc-sources">
-              <span class="uc-src-chip">[1] NASA EONET + Site Registry</span>
-              <span class="uc-src-chip">[2] Internal HSE Manual OPS-77</span>
+              <strong>Terminal West-04</strong> falls inside the NOAA/EONET wind cone within 48h <span class="uc-cite">1</span>. Per <strong>HSE Protocol OPS-77</strong>, initiate pressure isolation 24h pre-landfall <span class="uc-cite">2</span>.
             </div>
           </div>
           <div class="uc-footer">
-            <span class="uc-impact">↑ Unified operational view across global sites</span>
-            <a href="enterprise.html?usecase=energy" class="uc-cta">Commission Blueprint →</a>
+            <div class="uc-btn-row">
+              <button type="button" class="uc-sim-btn" data-load-sim="energy">▶ Load in Simulator</button>
+              <a href="enterprise.html?usecase=energy" class="uc-cta">Commission →</a>
+            </div>
           </div>
         </article>
 
-        <!-- 5. Cybersecurity, SOC & Threat Intelligence -->
+        <!-- 5. Cyber -->
         <article class="uc-card" data-cat="cyber" style="--uc-color:#ff2244;">
           <div class="uc-top">
             <span class="uc-badge">05 · Cyber, Threat Intel &amp; Defense</span>
             <span class="uc-timeline">Pilot: 3–5 Weeks</span>
           </div>
           <h3>Geo-Correlated Cyber &amp; Incident Playbook Hub</h3>
-          <div class="uc-buyers">For: CISOs, Threat Intel Leads, Physical Security Directors &amp; Defense Prime Analysts</div>
+          <div class="uc-buyers">For: CISOs, Threat Intel Leads, Physical Security Directors &amp; Defense Analysts</div>
           <div class="uc-split">
             <div class="uc-mini-box">
               <div class="uc-mini-kicker">The Problem</div>
-              <p>CVEs, internet shutdowns, subsea cable cuts, and regional security escalations require instant correlation against internal playbooks.</p>
+              <p>CVEs, internet shutdowns, subsea cable cuts, and regional escalations require instant correlation against internal playbooks.</p>
             </div>
             <div class="uc-mini-box">
               <div class="uc-mini-kicker">What Sovereign Builds</div>
@@ -726,23 +1850,21 @@
             </div>
           </div>
           <div class="uc-rag-box">
-            <div class="uc-rag-head"><span>⬡ Private RAG AI Example</span><span>On-Premise Ready</span></div>
+            <div class="uc-rag-head"><span>⬡ Private RAG AI Highlight</span><span>On-Premise Ready</span></div>
             <div class="uc-rag-q">"Correlate today's S4+ zero-day advisories against our production asset inventory and list immediate containment steps."</div>
             <div class="uc-rag-a">
-              <strong>1 critical match:</strong> Cacti RCE PoC impacts <strong>2 EU monitoring nodes</strong> listed in CMDB <span class="uc-cite">1</span>. Execute <strong>IR Playbook SEC-09</strong>: isolate subnet VLAN-44, rotate SNMP keys, and patch within 4 hours <span class="uc-cite">2</span>.
-            </div>
-            <div class="uc-sources">
-              <span class="uc-src-chip">[1] Live CVE Feed + Internal CMDB</span>
-              <span class="uc-src-chip">[2] SOC Playbook SEC-09</span>
+              <strong>1 critical match:</strong> Cacti RCE impacts <strong>2 EU monitoring nodes</strong> in CMDB <span class="uc-cite">1</span>. Execute <strong>IR Playbook SEC-09</strong>: isolate VLAN-44 &amp; patch within 4h <span class="uc-cite">2</span>.
             </div>
           </div>
           <div class="uc-footer">
-            <span class="uc-impact">↑ Faster triage with zero data leaving your perimeter</span>
-            <a href="enterprise.html?usecase=cyber" class="uc-cta">Commission Blueprint →</a>
+            <div class="uc-btn-row">
+              <button type="button" class="uc-sim-btn" data-load-sim="cyber">▶ Load in Simulator</button>
+              <a href="enterprise.html?usecase=cyber" class="uc-cta">Commission →</a>
+            </div>
           </div>
         </article>
 
-        <!-- 6. AI Labs, Cloud & Hyperscale Compute -->
+        <!-- 6. AI & Cloud -->
         <article class="uc-card" data-cat="ai" style="--uc-color:#00ff88;">
           <div class="uc-top">
             <span class="uc-badge">06 · AI Labs &amp; Cloud Infrastructure</span>
@@ -761,23 +1883,21 @@
             </div>
           </div>
           <div class="uc-rag-box">
-            <div class="uc-rag-head"><span>⬡ Private RAG AI Example</span><span>Policy + Infra Sync</span></div>
+            <div class="uc-rag-head"><span>⬡ Private RAG AI Highlight</span><span>Policy + Infra Sync</span></div>
             <div class="uc-rag-q">"Compare regulatory onboarding requirements for deploying our next frontier model across the EU, UK, South Korea, and Singapore."</div>
             <div class="uc-rag-a">
-              <strong>EU &amp; South Korea</strong> require statutory documentation &amp; local representative registration <span class="uc-cite">1</span>; <strong>UK AISI &amp; Singapore IMDA</strong> prioritize pre-deployment red-team evaluations aligned with our internal Model Card v4.2 <span class="uc-cite">2</span>.
-            </div>
-            <div class="uc-sources">
-              <span class="uc-src-chip">[1] Sovereign 60+ Jurisdictions DB</span>
-              <span class="uc-src-chip">[2] Internal Model Card v4.2</span>
+              <strong>EU &amp; South Korea</strong> require statutory filings &amp; local representative registration <span class="uc-cite">1</span>; <strong>UK AISI &amp; IMDA</strong> align 92% with internal Model Card v4.2 <span class="uc-cite">2</span>.
             </div>
           </div>
           <div class="uc-footer">
-            <span class="uc-impact">↑ One workspace for policy, legal &amp; infra teams</span>
-            <a href="enterprise.html?usecase=ai" class="uc-cta">Commission Blueprint →</a>
+            <div class="uc-btn-row">
+              <button type="button" class="uc-sim-btn" data-load-sim="ai">▶ Load in Simulator</button>
+              <a href="enterprise.html?usecase=ai" class="uc-cta">Commission →</a>
+            </div>
           </div>
         </article>
 
-        <!-- 7. Research Institutes, Think Tanks & Investigative Newsrooms -->
+        <!-- 7. Research & Media -->
         <article class="uc-card" data-cat="research" style="--uc-color:#38bdf8;">
           <div class="uc-top">
             <span class="uc-badge">07 · Think Tanks, NGOs &amp; Media</span>
@@ -792,58 +1912,54 @@
             </div>
             <div class="uc-mini-box">
               <div class="uc-mini-kicker">What Sovereign Builds</div>
-              <p>Branded public or internal observatory with Admiralty source grading, longitudinal timeline replay &amp; citation-locked archive search.</p>
+              <p>Branded public or internal observatory with Admiralty source grading, timeline replay &amp; citation-locked archive search.</p>
             </div>
           </div>
           <div class="uc-rag-box">
-            <div class="uc-rag-head"><span>⬡ Private RAG AI Example</span><span>Verbatim Citations</span></div>
+            <div class="uc-rag-head"><span>⬡ Private RAG AI Highlight</span><span>Verbatim Citations</span></div>
             <div class="uc-rag-q">"Find every verified procurement record and field incident linking biometric border deployments in our 2023–2026 archive."</div>
             <div class="uc-rag-a">
-              Retrieved <strong>19 verified records across 7 countries</strong>, ranked by Admiralty reliability (A1–B2), with direct links to tender PDFs, parliamentary answers, and map coordinates <span class="uc-cite">1</span> <span class="uc-cite">2</span>.
-            </div>
-            <div class="uc-sources">
-              <span class="uc-src-chip">[1] Organization FOIA Vault (14,200 docs)</span>
-              <span class="uc-src-chip">[2] Sovereign Live Event Corpus</span>
+              Matched <strong>18 verified records across 7 countries</strong> linking procurement tenders, UN briefings &amp; field audits with OSCOLA export <span class="uc-cite">1</span> <span class="uc-cite">2</span>.
             </div>
           </div>
           <div class="uc-footer">
-            <span class="uc-impact">↑ Publish evidence-backed briefings 5× faster</span>
-            <a href="enterprise.html?usecase=research" class="uc-cta">Commission Blueprint →</a>
+            <div class="uc-btn-row">
+              <button type="button" class="uc-sim-btn" data-load-sim="research">▶ Load in Simulator</button>
+              <a href="enterprise.html?usecase=research" class="uc-cta">Commission →</a>
+            </div>
           </div>
         </article>
 
-        <!-- 8. Healthcare, Pharma & Global Enterprise Ops -->
+        <!-- 8. Pharma & Global Ops -->
         <article class="uc-card" data-cat="health" style="--uc-color:#f472b6;">
           <div class="uc-top">
-            <span class="uc-badge">08 · Pharma &amp; Global Operations</span>
-            <span class="uc-timeline">Pilot: 4–6 Weeks</span>
+            <span class="uc-badge">08 · Pharma, Travel Risk &amp; Global Ops</span>
+            <span class="uc-timeline">Pilot: 3–5 Weeks</span>
           </div>
           <h3>Clinical Supply, Travel Risk &amp; SOP Copilot</h3>
-          <div class="uc-buyers">For: Global Operations Leaders, Pharma Cold-Chain Teams &amp; Corporate Resilience</div>
+          <div class="uc-buyers">For: Global Pharma Logistics, Corporate Security, International NGOs &amp; Field Ops</div>
           <div class="uc-split">
             <div class="uc-mini-box">
               <div class="uc-mini-kicker">The Problem</div>
-              <p>Multi-country teams need instant answers across thousands of SOPs, supplier audits, and live regional disruptions without hallucination risk.</p>
+              <p>Cold-chain logistics, traveling staff duty-of-care, and clinical SOPs depend on fast-changing regional disruptions.</p>
             </div>
             <div class="uc-mini-box">
               <div class="uc-mini-kicker">What Sovereign Builds</div>
-              <p>Role-gated operational hub unifying global site status, regional disruption alerts &amp; private RAG search over quality/SOP binders.</p>
+              <p>Live duty-of-care &amp; supply map fusing travel rosters, cold-chain IoT feeds &amp; private GMP SOPs with instant alert triage.</p>
             </div>
           </div>
           <div class="uc-rag-box">
-            <div class="uc-rag-head"><span>⬡ Private RAG AI Example</span><span>Role-Gated ACL</span></div>
-            <div class="uc-rag-q">"Are any regional disruptions affecting our European cold-chain hubs today, and what is our temperature-excursion escalation SOP?"</div>
+            <div class="uc-rag-head"><span>⬡ Private RAG AI Highlight</span><span>SOP + Field Sync</span></div>
+            <div class="uc-rag-q">"Are any regional disruptions impacting our biologics air-freight hub, and what is our cold-chain excursion SOP?"</div>
             <div class="uc-rag-a">
-              <strong>Zero active closures</strong> across EU depots; amber rail strike advisory in Northern Italy <span class="uc-cite">1</span>. Under <strong>QA-SOP-412 Rev. 5</strong>, excursions &gt;30 min require QA notification within 2h and batch quarantine <span class="uc-cite">2</span>.
-            </div>
-            <div class="uc-sources">
-              <span class="uc-src-chip">[1] Live Regional Disruption Layer</span>
-              <span class="uc-src-chip">[2] Internal QA-SOP-412 (Rev. 5)</span>
+              <strong>MENA corridor rerouting</strong> adds +14h to 2 Basel biologics lots <span class="uc-cite">1</span>. Per <strong>SOP CC-114</strong>, trigger dry-ice top-up &amp; QA sign-off pre-flight <span class="uc-cite">2</span>.
             </div>
           </div>
           <div class="uc-footer">
-            <span class="uc-impact">↑ Instant, compliant answers for every global site</span>
-            <a href="enterprise.html?usecase=health" class="uc-cta">Commission Blueprint →</a>
+            <div class="uc-btn-row">
+              <button type="button" class="uc-sim-btn" data-load-sim="health">▶ Load in Simulator</button>
+              <a href="enterprise.html?usecase=health" class="uc-cta">Commission →</a>
+            </div>
           </div>
         </article>
 
@@ -851,68 +1967,173 @@
     </div>
   </section>
 
-  <!-- HOW ENGAGEMENT WORKS (TRANSPARENT ENTERPRISE PATHWAY) -->
-  <section class="sol-band" id="models">
+  <!-- INTERACTIVE SCOPE ESTIMATOR + 3-STAGE ENGAGEMENT MODEL -->
+  <section class="sol-band sol-reveal" id="models">
     <div class="sol-inner">
-      <div style="text-align:center;max-width:740px;margin:0 auto;">
-        <div class="section-badge" style="border-color:rgba(179,102,255,0.34);color:#d8b4fe;background:rgba(179,102,255,0.08);">
-          ⬡ Clear Scope · Fast ROI · Zero Lock-In
+      <div class="section-header" style="max-width:760px;margin:0 auto;text-align:center;">
+        <div class="section-badge" style="border-color:rgba(179,102,255,0.38);color:#d8b4fe;background:rgba(179,102,255,0.08);">
+          ⬡ De-Risked Enterprise Delivery &amp; Scope Estimator
         </div>
-        <h2 style="font-size:clamp(26px,3.6vw,44px);font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;margin-top:16px;line-height:1.08;">
+        <h2 style="font-size:clamp(24px,3.6vw,44px);font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:-0.03em;margin-top:14px;line-height:1.08;">
           Start Small. Prove Value.<br /><span style="color:var(--cyan);">Scale With Confidence.</span>
         </h2>
         <p style="font-size:13.5px;color:#94a3b8;line-height:1.8;margin-top:14px;">
-          Most enterprise software fails because buyers are forced into 12-month contracts before seeing a single screen
-          connected to their data. Sovereign is delivered in clear, milestone-gated stages.
+          Configure your connectors, document corpus, and hosting topology below to estimate your timeline and ideal
+          starting phase — with fixed milestone billing and zero bloated retainers.
         </p>
       </div>
 
+      <!-- Interactive Scope Estimator -->
+      <div class="est-card">
+        <div class="est-controls">
+          <div class="est-field">
+            <label for="est-connectors"><span>Live Data Connectors / APIs</span><b id="est-connectors-val">3 Sources</b></label>
+            <input type="range" id="est-connectors" class="est-range" min="1" max="10" value="3" />
+          </div>
+          <div class="est-field">
+            <label for="est-docs"><span>Private RAG Document / Database Corpus</span></label>
+            <select id="est-docs" class="est-select">
+              <option value="small">Pilot Corpus — Up to 5,000 PDFs / Internal Docs</option>
+              <option value="medium" selected>Department Corpus — 5,000–100,000 Docs + SQL Mirror</option>
+              <option value="enterprise">Enterprise Archive — 100,000+ Docs / Multi-DB + RBAC</option>
+            </select>
+          </div>
+          <div class="est-field">
+            <label for="est-deploy"><span>Hosting &amp; Security Topology</span></label>
+            <select id="est-deploy" class="est-select">
+              <option value="managed">Managed Single-Tenant (Fastest 2–4 Week Pilot)</option>
+              <option value="vpc" selected>Dedicated Private Cloud VPC (AWS / GCP / Azure)</option>
+              <option value="onprem">Air-Gapped On-Premise (Zero Egress / Local GPUs)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="est-output">
+          <div class="est-out-kicker">Recommended Starting Track</div>
+          <div class="est-out-stage" id="est-stage">Dedicated VPC Pilot → Production</div>
+          <div class="est-metrics-row">
+            <div class="est-metric">
+              <span>Est. Delivery</span>
+              <strong id="est-weeks">3–6 Weeks</strong>
+            </div>
+            <div class="est-metric">
+              <span>Indicative Scope</span>
+              <strong id="est-budget">£7,500 – £18,000</strong>
+            </div>
+          </div>
+          <div class="est-summary" id="est-summary"></div>
+          <a href="enterprise.html" id="est-send-btn" class="btn-primary" style="width:100%;justify-content:center;padding:13px 16px;font-size:10.5px;">
+            Send This Exact Scope to Avi →
+          </a>
+        </div>
+      </div>
+
+      <!-- 3-Stage Delivery Cards -->
       <div class="sol-3col">
         <div class="sol-model-card">
-          <div class="sol-model-kicker">Stage 01 · Low-Risk Entry</div>
+          <div class="sol-model-kicker">Stage 01 · Low-Friction Entry</div>
           <h3>Discovery &amp; Working Pilot</h3>
-          <div class="sol-model-time">2 – 4 Weeks · Fixed Milestone Scope</div>
-          <p>We connect 1–2 real internal data sources into a private Sovereign sandbox with working citation-locked RAG AI so your leadership can test real ROI firsthand.</p>
+          <div class="sol-model-time">2–4 Weeks · Fixed Milestone Scope</div>
+          <p>
+            We connect 1–3 priority internal sources, spin up a private Sovereign map + RAG AI sandbox on your actual
+            data, and validate ROI with your team before full rollout.
+          </p>
           <ul class="sol-model-list">
             <li><b>✓</b> Architecture &amp; security review (VPC / data residency)</li>
-            <li><b>✓</b> Working private dashboard + RAG AI on real sample docs</li>
-            <li><b>✓</b> Clear accuracy evaluation &amp; full-rollout budget estimate</li>
+            <li><b>✓</b> Working custom dashboard + RAG AI over real sample data</li>
+            <li><b>✓</b> Live citation accuracy &amp; latency benchmark report</li>
           </ul>
-          <a href="enterprise.html?usecase=pilot" class="uc-cta" style="justify-content:center;width:100%;">Scope a 3-Week Pilot →</a>
+          <a href="enterprise.html?usecase=pilot" class="btn-secondary" style="width:100%;justify-content:center;">Scope a 3-Week Pilot →</a>
         </div>
 
         <div class="sol-model-card highlight">
           <div class="sol-model-kicker" style="color:#d8b4fe;">Stage 02 · Most Popular</div>
           <h3>Production Enterprise Build</h3>
-          <div class="sol-model-time">6 – 12 Weeks · Milestone-Billed</div>
-          <p>A dedicated, branded intelligence platform engineered around your databases, APIs, permissions, and decision workflows—deployed in your cloud or on-premise.</p>
+          <div class="sol-model-time">6–10 Weeks · Full Dedicated Build</div>
+          <p>
+            Full custom production deployment inside your cloud VPC or on-premise infrastructure with automated pipelines,
+            SSO/RBAC, and bespoke visual intelligence layers.
+          </p>
           <ul class="sol-model-list">
             <li><b>✓</b> Unlimited custom map layers, alerts &amp; internal connectors</li>
-            <li><b>✓</b> Permission-aware private RAG AI with verbatim source links</li>
-            <li><b>✓</b> SSO / RBAC, audit logging, documentation &amp; team onboarding</li>
+            <li><b>✓</b> Permission-aware private RAG AI with full audit trail</li>
+            <li><b>✓</b> SSO / RBAC, white-labeling, documentation &amp; handover</li>
           </ul>
-          <a href="enterprise.html?usecase=production" class="btn-primary" style="justify-content:center;width:100%;padding:13px 18px;font-size:10.5px;">Request Architecture Proposal →</a>
+          <a href="enterprise.html" class="btn-primary" style="width:100%;justify-content:center;">Request Architecture Proposal →</a>
         </div>
 
         <div class="sol-model-card">
-          <div class="sol-model-kicker" style="color:var(--green);">Stage 03 · Long-Term Partner</div>
+          <div class="sol-model-kicker" style="color:var(--green);">Stage 03 · Ongoing Evolution</div>
           <h3>Managed Ops, Evals &amp; SLA</h3>
-          <div class="sol-model-time">Ongoing · Monthly Retainer</div>
-          <p>Keep your data pipelines healthy, retrieval accuracy sharp, and models updated as your data grows—without hiring a dedicated full-time AI platform team.</p>
+          <div class="sol-model-time">Monthly / Annual Retainer</div>
+          <p>
+            Keep your data pipelines healthy, model accuracy verified against drift, and new custom modules shipping as
+            your team's operational needs grow.
+          </p>
           <ul class="sol-model-list">
-            <li><b>✓</b> Continuous connector monitoring &amp; re-indexing health</li>
-            <li><b>✓</b> Quarterly RAG accuracy audits &amp; model upgrades</li>
-            <li><b>✓</b> Priority engineering hours &amp; direct founder escalation</li>
+            <li><b>✓</b> Continuous connector maintenance &amp; uptime monitoring</li>
+            <li><b>✓</b> Quarterly RAG accuracy, citation &amp; security audits</li>
+            <li><b>✓</b> Priority engineering hours for new layers &amp; integrations</li>
           </ul>
-          <a href="about.html#contact" class="uc-cta" style="justify-content:center;width:100%;border-color:rgba(0,255,136,0.38);">Talk Directly With Avi →</a>
+          <a href="enterprise.html" class="btn-secondary" style="width:100%;justify-content:center;">Ask About Retainers →</a>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- 90-SECOND WALKTHROUGH MODAL -->
+  <div class="walk-modal" id="walkthrough-modal" aria-hidden="true" role="dialog" aria-labelledby="walk-title">
+    <div class="walk-dialog">
+      <div class="walk-head">
+        <div>
+          <div style="font-size:9px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:var(--cyan);">
+            ⬡ 90-Second Executive Walkthrough
+          </div>
+          <h3 id="walk-title" style="font-size:20px;font-weight:800;color:#fff;text-transform:uppercase;margin-top:4px;">
+            How Sovereign Turns Fragmented Data Into Live Clarity
+          </h3>
+        </div>
+        <button type="button" class="walk-close" id="close-walkthrough-btn">ESC ✕</button>
+      </div>
+
+      <div id="walkthrough-modal-body">
+        <div class="walk-steps-grid">
+          <div class="walk-step">
+            <div class="walk-step-time">0:00 – 0:20 · LIVE 3D GEOSPATIAL ENGINE</div>
+            <h4>1. See Global &amp; Internal Risk Together</h4>
+            <p>Overlay your proprietary shipments, sites, or compliance footprint directly atop Sovereign's 60fps 3D/2D spatial engine — zero WebGL failure modes.</p>
+          </div>
+          <div class="walk-step">
+            <div class="walk-step-time">0:20 – 0:45 · CITATION-LOCKED RAG AI</div>
+            <h4>2. Ask Plain-English Questions</h4>
+            <p>Query internal PDFs, SQL tables, and live signals simultaneously. Every claim locks to clickable <code>[1]</code>, <code>[2]</code> primary-source passages with 0 phantom citations.</p>
+          </div>
+          <div class="walk-step">
+            <div class="walk-step-time">0:45 – 1:10 · PRIVATE VPC / ON-PREM</div>
+            <h4>3. Keep 100% of Your Data Sealed</h4>
+            <p>Deploy inside your AWS/GCP/Azure VPC or air-gapped on-premise infrastructure with SSO/RBAC and zero third-party AI model training.</p>
+          </div>
+          <div class="walk-step">
+            <div class="walk-step-time">1:10 – 1:30 · 2–4 WEEK PILOT</div>
+            <h4>4. Prove Value Before Scaling</h4>
+            <p>Launch a fixed-scope pilot over 1–3 of your real data sources in under 30 days — built directly with Sovereign's founding architect.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;">
+          <a href="https://app.sovdash.com/" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="padding:11px 16px;font-size:10.5px;">
+            Explore Live Public App ↗
+          </a>
+          <a href="enterprise.html" class="btn-primary" style="padding:11px 18px;font-size:10.5px;">
+            Book 15-Min Architecture Call →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer>
-    <span>© 2026 SOVDASH &nbsp;·&nbsp; GLOBAL INTELLIGENCE SOFTWARE</span>
+    <span>© 2026 SOVDASH &nbsp;·&nbsp; FOUNDED BY <a href="https://aviperera.com" target="_blank" rel="noopener noreferrer" style="color:var(--cyan);text-decoration:none;">AVI PERERA</a></span>
     <div class="footer-links">
       <a href="solutions.html" style="color:#fff;">Solutions</a>
       <a href="enterprise.html">Enterprise</a>
@@ -924,25 +2145,11 @@
     </div>
   </footer>
 
-  <script src="js/nav.js?v=20261128b" defer></script>
-  <script src="js/transitions.js?v=20261128b" defer></script>
-  <script src="js/cursor-trail.js?v=20261128b" defer></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const btns = document.querySelectorAll('.sol-filter-btn');
-      const cards = document.querySelectorAll('.uc-card');
-      btns.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const f = btn.dataset.filter;
-          btns.forEach((b) => b.classList.remove('active'));
-          btn.classList.add('active');
-          cards.forEach((c) => {
-            c.classList.toggle('hidden', f !== 'all' && c.dataset.cat !== f);
-          });
-        });
-      });
-    });
-  </script>
+  <script src="js/world-coastlines.js?v=20261128c" defer></script>
+  <script src="js/solutions-lab.js?v=20261128c" defer></script>
+  <script src="js/nav.js?v=20261128c" defer></script>
+  <script src="js/transitions.js?v=20261128c" defer></script>
+  <script src="js/cursor-trail.js?v=20261128c" defer></script>
 
 </body>
 

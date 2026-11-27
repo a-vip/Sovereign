@@ -391,6 +391,144 @@
       line-height: 1.78;
     }
 
+    /* ── GRANT & PUBLIC-INTEREST PORTFOLIO SECTION ── */
+    .grant-proof-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .grant-proof-card {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 18px;
+      border-radius: 15px;
+      background: rgba(8, 13, 25, 0.88);
+      border: 1px solid rgba(0, 255, 136, 0.20);
+      text-decoration: none;
+      transition: border-color 0.22s, transform 0.22s, background 0.22s;
+    }
+
+    .grant-proof-card:hover {
+      border-color: var(--green);
+      background: rgba(0, 255, 136, 0.05);
+      transform: translateY(-2px);
+    }
+
+    .grant-proof-tag {
+      font-size: 8.5px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    .grant-proof-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .grant-proof-desc {
+      font-size: 10.8px;
+      color: #94a3b8;
+      line-height: 1.55;
+    }
+
+    .grant-tracks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .grant-track-card {
+      padding: 24px 22px;
+      border-radius: 18px;
+      background: linear-gradient(155deg, rgba(11, 16, 30, 0.90), rgba(7, 10, 19, 0.94));
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .grant-track-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gt-col, var(--cyan)), transparent 85%);
+    }
+
+    .grant-track-num {
+      font-size: 8.8px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gt-col, var(--cyan));
+    }
+
+    .grant-track-card h3 {
+      font-size: 15.5px;
+      font-weight: 800;
+      color: #fff;
+      text-transform: uppercase;
+      line-height: 1.25;
+    }
+
+    .grant-track-card p {
+      font-size: 11.8px;
+      color: #94a3b8;
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .grant-track-meta {
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      font-size: 10px;
+      font-weight: 700;
+      color: #cbd5e1;
+    }
+
+    .grant-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 24px 26px;
+      border-radius: 18px;
+      border: 1px solid rgba(179, 102, 255, 0.34);
+      background: linear-gradient(145deg, rgba(18, 12, 34, 0.92), rgba(8, 13, 25, 0.94));
+    }
+
+    .grant-banner-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .grant-banner-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      font-size: 9px;
+      font-weight: 700;
+      color: #e2e8f0;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
     /* ── SUPPORT INDEPENDENT INTELLIGENCE SECTION ── */
     .support-grid {
       display: grid;
@@ -741,7 +879,8 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 960px) {
-      .ab-metrics-bar {
+      .ab-metrics-bar,
+      .grant-proof-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
       .founder-card {
@@ -756,6 +895,7 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       }
       .support-grid,
+      .grant-tracks-grid,
       .research-strip,
       .contact-grid {
         grid-template-columns: 1fr;
@@ -770,6 +910,7 @@
         padding: 56px 18px;
       }
       .ab-metrics-bar,
+      .grant-proof-grid,
       .principles-grid,
       .ab-field-row {
         grid-template-columns: 1fr;
@@ -864,7 +1005,10 @@
           Support the Mission ↓
         </a>
         <a href="https://app.sovdash.com/whitepaper" target="_blank" rel="noopener noreferrer" class="btn-secondary">
-          Read Whitepaper ↗
+          Read Whitepaper v2.0 ↗
+        </a>
+        <a href="#grants" class="btn-secondary" style="border-color:rgba(179,102,255,0.42);color:#d8b4fe;">
+          Grant &amp; Research Portfolio ↓
         </a>
       </div>
 
@@ -1027,6 +1171,112 @@
             The exact spatial engine and RAG AI architecture that powers our public observatory also deploys privately
             for enterprise teams — enabling commercial partnerships to cross-subsidize free global public access.
           </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLIC-INTEREST INFRASTRUCTURE & GRANT PORTFOLIO -->
+  <section class="ab-section" id="grants">
+    <div class="ab-inner">
+      <div class="ab-section-head">
+        <div class="section-badge" style="border-color:rgba(179,102,255,0.40);color:#d8b4fe;background:rgba(179,102,255,0.08);">
+          ⬡ Public-Interest Infrastructure &amp; Non-Dilutive Grant Portfolio
+        </div>
+        <h2 class="ab-h2">
+          Live Today. Auditable Open Data.<br /><span style="color:var(--cyan);">Ready for Research Grants.</span>
+        </h2>
+        <p class="ab-sub">
+          Sovereign is not a concept deck — it is already a live, production-deployed AI safety &amp; policy observatory
+          serving open CC-BY-4.0 datasets, empirical statutory tracking, and reproducible zero-phantom-citation RAG
+          benchmarks. We partner with philanthropic funds, public-interest tech grants, and university research centers
+          to scale free global oversight infrastructure.
+        </p>
+      </div>
+
+      <!-- Verifiable Already-Shipped Live Proof Matrix -->
+      <div class="grant-proof-grid">
+        <a href="https://app.sovdash.com/" target="_blank" rel="noopener noreferrer" class="grant-proof-card">
+          <span class="grant-proof-tag">✓ SHIPPED LIVE · 24/7</span>
+          <span class="grant-proof-title">Global AI Observatory ↗</span>
+          <span class="grant-proof-desc">Interactive 3D/2D live map, 65+ curated OSINT &amp; regulatory feeds, 6,000+ facilities &amp; Ask SovDash AI.</span>
+        </a>
+        <a href="https://app.sovdash.com/whitepaper" target="_blank" rel="noopener noreferrer" class="grant-proof-card">
+          <span class="grant-proof-tag">✓ EMPIRICAL PAPER · CC-BY-4.0</span>
+          <span class="grant-proof-title">Technical Whitepaper v2.0 ↗</span>
+          <span class="grant-proof-desc">Live-computed Compute–Governance Gap analysis, Frontier Lab audits, SAGRI index &amp; OSCOLA/BibTeX export.</span>
+        </a>
+        <a href="https://app.sovdash.com/methodology" target="_blank" rel="noopener noreferrer" class="grant-proof-card">
+          <span class="grant-proof-tag">✓ REPRODUCIBLE EVALS</span>
+          <span class="grant-proof-title">100% Precision · 0 Phantom Cites ↗</span>
+          <span class="grant-proof-desc">Deterministic 200-item classifier/geocoder benchmark &amp; Ask AI hallucination audit publicly inspectable.</span>
+        </a>
+        <a href="https://app.sovdash.com/developers" target="_blank" rel="noopener noreferrer" class="grant-proof-card">
+          <span class="grant-proof-tag">✓ OPEN DIGITAL COMMONS</span>
+          <span class="grant-proof-title">Open API &amp; DataPackage ↗</span>
+          <span class="grant-proof-desc">Machine-readable REST, GeoJSON, and Frictionless DataPackage exports for academics, NGOs &amp; newsrooms.</span>
+        </a>
+      </div>
+
+      <!-- 3 Concrete Fundable 12-Month Workstreams -->
+      <div class="grant-tracks-grid">
+        <div class="grant-track-card" style="--gt-col:#00f5ff;">
+          <div class="grant-track-num">Workstream 01 · Epistemic Parity</div>
+          <h3>Multilingual Global South Statutory &amp; Harms Coverage</h3>
+          <p>
+            Expand automated legislative gazette &amp; civil-society monitoring across Spanish, French, Arabic, Portuguese,
+            Mandarin, Bahasa, and Swahili sources — closing the Western-language blind spot in global AI governance and
+            algorithmic human-rights tracking.
+          </p>
+          <div class="grant-track-meta">Deliverable: 7-language ingestion pipeline + 40 new Global South legal profiles (CC-BY-4.0)</div>
+        </div>
+
+        <div class="grant-track-card" style="--gt-col:#b366ff;">
+          <div class="grant-track-num">Workstream 02 · Frontier Accountability</div>
+          <h3>Compute–Law Enforcement &amp; Systemic Risk Audits</h3>
+          <p>
+            Track gigawatt-scale frontier compute clusters alongside binding incident-reporting clocks (EU AI Act Art. 73,
+            CA SB 53, Korea AI Basic Act), whistleblower protections, and external red-team evaluation coverage across
+            major AI developers.
+          </p>
+          <div class="grant-track-meta">Deliverable: Quarterly empirical audit reports + live statutory compliance alert feed</div>
+        </div>
+
+        <div class="grant-track-card" style="--gt-col:#00ff88;">
+          <div class="grant-track-num">Workstream 03 · Open Civic AI Tooling</div>
+          <h3>Open-Source Citation-Locked RAG &amp; Verification Suite</h3>
+          <p>
+            Publish open-source evaluation harnesses, deterministic policy classifiers, and free high-rate research API
+            access so journalists, human-rights investigators, UN treaty delegates, and parliamentary staff can query
+            primary evidence with zero hallucinations.
+          </p>
+          <div class="grant-track-meta">Deliverable: Open-source eval repo + zero-cost institutional API &amp; embed widgets</div>
+        </div>
+      </div>
+
+      <!-- Funder & Institutional Dossier Callout -->
+      <div class="grant-banner">
+        <div style="max-width:700px;">
+          <div style="font-size:9.5px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:#d8b4fe;margin-bottom:6px;">
+            For Program Officers, Foundations &amp; Research Centers (£15k–£100k+ Modular Tracks)
+          </div>
+          <div style="font-size:15px;font-weight:800;color:#fff;line-height:1.4;">
+            Non-dilutive grant funding accelerates free public-interest infrastructure — with full open-data licensing and zero commercial strings.
+          </div>
+          <div class="grant-banner-pills">
+            <span class="grant-banner-pill">CC-BY-4.0 Open Datasets</span>
+            <span class="grant-banner-pill">Modular 6–12 Mo Milestones</span>
+            <span class="grant-banner-pill">Fiscal-Host &amp; University Co-PI Ready</span>
+            <span class="grant-banner-pill">Enterprise Cross-Subsidy Sustainability</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;min-width:240px;">
+          <a href="#contact" class="support-btn purple" id="jump-grant-dossier-btn">
+            Request Grant Dossier &amp; Budget ↓
+          </a>
+          <a href="https://app.sovdash.com/api/v1/export/dataset?format=datapackage" target="_blank" rel="noopener noreferrer" class="support-btn ghost" style="padding:10px 14px;font-size:9.5px;">
+            Inspect Live DataPackage (JSON) ↗
+          </a>
         </div>
       </div>
     </div>
@@ -1236,10 +1486,20 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const jumpBtn = document.getElementById('jump-funding-btn');
+      const jumpGrantBtn = document.getElementById('jump-grant-dossier-btn');
       const topicEl = document.getElementById('ab-topic');
+      const msgEl = document.getElementById('ab-message');
       if (jumpBtn && topicEl) {
         jumpBtn.addEventListener('click', () => {
           topicEl.value = 'Funding & Research Partnership';
+        });
+      }
+      if (jumpGrantBtn && topicEl) {
+        jumpGrantBtn.addEventListener('click', () => {
+          topicEl.value = 'Funding & Research Partnership';
+          if (msgEl && !msgEl.value.trim()) {
+            msgEl.value = 'Interested in reviewing Sovereign\'s 12-month public-interest grant proposal, modular budget (£15k–£100k+), and open-data milestones for our foundation / research center.';
+          }
         });
       }
 

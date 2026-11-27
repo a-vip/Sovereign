@@ -551,10 +551,15 @@
       production: 'Interested in scoping a full Production Enterprise Build (custom dashboard, internal data connectors, RBAC/SSO & Private RAG AI).'
     };
     try {
-      const uc = new URLSearchParams(window.location.search).get('usecase');
+      const qs = new URLSearchParams(window.location.search);
+      const uc = qs.get('usecase');
+      const scope = qs.get('scope');
       const reqEl = document.getElementById('ent-requirements');
-      if (uc && USECASE_PRESETS[uc] && reqEl && !reqEl.value.trim()) {
-        reqEl.value = USECASE_PRESETS[uc];
+      if (reqEl && !reqEl.value.trim()) {
+        const parts = [];
+        if (uc && USECASE_PRESETS[uc]) parts.push(USECASE_PRESETS[uc]);
+        if (scope) parts.push(`Estimated scope from Solutions calculator: ${scope}.`);
+        if (parts.length) reqEl.value = parts.join('\n\n');
       }
     } catch {}
 
