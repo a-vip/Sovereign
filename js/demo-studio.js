@@ -677,7 +677,10 @@
     const aiTitle = document.getElementById('dm-ai-title');
     if (titleEl) titleEl.textContent = (state.brandName || pr.brandDefault).toUpperCase();
     if (subEl) subEl.textContent = pr.subtitle;
-    if (aiTitle) aiTitle.textContent = `Ask ${state.brandName || pr.brandDefault} AI`;
+    if (aiTitle) {
+      const b = (state.brandName || pr.brandDefault).trim();
+      aiTitle.textContent = /\bAI$/i.test(b) ? `Ask ${b}` : `Ask ${b} AI`;
+    }
 
     // Sync commission CTA link with live brand/preset configuration
     const commBtn = document.getElementById('dm-commission-btn');
