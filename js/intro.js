@@ -1,5 +1,5 @@
-/* ─── SOVEREIGN 3D SCROLL INTRODUCTION SYSTEM (ULTRA-FAST ZERO-WEBGL 60FPS HOLOGRAPHIC ENGINE) ─── */
-/* Renders instantaneously at ~60fps on EVERY device & browser (zero external 3D CDN, zero WebGL required) */
+/* ─── SOVEREIGN 3D SCROLL INTRODUCTION SYSTEM (STRIPE/APPLE-GRADE ZERO-WEBGL 60FPS HOLOGRAPHIC ENGINE) ─── */
+/* Real Natural-Earth 3D Continents + Perspective Projection + Floating Orbital Target Callouts + Liquid RGB Morph */
 let introInitialized = false;
 let isPaused = false;
 let isInViewport = true;
@@ -8,14 +8,14 @@ let startHeroTriggered = false;
 const DEG2RAD = Math.PI / 180;
 
 const GEO_COORDINATES = {
-  kyiv:       { lat: 50.45,  lon: 30.52,   color: '#ff2244', sector: 'conflict',   name: 'KYIV // EASTERN EUROPE' },
-  suez:       { lat: 29.97,  lon: 32.53,   color: '#ff6b00', sector: 'conflict',   name: 'RED SEA // SUEZ CORRIDOR' },
-  sahel:      { lat: 15.00,  lon: 10.00,   color: '#ff2244', sector: 'conflict',   name: 'SAHEL // FIELD TELEMETRY' },
-  brussels:   { lat: 50.85,  lon: 4.35,    color: '#00f5ff', sector: 'regulation', name: 'BRUSSELS // EU AI ACT' },
-  taiwan:     { lat: 24.40,  lon: 119.50,  color: '#ffd22e', sector: 'regulation', name: 'TAIWAN STRAIT // COMPUTE' },
-  malacca:    { lat: 1.35,   lon: 103.80,  color: '#ff6b00', sector: 'regulation', name: 'SINGAPORE // MALACCA HUB' },
-  washington: { lat: 38.90,  lon: -77.04,  color: '#00f5ff', sector: 'global',     name: 'WASHINGTON D.C. // POLICY' },
-  frankfurt:  { lat: 50.11,  lon: 8.68,    color: '#b366ff', sector: 'enterprise', name: 'FRANKFURT // DATA HUB' }
+  kyiv:       { lat: 50.45,  lon: 30.52,   color: '#ff2244', sector: 'conflict',   short: 'KYIV',       tag: 'ACTIVE RISK' },
+  suez:       { lat: 29.97,  lon: 32.53,   color: '#ff6b00', sector: 'conflict',   short: 'RED SEA',    tag: 'MARITIME' },
+  sahel:      { lat: 15.00,  lon: 10.00,   color: '#ff2244', sector: 'conflict',   short: 'SAHEL',      tag: 'TELEMETRY' },
+  brussels:   { lat: 50.85,  lon: 4.35,    color: '#00f5ff', sector: 'regulation', short: 'BRUSSELS',   tag: 'EU AI ACT' },
+  taiwan:     { lat: 24.40,  lon: 119.50,  color: '#ffd22e', sector: 'regulation', short: 'TAIWAN',     tag: 'COMPUTE HUB' },
+  malacca:    { lat: 1.35,   lon: 103.80,  color: '#ff6b00', sector: 'regulation', short: 'SINGAPORE',  tag: 'APAC RULES' },
+  washington: { lat: 38.90,  lon: -77.04,  color: '#00f5ff', sector: 'global',     short: 'WASHINGTON', tag: 'POLICY FEED' },
+  frankfurt:  { lat: 50.11,  lon: 8.68,    color: '#b366ff', sector: 'enterprise', short: 'FRANKFURT',  tag: 'DATA HUB' }
 };
 
 // Equal 23% scroll chapters across 0.00 -> 0.92, followed by smooth 0.92 -> 1.00 hero dissolve
@@ -24,29 +24,33 @@ const CHAPTERS = [
     id: 0, start: 0.00, end: 0.23,
     accentHex: '#00f5ff', rgb: [0, 245, 255],
     hudSector: 'GLOBAL PLANETARY SCAN',
-    lat: 26.0, lon: -12.0, alt: '6,420 KM',
-    focusSectors: ['global', 'conflict', 'regulation', 'enterprise']
+    alt: '6,420 KM',
+    focusSectors: ['global', 'conflict', 'regulation', 'enterprise'],
+    calloutKeys: ['washington', 'brussels', 'frankfurt']
   },
   {
     id: 1, start: 0.23, end: 0.46,
     accentHex: '#ff2244', rgb: [255, 34, 68],
     hudSector: 'LIVE OPERATIONS & RISK LOCK',
-    lat: 43.2, lon: 31.4, alt: '1,840 KM',
-    focusSectors: ['conflict']
+    alt: '1,840 KM',
+    focusSectors: ['conflict'],
+    calloutKeys: ['kyiv', 'suez', 'sahel']
   },
   {
     id: 2, start: 0.46, end: 0.69,
     accentHex: '#ff6b00', rgb: [255, 132, 24],
     hudSector: 'COMPLIANCE & AI SEARCH',
-    lat: 16.8, lon: 106.4, alt: '1,590 KM',
-    focusSectors: ['regulation']
+    alt: '1,590 KM',
+    focusSectors: ['regulation'],
+    calloutKeys: ['taiwan', 'malacca', 'brussels']
   },
   {
     id: 3, start: 0.69, end: 0.92,
     accentHex: '#b366ff', rgb: [179, 102, 255],
     hudSector: 'LIVE DASHBOARD & PRIVATE AI',
-    lat: 34.5, lon: 14.2, alt: '3,120 KM',
-    focusSectors: ['global', 'conflict', 'regulation', 'enterprise']
+    alt: '3,120 KM',
+    focusSectors: ['global', 'conflict', 'regulation', 'enterprise'],
+    calloutKeys: ['frankfurt', 'brussels', 'kyiv']
   }
 ];
 
@@ -64,46 +68,45 @@ function llToSphereUnit(lat, lon) {
   return [cp * Math.sin(lam), Math.sin(phi), cp * Math.cos(lam)];
 }
 
-// Precompute realistic continental landmass dot-matrix + sparse Fibonacci silhouette dots
-function buildIntroGlobeDots(isLowSpec) {
-  const regions = [
-    [48, -104, 15, 22], [36, -98, 12, 18], [58, -122, 10, 18], [22, -101, 8, 8], [66, -150, 6, 12],
-    [72, -42, 8, 12],
-    [-6, -60, 14, 14], [-22, -56, 13, 10], [-40, -68, 12, 6],
-    [51, 10, 9, 14], [44, 16, 7, 13], [61, 18, 8, 12], [54, -2, 4, 5],
-    [22, 14, 13, 18], [6, 22, 12, 17], [-14, 24, 13, 12], [-28, 24, 7, 8],
-    [26, 46, 10, 11], [56, 62, 12, 30], [60, 112, 11, 28], [40, 68, 10, 18],
-    [21, 79, 11, 8], [35, 108, 12, 15], [20, 104, 9, 9], [36, 138, 6, 5], [-2, 114, 5, 14],
-    [-25, 134, 10, 16]
-  ];
-
-  const landDots = [];
-  const stepLat = isLowSpec ? 4.8 : 3.9;
-  for (let lat = -60; lat <= 74; lat += stepLat) {
-    const lonStep = Math.max(stepLat, stepLat / Math.max(0.32, Math.cos(lat * DEG2RAD)));
-    for (let lon = -180; lon < 180; lon += lonStep) {
-      for (let i = 0; i < regions.length; i++) {
-        const [clat, clon, rl, rn] = regions[i];
-        const dLat = (lat - clat) / rl;
-        const dLon = (lon - clon) / rn;
-        if (dLat * dLat + dLon * dLon <= 1.0) {
-          landDots.push(llToSphereUnit(lat, lon));
-          break;
-        }
-      }
+// Precompute 3D unit-vector landmass rings with bounding cones from SOV_WORLD_RINGS (zero trig per frame!)
+function prepareWorldRings() {
+  const raw = (typeof window !== 'undefined' && Array.isArray(window.SOV_WORLD_RINGS)) ? window.SOV_WORLD_RINGS : [];
+  const prepared = [];
+  for (let r = 0; r < raw.length; r++) {
+    const flat = raw[r];
+    if (!flat || flat.length < 6) continue;
+    const pts = [];
+    let cx = 0, cy = 0, cz = 0;
+    for (let i = 0; i < flat.length; i += 2) {
+      const lon = flat[i] * 0.1;
+      const lat = flat[i + 1] * 0.1;
+      const u = llToSphereUnit(lat, lon);
+      pts.push(u);
+      cx += u[0]; cy += u[1]; cz += u[2];
     }
+    const cLen = Math.hypot(cx, cy, cz) || 1;
+    const center = [cx / cLen, cy / cLen, cz / cLen];
+    let minDot = 1;
+    for (let i = 0; i < pts.length; i++) {
+      const d = pts[i][0] * center[0] + pts[i][1] * center[1] + pts[i][2] * center[2];
+      if (d < minDot) minDot = d;
+    }
+    const sinRadius = Math.sqrt(Math.max(0, 1 - minDot * minDot));
+    prepared.push({ pts, center, sinRadius });
   }
+  return prepared;
+}
 
-  const shellDots = [];
-  const shellCount = isLowSpec ? 180 : 280;
-  for (let i = 0; i < shellCount; i++) {
-    const y = 1 - (i / (shellCount - 1)) * 2;
+// Precompute dense Stripe-style Fibonacci holographic constellation shell
+function buildFibonacciShell(count) {
+  const pts = [];
+  for (let i = 0; i < count; i++) {
+    const y = 1 - (i / (count - 1)) * 2;
     const rY = Math.sqrt(Math.max(0, 1 - y * y));
     const th = 2.39996323 * i;
-    shellDots.push([Math.cos(th) * rY, y, Math.sin(th) * rY]);
+    pts.push([Math.cos(th) * rY, y, Math.sin(th) * rY, (i * 0.6180339) % 1]);
   }
-
-  return { landDots, shellDots };
+  return pts;
 }
 
 function evalKeyframes(p, keyframes) {
@@ -129,35 +132,40 @@ function evalKeyframes(p, keyframes) {
   return last;
 }
 
-// Pre-render soft glow/sphere sprites once per chapter (15x faster than per-frame full-viewport radial gradients on CPU!)
+// Pre-render multi-layered atmospheric glow & spherical Fresnel core sprites per chapter
 function buildChapterSprites(rgb) {
   const [r, g, b] = rgb;
   const corona = document.createElement('canvas');
-  corona.width = 160;
-  corona.height = 160;
+  corona.width = 200;
+  corona.height = 200;
   const cCtx = corona.getContext('2d');
-  const cg = cCtx.createRadialGradient(80, 80, 34, 80, 80, 80);
-  cg.addColorStop(0.0, `rgba(${r},${g},${b},0.22)`);
-  cg.addColorStop(0.55, `rgba(${r},${g},${b},0.06)`);
-  cg.addColorStop(1.0, 'rgba(3,5,11,0)');
+  const cg = cCtx.createRadialGradient(100, 100, 44, 100, 100, 100);
+  cg.addColorStop(0.00, `rgba(${r},${g},${b},0.26)`);
+  cg.addColorStop(0.45, `rgba(${r},${g},${b},0.10)`);
+  cg.addColorStop(0.76, `rgba(${r},${g},${b},0.025)`);
+  cg.addColorStop(1.00, 'rgba(3,5,11,0)');
   cCtx.fillStyle = cg;
-  cCtx.fillRect(0, 0, 160, 160);
+  cCtx.fillRect(0, 0, 200, 200);
 
   const sphere = document.createElement('canvas');
-  sphere.width = 256;
-  sphere.height = 256;
+  sphere.width = 320;
+  sphere.height = 320;
   const sCtx = sphere.getContext('2d');
-  const sg = sCtx.createRadialGradient(90, 90, 12, 128, 128, 124);
-  sg.addColorStop(0.00, `rgba(${Math.round(r * 0.18 + 16)},${Math.round(g * 0.20 + 34)},${Math.round(b * 0.24 + 58)},0.92)`);
-  sg.addColorStop(0.56, 'rgba(6, 15, 32, 0.96)');
-  sg.addColorStop(0.90, 'rgba(3, 8, 18, 0.98)');
-  sg.addColorStop(1.00, `rgba(${r},${g},${b},0.34)`);
+  // Deep illuminated oceanic sphere with upper-left specular keylight & bright Fresnel edge
+  const sg = sCtx.createRadialGradient(112, 108, 14, 160, 160, 154);
+  sg.addColorStop(0.00, `rgba(${Math.round(r * 0.22 + 20)},${Math.round(g * 0.24 + 40)},${Math.round(b * 0.28 + 68)},0.95)`);
+  sg.addColorStop(0.46, 'rgba(7, 19, 38, 0.96)');
+  sg.addColorStop(0.84, 'rgba(3, 9, 21, 0.98)');
+  sg.addColorStop(0.95, `rgba(${r},${g},${b},0.28)`);
+  sg.addColorStop(1.00, `rgba(${r},${g},${b},0.65)`);
   sCtx.fillStyle = sg;
   sCtx.beginPath();
-  sCtx.arc(128, 128, 124, 0, Math.PI * 2);
+  sCtx.arc(160, 160, 154, 0, Math.PI * 2);
   sCtx.fill();
-  sCtx.strokeStyle = `rgba(${r},${g},${b},0.55)`;
-  sCtx.lineWidth = 2.0;
+
+  // Subtle double-hairline orbital limb glow
+  sCtx.strokeStyle = `rgba(${r},${g},${b},0.72)`;
+  sCtx.lineWidth = 1.8;
   sCtx.stroke();
 
   return { corona, sphere };
@@ -204,7 +212,7 @@ function startIntro() {
   if (skipBtn) skipBtn.addEventListener('click', jumpToHero);
   window.skipSovereignIntro = jumpToHero;
 
-  // ─── 1. ULTRA-FAST ZERO-WEBGL CANVAS 2D 3D PLANET ENGINE ───
+  // ─── 1. HIGH-CRAFT ZERO-WEBGL 3D HOLOGRAPHIC PLANET ENGINE ───
   container.innerHTML = '';
   const canvas = document.createElement('canvas');
   canvas.setAttribute('aria-hidden', 'true');
@@ -213,8 +221,8 @@ function startIntro() {
   const ctx = canvas.getContext('2d', { alpha: true });
 
   const isLowCore = typeof navigator !== 'undefined' && typeof navigator.hardwareConcurrency === 'number' && navigator.hardwareConcurrency <= 4;
-  // Cap DPR to 1.0 on low-core/software machines and 1.25 on HiDPI so software compositing stays 50-60 FPS
-  const maxDpr = isLowCore ? 1.0 : 1.25;
+  let maxDpr = isLowCore ? 1.15 : 1.5;
+  let qualityTier = isLowCore ? 0 : 1; // adaptive governor can drop 1 -> 0 if frame times spike
 
   let viewW = window.innerWidth || 1280;
   let viewH = window.innerHeight || 800;
@@ -230,38 +238,43 @@ function startIntro() {
   }
   sizeCanvas();
 
-  const { landDots, shellDots } = buildIntroGlobeDots(mobileMode || isLowCore);
+  const worldRings = prepareWorldRings();
+  const shellDots = buildFibonacciShell(mobileMode ? 320 : 620);
   const chapterSprites = CHAPTERS.map((ch) => buildChapterSprites(ch.rgb));
 
-  // Subtle ambient stars
-  const stars = [];
+  // Two-layer parallax deep-space starfield
+  const farStars = [];
+  const nearStars = [];
   let starSeed = 1337;
   const sRand = () => { starSeed = (starSeed * 16807) % 2147483647; return (starSeed - 1) / 2147483646; };
-  const starCount = mobileMode ? 36 : 64;
-  for (let i = 0; i < starCount; i++) {
-    stars.push({ x: sRand(), y: sRand(), r: 0.9 + sRand() * 0.9 });
-  }
+  const fCount = mobileMode ? 45 : 85;
+  const nCount = mobileMode ? 18 : 34;
+  for (let i = 0; i < fCount; i++) farStars.push({ x: sRand(), y: sRand(), r: 0.8 + sRand() * 0.7 });
+  for (let i = 0; i < nCount; i++) nearStars.push({ x: sRand(), y: sRand(), r: 1.3 + sRand() * 0.9, p: sRand() * 6.28 });
 
-  // Precompute 3D beacon vectors
+  // Precompute 3D coordinate beacons
   const beacons = Object.keys(GEO_COORDINATES).map((key, idx) => {
     const c = GEO_COORDINATES[key];
     return {
       key,
       color: c.color,
       sector: c.sector,
+      short: c.short,
+      tag: c.tag,
       base: llToSphereUnit(c.lat, c.lon),
       phase: idx * 0.41
     };
   });
 
-  // Precompute 3D geodesic arc polylines
+  // 7 curved 3D geodesic data corridors with glowing comet signal trails
   const arcPairs = [
-    { from: GEO_COORDINATES.kyiv,       to: GEO_COORDINATES.suez,       lift: 0.20, color: '#ff2244', speed: 0.24 },
-    { from: GEO_COORDINATES.taiwan,     to: GEO_COORDINATES.malacca,    lift: 0.22, color: '#ffd22e', speed: 0.26 },
-    { from: GEO_COORDINATES.brussels,   to: GEO_COORDINATES.sahel,      lift: 0.25, color: '#b366ff', speed: 0.20 },
-    { from: GEO_COORDINATES.kyiv,       to: GEO_COORDINATES.brussels,   lift: 0.15, color: '#00ff88', speed: 0.29 },
-    { from: GEO_COORDINATES.washington, to: GEO_COORDINATES.brussels,   lift: 0.27, color: '#00f5ff', speed: 0.18 },
-    { from: GEO_COORDINATES.frankfurt,  to: GEO_COORDINATES.malacca,    lift: 0.28, color: '#ff6b00', speed: 0.17 }
+    { from: GEO_COORDINATES.kyiv,       to: GEO_COORDINATES.suez,       lift: 0.22, color: '#ff2244', speed: 0.24 },
+    { from: GEO_COORDINATES.taiwan,     to: GEO_COORDINATES.malacca,    lift: 0.23, color: '#ffd22e', speed: 0.26 },
+    { from: GEO_COORDINATES.brussels,   to: GEO_COORDINATES.sahel,      lift: 0.26, color: '#b366ff', speed: 0.20 },
+    { from: GEO_COORDINATES.kyiv,       to: GEO_COORDINATES.brussels,   lift: 0.16, color: '#00ff88', speed: 0.29 },
+    { from: GEO_COORDINATES.washington, to: GEO_COORDINATES.brussels,   lift: 0.28, color: '#00f5ff', speed: 0.19 },
+    { from: GEO_COORDINATES.frankfurt,  to: GEO_COORDINATES.malacca,    lift: 0.30, color: '#ff6b00', speed: 0.17 },
+    { from: GEO_COORDINATES.washington, to: GEO_COORDINATES.frankfurt,  lift: 0.24, color: '#38bdf8', speed: 0.22 }
   ];
 
   const arcs = arcPairs.map((pair, idx) => {
@@ -275,7 +288,7 @@ function startIntro() {
     const h = 1 + 0.14 + chord * pair.lift;
     const cm = [(mx / mLen) * h, (my / mLen) * h, (mz / mLen) * h];
     const pts = [];
-    const steps = 20;
+    const steps = 24;
     for (let s = 0; s <= steps; s++) {
       const t = s / steps;
       const omt = 1 - t;
@@ -288,13 +301,14 @@ function startIntro() {
     return { pts, color: pair.color, speed: pair.speed, offset: idx / arcPairs.length };
   });
 
-  // Precompute orbit circle unit points (zero sin/cos inside render loop!)
+  // Twin tilted 3D satellite orbits + outer dashed telemetry compass ring
   const orbits = [
-    { radius: 1.29, tiltX: 1.18, tiltZ: -0.34, speed:  0.46, ringAlpha: 0.24, useAccent: true  },
-    { radius: 1.42, tiltX: 0.98, tiltZ:  0.54, speed: -0.34, ringAlpha: 0.18, useAccent: false, color: '#b366ff' }
+    { radius: 1.28, tiltX: 1.18, tiltZ: -0.34, speed:  0.46, ringAlpha: 0.28, useAccent: true,  dashed: false },
+    { radius: 1.41, tiltX: 0.98, tiltZ:  0.54, speed: -0.33, ringAlpha: 0.22, useAccent: false, color: '#b366ff', dashed: false },
+    { radius: 1.19, tiltX: 1.40, tiltZ:  0.96, speed:  0.58, ringAlpha: 0.14, useAccent: true,  dashed: true }
   ].map((orb) => {
     const ringPts = [];
-    const steps = 48;
+    const steps = 56;
     const cx = Math.cos(orb.tiltX), sx = Math.sin(orb.tiltX);
     const cz = Math.cos(orb.tiltZ), sz = Math.sin(orb.tiltZ);
     for (let s = 0; s <= steps; s++) {
@@ -308,17 +322,17 @@ function startIntro() {
     return { ...orb, ringPts, cx, sx, cz, sz };
   });
 
-  // ─── 2. CAMERA CHOREOGRAPHY KEYFRAMES (DESKTOP & MOBILE) ───
+  // ─── 2. CINEMATIC CAMERA KEYFRAMES (DESKTOP & MOBILE) ───
   function buildKeyframes(isMob) {
     return [
-      { p: 0.00,  lon: -14,  lat: 20, scale: isMob ? 0.34 : 0.42, cxRatio: isMob ? 0.50 : 0.65, cyRatio: isMob ? 0.31 : 0.51, opacity: 1 },
-      { p: 0.23,  lon:  18,  lat: 30, scale: isMob ? 0.38 : 0.47, cxRatio: isMob ? 0.50 : 0.66, cyRatio: isMob ? 0.30 : 0.50, opacity: 1 },
-      { p: 0.345, lon:  32,  lat: 38, scale: isMob ? 0.42 : 0.54, cxRatio: isMob ? 0.50 : 0.68, cyRatio: isMob ? 0.30 : 0.52, opacity: 1, linear: true },
-      { p: 0.46,  lon:  44,  lat: 32, scale: isMob ? 0.43 : 0.55, cxRatio: isMob ? 0.50 : 0.68, cyRatio: isMob ? 0.30 : 0.51, opacity: 1 },
-      { p: 0.575, lon: 104,  lat: 18, scale: isMob ? 0.42 : 0.53, cxRatio: isMob ? 0.50 : 0.68, cyRatio: isMob ? 0.31 : 0.50, opacity: 1, linear: true },
-      { p: 0.69,  lon:  88,  lat: 24, scale: isMob ? 0.40 : 0.51, cxRatio: isMob ? 0.50 : 0.67, cyRatio: isMob ? 0.31 : 0.50, opacity: 1 },
-      { p: 0.92,  lon:  12,  lat: 24, scale: isMob ? 0.37 : 0.48, cxRatio: isMob ? 0.50 : 0.66, cyRatio: isMob ? 0.31 : 0.50, opacity: 1 },
-      { p: 1.00,  lon:  -8,  lat: 20, scale: isMob ? 0.40 : 0.51, cxRatio: isMob ? 0.50 : 0.66, cyRatio: isMob ? 0.32 : 0.50, opacity: 0 }
+      { p: 0.00,  lon: -16,  lat: 22, scale: isMob ? 0.34 : 0.42, cxRatio: isMob ? 0.50 : 0.65, cyRatio: isMob ? 0.30 : 0.51, opacity: 1 },
+      { p: 0.23,  lon:  14,  lat: 30, scale: isMob ? 0.38 : 0.47, cxRatio: isMob ? 0.50 : 0.66, cyRatio: isMob ? 0.30 : 0.50, opacity: 1 },
+      { p: 0.345, lon:  30,  lat: 38, scale: isMob ? 0.42 : 0.54, cxRatio: isMob ? 0.50 : 0.68, cyRatio: isMob ? 0.30 : 0.52, opacity: 1, linear: true },
+      { p: 0.46,  lon:  42,  lat: 32, scale: isMob ? 0.43 : 0.55, cxRatio: isMob ? 0.50 : 0.68, cyRatio: isMob ? 0.30 : 0.51, opacity: 1 },
+      { p: 0.575, lon: 106,  lat: 18, scale: isMob ? 0.42 : 0.53, cxRatio: isMob ? 0.50 : 0.68, cyRatio: isMob ? 0.31 : 0.50, opacity: 1, linear: true },
+      { p: 0.69,  lon:  90,  lat: 24, scale: isMob ? 0.40 : 0.51, cxRatio: isMob ? 0.50 : 0.67, cyRatio: isMob ? 0.31 : 0.50, opacity: 1 },
+      { p: 0.92,  lon:  12,  lat: 28, scale: isMob ? 0.37 : 0.48, cxRatio: isMob ? 0.50 : 0.66, cyRatio: isMob ? 0.31 : 0.50, opacity: 1 },
+      { p: 1.00,  lon:  -6,  lat: 22, scale: isMob ? 0.40 : 0.51, cxRatio: isMob ? 0.50 : 0.66, cyRatio: isMob ? 0.32 : 0.50, opacity: 0 }
     ];
   }
   let keyframes = buildKeyframes(mobileMode);
@@ -346,12 +360,14 @@ function startIntro() {
   smoothProgress = targetProgress;
   window.addEventListener('scroll', updateTargetProgress, { passive: true });
 
-  // Desktop pointer parallax (zero touch interference)
-  const pointer = { targetLon: 0, targetLat: 0, curLon: 0, curLat: 0 };
+  // Desktop mouse parallax (zero touch interference)
+  const pointer = { targetLon: 0, targetLat: 0, curLon: 0, curLat: 0, nx: 0, ny: 0 };
   window.addEventListener('pointermove', (e) => {
     if (e.pointerType !== 'mouse' || !isInViewport || prefersReducedMotion) return;
-    pointer.targetLon = ((e.clientX / viewW) - 0.5) * 14;
-    pointer.targetLat = ((e.clientY / viewH) - 0.5) * 8;
+    pointer.nx = (e.clientX / viewW) - 0.5;
+    pointer.ny = (e.clientY / viewH) - 0.5;
+    pointer.targetLon = pointer.nx * 15;
+    pointer.targetLat = pointer.ny * 9;
   }, { passive: true });
 
   // ─── 4. CACHED ZERO-LAYOUT-THRASH UI SYNC ───
@@ -361,6 +377,8 @@ function startIntro() {
   let lastCanvasOp = -1;
   let lastHudBottomOp = -1;
   let activeChapterIdx = 0;
+  const curRgb = [0, 245, 255];
+  let targetRgb = CHAPTERS[0].rgb;
 
   function syncChapterDOM(progress) {
     let curIdx = 0;
@@ -372,6 +390,7 @@ function startIntro() {
     if (curIdx !== lastChapterIdx) {
       lastChapterIdx = curIdx;
       const curChapter = CHAPTERS[curIdx];
+      targetRgb = curChapter.rgb;
 
       if (hudDot) {
         hudDot.style.background = curChapter.accentHex;
@@ -405,7 +424,6 @@ function startIntro() {
       hudBottom.style.opacity = String(bottomOp);
     }
 
-    // Crisp overlapping crossfades so a chapter card is ALWAYS visible across 0.00 -> 0.92 (zero blank gaps!)
     for (let idx = 0; idx < slides.length; idx++) {
       const slide = slides[idx];
       const ch = CHAPTERS[idx];
@@ -452,7 +470,7 @@ function startIntro() {
     }
   }
 
-  // ─── 5. BATCHED ZERO-ALLOCATION CANVAS 2D PLANET RENDERER (<3ms PER FRAME EVEN ON CPU!) ───
+  // ─── 5. ULTRA-CRAFT 3D PERSPECTIVE + NATURAL-EARTH HOLOGRAPHIC RENDERER ───
   function orbitSatPoint(angle, orb) {
     const x0 = Math.cos(angle) * orb.radius;
     const z0 = Math.sin(angle) * orb.radius;
@@ -466,45 +484,98 @@ function startIntro() {
     ctx.clearRect(0, 0, viewW, viewH);
 
     const ch = CHAPTERS[activeChapterIdx] || CHAPTERS[0];
-    const [rCol, gCol, bCol] = ch.rgb;
-    const accentCss = ch.accentHex;
-    const sprites = chapterSprites[activeChapterIdx] || chapterSprites[0];
+    const rCol = Math.round(curRgb[0]);
+    const gCol = Math.round(curRgb[1]);
+    const bCol = Math.round(curRgb[2]);
+    const accentCss = `rgb(${rCol},${gCol},${bCol})`;
+
+    // Liquid chapter sprite crossfade
+    const progChapter = clamp01(smoothProgress / 0.92) * 3;
+    const baseSpriteIdx = Math.min(3, Math.floor(progChapter));
+    const nextSpriteIdx = Math.min(3, baseSpriteIdx + 1);
+    const blendAlpha = progChapter - baseSpriteIdx;
 
     const cx = viewW * kf.cxRatio;
     const cy = viewH * kf.cyRatio;
     const R = Math.min(viewW, viewH) * kf.scale;
 
-    const lonDeg = kf.lon + pointer.curLon + Math.sin(tSec * 0.22) * 2.2;
+    const lonDeg = kf.lon + pointer.curLon + Math.sin(tSec * 0.24) * 2.4;
     const latDeg = kf.lat + pointer.curLat;
     const lam0 = lonDeg * DEG2RAD;
     const phi0 = latDeg * DEG2RAD;
     const sinL0 = Math.sin(lam0), cosL0 = Math.cos(lam0);
     const sinP0 = Math.sin(phi0), cosP0 = Math.cos(phi0);
 
-    // 1. Batched deep-space stars (single fillStyle)
-    ctx.fillStyle = 'rgba(226, 232, 240, 0.34)';
-    for (let i = 0; i < stars.length; i++) {
-      const st = stars[i];
-      ctx.fillRect(st.x * viewW, st.y * viewH, st.r, st.r);
+    // Camera forward vector in Earth coords (for fast bounding-cone culling)
+    const vx0 = cosP0 * sinL0;
+    const vy0 = sinP0;
+    const vz0 = cosP0 * cosL0;
+
+    // Gentle 3D perspective factor for orbiting arcs, pins & satellites
+    const perspK = 4.2;
+    const projPersp = (x1, y2, z2) => {
+      const f = perspK / (perspK - z2);
+      return [cx + x1 * R * f, cy - y2 * R * f, f];
+    };
+
+    // 1. Two-layer parallax deep-space starfield
+    const parFarX = -pointer.nx * 14;
+    const parFarY = -pointer.ny * 10 - smoothProgress * 28;
+    ctx.fillStyle = 'rgba(203, 213, 225, 0.28)';
+    for (let i = 0; i < farStars.length; i++) {
+      const st = farStars[i];
+      const sx = ((st.x * viewW + parFarX) % viewW + viewW) % viewW;
+      const sy = ((st.y * viewH + parFarY) % viewH + viewH) % viewH;
+      ctx.fillRect(sx, sy, st.r, st.r);
     }
 
-    // 2. Pre-rendered outer corona halo (single drawImage, zero per-frame gradient compute!)
-    const coronaR = R * 1.50;
-    ctx.drawImage(sprites.corona, cx - coronaR, cy - coronaR, coronaR * 2, coronaR * 2);
+    const parNearX = -pointer.nx * 30;
+    const parNearY = -pointer.ny * 20 - smoothProgress * 56;
+    ctx.fillStyle = `rgba(${Math.round(rCol * 0.4 + 150)},${Math.round(gCol * 0.4 + 150)},${Math.round(bCol * 0.4 + 150)},0.48)`;
+    for (let i = 0; i < nearStars.length; i++) {
+      const st = nearStars[i];
+      const sx = ((st.x * viewW + parNearX) % viewW + viewW) % viewW;
+      const sy = ((st.y * viewH + parNearY) % viewH + viewH) % viewH;
+      ctx.fillRect(sx, sy, st.r, st.r);
+    }
 
-    // Helper for back/front tilted orbital rings + satellites
+    // 2. Liquid crossfaded volumetric outer corona halo
+    const coronaR = R * 1.56;
+    ctx.globalAlpha = 1 - blendAlpha;
+    ctx.drawImage(chapterSprites[baseSpriteIdx].corona, cx - coronaR, cy - coronaR, coronaR * 2, coronaR * 2);
+    if (blendAlpha > 0.01 && nextSpriteIdx !== baseSpriteIdx) {
+      ctx.globalAlpha = blendAlpha;
+      ctx.drawImage(chapterSprites[nextSpriteIdx].corona, cx - coronaR, cy - coronaR, coronaR * 2, coronaR * 2);
+    }
+    ctx.globalAlpha = 1;
+
+    // 3. Precision outer tactical azimuth ring (rotating hairline dial around the globe)
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(tSec * 0.06 + smoothProgress * 1.2);
+    ctx.strokeStyle = `rgba(${rCol},${gCol},${bCol},0.12)`;
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 10, 22, 10]);
+    ctx.beginPath();
+    ctx.arc(0, 0, R * 1.11, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.restore();
+
+    // Helper for back/front 3D perspective tilted satellite orbits
     const drawOrbits = (frontPass) => {
       for (let oi = 0; oi < orbits.length; oi++) {
         const orb = orbits[oi];
         const col = orb.useAccent ? accentCss : orb.color;
         const pts = orb.ringPts;
+        ctx.save();
+        if (orb.dashed) ctx.setLineDash([3, 7]);
         ctx.beginPath();
         let pen = false;
         for (let s = 0; s < pts.length; s++) {
           const p = pts[s];
           if ((p[2] >= 0) === frontPass) {
-            const sx = cx + p[0] * R;
-            const sy = cy - p[1] * R;
+            const [sx, sy] = projPersp(p[0], p[1], p[2]);
             if (!pen) { ctx.moveTo(sx, sy); pen = true; }
             else ctx.lineTo(sx, sy);
           } else {
@@ -513,62 +584,76 @@ function startIntro() {
         }
         ctx.strokeStyle = col;
         ctx.globalAlpha = frontPass ? orb.ringAlpha : orb.ringAlpha * 0.34;
-        ctx.lineWidth = frontPass ? 1.25 : 0.9;
+        ctx.lineWidth = frontPass ? 1.25 : 0.85;
         ctx.stroke();
+        ctx.restore();
+
+        if (orb.dashed) continue;
 
         const satA = tSec * orb.speed + oi * 1.7;
         const [sx0, sy0, sz0] = orbitSatPoint(satA, orb);
         if ((sz0 >= 0) === frontPass) {
           ctx.beginPath();
-          for (let k = 0; k < 7; k++) {
-            const ta = satA - (orb.speed > 0 ? 1 : -1) * k * 0.055;
-            const [tx, ty] = orbitSatPoint(ta, orb);
-            if (k === 0) ctx.moveTo(cx + tx * R, cy - ty * R);
-            else ctx.lineTo(cx + tx * R, cy - ty * R);
+          for (let k = 0; k < 8; k++) {
+            const ta = satA - (orb.speed > 0 ? 1 : -1) * k * 0.052;
+            const [tx, ty, tz] = orbitSatPoint(ta, orb);
+            const [psx, psy] = projPersp(tx, ty, tz);
+            if (k === 0) ctx.moveTo(psx, psy);
+            else ctx.lineTo(psx, psy);
           }
           ctx.strokeStyle = col;
-          ctx.globalAlpha = frontPass ? 0.62 : 0.22;
-          ctx.lineWidth = 2.0;
+          ctx.globalAlpha = frontPass ? 0.65 : 0.22;
+          ctx.lineWidth = 2.1;
           ctx.stroke();
 
-          const px = cx + sx0 * R;
-          const py = cy - sy0 * R;
-          ctx.globalAlpha = frontPass ? 0.34 : 0.14;
+          const [px, py, pf] = projPersp(sx0, sy0, sz0);
+          ctx.globalAlpha = frontPass ? 0.36 : 0.14;
           ctx.fillStyle = col;
           ctx.beginPath();
-          ctx.arc(px, py, frontPass ? 7.5 : 4.5, 0, Math.PI * 2);
+          ctx.arc(px, py, (frontPass ? 8 : 4.6) * pf, 0, Math.PI * 2);
           ctx.fill();
 
           ctx.globalAlpha = frontPass ? 1.0 : 0.45;
           ctx.fillStyle = '#ffffff';
           ctx.beginPath();
-          ctx.arc(px, py, frontPass ? 2.6 : 1.8, 0, Math.PI * 2);
+          ctx.arc(px, py, (frontPass ? 2.7 : 1.8) * pf, 0, Math.PI * 2);
           ctx.fill();
         }
       }
       ctx.globalAlpha = 1;
     };
 
-    // 3. Back pass of orbits
+    // Back pass of tilted 3D orbits
     drawOrbits(false);
 
-    // 4. Pre-rendered 3D sphere core + Fresnel rim (single drawImage!)
-    const sphDrawR = R * (128 / 124);
-    ctx.drawImage(sprites.sphere, cx - sphDrawR, cy - sphDrawR, sphDrawR * 2, sphDrawR * 2);
+    // 4. Liquid crossfaded 3D illuminated Earth sphere base
+    const sphDrawR = R * (160 / 154);
+    ctx.globalAlpha = 1 - blendAlpha;
+    ctx.drawImage(chapterSprites[baseSpriteIdx].sphere, cx - sphDrawR, cy - sphDrawR, sphDrawR * 2, sphDrawR * 2);
+    if (blendAlpha > 0.01 && nextSpriteIdx !== baseSpriteIdx) {
+      ctx.globalAlpha = blendAlpha;
+      ctx.drawImage(chapterSprites[nextSpriteIdx].sphere, cx - sphDrawR, cy - sphDrawR, sphDrawR * 2, sphDrawR * 2);
+    }
+    ctx.globalAlpha = 1;
 
-    // 5. Batched Graticules + Shell + 3-Bucket Continental Dot Matrix (ONLY 5 draw calls total!)
-    // Latitude & longitude wireframe (combined into 1 single path!)
+    // 5. Clipped interior: Real Natural-Earth 3D Continents + Wireframe Graticule + Pole-to-Pole Radar Scan + Fibonacci Shimmer
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.clip();
+
+    // 5A. Spherical Latitude / Longitude Wireframe Mesh (single batched stroke!)
     ctx.beginPath();
     for (let lat = -60; lat <= 60; lat += 30) {
       const phi = lat * DEG2RAD;
       const cp = Math.cos(phi), sp = Math.sin(phi);
       let pen = false;
-      for (let lon = -180; lon <= 180; lon += 15) {
+      for (let lon = -180; lon <= 180; lon += 12) {
         const dl = (lon - lonDeg) * DEG2RAD;
         const x1 = cp * Math.sin(dl);
         const y2 = cosP0 * sp - sinP0 * cp * Math.cos(dl);
         const z2 = sinP0 * sp + cosP0 * cp * Math.cos(dl);
-        if (z2 >= 0) {
+        if (z2 >= -0.02) {
           const sx = cx + x1 * R;
           const sy = cy - y2 * R;
           if (!pen) { ctx.moveTo(sx, sy); pen = true; }
@@ -582,13 +667,13 @@ function startIntro() {
       const dl = (lon - lonDeg) * DEG2RAD;
       const sdl = Math.sin(dl), cdl = Math.cos(dl);
       let pen = false;
-      for (let lat = -75; lat <= 75; lat += 15) {
+      for (let lat = -78; lat <= 78; lat += 12) {
         const phi = lat * DEG2RAD;
         const cp = Math.cos(phi), sp = Math.sin(phi);
         const x1 = cp * sdl;
         const y2 = cosP0 * sp - sinP0 * cp * cdl;
         const z2 = sinP0 * sp + cosP0 * cp * cdl;
-        if (z2 >= 0) {
+        if (z2 >= -0.02) {
           const sx = cx + x1 * R;
           const sy = cy - y2 * R;
           if (!pen) { ctx.moveTo(sx, sy); pen = true; }
@@ -599,63 +684,98 @@ function startIntro() {
       }
     }
     ctx.strokeStyle = `rgba(${rCol},${gCol},${bCol},0.11)`;
-    ctx.lineWidth = 0.8;
+    ctx.lineWidth = 0.75;
     ctx.stroke();
 
-    // Fibonacci shell dots (single fillStyle)
-    ctx.fillStyle = `rgba(${rCol},${gCol},${bCol},0.18)`;
-    for (let i = 0; i < shellDots.length; i++) {
+    // 5B. REAL NATURAL-EARTH 3D CONTINENTS (single combined path -> razor sharp & ultra fast!)
+    if (worldRings.length > 0) {
+      ctx.beginPath();
+      for (let r = 0; r < worldRings.length; r++) {
+        const ring = worldRings[r];
+        // Fast bounding-cone backface cull
+        const cDot = ring.center[0] * vx0 + ring.center[1] * vy0 + ring.center[2] * vz0;
+        if (cDot < -ring.sinRadius - 0.12) continue;
+
+        const pts = ring.pts;
+        let hasFront = false;
+        for (let i = 0; i < pts.length; i++) {
+          const u = pts[i];
+          const z1 = u[0] * sinL0 + u[2] * cosL0;
+          const z2 = u[1] * sinP0 + z1 * cosP0;
+          if (z2 > -0.02) { hasFront = true; break; }
+        }
+        if (!hasFront) continue;
+
+        for (let i = 0; i < pts.length; i++) {
+          const u = pts[i];
+          let x1 = u[0] * cosL0 - u[2] * sinL0;
+          const z1 = u[0] * sinL0 + u[2] * cosL0;
+          let y2 = u[1] * cosP0 - z1 * sinP0;
+          const z2 = u[1] * sinP0 + z1 * cosP0;
+          if (z2 < 0) {
+            const hLen = Math.hypot(x1, y2) || 1;
+            x1 = (x1 / hLen) * 1.01;
+            y2 = (y2 / hLen) * 1.01;
+          }
+          const sx = cx + x1 * R;
+          const sy = cy - y2 * R;
+          if (i === 0) ctx.moveTo(sx, sy);
+          else ctx.lineTo(sx, sy);
+        }
+        ctx.closePath();
+      }
+      ctx.fillStyle = `rgba(${rCol},${gCol},${bCol},0.11)`;
+      ctx.fill();
+      ctx.strokeStyle = `rgba(${Math.round(rCol * 0.75 + 64)},${Math.round(gCol * 0.75 + 64)},${Math.round(bCol * 0.75 + 64)},0.54)`;
+      ctx.lineWidth = 1.05;
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+    }
+
+    // 5C. Travelling Pole-to-Pole Orbital Radar Scan Ring (luminous latitude pulse!)
+    const scanLat = 78 - ((tSec * 24) % 156);
+    const scanPhi = scanLat * DEG2RAD;
+    const scanCp = Math.cos(scanPhi), scanSp = Math.sin(scanPhi);
+    ctx.beginPath();
+    let scanPen = false;
+    for (let lon = -180; lon <= 180; lon += 8) {
+      const dl = (lon - lonDeg) * DEG2RAD;
+      const x1 = scanCp * Math.sin(dl);
+      const y2 = cosP0 * scanSp - sinP0 * scanCp * Math.cos(dl);
+      const z2 = sinP0 * scanSp + cosP0 * scanCp * Math.cos(dl);
+      if (z2 >= 0) {
+        const sx = cx + x1 * R;
+        const sy = cy - y2 * R;
+        if (!scanPen) { ctx.moveTo(sx, sy); scanPen = true; }
+        else ctx.lineTo(sx, sy);
+      } else {
+        scanPen = false;
+      }
+    }
+    ctx.strokeStyle = `rgba(${rCol},${gCol},${bCol},0.46)`;
+    ctx.lineWidth = 1.8;
+    ctx.stroke();
+
+    // 5D. Stripe-Style Dense 3D Holographic Fibonacci Shimmer Shell (2-bucket batched)
+    const shellStride = qualityTier === 0 ? 2 : 1;
+    ctx.fillStyle = `rgba(${rCol},${gCol},${bCol},0.22)`;
+    for (let i = 0; i < shellDots.length; i += shellStride) {
       const d = shellDots[i];
       const x1 = d[0] * cosL0 - d[2] * sinL0;
       const z1 = d[0] * sinL0 + d[2] * cosL0;
       const y2 = d[1] * cosP0 - z1 * sinP0;
       const z2 = d[1] * sinP0 + z1 * cosP0;
       if (z2 > 0) {
-        ctx.fillRect(cx + x1 * R - 0.8, cy - y2 * R - 0.8, 1.6, 1.6);
+        const sx = cx + x1 * R;
+        const sy = cy - y2 * R;
+        const sz = z2 > 0.65 ? 2.1 : 1.4;
+        ctx.fillRect(sx - sz * 0.5, sy - sz * 0.5, sz, sz);
       }
     }
 
-    // 3-Bucket Batched Continental Dot Matrix (ZERO per-dot fillStyle/beginPath overhead!)
-    const rearPts = [];
-    const midPts = [];
-    const brightPts = [];
-    for (let i = 0; i < landDots.length; i++) {
-      const d = landDots[i];
-      const x1 = d[0] * cosL0 - d[2] * sinL0;
-      const z1 = d[0] * sinL0 + d[2] * cosL0;
-      const y2 = d[1] * cosP0 - z1 * sinP0;
-      const z2 = d[1] * sinP0 + z1 * cosP0;
-      const sx = cx + x1 * R;
-      const sy = cy - y2 * R;
-      if (z2 < 0) rearPts.push(sx, sy);
-      else if (z2 < 0.56) midPts.push(sx, sy);
-      else brightPts.push(sx, sy);
-    }
+    ctx.restore(); // end sphere clip
 
-    ctx.fillStyle = `rgba(${rCol},${gCol},${bCol},0.10)`;
-    for (let i = 0; i < rearPts.length; i += 2) {
-      ctx.fillRect(rearPts[i] - 0.7, rearPts[i + 1] - 0.7, 1.4, 1.4);
-    }
-
-    ctx.fillStyle = `rgba(${rCol},${gCol},${bCol},0.62)`;
-    ctx.beginPath();
-    for (let i = 0; i < midPts.length; i += 2) {
-      const x = midPts[i], y = midPts[i + 1];
-      ctx.moveTo(x + 1.8, y);
-      ctx.arc(x, y, 1.8, 0, Math.PI * 2);
-    }
-    ctx.fill();
-
-    ctx.fillStyle = 'rgba(218, 250, 255, 0.92)';
-    ctx.beginPath();
-    for (let i = 0; i < brightPts.length; i += 2) {
-      const x = brightPts[i], y = brightPts[i + 1];
-      ctx.moveTo(x + 2.25, y);
-      ctx.arc(x, y, 2.25, 0, Math.PI * 2);
-    }
-    ctx.fill();
-
-    // 6. Curved 3D Geodesic Data Arcs & Traveling Signal Packets
+    // 6. Curved 3D Perspective Geodesic Data Arcs & Glowing Comet Energy Trails
     for (let ai = 0; ai < arcs.length; ai++) {
       const arc = arcs[ai];
       const pts = arc.pts;
@@ -666,7 +786,8 @@ function startIntro() {
         const z1 = p[0] * sinL0 + p[2] * cosL0;
         const y2 = p[1] * cosP0 - z1 * sinP0;
         const z2 = p[1] * sinP0 + z1 * cosP0;
-        proj[s] = [cx + x1 * R, cy - y2 * R, z2];
+        const [psx, psy, pf] = projPersp(x1, y2, z2);
+        proj[s] = [psx, psy, z2, pf];
       }
 
       ctx.beginPath();
@@ -680,10 +801,11 @@ function startIntro() {
         }
       }
       ctx.strokeStyle = arc.color;
-      ctx.globalAlpha = 0.44;
+      ctx.globalAlpha = 0.46;
       ctx.lineWidth = 1.4;
       ctx.stroke();
 
+      // Glowing comet head + 4-step fading energy tail
       const u = (((tSec * arc.speed + arc.offset) % 1) + 1) % 1;
       const idxF = u * (proj.length - 1);
       const i0 = Math.max(0, Math.min(proj.length - 1, Math.floor(idxF)));
@@ -692,23 +814,40 @@ function startIntro() {
       const px = proj[i0][0] + (proj[i1][0] - proj[i0][0]) * frac;
       const py = proj[i0][1] + (proj[i1][1] - proj[i0][1]) * frac;
       const pz = proj[i0][2] + (proj[i1][2] - proj[i0][2]) * frac;
+      const pf = proj[i0][3];
       if (pz > -0.04) {
+        if (i0 >= 2) {
+          ctx.beginPath();
+          ctx.moveTo(px, py);
+          for (let back = 1; back <= 3 && i0 - back >= 0; back++) {
+            ctx.lineTo(proj[i0 - back][0], proj[i0 - back][1]);
+          }
+          ctx.strokeStyle = arc.color;
+          ctx.globalAlpha = 0.72;
+          ctx.lineWidth = 2.4;
+          ctx.stroke();
+        }
+
         ctx.globalAlpha = 0.36;
         ctx.fillStyle = arc.color;
         ctx.beginPath();
-        ctx.arc(px, py, 6.8, 0, Math.PI * 2);
+        ctx.arc(px, py, 7.2 * pf, 0, Math.PI * 2);
         ctx.fill();
+
         ctx.globalAlpha = 1;
         ctx.fillStyle = '#ffffff';
         ctx.beginPath();
-        ctx.arc(px, py, 2.2, 0, Math.PI * 2);
+        ctx.arc(px, py, 2.3 * pf, 0, Math.PI * 2);
         ctx.fill();
       }
     }
     ctx.globalAlpha = 1;
 
-    // 7. Protruding 3D Coordinate Beacon Pins + Target Shockwaves
+    // 7. Protruding 3D Coordinate Beacons + Expanding Shockwave Rings + Floating Pinned Telemetry Callouts
     const activeFocus = ch.focusSectors;
+    const calloutKeys = ch.calloutKeys || [];
+    const calloutsToDraw = [];
+
     for (let bi = 0; bi < beacons.length; bi++) {
       const b = beacons[bi];
       const u = b.base;
@@ -722,31 +861,33 @@ function startIntro() {
       const fade = Math.min(1, z2 * 2.6);
       const baseX = cx + x1 * R;
       const baseY = cy - y2 * R;
-      const pinLift = isFocused ? 1.135 : 1.09;
-      const tipX = cx + x1 * R * pinLift;
-      const tipY = cy - y2 * R * pinLift;
+      const pinLift = isFocused ? 1.13 : 1.085;
+      const [tipX, tipY, pf] = projPersp(x1 * pinLift, y2 * pinLift, z2 * pinLift);
 
+      // Expanding surface shockwave ring
       const cycle = (tSec * (isFocused ? 0.62 : 0.32) + b.phase) % 1;
-      const ringR = 3.5 + cycle * (isFocused ? 20 : 11);
+      const ringR = 3.5 + cycle * (isFocused ? 21 : 11);
       ctx.strokeStyle = b.color;
-      ctx.globalAlpha = (1 - cycle) * (isFocused ? 0.72 : 0.28) * fade;
-      ctx.lineWidth = isFocused ? 1.5 : 1.0;
+      ctx.globalAlpha = (1 - cycle) * (isFocused ? 0.76 : 0.28) * fade;
+      ctx.lineWidth = isFocused ? 1.55 : 1.0;
       ctx.beginPath();
       ctx.arc(baseX, baseY, ringR, 0, Math.PI * 2);
       ctx.stroke();
 
-      ctx.globalAlpha = (isFocused ? 0.85 : 0.45) * fade;
+      // Elevated beacon stem
+      ctx.globalAlpha = (isFocused ? 0.88 : 0.44) * fade;
       ctx.lineWidth = isFocused ? 1.5 : 1.1;
       ctx.beginPath();
       ctx.moveTo(baseX, baseY);
       ctx.lineTo(tipX, tipY);
       ctx.stroke();
 
-      const headR = (isFocused ? 4.2 : 2.8) + Math.sin(tSec * 4.5 + b.phase * 6) * (isFocused ? 0.85 : 0.35);
-      ctx.globalAlpha = (isFocused ? 0.34 : 0.18) * fade;
+      // Radiant beacon head
+      const headR = ((isFocused ? 4.2 : 2.8) + Math.sin(tSec * 4.5 + b.phase * 6) * (isFocused ? 0.8 : 0.3)) * pf;
+      ctx.globalAlpha = (isFocused ? 0.35 : 0.18) * fade;
       ctx.fillStyle = b.color;
       ctx.beginPath();
-      ctx.arc(tipX, tipY, headR * 2.0, 0, Math.PI * 2);
+      ctx.arc(tipX, tipY, headR * 2.1, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.globalAlpha = 0.96 * fade;
@@ -759,11 +900,77 @@ function startIntro() {
       ctx.beginPath();
       ctx.arc(tipX, tipY, Math.max(1.2, headR * 0.42), 0, Math.PI * 2);
       ctx.fill();
+
+      // Queue desktop floating 3D holographic callout label for chapter-locked coordinates
+      if (!mobileMode && z2 > 0.28 && calloutKeys.includes(b.key)) {
+        calloutsToDraw.push({ b, tipX, tipY, x1, y2, fade: Math.min(1, (z2 - 0.25) * 2.6) });
+      }
     }
     ctx.globalAlpha = 1;
 
-    // 8. Front pass of tilted orbits
+    // 8. Front pass of tilted 3D orbits
     drawOrbits(true);
+
+    // 9. Crisp Pinned 3D Orbital Telemetry Callouts (desktop, non-overlapping, never crossing slide card)
+    if (calloutsToDraw.length > 0) {
+      ctx.font = '700 9px "JetBrains Mono", monospace';
+      ctx.textBaseline = 'middle';
+      const placed = [];
+      for (let i = 0; i < calloutsToDraw.length; i++) {
+        const c = calloutsToDraw[i];
+        const dirX = c.x1 >= -0.05 ? 1 : -1;
+        const label = `${c.b.short} · ${c.b.tag}`;
+        const tw = ctx.measureText(label).width + 18;
+        const th = 20;
+        const elbowX = c.tipX + dirX * 18;
+        const elbowY = c.tipY - 14;
+        const boxX = dirX > 0 ? elbowX + 6 : elbowX - tw - 6;
+        const boxY = elbowY - th * 0.5;
+
+        // Avoid left slide card safe zone (< 560px on desktop) and right chapter rail (> viewW - 148px)
+        if (boxX < 555 || boxX + tw > viewW - 145 || boxY < 76 || boxY + th > viewH - 72) continue;
+
+        let clash = false;
+        for (let k = 0; k < placed.length; k++) {
+          const p = placed[k];
+          if (boxX < p.x + p.w + 8 && boxX + tw + 8 > p.x && boxY < p.y + p.h + 6 && boxY + th + 6 > p.y) {
+            clash = true;
+            break;
+          }
+        }
+        if (clash) continue;
+        placed.push({ x: boxX, y: boxY, w: tw, h: th });
+
+        ctx.globalAlpha = 0.92 * c.fade;
+        // Leader line
+        ctx.strokeStyle = c.b.color;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(c.tipX, c.tipY);
+        ctx.lineTo(elbowX, elbowY);
+        ctx.lineTo(dirX > 0 ? boxX : boxX + tw, elbowY);
+        ctx.stroke();
+
+        // Glass pill tag
+        ctx.fillStyle = 'rgba(5, 10, 22, 0.88)';
+        ctx.beginPath();
+        ctx.roundRect ? ctx.roundRect(boxX, boxY, tw, th, 6) : ctx.rect(boxX, boxY, tw, th);
+        ctx.fill();
+        ctx.strokeStyle = c.b.color;
+        ctx.lineWidth = 0.9;
+        ctx.stroke();
+
+        // Status dot + text
+        ctx.fillStyle = c.b.color;
+        ctx.beginPath();
+        ctx.arc(boxX + 8, elbowY, 2.3, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#f1f5f9';
+        ctx.fillText(label, boxX + 14, elbowY + 0.5);
+      }
+      ctx.globalAlpha = 1;
+    }
   }
 
   // ─── 6. REDUCED MOTION ACCESSIBLE MODE ───
@@ -775,7 +982,9 @@ function startIntro() {
     const showStaticChapter = (idx) => {
       const ch = CHAPTERS[idx] || CHAPTERS[0];
       const midP = (ch.start + ch.end) / 2;
+      smoothProgress = midP;
       syncChapterDOM(midP);
+      curRgb[0] = ch.rgb[0]; curRgb[1] = ch.rgb[1]; curRgb[2] = ch.rgb[2];
       renderPlanet(evalKeyframes(midP, keyframes), 1.4);
     };
     chapterPills.forEach((pill, idx) => pill.addEventListener('click', () => showStaticChapter(idx)));
@@ -783,10 +992,11 @@ function startIntro() {
     return;
   }
 
-  // ─── 7. UNIFIED 60FPS ANIMATION LOOP ───
+  // ─── 7. UNIFIED 60FPS ANIMATION LOOP + ADAPTIVE FRAME GOVERNOR ───
   let lastNow = performance.now();
   let tSec = 0;
   let rafId = null;
+  let slowFrameStreak = 0;
 
   function updatePauseState() {
     const shouldPause = !isInViewport || document.hidden;
@@ -804,14 +1014,26 @@ function startIntro() {
     if (isPaused) return;
     rafId = requestAnimationFrame(tick);
 
-    const dt = Math.max(0, Math.min((now - lastNow) * 0.001, 0.05));
+    const rawMs = now - lastNow;
+    const dt = Math.max(0, Math.min(rawMs * 0.001, 0.05));
     lastNow = now;
     tSec += dt;
 
-    // Snappy frame-rate independent scroll damping
+    // Stripe-style adaptive performance governor: automatically downscales DPR if slow frames persist
+    if (qualityTier > 0 && rawMs > 30 && rawMs < 250) {
+      slowFrameStreak++;
+      if (slowFrameStreak >= 6) {
+        qualityTier = 0;
+        maxDpr = 1.0;
+        sizeCanvas();
+      }
+    } else {
+      slowFrameStreak = 0;
+    }
+
     const diff = targetProgress - smoothProgress;
     if (Math.abs(diff) > 0.00015) {
-      smoothProgress += diff * (1 - Math.exp(-16 * dt));
+      smoothProgress += diff * (1 - Math.exp(-15 * dt));
     } else {
       smoothProgress = targetProgress;
     }
@@ -829,6 +1051,11 @@ function startIntro() {
     const pFactor = 1 - Math.exp(-7 * dt);
     pointer.curLon += (pointer.targetLon - pointer.curLon) * pFactor;
     pointer.curLat += (pointer.targetLat - pointer.curLat) * pFactor;
+
+    const cFactor = 1 - Math.exp(-6 * dt);
+    curRgb[0] += (targetRgb[0] - curRgb[0]) * cFactor;
+    curRgb[1] += (targetRgb[1] - curRgb[1]) * cFactor;
+    curRgb[2] += (targetRgb[2] - curRgb[2]) * cFactor;
 
     renderPlanet(kf, tSec);
   }

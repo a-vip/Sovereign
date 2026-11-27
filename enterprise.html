@@ -283,6 +283,7 @@
 
     <div class="nav-tabs">
       <a href="index.html#features" class="nav-tab">Features</a>
+      <a href="solutions.html" class="nav-tab">Solutions</a>
       <a href="enterprise.html" class="nav-tab active">Enterprise</a>
       <a href="pricing.html" class="nav-tab">Pricing</a>
     </div>
@@ -296,6 +297,7 @@
   <!-- Full-screen mobile nav drawer -->
   <div class="nav-drawer" aria-hidden="true">
     <a href="index.html#features" class="nav-drawer-tab">Features</a>
+    <a href="solutions.html" class="nav-drawer-tab">Solutions</a>
     <a href="enterprise.html" class="nav-drawer-tab active">Enterprise</a>
     <a href="pricing.html" class="nav-drawer-tab">Pricing</a>
     <a href="https://app.sovdash.com/" target="_blank" class="nav-drawer-tab" style="color: var(--cyan); border-color: rgba(0,245,255,0.3);">Enter Dash →</a>
@@ -480,16 +482,19 @@
 <footer>
   <span>© 2026 SOVDASH &nbsp;·&nbsp; GLOBAL INTELLIGENCE SOFTWARE</span>
   <div class="footer-links">
-    <a href="about.html">About</a>
+    <a href="solutions.html">Solutions</a>
+    <a href="enterprise.html" style="color:#fff;">Enterprise</a>
     <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
   </div>
   <div class="footer-live">
     <span>◈</span> ENCRYPTED DATA CHANNEL SECURED
   </div>
 </footer>
 
-<script src="js/nav.js?v=20261127e" defer></script>
-<script src="js/transitions.js?v=20261127e" defer></script>
+<script src="js/nav.js?v=20261128b" defer></script>
+<script src="js/transitions.js?v=20261128b" defer></script>
+<script src="js/cursor-trail.js?v=20261128b" defer></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     // 1. Interactive Architecture Configurator
@@ -531,6 +536,27 @@
       });
     });
     updateSummary();
+
+    // Auto-prefill when arriving from solutions.html?usecase=...
+    const USECASE_PRESETS = {
+      logistics:  'Interested in the Live Fleet, Port & Route Risk Command blueprint (ERP/AIS shipment overlay + private carrier SLA RAG AI).',
+      legal:      'Interested in the Cross-Border Regulatory & Contract Intelligence blueprint (60+ jurisdiction tracking + private legal memo/filing RAG AI).',
+      finance:    'Interested in the Macro Geopolitical Risk & Underwriting Radar blueprint (portfolio asset exposure map + private IC memo RAG AI).',
+      energy:     'Interested in the Asset, Grid & Corridor Operational Intelligence blueprint (site/pipeline monitoring + private HSE/SOP RAG AI).',
+      cyber:      'Interested in the Geo-Correlated Cyber & Incident Playbook Hub blueprint (VPC/on-premise threat feed + private SOC playbook RAG AI).',
+      ai:         'Interested in the Compute Footprint, Safety & Policy Observatory blueprint (data center/export-control map + internal model card RAG AI).',
+      research:   'Interested in the Empirical Observatory & Investigative Archive AI blueprint (Admiralty-graded OSINT + citation-locked document archive RAG AI).',
+      health:     'Interested in the Clinical Supply, Travel Risk & SOP Copilot blueprint (global site alerts + role-gated QA/SOP RAG AI).',
+      pilot:      'Interested in scoping a 2–4 week Discovery & Working Pilot connecting 1–2 internal data sources to Sovereign + Private RAG AI.',
+      production: 'Interested in scoping a full Production Enterprise Build (custom dashboard, internal data connectors, RBAC/SSO & Private RAG AI).'
+    };
+    try {
+      const uc = new URLSearchParams(window.location.search).get('usecase');
+      const reqEl = document.getElementById('ent-requirements');
+      if (uc && USECASE_PRESETS[uc] && reqEl && !reqEl.value.trim()) {
+        reqEl.value = USECASE_PRESETS[uc];
+      }
+    } catch {}
 
     // 2. Clean single-request Enterprise form submission (fixed duplicate POST + removed mailto hijack)
     const form = document.getElementById('enterprise-form');

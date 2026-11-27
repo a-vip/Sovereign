@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enterprise Solutions &amp; Private RAG AI Use Cases | Sovereign</title>
+  <meta name="description"
+    content="Explore real-world enterprise blueprints built on Sovereign's live geospatial engine and citation-locked private RAG AI across logistics, legal & compliance, finance, energy, cyber, AI cloud, research, and operations." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sovdash.com/solutions.html" />
+  <meta property="og:title" content="Enterprise Solutions &amp; Private RAG AI Blueprints | Sovereign" />
+  <meta property="og:description"
+    content="See how Sovereign builds custom live intelligence dashboards and private citation-locked RAG AI systems across 8 high-impact industries." />
+  <meta property="og:image" content="https://sovdash.com/images/og-card.png" />
+
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300f5ff%22>⬡</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/base.css?v=20261128b" />
+  <link rel="stylesheet" href="css/nav.css?v=20261128b" />
+  <link rel="stylesheet" href="css/sections.css?v=20261128b" />
+  <link rel="stylesheet" href="css/components.css?v=20261128b" />
+  <link rel="stylesheet" href="css/footer.css?v=20261128b" />
+  <link rel="stylesheet" href="css/transitions.css?v=20261128b" />
+
+  <style>
+    .sol-hero {
+      position: relative;
+      z-index: 10;
+      padding: 82px 24px 52px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .sol-hero-glow {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 68% 54% at 50% 8%, rgba(0, 245, 255, 0.11) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 48% at 82% 72%, rgba(179, 102, 255, 0.09) 0%, transparent 70%);
+    }
+
+    .sol-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sol-h1 {
+      font-size: clamp(30px, 4.8vw, 58px);
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: #fff;
+      margin: 20px auto 0;
+      max-width: 960px;
+    }
+
+    .sol-lead {
+      font-size: 14px;
+      color: #94a3b8;
+      line-height: 1.85;
+      max-width: 720px;
+      margin: 20px auto 0;
+    }
+
+    .sol-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    /* Filter Pills */
+    .sol-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 44px auto 0;
+      max-width: 1020px;
+    }
+
+    .sol-filter-btn {
+      padding: 9px 15px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      background: rgba(10, 14, 26, 0.82);
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sol-filter-btn:hover {
+      border-color: rgba(0, 245, 255, 0.42);
+      color: #fff;
+    }
+
+    .sol-filter-btn.active {
+      border-color: var(--cyan);
+      background: rgba(0, 245, 255, 0.13);
+      color: var(--cyan);
+      box-shadow: 0 0 18px rgba(0, 245, 255, 0.14);
+    }
+
+    /* Blueprint Cards Grid */
+    .sol-section {
+      position: relative;
+      z-index: 10;
+      padding: 46px 24px 80px;
+      scroll-margin-top: 86px;
+    }
+
+    .uc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .uc-card {
+      display: flex;
+      flex-direction: column;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: linear-gradient(155deg, rgba(11, 15, 28, 0.90) 0%, rgba(7, 10, 19, 0.92) 100%);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+
+    .uc-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--uc-color, var(--cyan)), transparent 85%);
+    }
+
+    .uc-card:hover {
+      border-color: var(--uc-color, rgba(0, 245, 255, 0.36));
+      transform: translateY(-3px);
+      box-shadow: 0 22px 54px rgba(0, 0, 0, 0.45);
+    }
+
+    .uc-card.hidden {
+      display: none;
+    }
+
+    .uc-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .uc-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 8.5px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--uc-color, var(--cyan));
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .uc-timeline {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+
+    .uc-card h3 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+
+    .uc-buyers {
+      font-size: 10.5px;
+      color: var(--uc-color, var(--cyan));
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .uc-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .uc-mini-box {
+      padding: 12px 13px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .uc-mini-kicker {
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 5px;
+    }
+
+    .uc-mini-box p {
+      font-size: 11.2px;
+      color: #cbd5e1;
+      line-height: 1.62;
+    }
+
+    /* Simulated Citation-Locked RAG AI Box inside each Blueprint */
+    .uc-rag-box {
+      border-radius: 14px;
+      border: 1px solid rgba(0, 245, 255, 0.18);
+      background: rgba(4, 7, 16, 0.92);
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .uc-rag-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 8.5px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cyan);
+    }
+
+    .uc-rag-q {
+      font-size: 11.5px;
+      color: #f8fafc;
+      font-weight: 700;
+      padding: 8px 11px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border-left: 2px solid var(--uc-color, var(--cyan));
+      line-height: 1.5;
+    }
+
+    .uc-rag-a {
+      font-size: 11.2px;
+      color: #94a3b8;
+      line-height: 1.65;
+    }
+
+    .uc-rag-a strong {
+      color: #e2e8f0;
+    }
+
+    .uc-cite {
+      display: inline-block;
+      padding: 0 5px;
+      border-radius: 4px;
+      font-size: 9px;
+      font-weight: 800;
+      background: rgba(0, 245, 255, 0.14);
+      color: var(--cyan);
+      margin: 0 2px;
+    }
+
+    .uc-sources {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding-top: 6px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .uc-src-chip {
+      font-size: 8.5px;
+      font-weight: 700;
+      color: #94a3b8;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .uc-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      margin-top: auto;
+    }
+
+    .uc-impact {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    .uc-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: 1px solid var(--uc-color, rgba(0, 245, 255, 0.44));
+      background: rgba(255, 255, 255, 0.04);
+      color: #fff;
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .uc-cta:hover {
+      background: rgba(0, 245, 255, 0.16);
+      transform: translateY(-1px);
+    }
+
+    /* RAG Value Strip & Engagement Models */
+    .sol-band {
+      position: relative;
+      z-index: 10;
+      padding: 76px 24px;
+      border-top: 1px solid rgba(0, 245, 255, 0.08);
+      scroll-margin-top: 86px;
+    }
+
+    .sol-3col {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 38px;
+    }
+
+    .sol-model-card {
+      display: flex;
+      flex-direction: column;
+      padding: 28px 24px;
+      border-radius: 18px;
+      background: rgba(10, 13, 24, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sol-model-card.highlight {
+      border-color: rgba(179, 102, 255, 0.42);
+      background: linear-gradient(160deg, rgba(22, 12, 38, 0.90) 0%, rgba(10, 13, 24, 0.92) 100%);
+      box-shadow: 0 0 42px rgba(179, 102, 255, 0.10);
+    }
+
+    .sol-model-kicker {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 10px;
+    }
+
+    .sol-model-card h3 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .sol-model-time {
+      font-size: 11px;
+      font-weight: 700;
+      color: #d8b4fe;
+      margin-bottom: 14px;
+    }
+
+    .sol-model-card p {
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.72;
+      margin-bottom: 18px;
+    }
+
+    .sol-model-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .sol-model-list li {
+      font-size: 11.2px;
+      color: #cbd5e1;
+      display: flex;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .sol-model-list li b {
+      color: var(--green);
+    }
+
+    @media (max-width: 980px) {
+      .uc-grid,
+      .sol-3col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .sol-hero {
+        padding: 60px 18px 36px;
+      }
+      .sol-section,
+      .sol-band {
+        padding: 46px 18px 60px;
+      }
+      .uc-card {
+        padding: 20px;
+      }
+      .uc-split {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="bg-grid"></div>
+
+  <!-- TICKER -->
+  <div class="ticker-bar">
+    <div class="ticker-label">● SOLUTIONS</div>
+    <div class="ticker-track">
+      <span class="ticker-inner">
+        PRIVATE CITATION-LOCKED RAG AI FOR YOUR INTERNAL DOCUMENTS &amp; DATABASES &nbsp;•&nbsp;
+        DEDICATED 3D/2D LIVE OPERATIONAL DASHBOARDS &nbsp;•&nbsp;
+        DEPLOYED IN YOUR PRIVATE CLOUD (VPC) OR ON-PREMISE &nbsp;•&nbsp;
+        WORKING PILOT IN 2–4 WEEKS · ZERO THIRD-PARTY AI TRAINING &nbsp;•&nbsp;
+        PRIVATE CITATION-LOCKED RAG AI FOR YOUR INTERNAL DOCUMENTS &amp; DATABASES &nbsp;•&nbsp;
+        DEDICATED 3D/2D LIVE OPERATIONAL DASHBOARDS &nbsp;•&nbsp;
+      </span>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">⬡</div>
+        <div class="logo-text">
+          <div class="logo-title">SOVEREIGN</div>
+          <div class="logo-sub">Global Intelligence Software</div>
+        </div>
+      </a>
+
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-tabs">
+        <a href="index.html#features" class="nav-tab">Features</a>
+        <a href="solutions.html" class="nav-tab active">Solutions</a>
+        <a href="enterprise.html" class="nav-tab">Enterprise</a>
+        <a href="pricing.html" class="nav-tab">Pricing</a>
+      </div>
+
+      <div class="nav-right">
+        <div class="live-badge">● SYSTEM LIVE</div>
+        <a href="https://app.sovdash.com/" target="_blank" rel="noopener noreferrer" class="btn-cta-small">Enter Dash →</a>
+      </div>
+    </div>
+
+    <div class="nav-drawer" aria-hidden="true">
+      <a href="index.html#features" class="nav-drawer-tab">Features</a>
+      <a href="solutions.html" class="nav-drawer-tab active">Solutions</a>
+      <a href="enterprise.html" class="nav-drawer-tab">Enterprise</a>
+      <a href="pricing.html" class="nav-drawer-tab">Pricing</a>
+      <a href="https://app.sovdash.com/" target="_blank" rel="noopener noreferrer" class="nav-drawer-tab"
+        style="color: var(--cyan); border-color: rgba(0,245,255,0.3);">Enter Dash →</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="sol-hero">
+    <div class="sol-hero-glow"></div>
+    <div class="sol-inner">
+      <div class="section-badge">⬡ Enterprise Blueprints &amp; Private RAG AI</div>
+      <h1 class="sol-h1">
+        Built Around Your Data.<br />
+        <span style="color:var(--cyan);">Engineered for Decisions.</span>
+      </h1>
+      <p class="sol-lead">
+        Every team sits on fragmented databases, PDFs, contracts, ERP feeds, and fast-moving external risks. Explore 8
+        concrete blueprints showing how Sovereign combines live spatial dashboards and private citation-verified RAG AI
+        to give your organization instant, auditable clarity.
+      </p>
+
+      <div class="sol-actions">
+        <a href="enterprise.html" class="btn-primary">Commission a Custom Build →</a>
+        <a href="#models" class="btn-secondary">How Engagement Works ↓</a>
+        <a href="https://app.sovdash.com/" target="_blank" rel="noopener noreferrer" class="btn-secondary">See Live Demo ↗</a>
+      </div>
+
+      <!-- Interactive Industry Filter -->
+      <div class="sol-filter-bar" role="tablist" aria-label="Filter solutions by industry">
+        <button type="button" class="sol-filter-btn active" data-filter="all">All Blueprints (8)</button>
+        <button type="button" class="sol-filter-btn" data-filter="logistics">Logistics &amp; Supply Chain</button>
+        <button type="button" class="sol-filter-btn" data-filter="legal">Legal &amp; Compliance</button>
+        <button type="button" class="sol-filter-btn" data-filter="finance">Finance &amp; Insurance</button>
+        <button type="button" class="sol-filter-btn" data-filter="energy">Energy &amp; Infra</button>
+        <button type="button" class="sol-filter-btn" data-filter="cyber">Cyber &amp; Security</button>
+        <button type="button" class="sol-filter-btn" data-filter="ai">AI &amp; Cloud</button>
+        <button type="button" class="sol-filter-btn" data-filter="research">Research &amp; Media</button>
+        <button type="button" class="sol-filter-btn" data-filter="health">Pharma &amp; Global Ops</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 INDUSTRY USE-CASE BLUEPRINTS -->
+  <section class="sol-section" id="blueprints">
+    <div class="sol-inner">
+      <div class="uc-grid" id="uc-grid">
+
+        <!-- 1. Logistics & Supply Chain -->
+        <article class="uc-card" data-cat="logistics" style="--uc-color:#00f5ff;">
+          <div class="uc-top">
+            <span class="uc-badge">01 · Logistics &amp; Supply Chain</span>
+            <span class="uc-timeline">Pilot: 3–5 Weeks</span>
+          </div>
+          <h3>Live Fleet, Port &amp; Route Risk Command</h3>
+          <div class="uc-buyers">For: VP Supply Chain, Maritime Operators, 3PLs &amp; Global Procurement</div>
+          <div class="uc-split">
+            <div class="uc-mini-box">
+              <div class="uc-mini-kicker">The Problem</div>
+              <p>Shipments, port strikes, GNSS spoofing, customs notices, and carrier SLAs sit across 6 disconnected portals.</p>
+            </div>
+            <div class="uc-mini-box">
+              <div class="uc-mini-kicker">What Sovereign Builds</div>
+              <p>Private 3D/2D corridor map plotting live ERP/AIS shipments against chokepoint alerts, weather &amp; customs bulletins.</p>
+            </div>
+          </div>
+          <div class="uc-rag-box">
+            <div class="uc-rag-head"><span>⬡ Private RAG AI Example</span><span>Citation-Locked</span></div>
+            <div class="uc-rag-q">"Which Q4 container shipments pass within 150 km of active Red Sea interference, and what is our backup carrier clause?"</div>
+            <div class="uc-rag-a">
+              <strong>3 active containers</strong> (<code>MAERSK-882</code>, <code>MSC-419</code>, <code>CMA-204</code>) intersect active Bab el-Mandeb alerts <span class="uc-cite">1</span>. Under <strong>Master Freight Agreement §14.2</strong>, Cape rerouting triggers zero penalty when UKMTO advisories exceed Level 3 <span class="uc-cite">2</span>.
+            </div>
+            <div class="uc-sources">
+              <span class="uc-src-chip">[1] SAP TMS Live Feed + Sovereign Maritime</span>
+              <span class="uc-src-chip">[2] Internal Carrier SLA PDF (p. 14)</span>
+            </div>
+          </div>
+          <div class="uc-footer">
+            <span class="uc-impact">↑ Cuts disruption response from hours to minutes</span>
+            <a href="enterprise.html?usecase=logistics" class="uc-cta">Commission Blueprint →</a>
+          </div>
+        </article>
+
+        <!-- 2. Legal, Regulatory & Compliance -->
+        <article class="uc-card" data-cat="legal" style="--uc-color:#b366ff;">
+          <div class="uc-top">
+            <span class="uc-badge">02 · Legal, Risk &amp; Compliance</span>
+            <span class="uc-timeline">Pilot: 2–4 Weeks</span>
+          </div>
+          <h3>Cross-Border Regulatory &amp; Contract Intelligence</h3>
+          <div class="uc-buyers">For: Law Firms, General Counsel, Chief Compliance Officers &amp; Privacy Teams</div>
+          <div class="uc-split">
+            <div class="uc-mini-box">
+              <div class="uc-mini-kicker">The Problem</div>
+              <p>Tracking EU AI Act, US state laws, sanctions, and internal policy updates across dozens of markets eats senior billable hours.</p>
+            </div>
+            <div class="uc-mini-box">
+              <div class="uc-mini-kicker">What Sovereign Builds</div>
+              <p>Custom statutory matrix synced to your practice areas + private RAG AI indexed over internal memos, precedents &amp; filings.</p>
+            </div>
+          </div>
+          <div class="uc-rag-box">
+            <div class="uc-rag-head"><span>⬡ Private RAG AI Example</span><span>Zero Hallucination</span></div>
+            <div class="uc-rag-q">"Flag which client AI deployments in Germany and California face mandatory incident-reporting deadlines under 15 days."</div>
+            <div class="uc-rag-a">
+              <strong>4 active client deployments</strong> fall under <strong>EU AI Act Art. 73</strong> (≤2d critical infra / ≤15d standard) <span class="uc-cite">1</span> and <strong>CA SB 53</strong> (24h imminent / 15d standard) <span class="uc-cite">2</span>. Client compliance register shows <strong>2 missing incident SOP sign-offs</strong> <span class="uc-cite">3</span>.
+            </div>
+            <div class="uc-sources">
+              <span class="uc-src-chip">[1] Reg. (EU) 2024/1689</span>
+              <span class="uc-src-chip">[2] CA SB 53</span>
+              <span class="uc-src-chip">[3] Internal Client Audit DB</span>
+            </div>
+          </div>
+          <div class="uc-footer">
+            <span class="uc-impact">↑ 80% faster multi-jurisdiction statutory research</span>
+            <a href="enterprise.html?usecase=legal" class="uc-cta">Commission Blueprint →</a>
+          </div>
+        </article>
+
+        <!-- 3. Finance, Hedge Funds & Underwriting -->
+        <article class="uc-card" data-cat="finance" style="--uc-color:#ffd22e;">
+          <div class="uc-top">
+            <span class="uc-badge">03 · Finance, Funds &amp; Insurance</span>
+            <span class="uc-timeline">Pilot: 4–6 Weeks</span>
+          </div>
+          <h3>Macro Geopolitical Risk &amp; Underwriting Radar</h3>
+          <div class="uc-buyers">For: Macro Hedge Funds, Specialty Reinsurers, Credit Risk &amp; Family Offices</div>
+          <div class="uc-split">
+            <div class="uc-mini-box">
+              <div class="uc-mini-kicker">The Problem</div>
+              <p>Sovereign risk, sanctions, export controls, and extreme weather break before consensus digests—and internal memos stay buried.</p>
+            </div>
+            <div class="uc-mini-box">
+              <div class="uc-mini-kicker">What Sovereign Builds</div>
+              <p>Live geospatial exposure overlay mapping portfolio assets &amp; insured sites alongside severity-scored geopolitical signals.</p>
+            </div>
+          </div>
+          <div class="uc-rag-box">
+            <div class="uc-rag-head"><span>⬡ Private RAG AI Example</span><span>Auditable Trail</span></div>
+            <div class="uc-rag-q">"Summarize our portfolio exposure to new semiconductor export controls announced this month with our IC thesis notes."</div>
+            <div class="uc-rag-a">
+              <strong>3 portfolio holdings</strong> source lithography components via hubs affected by this week's export notice <span class="uc-cite">1</span>. Per <strong>Q3 Investment Committee Memo</strong>, downside hedge triggers automatically if lead times exceed 14 weeks <span class="uc-cite">2</span>.
+            </div>
+            <div class="uc-sources">
+              <span class="uc-src-chip">[1] Live BIS / Trade Feed</span>
+              <span class="uc-src-chip">[2] Internal IC Vault (Q3-2026.pdf)</span>
+            </div>
+          </div>
+          <div class="uc-footer">
+            <span class="uc-impact">↑ Real-time edge across physical &amp; policy catalysts</span>
+            <a href="enterprise.html?usecase=finance" class="uc-cta">Commission Blueprint →</a>
+          </div>
+        </article>
+
+        <!-- 4. Energy, Commodities & Critical Infrastructure -->
+        <article class="uc-card" data-cat="energy" style="--uc-color:#ff6b00;">
+          <div class="uc-top">
+            <span class="uc-badge">04 · Energy &amp; Critical Infrastructure</span>
+            <span class="uc-timeline">Pilot: 4–6 Weeks</span>
+          </div>
+          <h3>Asset, Grid &amp; Corridor Operational Intelligence</h3>
+          <div class="uc-buyers">For: Energy Majors, Utilities, Mining Operators &amp; Grid Resilience Teams</div>
+          <div class="uc-split">
+            <div class="uc-mini-box">
+              <div class="uc-mini-kicker">The Problem</div>
+              <p>Refineries, LNG terminals, subsea cables, and substations face overlapping physical, weather, regulatory, and cyber threats.</p>
+            </div>
+            <div class="uc-mini-box">
+              <div class="uc-mini-kicker">What Sovereign Builds</div>
+              <p>3D infrastructure map integrating private SCADA/maintenance alerts with live storm tracks, pipeline corridors &amp; regional risk.</p>
+            </div>
+          </div>
+          <div class="uc-rag-box">
+            <div class="uc-rag-head"><span>⬡ Private RAG AI Example</span><span>Field + SOP Grounded</span></div>
+            <div class="uc-rag-q">"Check which coastal terminals sit inside the 72-hour storm track and pull our Level-2 shutdown checklist."</div>
+            <div class="uc-rag-a">
+              <strong>Terminal West-04</strong> falls inside the NOAA/EONET high-wind cone within 48h <span class="uc-cite">1</span>. Per <strong>HSE Protocol OPS-77</strong>, initiate pressure isolation 24h pre-landfall and notify regional grid dispatch <span class="uc-cite">2</span>.
+            </div>
+            <div class="uc-sources">
+              <span class="uc-src-chip">[1] NASA EONET + Site Registry</span>
+              <span class="uc-src-chip">[2] Internal HSE Manual OPS-77</span>
+            </div>
+          </div>
+          <div class="uc-footer">
+            <span class="uc-impact">↑ Unified operational view across global sites</span>
+            <a href="enterprise.html?usecase=energy" class="uc-cta">Commission Blueprint →</a>
+          </div>
+        </article>
+
+        <!-- 5. Cybersecurity, SOC & Threat Intelligence -->
+        <article class="uc-card" data-cat="cyber" style="--uc-color:#ff2244;">
+          <div class="uc-top">
+            <span class="uc-badge">05 · Cyber, Threat Intel &amp; Defense</span>
+            <span class="uc-timeline">Pilot: 3–5 Weeks</span>
+          </div>
+          <h3>Geo-Correlated Cyber &amp; Incident Playbook Hub</h3>
+          <div class="uc-buyers">For: CISOs, Threat Intel Leads, Physical Security Directors &amp; Defense Prime Analysts</div>
+          <div class="uc-split">
+            <div class="uc-mini-box">
+              <div class="uc-mini-kicker">The Problem</div>
+              <p>CVEs, internet shutdowns, subsea cable cuts, and regional security escalations require instant correlation against internal playbooks.</p>
+            </div>
+            <div class="uc-mini-box">
+              <div class="uc-mini-kicker">What Sovereign Builds</div>
+              <p>Air-gapped or VPC threat dashboard fusing OONI/IODA, CISA KEV, GNSS jamming &amp; private SIEM alerts with instant playbook RAG.</p>
+            </div>
+          </div>
+          <div class="uc-rag-box">
+            <div class="uc-rag-head"><span>⬡ Private RAG AI Example</span><span>On-Premise Ready</span></div>
+            <div class="uc-rag-q">"Correlate today's S4+ zero-day advisories against our production asset inventory and list immediate containment steps."</div>
+            <div class="uc-rag-a">
+              <strong>1 critical match:</strong> Cacti RCE PoC impacts <strong>2 EU monitoring nodes</strong> listed in CMDB <span class="uc-cite">1</span>. Execute <strong>IR Playbook SEC-09</strong>: isolate subnet VLAN-44, rotate SNMP keys, and patch within 4 hours <span class="uc-cite">2</span>.
+            </div>
+            <div class="uc-sources">
+              <span class="uc-src-chip">[1] Live CVE Feed + Internal CMDB</span>
+              <span class="uc-src-chip">[2] SOC Playbook SEC-09</span>
+            </div>
+          </div>
+          <div class="uc-footer">
+            <span class="uc-impact">↑ Faster triage with zero data leaving your perimeter</span>
+            <a href="enterprise.html?usecase=cyber" class="uc-cta">Commission Blueprint →</a>
+          </div>
+        </article>
+
+        <!-- 6. AI Labs, Cloud & Hyperscale Compute -->
+        <article class="uc-card" data-cat="ai" style="--uc-color:#00ff88;">
+          <div class="uc-top">
+            <span class="uc-badge">06 · AI Labs &amp; Cloud Infrastructure</span>
+            <span class="uc-timeline">Pilot: 3–4 Weeks</span>
+          </div>
+          <h3>Compute Footprint, Safety &amp; Policy Observatory</h3>
+          <div class="uc-buyers">For: Frontier AI Policy Teams, Cloud Trust &amp; Safety, Data Center Developers</div>
+          <div class="uc-split">
+            <div class="uc-mini-box">
+              <div class="uc-mini-kicker">The Problem</div>
+              <p>Site selection, grid power rules, GPU export restrictions, and AI safety institute evaluations shift weekly across regions.</p>
+            </div>
+            <div class="uc-mini-box">
+              <div class="uc-mini-kicker">What Sovereign Builds</div>
+              <p>Private compute &amp; regulatory workbench combining 6,000+ global facilities, power capacity, statutory filings &amp; internal model cards.</p>
+            </div>
+          </div>
+          <div class="uc-rag-box">
+            <div class="uc-rag-head"><span>⬡ Private RAG AI Example</span><span>Policy + Infra Sync</span></div>
+            <div class="uc-rag-q">"Compare regulatory onboarding requirements for deploying our next frontier model across the EU, UK, South Korea, and Singapore."</div>
+            <div class="uc-rag-a">
+              <strong>EU &amp; South Korea</strong> require statutory documentation &amp; local representative registration <span class="uc-cite">1</span>; <strong>UK AISI &amp; Singapore IMDA</strong> prioritize pre-deployment red-team evaluations aligned with our internal Model Card v4.2 <span class="uc-cite">2</span>.
+            </div>
+            <div class="uc-sources">
+              <span class="uc-src-chip">[1] Sovereign 60+ Jurisdictions DB</span>
+              <span class="uc-src-chip">[2] Internal Model Card v4.2</span>
+            </div>
+          </div>
+          <div class="uc-footer">
+            <span class="uc-impact">↑ One workspace for policy, legal &amp; infra teams</span>
+            <a href="enterprise.html?usecase=ai" class="uc-cta">Commission Blueprint →</a>
+          </div>
+        </article>
+
+        <!-- 7. Research Institutes, Think Tanks & Investigative Newsrooms -->
+        <article class="uc-card" data-cat="research" style="--uc-color:#38bdf8;">
+          <div class="uc-top">
+            <span class="uc-badge">07 · Think Tanks, NGOs &amp; Media</span>
+            <span class="uc-timeline">Pilot: 2–4 Weeks</span>
+          </div>
+          <h3>Empirical Observatory &amp; Investigative Archive AI</h3>
+          <div class="uc-buyers">For: Research Centers, Policy Institutes, Investigative Desks &amp; Human Rights Monitors</div>
+          <div class="uc-split">
+            <div class="uc-mini-box">
+              <div class="uc-mini-kicker">The Problem</div>
+              <p>Decades of field reports, court filings, FOIA releases, and live OSINT streams are impossible to cross-reference rapidly.</p>
+            </div>
+            <div class="uc-mini-box">
+              <div class="uc-mini-kicker">What Sovereign Builds</div>
+              <p>Branded public or internal observatory with Admiralty source grading, longitudinal timeline replay &amp; citation-locked archive search.</p>
+            </div>
+          </div>
+          <div class="uc-rag-box">
+            <div class="uc-rag-head"><span>⬡ Private RAG AI Example</span><span>Verbatim Citations</span></div>
+            <div class="uc-rag-q">"Find every verified procurement record and field incident linking biometric border deployments in our 2023–2026 archive."</div>
+            <div class="uc-rag-a">
+              Retrieved <strong>19 verified records across 7 countries</strong>, ranked by Admiralty reliability (A1–B2), with direct links to tender PDFs, parliamentary answers, and map coordinates <span class="uc-cite">1</span> <span class="uc-cite">2</span>.
+            </div>
+            <div class="uc-sources">
+              <span class="uc-src-chip">[1] Organization FOIA Vault (14,200 docs)</span>
+              <span class="uc-src-chip">[2] Sovereign Live Event Corpus</span>
+            </div>
+          </div>
+          <div class="uc-footer">
+            <span class="uc-impact">↑ Publish evidence-backed briefings 5× faster</span>
+            <a href="enterprise.html?usecase=research" class="uc-cta">Commission Blueprint →</a>
+          </div>
+        </article>
+
+        <!-- 8. Healthcare, Pharma & Global Enterprise Ops -->
+        <article class="uc-card" data-cat="health" style="--uc-color:#f472b6;">
+          <div class="uc-top">
+            <span class="uc-badge">08 · Pharma &amp; Global Operations</span>
+            <span class="uc-timeline">Pilot: 4–6 Weeks</span>
+          </div>
+          <h3>Clinical Supply, Travel Risk &amp; SOP Copilot</h3>
+          <div class="uc-buyers">For: Global Operations Leaders, Pharma Cold-Chain Teams &amp; Corporate Resilience</div>
+          <div class="uc-split">
+            <div class="uc-mini-box">
+              <div class="uc-mini-kicker">The Problem</div>
+              <p>Multi-country teams need instant answers across thousands of SOPs, supplier audits, and live regional disruptions without hallucination risk.</p>
+            </div>
+            <div class="uc-mini-box">
+              <div class="uc-mini-kicker">What Sovereign Builds</div>
+              <p>Role-gated operational hub unifying global site status, regional disruption alerts &amp; private RAG search over quality/SOP binders.</p>
+            </div>
+          </div>
+          <div class="uc-rag-box">
+            <div class="uc-rag-head"><span>⬡ Private RAG AI Example</span><span>Role-Gated ACL</span></div>
+            <div class="uc-rag-q">"Are any regional disruptions affecting our European cold-chain hubs today, and what is our temperature-excursion escalation SOP?"</div>
+            <div class="uc-rag-a">
+              <strong>Zero active closures</strong> across EU depots; amber rail strike advisory in Northern Italy <span class="uc-cite">1</span>. Under <strong>QA-SOP-412 Rev. 5</strong>, excursions &gt;30 min require QA notification within 2h and batch quarantine <span class="uc-cite">2</span>.
+            </div>
+            <div class="uc-sources">
+              <span class="uc-src-chip">[1] Live Regional Disruption Layer</span>
+              <span class="uc-src-chip">[2] Internal QA-SOP-412 (Rev. 5)</span>
+            </div>
+          </div>
+          <div class="uc-footer">
+            <span class="uc-impact">↑ Instant, compliant answers for every global site</span>
+            <a href="enterprise.html?usecase=health" class="uc-cta">Commission Blueprint →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW ENGAGEMENT WORKS (TRANSPARENT ENTERPRISE PATHWAY) -->
+  <section class="sol-band" id="models">
+    <div class="sol-inner">
+      <div style="text-align:center;max-width:740px;margin:0 auto;">
+        <div class="section-badge" style="border-color:rgba(179,102,255,0.34);color:#d8b4fe;background:rgba(179,102,255,0.08);">
+          ⬡ Clear Scope · Fast ROI · Zero Lock-In
+        </div>
+        <h2 style="font-size:clamp(26px,3.6vw,44px);font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;margin-top:16px;line-height:1.08;">
+          Start Small. Prove Value.<br /><span style="color:var(--cyan);">Scale With Confidence.</span>
+        </h2>
+        <p style="font-size:13.5px;color:#94a3b8;line-height:1.8;margin-top:14px;">
+          Most enterprise software fails because buyers are forced into 12-month contracts before seeing a single screen
+          connected to their data. Sovereign is delivered in clear, milestone-gated stages.
+        </p>
+      </div>
+
+      <div class="sol-3col">
+        <div class="sol-model-card">
+          <div class="sol-model-kicker">Stage 01 · Low-Risk Entry</div>
+          <h3>Discovery &amp; Working Pilot</h3>
+          <div class="sol-model-time">2 – 4 Weeks · Fixed Milestone Scope</div>
+          <p>We connect 1–2 real internal data sources into a private Sovereign sandbox with working citation-locked RAG AI so your leadership can test real ROI firsthand.</p>
+          <ul class="sol-model-list">
+            <li><b>✓</b> Architecture &amp; security review (VPC / data residency)</li>
+            <li><b>✓</b> Working private dashboard + RAG AI on real sample docs</li>
+            <li><b>✓</b> Clear accuracy evaluation &amp; full-rollout budget estimate</li>
+          </ul>
+          <a href="enterprise.html?usecase=pilot" class="uc-cta" style="justify-content:center;width:100%;">Scope a 3-Week Pilot →</a>
+        </div>
+
+        <div class="sol-model-card highlight">
+          <div class="sol-model-kicker" style="color:#d8b4fe;">Stage 02 · Most Popular</div>
+          <h3>Production Enterprise Build</h3>
+          <div class="sol-model-time">6 – 12 Weeks · Milestone-Billed</div>
+          <p>A dedicated, branded intelligence platform engineered around your databases, APIs, permissions, and decision workflows—deployed in your cloud or on-premise.</p>
+          <ul class="sol-model-list">
+            <li><b>✓</b> Unlimited custom map layers, alerts &amp; internal connectors</li>
+            <li><b>✓</b> Permission-aware private RAG AI with verbatim source links</li>
+            <li><b>✓</b> SSO / RBAC, audit logging, documentation &amp; team onboarding</li>
+          </ul>
+          <a href="enterprise.html?usecase=production" class="btn-primary" style="justify-content:center;width:100%;padding:13px 18px;font-size:10.5px;">Request Architecture Proposal →</a>
+        </div>
+
+        <div class="sol-model-card">
+          <div class="sol-model-kicker" style="color:var(--green);">Stage 03 · Long-Term Partner</div>
+          <h3>Managed Ops, Evals &amp; SLA</h3>
+          <div class="sol-model-time">Ongoing · Monthly Retainer</div>
+          <p>Keep your data pipelines healthy, retrieval accuracy sharp, and models updated as your data grows—without hiring a dedicated full-time AI platform team.</p>
+          <ul class="sol-model-list">
+            <li><b>✓</b> Continuous connector monitoring &amp; re-indexing health</li>
+            <li><b>✓</b> Quarterly RAG accuracy audits &amp; model upgrades</li>
+            <li><b>✓</b> Priority engineering hours &amp; direct founder escalation</li>
+          </ul>
+          <a href="about.html#contact" class="uc-cta" style="justify-content:center;width:100%;border-color:rgba(0,255,136,0.38);">Talk Directly With Avi →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 SOVDASH &nbsp;·&nbsp; GLOBAL INTELLIGENCE SOFTWARE</span>
+    <div class="footer-links">
+      <a href="solutions.html" style="color:#fff;">Solutions</a>
+      <a href="enterprise.html">Enterprise</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="footer-live">
+      <span>◈</span> ENCRYPTED DATA CHANNEL SECURED
+    </div>
+  </footer>
+
+  <script src="js/nav.js?v=20261128b" defer></script>
+  <script src="js/transitions.js?v=20261128b" defer></script>
+  <script src="js/cursor-trail.js?v=20261128b" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btns = document.querySelectorAll('.sol-filter-btn');
+      const cards = document.querySelectorAll('.uc-card');
+      btns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const f = btn.dataset.filter;
+          btns.forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          cards.forEach((c) => {
+            c.classList.toggle('hidden', f !== 'all' && c.dataset.cat !== f);
+          });
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>
