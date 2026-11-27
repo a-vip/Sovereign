@@ -1515,11 +1515,110 @@
       </div>
 
       <div class="sol-actions">
-        <a href="#sandbox" class="btn-primary">Test Interactive Sandbox ↓</a>
-        <button type="button" id="open-walkthrough-btn" class="btn-secondary" style="border-color:rgba(179,102,255,0.45);color:#d8b4fe;">
-          ▶ 90-Sec Platform Walkthrough
-        </button>
+        <a href="#demo-studio" class="btn-primary">Launch Live White-Label Demo ↓</a>
+        <a href="#video-theater" class="btn-secondary" style="border-color:rgba(179,102,255,0.45);color:#d8b4fe;">
+          ▶ Watch 90-Sec Demo &amp; Tutorial Videos
+        </a>
         <a href="enterprise.html" class="btn-secondary">Commission Custom Build →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE WHITE-LABEL INTERACTIVE DEMO STUDIO (EMBEDDED + FULLSCREEN) -->
+  <section class="sol-band" id="demo-studio" style="padding-top:24px;border-top:none;">
+    <div class="sol-inner">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px;">
+        <div>
+          <div class="section-badge" style="border-color:rgba(0,245,255,0.38);color:var(--cyan);">
+            ⬡ Live Customizable White-Label Product Demo · Try With Your Own Brand &amp; Text
+          </div>
+          <h2 style="font-size:clamp(22px,3.2vw,38px);font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:-0.03em;margin-top:12px;line-height:1.1;">
+            Test-Drive Your Own <span style="color:var(--cyan);">Private Sovereign Dashboard.</span>
+          </h2>
+          <p style="font-size:12.8px;color:#94a3b8;line-height:1.75;max-width:740px;margin-top:8px;">
+            Switch across <strong>Business &amp; Supply Chain</strong>, <strong>Science &amp; Medical Labs</strong>,
+            <strong>Investigative Journalism</strong>, <strong>Legal</strong>, <strong>Finance</strong>, and
+            <strong>Cyber</strong>. Click <strong>🎨 Customize Brand</strong> to put your own company name &amp; colors on
+            the live dashboard, toggle <strong>3D Globe ↔ 2D Map</strong>, or paste your own text into
+            <strong>+ TEST TEXT</strong> to run local zero-retention RAG citations right in your browser.
+          </p>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <a href="demo.html" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding:11px 16px;font-size:10px;">
+            Open Fullscreen Demo Studio ↗
+          </a>
+        </div>
+      </div>
+
+      <div style="border-radius:20px;overflow:hidden;border:1px solid rgba(0,245,255,0.32);box-shadow:0 32px 90px rgba(0,0,0,0.6),0 0 50px rgba(0,245,255,0.08);background:#040814;">
+        <iframe
+          src="demo.html?embed=1"
+          title="Sovereign White-Label Interactive Demo Studio"
+          loading="lazy"
+          style="width:100%;height:700px;border:none;display:block;"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3-VIDEO COMMAND THEATER (90s ENTERPRISE DEMO, 90s PLATFORM TUTORIAL, 65s SALES PROMO) -->
+  <section class="sol-band sol-reveal" id="video-theater">
+    <div class="sol-inner">
+      <div class="section-header" style="max-width:800px;margin:0 auto;text-align:center;">
+        <div class="section-badge" style="border-color:rgba(179,102,255,0.42);color:#d8b4fe;background:rgba(179,102,255,0.08);">
+          ▶ Executive Video Briefings &amp; Full Platform Guide
+        </div>
+        <h2 style="font-size:clamp(24px,3.6vw,44px);font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:-0.03em;margin-top:14px;line-height:1.08;">
+          See Sovereign <span style="color:var(--cyan);">In Action.</span>
+        </h2>
+        <p style="font-size:13.2px;color:#94a3b8;line-height:1.8;margin-top:12px;">
+          Watch the 90-second enterprise demo, the full feature-by-feature platform tutorial, or the high-impact
+          commercial overview — captured directly from the live production platform.
+        </p>
+      </div>
+
+      <div class="sol-3col" style="margin-top:32px;">
+        <div class="sol-model-card" style="padding:18px;gap:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span class="sol-model-kicker" style="margin:0;">01 · Enterprise Demo</span>
+            <span style="font-size:9px;color:#94a3b8;font-weight:700;">~90 SEC · HD</span>
+          </div>
+          <div style="border-radius:12px;overflow:hidden;border:1px solid rgba(0,245,255,0.22);background:#020612;aspect-ratio:16/9;">
+            <video controls preload="metadata" playsinline poster="videos/poster-demo.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+              <source src="videos/sovereign-enterprise-demo-90s.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <h3 style="font-size:15px;margin:0;">90-Sec Enterprise &amp; Private RAG Demo</h3>
+          <p style="margin:0;font-size:11.2px;">Walkthrough of live 3D globe telemetry, Ask SovDash AI citation verification, and white-label private VPC client builds.</p>
+        </div>
+
+        <div class="sol-model-card highlight" style="padding:18px;gap:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span class="sol-model-kicker" style="margin:0;color:#d8b4fe;">02 · Platform Tutorial</span>
+            <span style="font-size:9px;color:#cbd5e1;font-weight:700;">~90 SEC · GUIDE</span>
+          </div>
+          <div style="border-radius:12px;overflow:hidden;border:1px solid rgba(179,102,255,0.32);background:#020612;aspect-ratio:16/9;">
+            <video controls preload="metadata" playsinline poster="videos/poster-tutorial.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+              <source src="videos/sovereign-platform-tutorial-90s.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <h3 style="font-size:15px;margin:0;">Complete Platform Guide &amp; Walkthrough</h3>
+          <p style="margin:0;font-size:11.2px;">Step-by-step instructional guide covering Live Feeds, 3D/2D Switching, Overlays, Ask AI, Observatory tools, and Sovereign Vector 3D.</p>
+        </div>
+
+        <div class="sol-model-card" style="padding:18px;gap:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span class="sol-model-kicker" style="margin:0;color:var(--green);">03 · Commercial Promo</span>
+            <span style="font-size:9px;color:#94a3b8;font-weight:700;">~65 SEC · SALES</span>
+          </div>
+          <div style="border-radius:12px;overflow:hidden;border:1px solid rgba(0,255,136,0.24);background:#020612;aspect-ratio:16/9;">
+            <video controls preload="metadata" playsinline poster="videos/poster-promo.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+              <source src="videos/sovereign-sales-promo-60s.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <h3 style="font-size:15px;margin:0;">Why Teams Choose Sovereign</h3>
+          <p style="margin:0;font-size:11.2px;">High-impact overview showcasing the 3D holographic engine, zero-hallucination AI, multi-industry customization, and 2–4 week pilots.</p>
+        </div>
       </div>
     </div>
   </section>

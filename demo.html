@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" data-demo-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sovereign White-Label Demo Studio — Interactive Private Dashboard Preview</title>
+  <meta name="description"
+    content="Customize and test a live white-label Sovereign 3D/2D intelligence dashboard with private citation-locked RAG AI across Business, Science & Medical Labs, Investigative Journalism, Legal, Finance, and Cyber." />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300f5ff%22>⬡</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --dm-accent: #00f5ff;
+      --dm-accent-rgb: 0, 245, 255;
+      --dm-bg: #040814;
+      --dm-panel: rgba(8, 13, 26, 0.94);
+      --dm-card: rgba(13, 20, 38, 0.88);
+      --dm-border: rgba(255, 255, 255, 0.09);
+      --dm-text: #f1f5f9;
+      --dm-muted: #94a3b8;
+    }
+
+    html[data-demo-theme="light"] {
+      --dm-bg: #e2e8f0;
+      --dm-panel: rgba(255, 255, 255, 0.96);
+      --dm-card: #f8fafc;
+      --dm-border: rgba(15, 23, 42, 0.12);
+      --dm-text: #0f172a;
+      --dm-muted: #475569;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; background: var(--dm-bg); color: var(--dm-text); font-family: 'JetBrains Mono', monospace; }
+
+    .dm-app { display: flex; flex-direction: column; height: 100vh; width: 100vw; overflow: hidden; }
+
+    /* Top Command Bar */
+    .dm-topbar {
+      height: 54px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+      gap: 10px; padding: 0 14px; background: var(--dm-panel); border-bottom: 1px solid var(--dm-border);
+      z-index: 30; position: relative;
+    }
+
+    .dm-brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .dm-crest {
+      width: 32px; height: 32px; border-radius: 9px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800;
+      color: var(--dm-accent); background: rgba(var(--dm-accent-rgb), 0.12); border: 1px solid rgba(var(--dm-accent-rgb), 0.45);
+    }
+    .dm-brand-title { font-size: 13px; font-weight: 800; letter-spacing: 0.05em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 280px; }
+    .dm-brand-sub { font-size: 8.5px; color: var(--dm-muted); letter-spacing: 0.1em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 280px; }
+
+    .dm-top-actions { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
+
+    .dm-btn {
+      padding: 7px 11px; border-radius: 7px; border: 1px solid var(--dm-border);
+      background: var(--dm-card); color: var(--dm-text); font-family: inherit;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.06em; cursor: pointer;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: all 0.18s;
+      white-space: nowrap;
+    }
+    .dm-btn:hover { border-color: var(--dm-accent); }
+    .dm-btn-accent {
+      padding: 7px 12px; border-radius: 7px; border: 1px solid var(--dm-accent);
+      background: rgba(var(--dm-accent-rgb), 0.15); color: var(--dm-text); font-family: inherit;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.06em; cursor: pointer;
+      text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.18s;
+      white-space: nowrap;
+    }
+    .dm-btn-accent:hover { background: var(--dm-accent); color: #030712; }
+
+    /* Industry Strip */
+    .dm-preset-strip {
+      display: flex; align-items: center; gap: 6px; padding: 7px 14px; overflow-x: auto;
+      background: var(--dm-panel); border-bottom: 1px solid var(--dm-border); flex-shrink: 0;
+    }
+    .dm-strip-label { font-size: 8.5px; font-weight: 800; letter-spacing: 0.14em; color: var(--dm-muted); white-space: nowrap; margin-right: 4px; }
+    .dm-preset-btn {
+      padding: 5px 11px; border-radius: 999px; border: 1px solid var(--dm-border);
+      background: transparent; color: var(--dm-muted); font-family: inherit; font-size: 9.5px;
+      font-weight: 700; cursor: pointer; white-space: nowrap; transition: all 0.18s;
+    }
+    .dm-preset-btn:hover { color: var(--dm-text); border-color: rgba(var(--dm-accent-rgb), 0.4); }
+    .dm-preset-btn.active { background: rgba(var(--dm-accent-rgb), 0.14); border-color: var(--dm-accent); color: var(--dm-text); }
+
+    /* Customize Popover */
+    .dm-pop {
+      position: absolute; top: 58px; right: 14px; width: 320px; max-width: calc(100vw - 28px);
+      background: var(--dm-panel); border: 1px solid rgba(var(--dm-accent-rgb), 0.35);
+      border-radius: 12px; padding: 15px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+      display: none; flex-direction: column; gap: 12px; z-index: 60;
+    }
+    .dm-pop.open { display: flex; }
+    .dm-pop-label { font-size: 8.5px; font-weight: 800; letter-spacing: 0.14em; color: var(--dm-muted); text-transform: uppercase; margin-bottom: 5px; }
+    .dm-input, .dm-textarea {
+      width: 100%; padding: 8px 10px; border-radius: 7px; border: 1px solid var(--dm-border);
+      background: rgba(0, 0, 0, 0.25); color: var(--dm-text); font-family: inherit; font-size: 11px; outline: none;
+    }
+    html[data-demo-theme="light"] .dm-input, html[data-demo-theme="light"] .dm-textarea { background: #ffffff; }
+    .dm-input:focus, .dm-textarea:focus { border-color: var(--dm-accent); }
+    .dm-textarea { min-height: 110px; resize: vertical; line-height: 1.5; }
+    .dm-swatches { display: flex; gap: 8px; }
+    .dm-swatch { width: 24px; height: 24px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; }
+    .dm-swatch.active { border-color: #fff; box-shadow: 0 0 0 2px var(--dm-accent); }
+    .dm-seg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .dm-seg { padding: 6px 8px; border-radius: 6px; border: 1px solid var(--dm-border); background: var(--dm-card); color: var(--dm-muted); font-family: inherit; font-size: 9.5px; font-weight: 700; cursor: pointer; }
+    .dm-seg.active { border-color: var(--dm-accent); color: var(--dm-text); background: rgba(var(--dm-accent-rgb), 0.15); }
+
+    /* Main Workspace Body */
+    .dm-main { flex: 1; display: flex; min-height: 0; position: relative; overflow: hidden; }
+
+    /* Left Panel */
+    .dm-left {
+      width: 318px; flex-shrink: 0; display: flex; flex-direction: column;
+      background: var(--dm-panel); border-right: 1px solid var(--dm-border); z-index: 10;
+    }
+    .dm-ltabs { display: grid; grid-template-columns: 1fr 1fr 1.15fr; border-bottom: 1px solid var(--dm-border); }
+    .dm-ltab {
+      padding: 10px 4px; border: none; border-bottom: 2px solid transparent; background: transparent;
+      color: var(--dm-muted); font-family: inherit; font-size: 9px; font-weight: 800; letter-spacing: 0.08em; cursor: pointer;
+    }
+    .dm-ltab.active { color: var(--dm-accent); border-bottom-color: var(--dm-accent); }
+    .dm-left-tools { padding: 9px 10px; display: flex; flex-direction: column; gap: 7px; border-bottom: 1px solid var(--dm-border); }
+    .dm-sev-row { display: flex; gap: 6px; }
+    .dm-pill {
+      padding: 4px 9px; border-radius: 6px; border: 1px solid var(--dm-border); background: transparent;
+      color: var(--dm-muted); font-family: inherit; font-size: 8.5px; font-weight: 800; cursor: pointer;
+    }
+    .dm-pill.active { border-color: var(--dm-accent); color: var(--dm-accent); background: rgba(var(--dm-accent-rgb), 0.10); }
+    .dm-left-body { flex: 1; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+
+    .dm-sig-card {
+      text-align: left; width: 100%; padding: 11px; border-radius: 10px; border: 1px solid var(--dm-border);
+      background: var(--dm-card); color: var(--dm-text); font-family: inherit; cursor: pointer; transition: all 0.18s;
+    }
+    .dm-sig-card:hover, .dm-sig-card.selected { border-color: var(--dm-accent); background: rgba(var(--dm-accent-rgb), 0.07); }
+    .dm-sig-top { display: flex; align-items: center; gap: 5px; margin-bottom: 6px; font-size: 8.5px; font-weight: 800; }
+    .dm-cat { padding: 2px 6px; border-radius: 4px; background: rgba(var(--dm-accent-rgb), 0.12); color: var(--dm-accent); }
+    .dm-sev { padding: 2px 5px; border-radius: 4px; color: #fff; }
+    .dm-sev.s5 { background: #ff2d55; } .dm-sev.s4 { background: #ff6b35; } .dm-sev.s3 { background: #d97706; } .dm-sev.s2 { background: #16a34a; }
+    .dm-grade { padding: 2px 5px; border-radius: 4px; border: 1px solid var(--dm-border); color: var(--dm-muted); }
+    .dm-time { margin-left: auto; color: var(--dm-muted); font-weight: 600; }
+    .dm-sig-title { font-size: 11px; font-weight: 700; line-height: 1.42; margin-bottom: 5px; }
+    .dm-sig-loc { font-size: 9.5px; color: var(--dm-muted); }
+
+    .dm-vault-note { font-size: 10px; color: var(--dm-muted); padding: 8px 10px; border-radius: 8px; background: rgba(var(--dm-accent-rgb), 0.07); border: 1px solid rgba(var(--dm-accent-rgb), 0.22); line-height: 1.5; }
+    .dm-doc-card { padding: 10px; border-radius: 9px; border: 1px solid var(--dm-border); background: var(--dm-card); display: flex; flex-direction: column; gap: 4px; }
+    .dm-doc-name { font-size: 10.5px; font-weight: 800; color: var(--dm-accent); word-break: break-all; }
+    .dm-doc-meta { font-size: 8.5px; color: var(--dm-muted); }
+    .dm-doc-snip { font-size: 10px; line-height: 1.5; color: var(--dm-text); opacity: 0.9; }
+
+    .dm-byod { display: flex; flex-direction: column; gap: 9px; }
+    .dm-byod-kicker { font-size: 9px; font-weight: 800; color: var(--dm-accent); letter-spacing: 0.08em; }
+    .dm-byod-sub { font-size: 10px; color: var(--dm-muted); line-height: 1.55; }
+    .dm-byod-status { font-size: 10px; color: #10b981; line-height: 1.5; }
+
+    /* Center Map Stage */
+    .dm-stage { flex: 1; position: relative; min-width: 0; overflow: hidden; }
+    #dm-map-canvas { width: 100%; height: 100%; display: block; cursor: grab; }
+    #dm-map-canvas:active { cursor: grabbing; }
+
+    .dm-map-hud-tl {
+      position: absolute; top: 12px; left: 12px; z-index: 8; display: flex; gap: 6px; align-items: center;
+      background: var(--dm-panel); border: 1px solid var(--dm-border); border-radius: 8px; padding: 5px 9px;
+      font-size: 9px; font-weight: 700; color: var(--dm-muted);
+    }
+    .dm-map-hud-tl b { color: var(--dm-accent); }
+
+    .dm-zoom-box {
+      position: absolute; bottom: 56px; left: 12px; z-index: 8; display: flex; gap: 4px;
+      background: var(--dm-panel); border: 1px solid var(--dm-border); border-radius: 8px; padding: 4px;
+    }
+    .dm-zbtn {
+      padding: 4px 8px; border-radius: 5px; border: 1px solid var(--dm-border); background: var(--dm-card);
+      color: var(--dm-text); font-family: inherit; font-size: 10px; font-weight: 800; cursor: pointer;
+    }
+
+    /* Bottom Overlays Dock (app.sovdash.com style) */
+    .dm-dock {
+      position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); z-index: 9;
+      display: flex; align-items: center; gap: 5px; padding: 5px 8px; border-radius: 999px;
+      background: var(--dm-panel); border: 1px solid rgba(var(--dm-accent-rgb), 0.28);
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45); max-width: calc(100% - 20px); overflow-x: auto;
+    }
+    .dm-ov-btn {
+      padding: 5px 10px; border-radius: 999px; border: 1px solid transparent; background: transparent;
+      color: var(--dm-muted); font-family: inherit; font-size: 9px; font-weight: 800; letter-spacing: 0.06em;
+      cursor: pointer; white-space: nowrap; transition: all 0.16s;
+    }
+    .dm-ov-btn.active { background: rgba(var(--dm-accent-rgb), 0.15); border-color: rgba(var(--dm-accent-rgb), 0.5); color: var(--dm-text); }
+
+    /* Floating Signal Dossier */
+    .dm-dossier {
+      position: absolute; top: 54px; left: 12px; width: 320px; max-width: calc(100% - 24px); z-index: 12;
+      background: var(--dm-panel); border: 1px solid var(--dm-accent); border-radius: 12px; padding: 14px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55); display: none; flex-direction: column; gap: 8px;
+    }
+    .dm-dossier.open { display: flex; }
+    .dm-dos-head { display: flex; justify-content: space-between; align-items: center; font-size: 8.5px; font-weight: 800; }
+    .dm-icon-x { border: none; background: transparent; color: var(--dm-muted); cursor: pointer; font-size: 14px; font-weight: 800; }
+    .dm-dossier h4 { font-size: 12.5px; line-height: 1.4; }
+    .dm-dos-loc { font-size: 9.5px; color: var(--dm-muted); }
+    .dm-dossier p { font-size: 10.5px; line-height: 1.55; color: var(--dm-muted); }
+
+    /* Right Private RAG AI Drawer */
+    .dm-ai {
+      width: 356px; flex-shrink: 0; background: var(--dm-panel); border-left: 1px solid var(--dm-border);
+      display: none; flex-direction: column; z-index: 15;
+    }
+    .dm-ai.open { display: flex; }
+    .dm-ai-head {
+      padding: 12px 14px; border-bottom: 1px solid var(--dm-border); display: flex; align-items: center; justify-content: space-between;
+    }
+    .dm-ai-title { font-size: 11.5px; font-weight: 800; color: var(--dm-accent); }
+    .dm-ai-badge { font-size: 8px; font-weight: 800; letter-spacing: 0.1em; color: #10b981; margin-top: 2px; }
+
+    .dm-ai-starters { padding: 9px 12px; border-bottom: 1px solid var(--dm-border); display: flex; flex-direction: column; gap: 5px; }
+    .dm-starter-btn {
+      text-align: left; padding: 7px 9px; border-radius: 7px; border: 1px solid var(--dm-border);
+      background: var(--dm-card); color: var(--dm-muted); font-family: inherit; font-size: 9.8px; line-height: 1.4; cursor: pointer;
+    }
+    .dm-starter-btn:hover { border-color: var(--dm-accent); color: var(--dm-text); }
+
+    .dm-ai-log { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+    .dm-msg { padding: 10px 11px; border-radius: 10px; font-size: 10.8px; line-height: 1.6; }
+    .dm-msg-user { align-self: flex-end; max-width: 90%; background: rgba(var(--dm-accent-rgb), 0.14); border: 1px solid rgba(var(--dm-accent-rgb), 0.4); }
+    .dm-msg-ai { align-self: flex-start; width: 100%; background: var(--dm-card); border: 1px solid var(--dm-border); }
+    .dm-msg-system { font-size: 9.8px; color: #10b981; border: 1px dashed rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.07); }
+    .dm-ic { padding: 0 4px; border-radius: 4px; background: rgba(var(--dm-accent-rgb), 0.18); color: var(--dm-accent); font-size: 9px; font-weight: 800; }
+    .dm-msg-cites { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; padding-top: 7px; border-top: 1px solid var(--dm-border); }
+    .dm-cite-chip {
+      padding: 4px 8px; border-radius: 6px; border: 1px solid rgba(var(--dm-accent-rgb), 0.35);
+      background: rgba(var(--dm-accent-rgb), 0.08); color: var(--dm-text); font-family: inherit;
+      font-size: 8.8px; font-weight: 700; cursor: pointer;
+    }
+    .dm-cite-chip span { color: var(--dm-accent); }
+
+    .dm-prov {
+      display: none; margin: 0 12px 10px; padding: 10px; border-radius: 9px;
+      border: 1px solid rgba(16, 185, 129, 0.42); background: rgba(16, 185, 129, 0.08);
+      font-size: 9.8px; flex-direction: column; gap: 4px;
+    }
+    .dm-prov.open { display: flex; }
+    .dm-prov-top { display: flex; justify-content: space-between; font-size: 8.5px; font-weight: 800; color: #10b981; }
+    .dm-prov-top button { border: none; background: transparent; color: var(--dm-muted); cursor: pointer; font-weight: 800; }
+    .dm-prov-title { font-weight: 800; }
+    .dm-prov-meta { font-size: 8.5px; color: var(--dm-muted); }
+    .dm-prov-quote { font-size: 9.8px; line-height: 1.5; border-left: 2px solid #10b981; padding-left: 8px; margin-top: 3px; }
+
+    .dm-ai-form { padding: 10px 12px; border-top: 1px solid var(--dm-border); display: flex; gap: 6px; }
+    .dm-ai-form input { flex: 1; }
+
+    /* Embed compact tweaks */
+    html.demo-embed .dm-back-btn { display: none; }
+
+    @media (max-width: 960px) {
+      .dm-left { width: 245px; }
+      .dm-ai { position: absolute; right: 0; top: 0; bottom: 0; width: 320px; max-width: 92vw; box-shadow: -16px 0 40px rgba(0, 0, 0, 0.55); }
+    }
+    @media (max-width: 680px) {
+      .dm-left { display: none; }
+      .dm-brand-sub { display: none; }
+      .dm-btn span.hide-sm { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dm-app">
+    <!-- TOP BAR -->
+    <header class="dm-topbar">
+      <div class="dm-brand">
+        <div class="dm-crest">⬡</div>
+        <div>
+          <div class="dm-brand-title" id="dm-brand-title">VANGUARD GLOBAL OPS</div>
+          <div class="dm-brand-sub" id="dm-brand-sub">SUPPLY CHAIN &amp; MARITIME COMMAND</div>
+        </div>
+      </div>
+
+      <div class="dm-top-actions">
+        <a href="solutions.html" class="dm-btn dm-back-btn">← <span class="hide-sm">Solutions</span></a>
+        <button type="button" class="dm-btn" id="dm-customize-btn">🎨 <span class="hide-sm">Customize Brand</span></button>
+        <button type="button" class="dm-btn-accent" id="dm-ai-toggle">✨ <span class="hide-sm">Ask Private AI</span></button>
+        <a href="enterprise.html" id="dm-commission-btn" class="dm-btn" style="border-color:rgba(179,102,255,0.5);color:#d8b4fe;">
+          Build Ours →
+        </a>
+      </div>
+
+      <!-- LIVE WHITE-LABEL CUSTOMIZER POPOVER -->
+      <div class="dm-pop" id="dm-customize-pop">
+        <div>
+          <div class="dm-pop-label">1. Your Organization Name (Updates Live)</div>
+          <input type="text" id="dm-brand-input" class="dm-input" value="Vanguard Global Ops" placeholder="Type your company name..." />
+        </div>
+        <div>
+          <div class="dm-pop-label">2. Brand Accent Color</div>
+          <div class="dm-swatches" id="dm-swatches"></div>
+        </div>
+        <div>
+          <div class="dm-pop-label">3. Interface Theme</div>
+          <div class="dm-seg-row">
+            <button type="button" class="dm-seg active" data-uimode="dark">🌙 Obsidian Dark</button>
+            <button type="button" class="dm-seg" data-uimode="light">☀️ Editorial Light</button>
+          </div>
+        </div>
+        <div>
+          <div class="dm-pop-label">4. Spatial Viewport</div>
+          <div class="dm-seg-row">
+            <button type="button" class="dm-seg active" data-vp="3d">🌐 3D Vector Globe</button>
+            <button type="button" class="dm-seg" data-vp="2d">🗺️ 2D Equal Earth</button>
+          </div>
+        </div>
+        <button type="button" id="dm-copy-share" class="dm-btn-accent" style="width:100%;">
+          🔗 Copy Pre-Branded Share Link
+        </button>
+      </div>
+    </header>
+
+    <!-- 6-INDUSTRY SWITCHER STRIP -->
+    <div class="dm-preset-strip">
+      <span class="dm-strip-label">INDUSTRY PRESET:</span>
+      <div id="dm-preset-bar" style="display:flex;gap:6px;"></div>
+    </div>
+
+    <!-- MAIN INTERACTIVE WORKSPACE -->
+    <div class="dm-main">
+      <!-- LEFT FEED / VAULT / BYOD PANEL -->
+      <aside class="dm-left">
+        <div class="dm-ltabs">
+          <button type="button" class="dm-ltab active" data-ltab="signals">SIGNALS</button>
+          <button type="button" class="dm-ltab" data-ltab="docs">DOCS VAULT</button>
+          <button type="button" class="dm-ltab" data-ltab="byod">+ TEST TEXT</button>
+        </div>
+        <div class="dm-left-tools">
+          <input type="search" id="dm-search" class="dm-input" placeholder="Search signals, sites, alerts..." />
+          <div class="dm-sev-row">
+            <button type="button" class="dm-pill active" data-sev="all">ALL SIGNALS</button>
+            <button type="button" class="dm-pill" data-sev="critical">S4+ CRITICAL</button>
+          </div>
+        </div>
+        <div class="dm-left-body" id="dm-left-body"></div>
+      </aside>
+
+      <!-- CENTER 3D/2D MAP VIEWPORT -->
+      <main class="dm-stage">
+        <div class="dm-map-hud-tl">
+          <span>● PRIVATE VPC DEMO</span>
+          <span>·</span>
+          <b>DRAG TO ORBIT · CLICK PIN FOR DOSSIER</b>
+        </div>
+
+        <canvas id="dm-map-canvas" aria-label="Interactive White-Label Sovereign Map"></canvas>
+
+        <!-- FLOATING SIGNAL DOSSIER -->
+        <div class="dm-dossier" id="dm-dossier"></div>
+
+        <!-- ZOOM CONTROLS -->
+        <div class="dm-zoom-box">
+          <button type="button" class="dm-zbtn" id="dm-z-in">+</button>
+          <button type="button" class="dm-zbtn" id="dm-z-out">−</button>
+          <button type="button" class="dm-zbtn" id="dm-z-rst">RESET</button>
+        </div>
+
+        <!-- LIVE OVERLAYS DOCK -->
+        <div class="dm-dock">
+          <button type="button" class="dm-ov-btn active" data-ov="assets">◆ ASSETS</button>
+          <button type="button" class="dm-ov-btn active" data-ov="arcs">⟿ ROUTES</button>
+          <button type="button" class="dm-ov-btn active" data-ov="geofences">◎ GEOFENCES</button>
+          <button type="button" class="dm-ov-btn active" data-ov="labels">🏷️ LABELS</button>
+          <button type="button" class="dm-ov-btn active" data-ov="spin">⟲ SPIN</button>
+        </div>
+      </main>
+
+      <!-- RIGHT PRIVATE CITATION-LOCKED RAG AI DRAWER -->
+      <aside class="dm-ai open" id="dm-ai-drawer">
+        <div class="dm-ai-head">
+          <div>
+            <div class="dm-ai-title" id="dm-ai-title">Ask Vanguard Global Ops AI</div>
+            <div class="dm-ai-badge">✓ CITATION-LOCKED · ZERO RETENTION VPC</div>
+          </div>
+          <button type="button" class="dm-icon-x" id="dm-ai-close">✕</button>
+        </div>
+        <div class="dm-ai-starters" id="dm-ai-starters"></div>
+        <div class="dm-ai-log" id="dm-ai-log"></div>
+        <div class="dm-prov" id="dm-ai-prov"></div>
+        <form class="dm-ai-form" id="dm-ai-form">
+          <input type="text" id="dm-ai-input" class="dm-input" placeholder="Ask about indexed docs or your pasted text..." />
+          <button type="submit" class="dm-btn-accent">ASK →</button>
+        </form>
+      </aside>
+    </div>
+  </div>
+
+  <script src="js/world-coastlines.js?v=20261128d"></script>
+  <script src="js/demo-studio.js?v=20261128d"></script>
+</body>
+
+</html>
